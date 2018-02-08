@@ -10,11 +10,23 @@ using System.Windows.Forms;
 
 namespace Restaurante
 {
-    public partial class Form1 : Form
+    public partial class ClienteForm : Form
     {
-        public Form1()
+        //Datos.Conexion cn = new Datos.Conexion();
+        public ClienteForm()
         {
+
             InitializeComponent();
+        }
+
+        private void ClienteForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnNuevo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
