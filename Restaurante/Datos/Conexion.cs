@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-
 using System.Configuration;
+using System.Data.SqlServerCe;
 
 namespace Datos
 {
-    class Conexion
+    public class Conexion
     {
-        public SqlConnection cn;
-        public SqlCommand cmd;
-        public SqlDataReader reader;
-        public SqlDataAdapter adapt;
+        public SqlCeConnection cn;
+        public SqlCeCommand cmd;
+        public SqlCeDataReader reader;
+        public SqlCeDataAdapter adapt;
         // public String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='C:\\Users\\juan\\documents\\visual studio 2015\\Projects\\WFPizzeria\\WFPizzeria\\Base de datos\\BDPizza.mdf'; Integrated Security=True";
         public String connectionString = "";
         public Conexion()
@@ -21,12 +20,12 @@ namespace Datos
             {
                 ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
                 connectionString = cns.ConnectionString;
-                cn = new SqlConnection(connectionString);
+                cn = new SqlCeConnection(connectionString);
                 cn.Open();
             }
             catch (Exception ex)
             {
-
+                throw;
             }
 
         }

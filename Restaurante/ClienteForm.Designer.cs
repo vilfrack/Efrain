@@ -78,7 +78,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtGiro = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCurp = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtRFC = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -542,7 +542,7 @@
             // 
             this.groupBox1.Controls.Add(this.txtGiro);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtCurp);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtRFC);
             this.groupBox1.Controls.Add(this.label8);
@@ -588,12 +588,12 @@
             this.label11.TabIndex = 24;
             this.label11.Text = "Giro";
             // 
-            // textBox1
+            // txtCurp
             // 
-            this.textBox1.Location = new System.Drawing.Point(345, 159);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(118, 20);
-            this.textBox1.TabIndex = 23;
+            this.txtCurp.Location = new System.Drawing.Point(345, 159);
+            this.txtCurp.Name = "txtCurp";
+            this.txtCurp.Size = new System.Drawing.Size(118, 20);
+            this.txtCurp.TabIndex = 23;
             // 
             // label10
             // 
@@ -848,7 +848,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtGiro;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCurp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;

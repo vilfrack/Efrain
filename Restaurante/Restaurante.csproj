@@ -100,7 +100,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Imagenes\cliente.jpg" />
@@ -113,6 +115,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{f7e09bae-d383-47da-b423-0fa1c559eab7}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="Datos\Datos.csproj">
       <Project>{a2376303-b1dc-4cf8-8e65-eb999bec52b5}</Project>
       <Name>Datos</Name>
