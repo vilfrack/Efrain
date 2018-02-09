@@ -9,9 +9,6 @@ namespace Datos
     public class Conexion
     {
         public SqlCeConnection cn;
-        public SqlCeCommand cmd;
-        public SqlCeDataReader reader;
-        public SqlCeDataAdapter adapt;
         // public String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='C:\\Users\\juan\\documents\\visual studio 2015\\Projects\\WFPizzeria\\WFPizzeria\\Base de datos\\BDPizza.mdf'; Integrated Security=True";
         public String connectionString = "";
         public Conexion()
@@ -21,7 +18,7 @@ namespace Datos
                 ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
                 connectionString = cns.ConnectionString;
                 cn = new SqlCeConnection(connectionString);
-                cn.Open();
+                //cn.Open();
             }
             catch (Exception ex)
             {
