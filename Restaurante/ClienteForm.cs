@@ -21,6 +21,7 @@ namespace Restaurante
         private Cliente cliente = new Cliente();
         private EnvioDomicilio envioDomicilio = new EnvioDomicilio();
         private CRUDCliente CRUD = new CRUDCliente();
+        private CRUDEnvioDomicilio CRUDDomicilio = new CRUDEnvioDomicilio();
         public ClienteForm()
         {
 
@@ -53,7 +54,30 @@ namespace Restaurante
             cliente.Telefono5 = txtTelefono5.Text;
 
             int validar = CRUD.InsertarCliente(cliente);
-            if (validar==1)
+
+            DataTable _datatable = new DataTable();
+            _datatable = CRUD.UltimoIDCliente();
+            string IDCliente = _datatable.Rows[0]["IDCliente"].ToString();
+
+            envioDomicilio.IDCliente = Convert.ToInt32(IDCliente);
+            envioDomicilio.Calle = txtCalle.Text;
+            envioDomicilio.Direccion=txtDireccion.Text;
+            envioDomicilio.NumExterior=txtNum.Text;
+            envioDomicilio.NumInterior=txtNumInterior.Text;
+            envioDomicilio.Cruzamientos=txtCruzamientos.Text;
+            envioDomicilio.Cruzamientos2=txtCruzamientos2.Text;
+            envioDomicilio.Colonia=txtColonia.Text;
+            envioDomicilio.Zona=txtZona.Text;
+            envioDomicilio.Referencia=txtReferencia.Text;
+            envioDomicilio.Ciudad=txtCiudadDomicilio.Text;
+            envioDomicilio.Delegación=txtDelegacion.Text;
+            envioDomicilio.Estado=txtEstadoDireccion.Text;
+            envioDomicilio.Pais=txtPaisDireccion.Text;
+            envioDomicilio.CP =txtCP.Text;
+
+           int validarDomicilio= CRUDDomicilio.InsertarEnvioDomicilio(envioDomicilio);
+
+            if (validar==1 && validarDomicilio==1)
             {
                 MessageBox.Show("Registro agregado");
                 BindGrid();
@@ -70,8 +94,68 @@ namespace Restaurante
             _ds = CRUD.ListarCliente();
             if (_ds.Tables.Count > 0)
             {
-                dataGridView1.DataSource = _ds.Tables[0];
+                griViewCliente.DataSource = _ds.Tables[0];
             }
+        }
+        private void griViewCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (griViewCliente.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (griViewCliente.Rows[e.RowIndex].Cells[0].Selected)
+                {
+                    string IDCLiente = griViewCliente.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    DataTable _datatable = new DataTable();
+                    DataTable _datatableDomicilio = new DataTable();
+                    _datatableDomicilio = CRUDDomicilio.BuscarEnvioDomicilio(IDCLiente);
+                    _datatable = CRUD.BuscarCliente(IDCLiente);
+                    if (_datatable.Rows.Count > 0)
+                    {
+                        txtNombre.Text = _datatable.Rows[0]["Nombre"].ToString();
+                        txtEstados.Text = _datatable.Rows[0]["Estado"].ToString();
+                        txtPoblacion.Text = _datatable.Rows[0]["Poblacion"].ToString();
+                        txtDireccion.Text = _datatable.Rows[0]["Direccion"].ToString();
+                        txtIDCliente.Text = _datatable.Rows[0]["IDCliente"].ToString();
+                        txtCodPostals.Text = _datatable.Rows[0]["CodPostal"].ToString();
+                        txtPais.Text = _datatable.Rows[0]["Pais"].ToString();
+                        txtFolioFiscal.Text = _datatable.Rows[0]["FolioFiscal"].ToString();
+                        txtRFC.Text = _datatable.Rows[0]["Rfc"].ToString();
+                        txtGiro.Text = _datatable.Rows[0]["Giro"].ToString();
+                        txtCurp.Text = _datatable.Rows[0]["Curp"].ToString();
+                        txtTelefono5.Text = _datatable.Rows[0]["Telefono5"].ToString();
+                        txtTelefono4.Text = _datatable.Rows[0]["Telefono4"].ToString();
+                        txtTelefono3.Text = _datatable.Rows[0]["Telefono3"].ToString();
+                        txtTelefono2.Text = _datatable.Rows[0]["Telefono2"].ToString();
+                        txtContacto.Text = _datatable.Rows[0]["Contacto"].ToString();
+                        txtTelefono1.Text = _datatable.Rows[0]["Telefono1"].ToString();
+
+                    }
+                    if (_datatableDomicilio.Rows.Count > 0)
+                    {
+                        txtCruzamientos.Text = _datatableDomicilio.Rows[0]["Cruzamientos"].ToString();
+                        txtCruzamientos2.Text= _datatableDomicilio.Rows[0]["Cruzamientos2"].ToString();
+                        txtCalle.Text = _datatableDomicilio.Rows[0]["Calle"].ToString();
+                        txtIDDomicilio.Text = _datatableDomicilio.Rows[0]["IDDomicilio"].ToString();
+                        txtCP.Text = _datatableDomicilio.Rows[0]["CP"].ToString();
+                        txtNum.Text = _datatableDomicilio.Rows[0]["NumExterior"].ToString();
+                        txtNumInterior.Text = _datatableDomicilio.Rows[0]["NumInterior"].ToString();
+                        txtZona.Text = _datatableDomicilio.Rows[0]["Zona"].ToString();
+                        txtColonia.Text = _datatableDomicilio.Rows[0]["Colonia"].ToString();
+                        txtPaisDireccion.Text = _datatableDomicilio.Rows[0]["Pais"].ToString();
+                        txtEstadoDireccion.Text = _datatableDomicilio.Rows[0]["Estado"].ToString();
+                        txtDelegacion.Text = _datatableDomicilio.Rows[0]["Delegación"].ToString();
+                        txtReferencia.Text = _datatableDomicilio.Rows[0]["Referencia"].ToString();
+                    }
+                    //btnDelete.Enabled = true;
+                    //brnUpdate.Enabled = true;
+                    //btnAdd.Enabled = false;
+
+                }
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

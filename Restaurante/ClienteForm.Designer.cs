@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.griViewCliente = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtPaisDireccion = new System.Windows.Forms.TextBox();
@@ -40,10 +40,10 @@
             this.label31 = new System.Windows.Forms.Label();
             this.txtDelegacion = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtCiudadDomicilio = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Referencia = new System.Windows.Forms.Label();
+            this.txtReferencia = new System.Windows.Forms.TextBox();
             this.txtZona = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.txtColonia = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtCruzamientos = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNumInterior = new System.Windows.Forms.TextBox();
             this.txtCalle = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -101,10 +101,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.griViewCliente)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -132,20 +133,24 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.griViewCliente);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 42);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 643);
             this.panel2.TabIndex = 1;
             // 
-            // dataGridView1
+            // griViewCliente
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 6);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(191, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.griViewCliente.AllowUserToAddRows = false;
+            this.griViewCliente.AllowUserToDeleteRows = false;
+            this.griViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.griViewCliente.Location = new System.Drawing.Point(3, 6);
+            this.griViewCliente.Name = "griViewCliente";
+            this.griViewCliente.ReadOnly = true;
+            this.griViewCliente.Size = new System.Drawing.Size(191, 150);
+            this.griViewCliente.TabIndex = 0;
+            this.griViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewCliente_CellClick);
             // 
             // panel3
             // 
@@ -167,10 +172,10 @@
             this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.txtDelegacion);
             this.groupBox3.Controls.Add(this.label28);
-            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.txtCiudadDomicilio);
             this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.Referencia);
+            this.groupBox3.Controls.Add(this.txtReferencia);
             this.groupBox3.Controls.Add(this.txtZona);
             this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.txtColonia);
@@ -179,7 +184,7 @@
             this.groupBox3.Controls.Add(this.label24);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.txtCruzamientos);
-            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.txtNumInterior);
             this.groupBox3.Controls.Add(this.txtCalle);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label23);
@@ -244,12 +249,12 @@
             this.label28.TabIndex = 70;
             this.label28.Text = "Delegacion";
             // 
-            // textBox5
+            // txtCiudadDomicilio
             // 
-            this.textBox5.Location = new System.Drawing.Point(66, 178);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(223, 20);
-            this.textBox5.TabIndex = 69;
+            this.txtCiudadDomicilio.Location = new System.Drawing.Point(66, 178);
+            this.txtCiudadDomicilio.Name = "txtCiudadDomicilio";
+            this.txtCiudadDomicilio.Size = new System.Drawing.Size(223, 20);
+            this.txtCiudadDomicilio.TabIndex = 69;
             // 
             // label29
             // 
@@ -260,22 +265,22 @@
             this.label29.TabIndex = 68;
             this.label29.Text = "Ciudad";
             // 
-            // label27
+            // Referencia
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 127);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(52, 13);
-            this.label27.TabIndex = 66;
-            this.label27.Text = "Direccion";
+            this.Referencia.AutoSize = true;
+            this.Referencia.Location = new System.Drawing.Point(3, 127);
+            this.Referencia.Name = "Referencia";
+            this.Referencia.Size = new System.Drawing.Size(52, 13);
+            this.Referencia.TabIndex = 66;
+            this.Referencia.Text = "Direccion";
             // 
-            // textBox3
+            // txtReferencia
             // 
-            this.textBox3.Location = new System.Drawing.Point(66, 124);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(555, 48);
-            this.textBox3.TabIndex = 67;
+            this.txtReferencia.Location = new System.Drawing.Point(66, 124);
+            this.txtReferencia.Multiline = true;
+            this.txtReferencia.Name = "txtReferencia";
+            this.txtReferencia.Size = new System.Drawing.Size(555, 48);
+            this.txtReferencia.TabIndex = 67;
             // 
             // txtZona
             // 
@@ -341,12 +346,12 @@
             this.txtCruzamientos.Size = new System.Drawing.Size(223, 20);
             this.txtCruzamientos.TabIndex = 57;
             // 
-            // textBox2
+            // txtNumInterior
             // 
-            this.textBox2.Location = new System.Drawing.Point(270, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(122, 20);
-            this.textBox2.TabIndex = 59;
+            this.txtNumInterior.Location = new System.Drawing.Point(270, 46);
+            this.txtNumInterior.Name = "txtNumInterior";
+            this.txtNumInterior.Size = new System.Drawing.Size(122, 20);
+            this.txtNumInterior.TabIndex = 59;
             // 
             // txtCalle
             // 
@@ -769,12 +774,23 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnEditar);
             this.panel4.Controls.Add(this.BtnNuevo);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(656, 62);
             this.panel4.TabIndex = 0;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(87, 6);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 53);
+            this.btnEditar.TabIndex = 1;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // BtnNuevo
             // 
@@ -802,7 +818,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.griViewCliente)).EndInit();
             this.panel3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -820,7 +836,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView griViewCliente;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button BtnNuevo;
@@ -865,7 +881,7 @@
         private System.Windows.Forms.TextBox txtTelefono1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtCruzamientos;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNumInterior;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label23;
@@ -887,9 +903,10 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtDelegacion;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtCiudadDomicilio;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label Referencia;
+        private System.Windows.Forms.TextBox txtReferencia;
+        private System.Windows.Forms.Button btnEditar;
     }
 }

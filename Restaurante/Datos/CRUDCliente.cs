@@ -17,7 +17,7 @@ namespace Datos
         public int InsertarCliente(Cliente cliente) {
             try
             {
-                
+
                 SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
 
                 con.Open();
@@ -52,8 +52,21 @@ namespace Datos
             }
 
         }
+        public DataTable UltimoIDCliente() {
+
+            DataSet _ds = new DataSet();
+            ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
+            string connectionString = cns.ConnectionString;
+            SqlCeConnection cn = new SqlCeConnection(connectionString);
+
+
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDCliente) as IDCliente from Cliente", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
         public int ModificarCliente()
         {
+
             return 0;
         }
         public int EliminarCliente()
@@ -68,9 +81,21 @@ namespace Datos
             SqlCeConnection cn = new SqlCeConnection(connectionString);
 
 
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Cliente", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDCliente,Nombre,Contacto from Cliente", cn);
             sda.Fill(_ds);
             return _ds;
+        }
+        public DataTable BuscarCliente(string IDCliente)
+        {
+            DataSet _ds = new DataSet();
+            ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
+            string connectionString = cns.ConnectionString;
+            SqlCeConnection cn = new SqlCeConnection(connectionString);
+
+
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Cliente WHERE IDCliente = '" + IDCliente + "'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
         }
     }
 }

@@ -18,7 +18,6 @@ namespace Datos
                 ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
                 connectionString = cns.ConnectionString;
                 cn = new SqlCeConnection(connectionString);
-                //cn.Open();
             }
             catch (Exception ex)
             {
