@@ -50,14 +50,59 @@ namespace Datos
             }
 
         }
-        public int ModificarEnvioDomicilio()
+        public int ModificarEnvioDomicilio(EnvioDomicilio envioDomicilio)
         {
+            try
+            {
+                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
 
-            return 0;
+                con.Open();
+                SqlCeCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE ServicioDomicilio SET Calle=@Calle,Direccion=@Direccion,NumExterior=@NumExterior,NumInterior=@NumInterior,Cruzamientos=@Cruzamientos,Cruzamientos2=@Cruzamientos2,Colonia=@Colonia,Zona=@Zona,Referencia=@Referencia,Ciudad=@Ciudad,Delegación=@Delegación,Estado=@Estado,Pais=@Pais,CP=@CP WHERE IDCliente= '" + envioDomicilio.IDCliente + "'";
+                cmd.Parameters.AddWithValue("@IDCliente", envioDomicilio.IDCliente);
+                cmd.Parameters.AddWithValue("@Calle", envioDomicilio.Calle);
+                cmd.Parameters.AddWithValue("@Direccion", envioDomicilio.Direccion);
+                cmd.Parameters.AddWithValue("@NumExterior", envioDomicilio.NumExterior);
+                cmd.Parameters.AddWithValue("@NumInterior", envioDomicilio.Pais);
+                cmd.Parameters.AddWithValue("@Cruzamientos", envioDomicilio.Cruzamientos);
+                cmd.Parameters.AddWithValue("@Cruzamientos2", envioDomicilio.Cruzamientos2);
+                cmd.Parameters.AddWithValue("@Colonia", envioDomicilio.Colonia);
+                cmd.Parameters.AddWithValue("@Zona", envioDomicilio.Zona);
+                cmd.Parameters.AddWithValue("@Referencia", envioDomicilio.Referencia);
+                cmd.Parameters.AddWithValue("@Ciudad", envioDomicilio.Ciudad);
+                cmd.Parameters.AddWithValue("@Delegación", envioDomicilio.Delegación);
+                cmd.Parameters.AddWithValue("@Estado", envioDomicilio.Estado);
+                cmd.Parameters.AddWithValue("@Pais", envioDomicilio.Pais);
+                cmd.Parameters.AddWithValue("@CP", envioDomicilio.CP);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
-        public int EliminarEnvioDomicilio()
+        public void EliminarEnvioDomicilio(string IDCliente)
         {
-            return 0;
+            try
+            {
+                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+
+                con.Open();
+                SqlCeCommand cmd = con.CreateCommand();
+                cmd.CommandText = "DELETE FROM ServicioDomicilio WHERE IDCliente= '" + IDCliente + "'";
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+            catch (SqlCeException ex)
+            {
+                throw;
+            }
         }
         public DataTable BuscarEnvioDomicilio(string IDCliente)
         {
@@ -68,6 +113,18 @@ namespace Datos
 
 
             SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from ServicioDomicilio WHERE IDCliente = '" + IDCliente + "'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
+        public DataTable ValidarEnvioDomicilio(string IDCliente)
+        {
+            DataSet _ds = new DataSet();
+            ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
+            string connectionString = cns.ConnectionString;
+            SqlCeConnection cn = new SqlCeConnection(connectionString);
+
+
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as validar from ServicioDomicilio WHERE IDCliente = '" + IDCliente + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }

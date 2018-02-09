@@ -23,5 +23,10 @@ namespace Restaurante
             this.Hide();
             ClienteForm.Show();
         }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

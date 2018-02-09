@@ -103,6 +103,10 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnEditar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnAtras = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.griViewCliente)).BeginInit();
@@ -111,6 +115,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -119,7 +124,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(856, 42);
+            this.panel1.Size = new System.Drawing.Size(1165, 44);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -135,9 +140,9 @@
             // 
             this.panel2.Controls.Add(this.griViewCliente);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 42);
+            this.panel2.Location = new System.Drawing.Point(0, 44);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 643);
+            this.panel2.Size = new System.Drawing.Size(479, 641);
             this.panel2.TabIndex = 1;
             // 
             // griViewCliente
@@ -145,10 +150,11 @@
             this.griViewCliente.AllowUserToAddRows = false;
             this.griViewCliente.AllowUserToDeleteRows = false;
             this.griViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.griViewCliente.Location = new System.Drawing.Point(3, 6);
+            this.griViewCliente.Dock = System.Windows.Forms.DockStyle.Left;
+            this.griViewCliente.Location = new System.Drawing.Point(0, 0);
             this.griViewCliente.Name = "griViewCliente";
             this.griViewCliente.ReadOnly = true;
-            this.griViewCliente.Size = new System.Drawing.Size(191, 150);
+            this.griViewCliente.Size = new System.Drawing.Size(339, 641);
             this.griViewCliente.TabIndex = 0;
             this.griViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewCliente_CellClick);
             // 
@@ -159,9 +165,9 @@
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(200, 42);
+            this.panel3.Location = new System.Drawing.Point(479, 44);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(656, 643);
+            this.panel3.Size = new System.Drawing.Size(686, 641);
             this.panel3.TabIndex = 2;
             // 
             // groupBox3
@@ -569,10 +575,10 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtDireccion);
-            this.groupBox1.Location = new System.Drawing.Point(6, 73);
+            this.groupBox1.Location = new System.Drawing.Point(6, 83);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(640, 198);
+            this.groupBox1.Size = new System.Drawing.Size(640, 188);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del cliente";
@@ -774,19 +780,18 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.btnEditar);
-            this.panel4.Controls.Add(this.BtnNuevo);
+            this.panel4.Controls.Add(this.groupBox4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(656, 62);
+            this.panel4.Size = new System.Drawing.Size(686, 67);
             this.panel4.TabIndex = 0;
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(87, 6);
+            this.btnEditar.Location = new System.Drawing.Point(88, 20);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 53);
+            this.btnEditar.Size = new System.Drawing.Size(75, 44);
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -794,20 +799,64 @@
             // 
             // BtnNuevo
             // 
-            this.BtnNuevo.Location = new System.Drawing.Point(6, 6);
+            this.BtnNuevo.Location = new System.Drawing.Point(7, 20);
             this.BtnNuevo.Name = "BtnNuevo";
-            this.BtnNuevo.Size = new System.Drawing.Size(75, 53);
+            this.BtnNuevo.Size = new System.Drawing.Size(75, 44);
             this.BtnNuevo.TabIndex = 0;
             this.BtnNuevo.Text = "Nuevo";
             this.BtnNuevo.UseVisualStyleBackColor = true;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(169, 20);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 44);
+            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(250, 19);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 44);
+            this.btnLimpiar.TabIndex = 3;
+            this.btnLimpiar.Text = "Limpiar Registros";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnAtras
+            // 
+            this.btnAtras.Location = new System.Drawing.Point(548, 16);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(75, 44);
+            this.btnAtras.TabIndex = 4;
+            this.btnAtras.Text = "Atras";
+            this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnLimpiar);
+            this.groupBox4.Controls.Add(this.btnAtras);
+            this.groupBox4.Controls.Add(this.BtnNuevo);
+            this.groupBox4.Controls.Add(this.btnEditar);
+            this.groupBox4.Controls.Add(this.btnEliminar);
+            this.groupBox4.Location = new System.Drawing.Point(8, -2);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(638, 68);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Acciones";
             // 
             // ClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(856, 685);
+            this.ClientSize = new System.Drawing.Size(1165, 685);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -827,6 +876,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -908,5 +958,9 @@
         private System.Windows.Forms.Label Referencia;
         private System.Windows.Forms.TextBox txtReferencia;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAtras;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

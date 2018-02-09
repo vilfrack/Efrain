@@ -64,14 +64,62 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
-        public int ModificarCliente()
+        public int ModificarCliente(Cliente cliente)
         {
+            try
+            {
+                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
 
-            return 0;
+                con.Open();
+                SqlCeCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE Cliente SET Nombre=@Nombre,Direccion=@Direccion,Tipo_Facturacion=@Tipo_Facturacion,Estado=@Estado,Pais=@Pais,CodPostal=@CodPostal,FolioFiscal=@FolioFiscal,rfc=@rfc,Curp=@Curp,Giro=@Giro,Poblacion=@Poblacion,Contacto=@Contacto,Telefono1=@Telefono1,Telefono2=@Telefono2,Telefono3=@Telefono3,Telefono4=@Telefono4,Telefono5=@Telefono5 WHERE IDCliente= '" + cliente .IDCliente+ "'";
+                cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion);
+                cmd.Parameters.AddWithValue("@Tipo_Facturacion", cliente.Tipo_facturacion);
+                cmd.Parameters.AddWithValue("@Estado", cliente.Estado);
+                cmd.Parameters.AddWithValue("@Pais", cliente.Pais);
+                cmd.Parameters.AddWithValue("@CodPostal", cliente.CodPostal);
+                cmd.Parameters.AddWithValue("@FolioFiscal", cliente.FolioFiscal);
+                cmd.Parameters.AddWithValue("@rfc", cliente.Rfc);
+                cmd.Parameters.AddWithValue("@Curp", cliente.Curp);
+                cmd.Parameters.AddWithValue("@Giro", cliente.Giro);
+                cmd.Parameters.AddWithValue("@Poblacion", cliente.Poblacion);
+                cmd.Parameters.AddWithValue("@Contacto", cliente.Contacto);
+                cmd.Parameters.AddWithValue("@Telefono1", cliente.Telefono1);
+                cmd.Parameters.AddWithValue("@Telefono2", cliente.Telefono2);
+                cmd.Parameters.AddWithValue("@Telefono3", cliente.Telefono3);
+                cmd.Parameters.AddWithValue("@Telefono4", cliente.Telefono4);
+                cmd.Parameters.AddWithValue("@Telefono5", cliente.Telefono5);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
-        public int EliminarCliente()
+        public void EliminarCliente(string IDCliente)
         {
-            return 0;
+            try
+            {
+                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+
+                con.Open();
+                SqlCeCommand cmd = con.CreateCommand();
+                cmd.CommandText = "DELETE FROM Cliente WHERE IDCliente= '" + IDCliente + "'";
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public DataSet ListarCliente()
         {
@@ -97,5 +145,6 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
+
     }
 }
