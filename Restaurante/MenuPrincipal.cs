@@ -20,13 +20,30 @@ namespace Restaurante
         private void BtnCliente_Click(object sender, EventArgs e)
         {
             ClienteForm ClienteForm = new ClienteForm();
-            this.Hide();
             ClienteForm.Show();
         }
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMenuPedido_Click(object sender, EventArgs e)
+        {
+            MenuPedido MenuPedido = new MenuPedido();
+            MenuPedido.Show();
+        }
+
+        private void btnInsumos_Click(object sender, EventArgs e)
+        {
+            InsumosForm insumos = new InsumosForm();
+            insumos.Show();
+        }
+
+        private void btnGrupos_Click(object sender, EventArgs e)
+        {
+            GruposForm grupos = new GruposForm();
+            grupos.Show();
         }
     }
 }

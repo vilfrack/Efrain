@@ -82,6 +82,24 @@
     <Compile Include="ClienteForm.Designer.cs">
       <DependentUpon>ClienteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GruposForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GruposForm.Designer.cs">
+      <DependentUpon>GruposForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsumosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsumosForm.Designer.cs">
+      <DependentUpon>InsumosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPedido.Designer.cs">
+      <DependentUpon>MenuPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +110,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ClienteForm.resx">
       <DependentUpon>ClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GruposForm.resx">
+      <DependentUpon>GruposForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsumosForm.resx">
+      <DependentUpon>InsumosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPedido.resx">
+      <DependentUpon>MenuPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>

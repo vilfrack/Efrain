@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnMenuPedido = new System.Windows.Forms.Button();
+            this.btnInsumos = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
+            this.btnGrupos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button2
+            // btnMenuPedido
             // 
-            this.button2.Location = new System.Drawing.Point(106, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 64);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnMenuPedido.Location = new System.Drawing.Point(106, 13);
+            this.btnMenuPedido.Name = "btnMenuPedido";
+            this.btnMenuPedido.Size = new System.Drawing.Size(98, 64);
+            this.btnMenuPedido.TabIndex = 1;
+            this.btnMenuPedido.Text = "Menu";
+            this.btnMenuPedido.UseVisualStyleBackColor = true;
+            this.btnMenuPedido.Click += new System.EventHandler(this.btnMenuPedido_Click);
             // 
-            // button3
+            // btnInsumos
             // 
-            this.button3.Location = new System.Drawing.Point(210, 13);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 64);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnInsumos.Location = new System.Drawing.Point(210, 13);
+            this.btnInsumos.Name = "btnInsumos";
+            this.btnInsumos.Size = new System.Drawing.Size(98, 64);
+            this.btnInsumos.TabIndex = 2;
+            this.btnInsumos.Text = "Insumos";
+            this.btnInsumos.UseVisualStyleBackColor = true;
+            this.btnInsumos.Click += new System.EventHandler(this.btnInsumos_Click);
             // 
             // BtnCliente
             // 
@@ -62,13 +65,25 @@
             this.BtnCliente.UseVisualStyleBackColor = true;
             this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
             // 
+            // btnGrupos
+            // 
+            this.btnGrupos.Location = new System.Drawing.Point(314, 13);
+            this.btnGrupos.Name = "btnGrupos";
+            this.btnGrupos.Size = new System.Drawing.Size(98, 64);
+            this.btnGrupos.TabIndex = 3;
+            this.btnGrupos.Text = "Grupos";
+            this.btnGrupos.UseVisualStyleBackColor = true;
+            this.btnGrupos.Click += new System.EventHandler(this.btnGrupos_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1165, 685);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnGrupos);
+            this.Controls.Add(this.btnInsumos);
+            this.Controls.Add(this.btnMenuPedido);
             this.Controls.Add(this.BtnCliente);
             this.Name = "MenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -80,8 +95,9 @@
         #endregion
 
         private System.Windows.Forms.Button BtnCliente;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnMenuPedido;
+        private System.Windows.Forms.Button btnInsumos;
+        private System.Windows.Forms.Button btnGrupos;
     }
 }
 
