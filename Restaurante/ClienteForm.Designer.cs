@@ -131,7 +131,6 @@
             this.griViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.griViewCliente.Location = new System.Drawing.Point(3, 3);
             this.griViewCliente.Name = "griViewCliente";
-            this.griViewCliente.ReadOnly = true;
             this.griViewCliente.Size = new System.Drawing.Size(343, 626);
             this.griViewCliente.TabIndex = 0;
             this.griViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewCliente_CellClick);
@@ -837,6 +836,8 @@
             this.ClientSize = new System.Drawing.Size(1020, 643);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ClienteForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

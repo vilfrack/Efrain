@@ -31,8 +31,15 @@ namespace Datos
 
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "insert into Grupos(Descripcion)values (@Descripcion)";
+                cmd.CommandText = "INSERT INTO [Insumos] (IDGrupos,Descripcion,UnidadMedida,UltimoCosto,CostoPromedio,CostoImpuesto,IVA,Inventariable) VALUES (@IDGrupos,@Descripcion,@UnidadMedida,@UltimoCosto,@CostoPromedio,@CostoImpuesto,@IVA,@Inventariable)";
+                cmd.Parameters.AddWithValue("@IDGrupos", Insumos.IDGrupos);
                 cmd.Parameters.AddWithValue("@Descripcion", Insumos.Descripcion);
+                cmd.Parameters.AddWithValue("@UnidadMedida", Insumos.UnidadMedida);
+                cmd.Parameters.AddWithValue("@UltimoCosto", Insumos.UltimoCosto);
+                cmd.Parameters.AddWithValue("@CostoPromedio", Insumos.CostoPromedio);
+                cmd.Parameters.AddWithValue("@CostoImpuesto", Insumos.CostoImpuesto);
+                cmd.Parameters.AddWithValue("@IVA", Insumos.IVA);
+                cmd.Parameters.AddWithValue("@Inventariable", Insumos.Inventariable);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();

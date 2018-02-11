@@ -32,6 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboInventariable = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtCostoImpuesto = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtIva = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@
             this.txtDescripcionGrupoBusqueda = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.griViewInsumos = new System.Windows.Forms.DataGridView();
-            this.txtCostoImpuesto = new System.Windows.Forms.TextBox();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -127,6 +128,14 @@
             this.label10.Size = new System.Drawing.Size(68, 13);
             this.label10.TabIndex = 35;
             this.label10.Text = "Inventariable";
+            // 
+            // txtCostoImpuesto
+            // 
+            this.txtCostoImpuesto.Location = new System.Drawing.Point(111, 214);
+            this.txtCostoImpuesto.Name = "txtCostoImpuesto";
+            this.txtCostoImpuesto.Size = new System.Drawing.Size(149, 20);
+            this.txtCostoImpuesto.TabIndex = 34;
+            this.txtCostoImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCostoImpuesto_KeyPress);
             // 
             // label9
             // 
@@ -389,19 +398,19 @@
             this.griViewInsumos.AllowUserToAddRows = false;
             this.griViewInsumos.AllowUserToDeleteRows = false;
             this.griViewInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.griViewInsumos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Seleccionar});
             this.griViewInsumos.Location = new System.Drawing.Point(7, 73);
             this.griViewInsumos.Name = "griViewInsumos";
             this.griViewInsumos.ReadOnly = true;
             this.griViewInsumos.Size = new System.Drawing.Size(380, 300);
             this.griViewInsumos.TabIndex = 0;
             // 
-            // txtCostoImpuesto
+            // Seleccionar
             // 
-            this.txtCostoImpuesto.Location = new System.Drawing.Point(111, 214);
-            this.txtCostoImpuesto.Name = "txtCostoImpuesto";
-            this.txtCostoImpuesto.Size = new System.Drawing.Size(149, 20);
-            this.txtCostoImpuesto.TabIndex = 34;
-            this.txtCostoImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCostoImpuesto_KeyPress);
+            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.ReadOnly = true;
             // 
             // InsumosForm
             // 
@@ -411,6 +420,8 @@
             this.ClientSize = new System.Drawing.Size(1074, 382);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "InsumosForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insumos";
@@ -465,5 +476,6 @@
         private System.Windows.Forms.TextBox txtDescripcionGrupoBusqueda;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox txtCostoImpuesto;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
     }
 }

@@ -107,77 +107,14 @@ namespace Restaurante
             {
                 griViewCliente.DataSource = _ds.Tables[0];
             }
-        }
-        private void griViewCliente_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (griViewCliente.Rows.Count > 0 && e.RowIndex != -1)
-            {
-                if (griViewCliente.Rows[e.RowIndex].Cells[0].Selected)
-                {
-                    string IDCLiente = griViewCliente.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    DataTable _datatable = new DataTable();
-                    DataTable _datatableDomicilio = new DataTable();
-                    _datatableDomicilio = CRUDDomicilio.BuscarEnvioDomicilio(IDCLiente);
-                    _datatable = CRUD.BuscarCliente(IDCLiente);
-                    if (_datatable.Rows.Count > 0)
-                    {
-                        txtNombre.Text = _datatable.Rows[0]["Nombre"].ToString();
-                        txtEstados.Text = _datatable.Rows[0]["Estado"].ToString();
-                        txtPoblacion.Text = _datatable.Rows[0]["Poblacion"].ToString();
-                        txtDireccion.Text = _datatable.Rows[0]["Direccion"].ToString();
-                        txtIDCliente.Text = _datatable.Rows[0]["IDCliente"].ToString();
-                        txtCodPostals.Text = _datatable.Rows[0]["CodPostal"].ToString();
-                        txtPais.Text = _datatable.Rows[0]["Pais"].ToString();
-                        txtFolioFiscal.Text = _datatable.Rows[0]["FolioFiscal"].ToString();
-                        txtRFC.Text = _datatable.Rows[0]["Rfc"].ToString();
-                        txtGiro.Text = _datatable.Rows[0]["Giro"].ToString();
-                        txtCurp.Text = _datatable.Rows[0]["Curp"].ToString();
-                        txtTelefono5.Text = _datatable.Rows[0]["Telefono5"].ToString();
-                        txtTelefono4.Text = _datatable.Rows[0]["Telefono4"].ToString();
-                        txtTelefono3.Text = _datatable.Rows[0]["Telefono3"].ToString();
-                        txtTelefono2.Text = _datatable.Rows[0]["Telefono2"].ToString();
-                        txtContacto.Text = _datatable.Rows[0]["Contacto"].ToString();
-                        txtTelefono1.Text = _datatable.Rows[0]["Telefono1"].ToString();
+            ////CODIGO PARA INSERTAR EL CHECKBOX
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
+            checkBoxColumn.HeaderText = "Seleccionar";
+            checkBoxColumn.Width = 30;
+            checkBoxColumn.Name = "check";
+            griViewCliente.Columns.Insert(0, checkBoxColumn);
 
-                    }
-                    if (_datatableDomicilio.Rows.Count > 0)
-                    {
-                        txtCruzamientos.Text = _datatableDomicilio.Rows[0]["Cruzamientos"].ToString();
-                        txtCruzamientos2.Text= _datatableDomicilio.Rows[0]["Cruzamientos2"].ToString();
-                        txtCalle.Text = _datatableDomicilio.Rows[0]["Calle"].ToString();
-                        txtIDDomicilio.Text = _datatableDomicilio.Rows[0]["IDDomilicilio"].ToString();
-                        txtCP.Text = _datatableDomicilio.Rows[0]["CP"].ToString();
-                        txtNum.Text = _datatableDomicilio.Rows[0]["NumExterior"].ToString();
-                        txtNumInterior.Text = _datatableDomicilio.Rows[0]["NumInterior"].ToString();
-                        txtZona.Text = _datatableDomicilio.Rows[0]["Zona"].ToString();
-                        txtColonia.Text = _datatableDomicilio.Rows[0]["Colonia"].ToString();
-                        txtPaisDireccion.Text = _datatableDomicilio.Rows[0]["Pais"].ToString();
-                        txtEstadoDireccion.Text = _datatableDomicilio.Rows[0]["Estado"].ToString();
-                        txtDelegacion.Text = _datatableDomicilio.Rows[0]["Delegación"].ToString();
-                        txtReferencia.Text = _datatableDomicilio.Rows[0]["Referencia"].ToString();
-                    }
-                    else
-                    {
-                        txtCruzamientos.Text = "";
-                        txtCruzamientos2.Text = "";
-                        txtCalle.Text = "";
-                        txtIDDomicilio.Text = "";
-                        txtCP.Text = "";
-                        txtNum.Text = "";
-                        txtNumInterior.Text = "";
-                        txtZona.Text = "";
-                        txtColonia.Text = "";
-                        txtPaisDireccion.Text = "";
-                        txtEstadoDireccion.Text = "";
-                        txtDelegacion.Text = "";
-                        txtReferencia.Text = "";
-                        txtCiudadDomicilio.Text = "";
-                    }
-                    btnEditar.Enabled = true;
-                    BtnNuevo.Enabled = false;
-                    btnEliminar.Enabled = true;
-                }
-            }
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -315,6 +252,98 @@ namespace Restaurante
         {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             this.Close();
+        }
+
+        private void griViewCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (griViewCliente.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (griViewCliente.Rows[e.RowIndex].Cells[0].Selected)
+                {
+
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < griViewCliente.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            griViewCliente.Rows[i].Cells["check"].Value = false;
+                        }
+
+                    }
+
+                    string IDCLiente = griViewCliente.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    DataTable _datatable = new DataTable();
+                    DataTable _datatableDomicilio = new DataTable();
+                    _datatableDomicilio = CRUDDomicilio.BuscarEnvioDomicilio(IDCLiente);
+                    _datatable = CRUD.BuscarCliente(IDCLiente);
+                    if (_datatable.Rows.Count > 0)
+                    {
+                        txtNombre.Text = _datatable.Rows[0]["Nombre"].ToString();
+                        txtEstados.Text = _datatable.Rows[0]["Estado"].ToString();
+                        txtPoblacion.Text = _datatable.Rows[0]["Poblacion"].ToString();
+                        txtDireccion.Text = _datatable.Rows[0]["Direccion"].ToString();
+                        txtIDCliente.Text = _datatable.Rows[0]["IDCliente"].ToString();
+                        txtCodPostals.Text = _datatable.Rows[0]["CodPostal"].ToString();
+                        txtPais.Text = _datatable.Rows[0]["Pais"].ToString();
+                        txtFolioFiscal.Text = _datatable.Rows[0]["FolioFiscal"].ToString();
+                        txtRFC.Text = _datatable.Rows[0]["Rfc"].ToString();
+                        txtGiro.Text = _datatable.Rows[0]["Giro"].ToString();
+                        txtCurp.Text = _datatable.Rows[0]["Curp"].ToString();
+                        txtTelefono5.Text = _datatable.Rows[0]["Telefono5"].ToString();
+                        txtTelefono4.Text = _datatable.Rows[0]["Telefono4"].ToString();
+                        txtTelefono3.Text = _datatable.Rows[0]["Telefono3"].ToString();
+                        txtTelefono2.Text = _datatable.Rows[0]["Telefono2"].ToString();
+                        txtContacto.Text = _datatable.Rows[0]["Contacto"].ToString();
+                        txtTelefono1.Text = _datatable.Rows[0]["Telefono1"].ToString();
+
+                    }
+                    if (_datatableDomicilio.Rows.Count > 0)
+                    {
+                        txtCruzamientos.Text = _datatableDomicilio.Rows[0]["Cruzamientos"].ToString();
+                        txtCruzamientos2.Text = _datatableDomicilio.Rows[0]["Cruzamientos2"].ToString();
+                        txtCalle.Text = _datatableDomicilio.Rows[0]["Calle"].ToString();
+                        txtIDDomicilio.Text = _datatableDomicilio.Rows[0]["IDDomilicilio"].ToString();
+                        txtCP.Text = _datatableDomicilio.Rows[0]["CP"].ToString();
+                        txtNum.Text = _datatableDomicilio.Rows[0]["NumExterior"].ToString();
+                        txtNumInterior.Text = _datatableDomicilio.Rows[0]["NumInterior"].ToString();
+                        txtZona.Text = _datatableDomicilio.Rows[0]["Zona"].ToString();
+                        txtColonia.Text = _datatableDomicilio.Rows[0]["Colonia"].ToString();
+                        txtPaisDireccion.Text = _datatableDomicilio.Rows[0]["Pais"].ToString();
+                        txtEstadoDireccion.Text = _datatableDomicilio.Rows[0]["Estado"].ToString();
+                        txtDelegacion.Text = _datatableDomicilio.Rows[0]["Delegación"].ToString();
+                        txtReferencia.Text = _datatableDomicilio.Rows[0]["Referencia"].ToString();
+                    }
+                    else
+                    {
+                        txtCruzamientos.Text = "";
+                        txtCruzamientos2.Text = "";
+                        txtCalle.Text = "";
+                        txtIDDomicilio.Text = "";
+                        txtCP.Text = "";
+                        txtNum.Text = "";
+                        txtNumInterior.Text = "";
+                        txtZona.Text = "";
+                        txtColonia.Text = "";
+                        txtPaisDireccion.Text = "";
+                        txtEstadoDireccion.Text = "";
+                        txtDelegacion.Text = "";
+                        txtReferencia.Text = "";
+                        txtCiudadDomicilio.Text = "";
+                    }
+                    btnEditar.Enabled = true;
+                    BtnNuevo.Enabled = false;
+                    btnEliminar.Enabled = true;
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        private void griViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

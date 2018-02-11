@@ -85,6 +85,8 @@
             this.Controls.Add(this.btnInsumos);
             this.Controls.Add(this.btnMenuPedido);
             this.Controls.Add(this.BtnCliente);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
