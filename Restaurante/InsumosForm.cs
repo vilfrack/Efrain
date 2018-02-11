@@ -31,7 +31,7 @@ namespace Restaurante
                 }
 
                 if (e.KeyChar == '\b')
-                       {
+                {
                     e.Handled = false;
                 }
             }
