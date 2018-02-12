@@ -109,7 +109,7 @@ namespace Datos
         public DataSet ListarInsumo()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupos,Descripcion from Insumos", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupos,Descripcion,UnidadMedida from Insumos", cn);
             sda.Fill(_ds);
             return _ds;
         }
@@ -119,6 +119,13 @@ namespace Datos
             SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Insumos WHERE IDInsumos = '" + IDInsumos + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
+        }
+        public DataSet BuscarInsumoByGrupo(string IDGrupos)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupos,Descripcion,UnidadMedida from Insumos WHERE IDGrupos = '" + IDGrupos + "'", cn);
+            sda.Fill(_ds);
+            return _ds;
         }
         public DataTable UnidadMedida() {
             cn.Open();

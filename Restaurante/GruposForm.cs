@@ -149,5 +149,11 @@ namespace Restaurante
                 }
             }
         }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            this.Close();
+        }
     }
 }

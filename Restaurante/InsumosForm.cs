@@ -124,12 +124,12 @@ namespace Restaurante
                     //Insumos.IDInsumos = txtIDInsumo.Text;
                     Insumos.IDGrupos = Convert.ToInt32(comboIDGrupo.SelectedValue.ToString());
                     Insumos.Descripcion = txtDescripcionInsumo.Text;
-                    Insumos.UnidadMedida = comboUnidadMedida.SelectedText;
+                    Insumos.UnidadMedida = comboUnidadMedida.Text;
                     Insumos.UltimoCosto = Convert.ToDouble(txtUltimoCosto.Text);
                     Insumos.CostoPromedio = Convert.ToDouble(txtCostoPromedio.Text);
                     Insumos.CostoImpuesto = Convert.ToDouble(txtCostoImpuesto.Text);
                     Insumos.IVA = Convert.ToDouble(txtIva.Text);
-                    Insumos.Inventariable = comboInventariable.SelectedText;
+                    Insumos.Inventariable = comboInventariable.Text;
 
                     int validar = CRUDInsumos.InsertarInsumos(Insumos);
                     if (validar == 1)
@@ -326,6 +326,18 @@ namespace Restaurante
         {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             this.Close();
+        }
+
+        private void comboIDGrupoBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string IDGrupos = comboIDGrupoBusqueda.SelectedValue.ToString();
+            DataSet _ds = new DataSet();
+            _ds = CRUDInsumos.BuscarInsumoByGrupo(IDGrupos);
+            if (_ds.Tables.Count > 0)
+            {
+                griViewInsumos.DataSource = _ds.Tables[0];
+            }
         }
     }
 }

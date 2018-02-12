@@ -38,7 +38,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -123,7 +122,6 @@
             // 
             this.groupBox4.Controls.Add(this.btnCancelar);
             this.groupBox4.Controls.Add(this.BtnGuardar);
-            this.groupBox4.Controls.Add(this.btnLimpiar);
             this.groupBox4.Controls.Add(this.btnAtras);
             this.groupBox4.Controls.Add(this.BtnNuevo);
             this.groupBox4.Controls.Add(this.btnEditar);
@@ -137,7 +135,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(414, 16);
+            this.btnCancelar.Location = new System.Drawing.Point(333, 16);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 44);
             this.btnCancelar.TabIndex = 6;
@@ -155,15 +153,6 @@
             this.BtnGuardar.UseVisualStyleBackColor = true;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(333, 16);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 44);
-            this.btnLimpiar.TabIndex = 3;
-            this.btnLimpiar.Text = "Limpiar Registros";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
             // btnAtras
             // 
             this.btnAtras.Location = new System.Drawing.Point(543, 16);
@@ -172,6 +161,7 @@
             this.btnAtras.TabIndex = 4;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // BtnNuevo
             // 
@@ -260,7 +250,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button BtnGuardar;
-        private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button BtnNuevo;
         private System.Windows.Forms.Button btnEditar;

@@ -374,6 +374,7 @@
             this.comboIDGrupoBusqueda.Name = "comboIDGrupoBusqueda";
             this.comboIDGrupoBusqueda.Size = new System.Drawing.Size(380, 21);
             this.comboIDGrupoBusqueda.TabIndex = 29;
+            this.comboIDGrupoBusqueda.SelectedIndexChanged += new System.EventHandler(this.comboIDGrupoBusqueda_SelectedIndexChanged);
             // 
             // panel5
             // 
