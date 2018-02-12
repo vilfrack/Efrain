@@ -15,7 +15,6 @@ namespace Restaurante
     public partial class InsumosForm : Form
     {
         public CRUDInsumos CRUDInsumos = new CRUDInsumos();
-        public CRUDGrupos CRUDGrupos = new CRUDGrupos();
         private Insumos Insumos = new Insumos();
         public InsumosForm()
         {
@@ -58,6 +57,7 @@ namespace Restaurante
             checkBoxColumn.HeaderText = "Seleccionar";
             checkBoxColumn.Width = 100;
             checkBoxColumn.Name = "check";
+
             griViewInsumos.Columns.Insert(0, checkBoxColumn);
         }
         private void ValidarSoloNumeros(object sender, KeyPressEventArgs e)
@@ -194,6 +194,138 @@ namespace Restaurante
             comboUnidadMedida.ValueMember = "IDUnidad";
             comboUnidadMedida.DisplayMember = "Descripcion";
             comboUnidadMedida.DataSource = dt;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (txtIDInsumo.Text != "")
+            {
+                Insumos.IDInsumos = Convert.ToInt32(txtIDInsumo.Text);
+                Insumos.IDGrupos = Convert.ToInt32(comboIDGrupo.SelectedValue.ToString());
+                Insumos.Descripcion = txtDescripcionInsumo.Text;
+                Insumos.UnidadMedida = comboUnidadMedida.SelectedText;
+                Insumos.UltimoCosto = Convert.ToDouble(txtUltimoCosto.Text);
+                Insumos.CostoPromedio = Convert.ToDouble(txtCostoPromedio.Text);
+                Insumos.CostoImpuesto = Convert.ToDouble(txtCostoImpuesto.Text);
+                Insumos.IVA = Convert.ToDouble(txtIva.Text);
+                Insumos.Inventariable = comboInventariable.SelectedText;
+
+                int validar = CRUDInsumos.ModificarInsumo(Insumos);
+                if (validar != 0)
+                {
+                    BindGrid();
+                    MessageBox.Show("REGISTRO MODIFICADO");
+                }
+                else
+                {
+                    MessageBox.Show("ERROR");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un registro de la Lista");
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            BtnGuardar.Enabled = false;
+
+            BtnNuevo.Enabled = true;
+            limpiarControles();
+        }
+        private void limpiarControles() {
+            txtUltimoCosto.Text = "";
+            txtDescripcionInsumo.Text = "";
+            comboInventariable.SelectedIndex = -1;
+            txtCostoPromedio.Text = "";
+            comboUnidadMedida.SelectedIndex = -1;
+            comboIDGrupo.SelectedIndex = -1;
+            txtCostoImpuesto.Text = "";
+            txtIva.Text = "";
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            BtnGuardar.Enabled = false;
+
+            BtnNuevo.Enabled = true;
+            limpiarControles();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro desea eliminar el registro?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (txtIDInsumo.Text == "")
+                {
+                    MessageBox.Show("NO SE PUEDE ELIMINAR EL REGISTRO");
+                }
+                else
+                {
+                    CRUDInsumos.EliminarInsumo(txtIDInsumo.Text);
+                    limpiarControles();
+                    BindGrid();
+                    MessageBox.Show("REGISTRO ELIMINADO");
+                }
+            }
+        }
+
+        private void griViewInsumos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (griViewInsumos.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (griViewInsumos.Rows[e.RowIndex].Cells[0].Selected)
+                {
+
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < griViewInsumos.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            griViewInsumos.Rows[i].Cells["check"].Value = false;
+                        }
+
+                    }
+
+                    string IDInsumos = griViewInsumos.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    DataTable _datatable = new DataTable();
+                    _datatable = CRUDInsumos.BuscarInsumo(IDInsumos);
+                    if (_datatable.Rows.Count > 0)
+                    {
+
+
+                        txtUltimoCosto.Text = _datatable.Rows[0]["UltimoCosto"].ToString();
+                        txtDescripcionInsumo.Text = _datatable.Rows[0]["Descripcion"].ToString();
+                        comboInventariable.SelectedText = _datatable.Rows[0]["Inventariable"].ToString();
+                        txtCostoPromedio.Text = _datatable.Rows[0]["CostoPromedio"].ToString();
+                        comboUnidadMedida.SelectedText = _datatable.Rows[0]["UnidadMedida"].ToString();
+                        comboIDGrupo.SelectedText = _datatable.Rows[0]["IDGrupos"].ToString();
+                        txtCostoImpuesto.Text = _datatable.Rows[0]["CostoImpuesto"].ToString();
+                        txtIva.Text = _datatable.Rows[0]["IVA"].ToString();
+
+
+                    }
+
+                    btnEditar.Enabled = true;
+                    BtnNuevo.Enabled = false;
+                    btnEliminar.Enabled = true;
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            this.Close();
         }
     }
 }

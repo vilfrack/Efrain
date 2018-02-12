@@ -51,7 +51,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.BtnGuardar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -274,7 +274,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.BtnGuardar);
-            this.groupBox4.Controls.Add(this.btnLimpiar);
+            this.groupBox4.Controls.Add(this.btnCancelar);
             this.groupBox4.Controls.Add(this.btnAtras);
             this.groupBox4.Controls.Add(this.BtnNuevo);
             this.groupBox4.Controls.Add(this.btnEditar);
@@ -296,14 +296,15 @@
             this.BtnGuardar.UseVisualStyleBackColor = true;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
-            // btnLimpiar
+            // btnCancelar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(333, 16);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 44);
-            this.btnLimpiar.TabIndex = 3;
-            this.btnLimpiar.Text = "Limpiar Registros";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(333, 16);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 44);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAtras
             // 
@@ -313,6 +314,7 @@
             this.btnAtras.TabIndex = 4;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // BtnNuevo
             // 
@@ -332,6 +334,7 @@
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
@@ -341,6 +344,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // panel2
             // 
@@ -386,9 +390,9 @@
             this.griViewInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.griViewInsumos.Location = new System.Drawing.Point(7, 73);
             this.griViewInsumos.Name = "griViewInsumos";
-            this.griViewInsumos.ReadOnly = true;
             this.griViewInsumos.Size = new System.Drawing.Size(380, 300);
             this.griViewInsumos.TabIndex = 0;
+            this.griViewInsumos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewInsumos_CellClick);
             // 
             // InsumosForm
             // 
@@ -429,7 +433,7 @@
         private System.Windows.Forms.TextBox txtDescripcionInsumo;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button BtnNuevo;
         private System.Windows.Forms.Button btnEditar;
