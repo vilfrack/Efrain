@@ -123,7 +123,7 @@ namespace Datos
         public DataSet BuscarInsumoByGrupo(string IDGrupos)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupos,Descripcion,UnidadMedida from Insumos WHERE IDGrupos = '" + IDGrupos + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDInsumos,Descripcion,UnidadMedida from Insumos WHERE IDGrupos = '" + IDGrupos + "'", cn);
             sda.Fill(_ds);
             return _ds;
         }

@@ -55,7 +55,7 @@ namespace Restaurante
             ////CODIGO PARA INSERTAR EL CHECKBOX
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.HeaderText = "Seleccionar";
-            checkBoxColumn.Width = 100;
+            checkBoxColumn.Width = 80;
             checkBoxColumn.Name = "check";
 
             griViewInsumos.Columns.Insert(0, checkBoxColumn);
@@ -135,7 +135,7 @@ namespace Restaurante
                     if (validar == 1)
                     {
                         MessageBox.Show("Registro agregado");
-                        BindGrid();
+                        BindGridByCombo();
                     }
                     else
                     {
@@ -213,7 +213,7 @@ namespace Restaurante
                 int validar = CRUDInsumos.ModificarInsumo(Insumos);
                 if (validar != 0)
                 {
-                    BindGrid();
+                    BindGridByCombo();
                     MessageBox.Show("REGISTRO MODIFICADO");
                 }
                 else
@@ -245,6 +245,7 @@ namespace Restaurante
             comboIDGrupo.SelectedIndex = -1;
             txtCostoImpuesto.Text = "";
             txtIva.Text = "";
+            txtIDInsumo.Text = "";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -269,7 +270,7 @@ namespace Restaurante
                 {
                     CRUDInsumos.EliminarInsumo(txtIDInsumo.Text);
                     limpiarControles();
-                    BindGrid();
+                    BindGridByCombo();
                     MessageBox.Show("REGISTRO ELIMINADO");
                 }
             }
@@ -289,7 +290,6 @@ namespace Restaurante
                         {
                             griViewInsumos.Rows[i].Cells["check"].Value = false;
                         }
-
                     }
 
                     string IDInsumos = griViewInsumos.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -297,8 +297,6 @@ namespace Restaurante
                     _datatable = CRUDInsumos.BuscarInsumo(IDInsumos);
                     if (_datatable.Rows.Count > 0)
                     {
-
-
                         txtUltimoCosto.Text = _datatable.Rows[0]["UltimoCosto"].ToString();
                         txtDescripcionInsumo.Text = _datatable.Rows[0]["Descripcion"].ToString();
                         comboInventariable.SelectedText = _datatable.Rows[0]["Inventariable"].ToString();
@@ -307,17 +305,13 @@ namespace Restaurante
                         comboIDGrupo.SelectedText = _datatable.Rows[0]["IDGrupos"].ToString();
                         txtCostoImpuesto.Text = _datatable.Rows[0]["CostoImpuesto"].ToString();
                         txtIva.Text = _datatable.Rows[0]["IVA"].ToString();
-
+                        txtIDInsumo.Text = _datatable.Rows[0]["IDInsumos"].ToString();
 
                     }
-
+                    Controles(true);
                     btnEditar.Enabled = true;
                     BtnNuevo.Enabled = false;
                     btnEliminar.Enabled = true;
-                }
-                else
-                {
-
                 }
             }
         }
@@ -330,7 +324,9 @@ namespace Restaurante
 
         private void comboIDGrupoBusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            BindGridByCombo();
+        }
+        private void BindGridByCombo() {
             string IDGrupos = comboIDGrupoBusqueda.SelectedValue.ToString();
             DataSet _ds = new DataSet();
             _ds = CRUDInsumos.BuscarInsumoByGrupo(IDGrupos);
