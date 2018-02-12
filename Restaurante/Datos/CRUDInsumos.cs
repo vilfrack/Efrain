@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CRUDInsumos
+    public class CRUDInsumos : CRUDGrupos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
@@ -22,7 +22,7 @@ namespace Datos
             connectionString = cns.ConnectionString;
             cn = new SqlCeConnection(connectionString);
         }
-        public int InsertarGrupo(Insumos Insumos)
+        public int InsertarInsumos(Insumos Insumos)
         {
             try
             {
@@ -52,22 +52,29 @@ namespace Datos
             }
 
         }
-        public DataTable UltimoIDGrupo()
+        public DataTable UltimoIDInsumo()
         {
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDGrupo) as IDGrupo from Grupos", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDInsumos) as IDInsumos from Insumos", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
-        public int ModificarGrupo(Grupos Grupos)
+        public int ModificarInsumo(Insumos Insumos)
         {
             try
             {
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Insumos SET Descripcion=@Descripcion WHERE IDGrupo= '" + Grupos.IDGrupo + "'";
-                cmd.Parameters.AddWithValue("@Descripcion", Grupos.Descripcion);
+                cmd.CommandText = "UPDATE Insumos SET IDGrupos=@IDGrupos,Descripcion=@Descripcion,UnidadMedida=@UnidadMedida,UltimoCosto=@UltimoCosto,CostoPromedio=@CostoPromedio,CostoImpuesto=@CostoImpuesto,IVA=@IVA,Inventariable=@Inventariable WHERE IDInsumos= '" + Insumos.IDInsumos + "'";
+                cmd.Parameters.AddWithValue("@IDGrupos", Insumos.IDGrupos);
+                cmd.Parameters.AddWithValue("@Descripcion", Insumos.Descripcion);
+                cmd.Parameters.AddWithValue("@UnidadMedida", Insumos.UnidadMedida);
+                cmd.Parameters.AddWithValue("@UltimoCosto", Insumos.UltimoCosto);
+                cmd.Parameters.AddWithValue("@CostoPromedio", Insumos.CostoPromedio);
+                cmd.Parameters.AddWithValue("@CostoImpuesto", Insumos.CostoImpuesto);
+                cmd.Parameters.AddWithValue("@IVA", Insumos.IVA);
+                cmd.Parameters.AddWithValue("@Inventariable", Insumos.Inventariable);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
@@ -79,7 +86,7 @@ namespace Datos
                 return 0;
             }
         }
-        public void EliminarGrupo(string IDGrupos)
+        public void EliminarInsumo(string IDInsumos)
         {
             try
             {
@@ -87,7 +94,7 @@ namespace Datos
 
                 con.Open();
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "DELETE FROM Insumos WHERE IDGrupo= '" + IDGrupos + "'";
+                cmd.CommandText = "DELETE FROM Insumos WHERE IDInsumos= '" + IDInsumos + "'";
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
@@ -99,19 +106,31 @@ namespace Datos
                 throw;
             }
         }
-        public DataSet ListarGrupo()
+        public DataSet ListarInsumo()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupo,Descripcion from Insumos", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupos,Descripcion from Insumos", cn);
             sda.Fill(_ds);
             return _ds;
         }
-        public DataTable BuscarGrupo(string IDGrupos)
+        public DataTable BuscarInsumo(string IDInsumos)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Insumos WHERE IDGrupo = '" + IDGrupos + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Insumos WHERE IDInsumos = '" + IDInsumos + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
+        }
+        public DataTable UnidadMedida() {
+            cn.Open();
+            SqlCeCommand sc = new SqlCeCommand("select IDUnidad,Descripcion from UnidadMedida", cn);
+            SqlCeDataReader reader;
+            reader = sc.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IDUnidad", typeof(string));
+            dt.Columns.Add("Descripcion", typeof(string));
+            dt.Load(reader);
+            cn.Close();
+            return dt;
         }
 
     }

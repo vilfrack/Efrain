@@ -30,6 +30,7 @@ namespace Restaurante
 
         private void ClienteForm_Load(object sender, EventArgs e)
         {
+            insertarCheckGridView();
             btnEditar.Enabled = false;
             txtIDDomicilio.Enabled = false;
             btnEliminar.Enabled = false;
@@ -107,16 +108,18 @@ namespace Restaurante
             {
                 griViewCliente.DataSource = _ds.Tables[0];
             }
+
+
+
+        }
+        private void insertarCheckGridView() {
             ////CODIGO PARA INSERTAR EL CHECKBOX
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.HeaderText = "Seleccionar";
             checkBoxColumn.Width = 30;
             checkBoxColumn.Name = "check";
             griViewCliente.Columns.Insert(0, checkBoxColumn);
-
-
         }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (txtIDCliente.Text!="")

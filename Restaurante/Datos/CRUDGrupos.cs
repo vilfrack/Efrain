@@ -106,6 +106,18 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
-
+        public DataTable GruposComboBox()
+        {
+            cn.Open();
+            SqlCeCommand sc = new SqlCeCommand("select IDGrupo,Descripcion from Grupos", cn);
+            SqlCeDataReader reader;
+            reader = sc.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IDGrupo", typeof(string));
+            dt.Columns.Add("Descripcion", typeof(string));
+            dt.Load(reader);
+            cn.Close();
+            return dt;
+        }
     }
 }

@@ -11,11 +11,11 @@ namespace Models
         public int IDInsumos { get; set; }
         public int IDGrupos { get; set; }
         public string Descripcion { get; set; }
-        public double UnidadMedida { get; set; }
+        public string UnidadMedida { get; set; }
         public double UltimoCosto { get; set; }
         public double CostoPromedio { get; set; }
         public double CostoImpuesto { get; set; }
         public double IVA { get; set; }
-        public bool Inventariable { get; set; }
+        public string Inventariable { get; set; }
     }
 }

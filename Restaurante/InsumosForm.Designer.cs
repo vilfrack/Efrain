@@ -43,7 +43,6 @@
             this.comboIDGrupo = new System.Windows.Forms.ComboBox();
             this.txtIDInsumo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDescripcionGrupo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtUltimoCosto = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,10 +59,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboIDGrupoBusqueda = new System.Windows.Forms.ComboBox();
-            this.txtDescripcionGrupoBusqueda = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.griViewInsumos = new System.Windows.Forms.DataGridView();
-            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -98,7 +95,6 @@
             this.groupBox1.Controls.Add(this.comboIDGrupo);
             this.groupBox1.Controls.Add(this.txtIDInsumo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtDescripcionGrupo);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtUltimoCosto);
             this.groupBox1.Controls.Add(this.label7);
@@ -114,6 +110,7 @@
             // 
             // comboInventariable
             // 
+            this.comboInventariable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboInventariable.FormattingEnabled = true;
             this.comboInventariable.Location = new System.Drawing.Point(112, 240);
             this.comboInventariable.Name = "comboInventariable";
@@ -181,6 +178,7 @@
             // 
             // comboUnidadMedida
             // 
+            this.comboUnidadMedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboUnidadMedida.FormattingEnabled = true;
             this.comboUnidadMedida.Location = new System.Drawing.Point(111, 106);
             this.comboUnidadMedida.Name = "comboUnidadMedida";
@@ -198,14 +196,16 @@
             // 
             // comboIDGrupo
             // 
+            this.comboIDGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboIDGrupo.FormattingEnabled = true;
             this.comboIDGrupo.Location = new System.Drawing.Point(111, 23);
             this.comboIDGrupo.Name = "comboIDGrupo";
-            this.comboIDGrupo.Size = new System.Drawing.Size(65, 21);
+            this.comboIDGrupo.Size = new System.Drawing.Size(326, 21);
             this.comboIDGrupo.TabIndex = 26;
             // 
             // txtIDInsumo
             // 
+            this.txtIDInsumo.Enabled = false;
             this.txtIDInsumo.Location = new System.Drawing.Point(112, 52);
             this.txtIDInsumo.Name = "txtIDInsumo";
             this.txtIDInsumo.Size = new System.Drawing.Size(325, 20);
@@ -219,14 +219,6 @@
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Grupo";
-            // 
-            // txtDescripcionGrupo
-            // 
-            this.txtDescripcionGrupo.Enabled = false;
-            this.txtDescripcionGrupo.Location = new System.Drawing.Point(193, 23);
-            this.txtDescripcionGrupo.Name = "txtDescripcionGrupo";
-            this.txtDescripcionGrupo.Size = new System.Drawing.Size(427, 20);
-            this.txtDescripcionGrupo.TabIndex = 2;
             // 
             // label3
             // 
@@ -302,6 +294,7 @@
             this.BtnGuardar.TabIndex = 5;
             this.BtnGuardar.Text = "Guardar";
             this.BtnGuardar.UseVisualStyleBackColor = true;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // btnLimpiar
             // 
@@ -329,6 +322,7 @@
             this.BtnNuevo.TabIndex = 0;
             this.BtnNuevo.Text = "Nuevo";
             this.BtnNuevo.UseVisualStyleBackColor = true;
+            this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
             // btnEditar
             // 
@@ -361,7 +355,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.comboIDGrupoBusqueda);
-            this.panel1.Controls.Add(this.txtDescripcionGrupoBusqueda);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -371,19 +364,12 @@
             // 
             // comboIDGrupoBusqueda
             // 
+            this.comboIDGrupoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboIDGrupoBusqueda.FormattingEnabled = true;
             this.comboIDGrupoBusqueda.Location = new System.Drawing.Point(7, 23);
             this.comboIDGrupoBusqueda.Name = "comboIDGrupoBusqueda";
-            this.comboIDGrupoBusqueda.Size = new System.Drawing.Size(65, 21);
+            this.comboIDGrupoBusqueda.Size = new System.Drawing.Size(380, 21);
             this.comboIDGrupoBusqueda.TabIndex = 29;
-            // 
-            // txtDescripcionGrupoBusqueda
-            // 
-            this.txtDescripcionGrupoBusqueda.Enabled = false;
-            this.txtDescripcionGrupoBusqueda.Location = new System.Drawing.Point(89, 23);
-            this.txtDescripcionGrupoBusqueda.Name = "txtDescripcionGrupoBusqueda";
-            this.txtDescripcionGrupoBusqueda.Size = new System.Drawing.Size(298, 20);
-            this.txtDescripcionGrupoBusqueda.TabIndex = 28;
             // 
             // panel5
             // 
@@ -398,19 +384,11 @@
             this.griViewInsumos.AllowUserToAddRows = false;
             this.griViewInsumos.AllowUserToDeleteRows = false;
             this.griViewInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.griViewInsumos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Seleccionar});
             this.griViewInsumos.Location = new System.Drawing.Point(7, 73);
             this.griViewInsumos.Name = "griViewInsumos";
             this.griViewInsumos.ReadOnly = true;
             this.griViewInsumos.Size = new System.Drawing.Size(380, 300);
             this.griViewInsumos.TabIndex = 0;
-            // 
-            // Seleccionar
-            // 
-            this.Seleccionar.HeaderText = "Seleccionar";
-            this.Seleccionar.Name = "Seleccionar";
-            this.Seleccionar.ReadOnly = true;
             // 
             // InsumosForm
             // 
@@ -433,7 +411,6 @@
             this.groupBox4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.griViewInsumos)).EndInit();
             this.ResumeLayout(false);
 
@@ -445,7 +422,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtIDInsumo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDescripcionGrupo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtUltimoCosto;
         private System.Windows.Forms.Label label7;
@@ -473,9 +449,7 @@
         private System.Windows.Forms.ComboBox comboIDGrupo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboIDGrupoBusqueda;
-        private System.Windows.Forms.TextBox txtDescripcionGrupoBusqueda;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox txtCostoImpuesto;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
     }
 }
