@@ -47,6 +47,8 @@
     <Compile Include="CRUDEnvioDomicilio.cs" />
     <Compile Include="CRUDGrupos.cs" />
     <Compile Include="CRUDInsumos.cs" />
+    <Compile Include="CRUDMesas.cs" />
+    <Compile Include="CRUDUnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

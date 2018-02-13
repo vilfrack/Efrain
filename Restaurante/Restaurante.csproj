@@ -106,8 +106,21 @@
     <Compile Include="MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesasForm.Designer.cs">
+      <DependentUpon>MesasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnidadMedidaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnidadMedidaForm.Designer.cs">
+      <DependentUpon>UnidadMedidaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilidades\Utilidades.cs" />
     <EmbeddedResource Include="ClienteForm.resx">
       <DependentUpon>ClienteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +136,9 @@
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesasForm.resx">
+      <DependentUpon>MesasForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -133,6 +149,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UnidadMedidaForm.resx">
+      <DependentUpon>UnidadMedidaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -45,5 +45,17 @@ namespace Restaurante
             GruposForm grupos = new GruposForm();
             grupos.Show();
         }
+
+        private void btnUnidadMedida_Click(object sender, EventArgs e)
+        {
+            UnidadMedidaForm UnidadMedida = new UnidadMedidaForm();
+            UnidadMedida.Show();
+        }
+
+        private void btnMesas_Click(object sender, EventArgs e)
+        {
+            MesasForm mesas = new MesasForm();
+            mesas.Show();
+        }
     }
 }

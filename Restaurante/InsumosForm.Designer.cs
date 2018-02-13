@@ -165,6 +165,7 @@
             this.txtCostoPromedio.Name = "txtCostoPromedio";
             this.txtCostoPromedio.Size = new System.Drawing.Size(149, 20);
             this.txtCostoPromedio.TabIndex = 30;
+            this.txtCostoPromedio.TextChanged += new System.EventHandler(this.txtCostoPromedio_TextChanged);
             this.txtCostoPromedio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCostoPromedio_KeyPress);
             // 
             // label6
@@ -235,6 +236,7 @@
             this.txtUltimoCosto.Name = "txtUltimoCosto";
             this.txtUltimoCosto.Size = new System.Drawing.Size(149, 20);
             this.txtUltimoCosto.TabIndex = 10;
+            this.txtUltimoCosto.TextChanged += new System.EventHandler(this.txtUltimoCosto_TextChanged);
             this.txtUltimoCosto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUltimoCosto_KeyPress);
             // 
             // label7

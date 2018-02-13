@@ -12,20 +12,20 @@ using System.Windows.Forms;
 
 namespace Restaurante
 {
-    public partial class GruposForm : Form
+    public partial class UnidadMedidaForm : Form
     {
-        private CRUDGrupos CRUDGrupos = new CRUDGrupos();
-        private Grupos Grupos = new Grupos();
+        private CRUDUnidadMedida CRUDUnidadMedida = new CRUDUnidadMedida();
+        private UnidadMedida UnidadMedida = new UnidadMedida();
 
-        public GruposForm()
+        public UnidadMedidaForm()
         {
             InitializeComponent();
-            BindGrid();
         }
 
-        private void GruposForm_Load(object sender, EventArgs e)
+        private void UnidadMedidaForm_Load(object sender, EventArgs e)
         {
             insertarCheckGrid();
+            BindGrid();
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
@@ -34,10 +34,10 @@ namespace Restaurante
         private void BindGrid()
         {
             DataSet _ds = new DataSet();
-            _ds = CRUDGrupos.ListarGrupo();
+            _ds = CRUDUnidadMedida.ListarUnidadMedida();
             if (_ds.Tables.Count > 0)
             {
-                griViewGrupos.DataSource = _ds.Tables[0];
+                griViewUnidad.DataSource = _ds.Tables[0];
             }
         }
         private void insertarCheckGrid()
@@ -48,7 +48,7 @@ namespace Restaurante
             checkBoxColumn.Width = 80;
             checkBoxColumn.Name = "check";
 
-            griViewGrupos.Columns.Insert(0, checkBoxColumn);
+            griViewUnidad.Columns.Insert(0, checkBoxColumn);
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
@@ -60,14 +60,14 @@ namespace Restaurante
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtIDGrupo.Text != "")
+            if (txtIDUnidad.Text != "")
             {
                 MessageBox.Show("DEBE BORRAR LOS REGISTROS PARA AGREGAR UNO NUEVO");
             }
             else
             {
-                Grupos.Descripcion = txtDescripcion.Text;
-                int validar = CRUDGrupos.InsertarGrupo(Grupos);
+                UnidadMedida.Descripcion = txtDescripcion.Text;
+                int validar = CRUDUnidadMedida.InsertarUnidadMedida(UnidadMedida);
                 if (validar == 1)
                 {
                     MessageBox.Show("Registro agregado");
@@ -81,28 +81,14 @@ namespace Restaurante
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            btnEditar.Enabled = false;
-            btnEliminar.Enabled = false;
-            BtnGuardar.Enabled = false;
-            txtDescripcion.Enabled = false;
-            BtnNuevo.Enabled = true;
-            limpiarControles();
-        }
-        private void limpiarControles() {
-            txtDescripcion.Text = "";
-            txtIDGrupo.Text = "";
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (txtIDGrupo.Text != "")
+            if (txtIDUnidad.Text != "")
             {
-                Grupos.IDGrupo = Convert.ToInt32(txtIDGrupo.Text);
-                Grupos.Descripcion = txtDescripcion.Text;
+                UnidadMedida.IDUnidad = Convert.ToInt32(txtIDUnidad.Text);
+                UnidadMedida.Descripcion = txtDescripcion.Text;
 
-                int validar = CRUDGrupos.ModificarGrupo(Grupos);
+                int validar = CRUDUnidadMedida.ModificarUnidadMedida(UnidadMedida);
                 if (validar != 0)
                 {
                     BindGrid();
@@ -123,13 +109,13 @@ namespace Restaurante
         {
             if (MessageBox.Show("Seguro desea eliminar el registro?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (txtIDGrupo.Text == "")
+                if (txtIDUnidad.Text == "")
                 {
                     MessageBox.Show("NO SE PUEDE ELIMINAR EL REGISTRO");
                 }
                 else
                 {
-                    CRUDGrupos.EliminarGrupo(txtIDGrupo.Text);
+                    CRUDUnidadMedida.EliminarUnidadMedida(txtIDUnidad.Text);
                     limpiarControles();
                     BindGrid();
                     MessageBox.Show("REGISTRO ELIMINADO");
@@ -137,27 +123,19 @@ namespace Restaurante
             }
         }
 
-        private void griViewGrupos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (griViewGrupos.Rows.Count > 0 && e.RowIndex != -1)
-            {
-                if (griViewGrupos.Rows[e.RowIndex].Cells[0].Selected)
-                {
-                    string IDGrupo = griViewGrupos.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    DataTable _datatable = new DataTable();
-                    _datatable = CRUDGrupos.BuscarGrupo(IDGrupo);
-                    if (_datatable.Rows.Count > 0)
-                    {
-                        txtIDGrupo.Text = _datatable.Rows[0]["IDGrupo"].ToString();
-                        txtDescripcion.Text = _datatable.Rows[0]["Descripcion"].ToString();
-                    }
-                    btnEditar.Enabled = true;
-                    BtnNuevo.Enabled = false;
-                    BtnGuardar.Enabled = false;
-                    btnEliminar.Enabled = true;
-                    txtDescripcion.Enabled = true;
-                }
-            }
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            BtnGuardar.Enabled = false;
+            txtDescripcion.Enabled = false;
+            BtnNuevo.Enabled = true;
+            limpiarControles();
+        }
+        private void limpiarControles()
+        {
+            txtDescripcion.Text = "";
+            txtIDUnidad.Text = "";
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

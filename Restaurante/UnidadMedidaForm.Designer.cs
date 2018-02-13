@@ -1,6 +1,6 @@
 ﻿namespace Restaurante
 {
-    partial class GruposForm
+    partial class UnidadMedidaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtIDGrupo = new System.Windows.Forms.TextBox();
+            this.txtIDUnidad = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -43,13 +43,13 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.griViewGrupos = new System.Windows.Forms.DataGridView();
+            this.griViewUnidad = new System.Windows.Forms.DataGridView();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.griViewGrupos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.griViewUnidad)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -60,12 +60,12 @@
             this.panel3.Location = new System.Drawing.Point(303, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(695, 327);
-            this.panel3.TabIndex = 10;
+            this.panel3.TabIndex = 12;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtIDGrupo);
+            this.groupBox1.Controls.Add(this.txtIDUnidad);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Location = new System.Drawing.Point(6, 100);
@@ -74,24 +74,24 @@
             this.groupBox1.Size = new System.Drawing.Size(626, 215);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos del Grupo";
+            this.groupBox1.Text = "Datos de Unidad";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Codigo Grupo";
+            this.label2.Text = "Codigo Unidad";
             // 
-            // txtIDGrupo
+            // txtIDUnidad
             // 
-            this.txtIDGrupo.Enabled = false;
-            this.txtIDGrupo.Location = new System.Drawing.Point(111, 26);
-            this.txtIDGrupo.Name = "txtIDGrupo";
-            this.txtIDGrupo.Size = new System.Drawing.Size(427, 20);
-            this.txtIDGrupo.TabIndex = 2;
+            this.txtIDUnidad.Enabled = false;
+            this.txtIDUnidad.Location = new System.Drawing.Point(111, 26);
+            this.txtIDUnidad.Name = "txtIDUnidad";
+            this.txtIDUnidad.Size = new System.Drawing.Size(427, 20);
+            this.txtIDUnidad.TabIndex = 2;
             // 
             // label5
             // 
@@ -195,25 +195,24 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.griViewGrupos);
+            this.panel2.Controls.Add(this.griViewUnidad);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(303, 327);
-            this.panel2.TabIndex = 9;
+            this.panel2.TabIndex = 11;
             // 
-            // griViewGrupos
+            // griViewUnidad
             // 
-            this.griViewGrupos.AllowUserToAddRows = false;
-            this.griViewGrupos.AllowUserToDeleteRows = false;
-            this.griViewGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.griViewGrupos.Location = new System.Drawing.Point(7, 14);
-            this.griViewGrupos.Name = "griViewGrupos";
-            this.griViewGrupos.Size = new System.Drawing.Size(277, 301);
-            this.griViewGrupos.TabIndex = 0;
-            this.griViewGrupos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewGrupos_CellClick);
+            this.griViewUnidad.AllowUserToAddRows = false;
+            this.griViewUnidad.AllowUserToDeleteRows = false;
+            this.griViewUnidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.griViewUnidad.Location = new System.Drawing.Point(7, 14);
+            this.griViewUnidad.Name = "griViewUnidad";
+            this.griViewUnidad.Size = new System.Drawing.Size(277, 301);
+            this.griViewUnidad.TabIndex = 0;
             // 
-            // GruposForm
+            // UnidadMedidaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -223,17 +222,17 @@
             this.Controls.Add(this.panel2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "GruposForm";
+            this.Name = "UnidadMedidaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Grupos";
-            this.Load += new System.EventHandler(this.GruposForm_Load);
+            this.Text = "Unidad de medida";
+            this.Load += new System.EventHandler(this.UnidadMedidaForm_Load);
             this.panel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.griViewGrupos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.griViewUnidad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,18 +242,18 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIDGrupo;
+        private System.Windows.Forms.TextBox txtIDUnidad;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button BtnNuevo;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView griViewGrupos;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridView griViewUnidad;
     }
 }

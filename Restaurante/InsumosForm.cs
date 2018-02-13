@@ -335,5 +335,15 @@ namespace Restaurante
                 griViewInsumos.DataSource = _ds.Tables[0];
             }
         }
+
+        private void txtUltimoCosto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCostoPromedio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
