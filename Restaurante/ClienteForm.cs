@@ -22,6 +22,7 @@ namespace Restaurante
         private EnvioDomicilio envioDomicilio = new EnvioDomicilio();
         private CRUDCliente CRUD = new CRUDCliente();
         private CRUDEnvioDomicilio CRUDDomicilio = new CRUDEnvioDomicilio();
+        private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public ClienteForm()
         {
 
@@ -30,7 +31,7 @@ namespace Restaurante
 
         private void ClienteForm_Load(object sender, EventArgs e)
         {
-            insertarCheckGridView();
+            utilidades.ConfiguracionGridview(griViewCliente);
             btnEditar.Enabled = false;
             txtIDDomicilio.Enabled = false;
             btnEliminar.Enabled = false;
@@ -102,6 +103,7 @@ namespace Restaurante
         }
         private void BindGrid()
         {
+
             DataSet _ds = new DataSet();
             _ds = CRUD.ListarCliente();
             if (_ds.Tables.Count > 0)
@@ -112,14 +114,7 @@ namespace Restaurante
 
 
         }
-        private void insertarCheckGridView() {
-            ////CODIGO PARA INSERTAR EL CHECKBOX
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
-            checkBoxColumn.HeaderText = "Seleccionar";
-            checkBoxColumn.Width = 30;
-            checkBoxColumn.Name = "check";
-            griViewCliente.Columns.Insert(0, checkBoxColumn);
-        }
+
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (txtIDCliente.Text!="")
@@ -347,6 +342,18 @@ namespace Restaurante
         private void griViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void griViewCliente_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            //codigo para quitar el triangulo negro
+            e.PaintCells(e.ClipBounds, DataGridViewPaintParts.All);
+            e.PaintHeader(DataGridViewPaintParts.Background
+                | DataGridViewPaintParts.Border
+                | DataGridViewPaintParts.Focus
+                | DataGridViewPaintParts.SelectionBackground
+                | DataGridViewPaintParts.ContentForeground);
+            e.Handled = true;
         }
     }
 }

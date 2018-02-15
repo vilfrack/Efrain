@@ -16,7 +16,7 @@ namespace Restaurante
     {
         private CRUDUnidadMedida CRUDUnidadMedida = new CRUDUnidadMedida();
         private UnidadMedida UnidadMedida = new UnidadMedida();
-
+        private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public UnidadMedidaForm()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Restaurante
 
         private void UnidadMedidaForm_Load(object sender, EventArgs e)
         {
-            insertarCheckGrid();
+            utilidades.ConfiguracionGridview(griViewUnidad);
             BindGrid();
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
@@ -39,16 +39,6 @@ namespace Restaurante
             {
                 griViewUnidad.DataSource = _ds.Tables[0];
             }
-        }
-        private void insertarCheckGrid()
-        {
-            ////CODIGO PARA INSERTAR EL CHECKBOX
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
-            checkBoxColumn.HeaderText = "Seleccionar";
-            checkBoxColumn.Width = 80;
-            checkBoxColumn.Name = "check";
-
-            griViewUnidad.Columns.Insert(0, checkBoxColumn);
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {

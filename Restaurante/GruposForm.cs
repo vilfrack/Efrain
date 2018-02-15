@@ -16,6 +16,7 @@ namespace Restaurante
     {
         private CRUDGrupos CRUDGrupos = new CRUDGrupos();
         private Grupos Grupos = new Grupos();
+        private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
 
         public GruposForm()
         {
@@ -25,7 +26,7 @@ namespace Restaurante
 
         private void GruposForm_Load(object sender, EventArgs e)
         {
-            insertarCheckGrid();
+            utilidades.ConfiguracionGridview(griViewGrupos);
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
@@ -40,16 +41,7 @@ namespace Restaurante
                 griViewGrupos.DataSource = _ds.Tables[0];
             }
         }
-        private void insertarCheckGrid()
-        {
-            ////CODIGO PARA INSERTAR EL CHECKBOX
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
-            checkBoxColumn.HeaderText = "Seleccionar";
-            checkBoxColumn.Width = 80;
-            checkBoxColumn.Name = "check";
 
-            griViewGrupos.Columns.Insert(0, checkBoxColumn);
-        }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             btnEditar.Enabled = false;

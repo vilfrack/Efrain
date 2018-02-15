@@ -126,11 +126,19 @@
             // 
             // griViewCliente
             // 
+            this.griViewCliente.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.griViewCliente.AllowUserToAddRows = false;
             this.griViewCliente.AllowUserToDeleteRows = false;
             this.griViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.griViewCliente.Location = new System.Drawing.Point(3, 3);
+            this.griViewCliente.MultiSelect = false;
             this.griViewCliente.Name = "griViewCliente";
+            this.griViewCliente.RowHeadersVisible = false;
+            this.griViewCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.griViewCliente.ShowCellErrors = false;
+            this.griViewCliente.ShowCellToolTips = false;
+            this.griViewCliente.ShowEditingIcon = false;
+            this.griViewCliente.ShowRowErrors = false;
             this.griViewCliente.Size = new System.Drawing.Size(343, 626);
             this.griViewCliente.TabIndex = 0;
             this.griViewCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewCliente_CellClick);
@@ -860,7 +868,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView griViewCliente;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button BtnNuevo;
@@ -936,5 +943,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DataGridView griViewCliente;
     }
 }

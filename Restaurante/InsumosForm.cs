@@ -16,6 +16,8 @@ namespace Restaurante
     {
         public CRUDInsumos CRUDInsumos = new CRUDInsumos();
         private Insumos Insumos = new Insumos();
+        private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+
         public InsumosForm()
         {
             InitializeComponent();
@@ -23,7 +25,8 @@ namespace Restaurante
 
         private void InsumosForm_Load(object sender, EventArgs e)
         {
-            insertarCheckGrid();
+            utilidades.ConfiguracionGridview(griViewInsumos);
+           
             BindGrid();
 
             btnEditar.Enabled = false;
@@ -51,15 +54,7 @@ namespace Restaurante
 
 
         }
-        private void insertarCheckGrid() {
-            ////CODIGO PARA INSERTAR EL CHECKBOX
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
-            checkBoxColumn.HeaderText = "Seleccionar";
-            checkBoxColumn.Width = 80;
-            checkBoxColumn.Name = "check";
 
-            griViewInsumos.Columns.Insert(0, checkBoxColumn);
-        }
         private void ValidarSoloNumeros(object sender, KeyPressEventArgs e)
         {
             if (this.Text.Contains('.'))

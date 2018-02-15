@@ -17,6 +17,7 @@ namespace Restaurante
         public Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMesas CRUDMesas = new CRUDMesas();
         public Mesas Mesas = new Mesas();
+        
 
         public MesasForm()
         {
@@ -44,7 +45,8 @@ namespace Restaurante
 
         private void MesasForm_Load(object sender, EventArgs e)
         {
-            insertarCheckGrid();
+            utilidades.ConfiguracionGridview(griViewMesas);
+           
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
@@ -59,16 +61,6 @@ namespace Restaurante
             {
                 griViewMesas.DataSource = _ds.Tables[0];
             }
-        }
-        private void insertarCheckGrid()
-        {
-            ////CODIGO PARA INSERTAR EL CHECKBOX
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
-            checkBoxColumn.HeaderText = "Seleccionar";
-            checkBoxColumn.Width = 80;
-            checkBoxColumn.Name = "check";
-
-            griViewMesas.Columns.Insert(0, checkBoxColumn);
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)

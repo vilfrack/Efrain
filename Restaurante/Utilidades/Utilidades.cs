@@ -24,5 +24,17 @@ namespace Restaurante.Utilidades
                     e.Handled = false;
                 }
         }
+        public void ConfiguracionGridview(DataGridView GridView) {
+            // quitar triangulo negro
+            GridView.RowHeadersVisible = false;
+            // seleccionar desde el checkbox
+            GridView.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            // insertar check en el grid
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
+            checkBoxColumn.HeaderText = "Seleccionar";
+            checkBoxColumn.Width = 90;
+            checkBoxColumn.Name = "check";
+            GridView.Columns.Insert(0, checkBoxColumn);
+        }
     }
 }

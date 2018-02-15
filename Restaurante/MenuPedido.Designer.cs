@@ -824,6 +824,7 @@
             this.griViewCliente.Location = new System.Drawing.Point(0, 0);
             this.griViewCliente.Name = "griViewCliente";
             this.griViewCliente.ReadOnly = true;
+            this.griViewCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.griViewCliente.Size = new System.Drawing.Size(339, 641);
             this.griViewCliente.TabIndex = 0;
             // 
