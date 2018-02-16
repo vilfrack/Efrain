@@ -57,5 +57,11 @@ namespace Restaurante
             MesasForm mesas = new MesasForm();
             mesas.Show();
         }
+
+        private void btnComanda_Click(object sender, EventArgs e)
+        {
+            ComandaForm comanda = new ComandaForm();
+            comanda.Show();
+        }
     }
 }

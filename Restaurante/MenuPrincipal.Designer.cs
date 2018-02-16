@@ -34,6 +34,7 @@
             this.btnGrupos = new System.Windows.Forms.Button();
             this.btnUnidadMedida = new System.Windows.Forms.Button();
             this.btnMesas = new System.Windows.Forms.Button();
+            this.btnComanda = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMenuPedido
@@ -69,7 +70,7 @@
             // 
             // btnGrupos
             // 
-            this.btnGrupos.Location = new System.Drawing.Point(2, 132);
+            this.btnGrupos.Location = new System.Drawing.Point(2, 426);
             this.btnGrupos.Name = "btnGrupos";
             this.btnGrupos.Size = new System.Drawing.Size(98, 64);
             this.btnGrupos.TabIndex = 3;
@@ -79,7 +80,7 @@
             // 
             // btnUnidadMedida
             // 
-            this.btnUnidadMedida.Location = new System.Drawing.Point(106, 132);
+            this.btnUnidadMedida.Location = new System.Drawing.Point(106, 426);
             this.btnUnidadMedida.Name = "btnUnidadMedida";
             this.btnUnidadMedida.Size = new System.Drawing.Size(98, 64);
             this.btnUnidadMedida.TabIndex = 4;
@@ -89,7 +90,7 @@
             // 
             // btnMesas
             // 
-            this.btnMesas.Location = new System.Drawing.Point(210, 132);
+            this.btnMesas.Location = new System.Drawing.Point(210, 426);
             this.btnMesas.Name = "btnMesas";
             this.btnMesas.Size = new System.Drawing.Size(98, 64);
             this.btnMesas.TabIndex = 5;
@@ -97,12 +98,23 @@
             this.btnMesas.UseVisualStyleBackColor = true;
             this.btnMesas.Click += new System.EventHandler(this.btnMesas_Click);
             // 
+            // btnComanda
+            // 
+            this.btnComanda.Location = new System.Drawing.Point(314, 13);
+            this.btnComanda.Name = "btnComanda";
+            this.btnComanda.Size = new System.Drawing.Size(98, 64);
+            this.btnComanda.TabIndex = 6;
+            this.btnComanda.Text = "Comanda";
+            this.btnComanda.UseVisualStyleBackColor = true;
+            this.btnComanda.Click += new System.EventHandler(this.btnComanda_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1165, 685);
+            this.Controls.Add(this.btnComanda);
             this.Controls.Add(this.btnMesas);
             this.Controls.Add(this.btnUnidadMedida);
             this.Controls.Add(this.btnGrupos);
@@ -126,6 +138,7 @@
         private System.Windows.Forms.Button btnGrupos;
         private System.Windows.Forms.Button btnUnidadMedida;
         private System.Windows.Forms.Button btnMesas;
+        private System.Windows.Forms.Button btnComanda;
     }
 }
 

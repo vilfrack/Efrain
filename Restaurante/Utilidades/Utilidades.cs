@@ -36,5 +36,13 @@ namespace Restaurante.Utilidades
             checkBoxColumn.Name = "check";
             GridView.Columns.Insert(0, checkBoxColumn);
         }
+        public void ConfiguracionFormulario(Form formulario) {
+            //inicia en el centro de la pantalla
+            formulario.StartPosition = FormStartPosition.CenterScreen;
+            //se oculta el boton de minimizar
+            formulario.MinimizeBox = false;
+            //se oculta el boton de maximizar
+            formulario.MaximizeBox = false;
+        }
     }
 }
