@@ -26,6 +26,7 @@ namespace Restaurante
 
         private void GruposForm_Load(object sender, EventArgs e)
         {
+            utilidades.ConfiguracionFormulario(this);
             utilidades.ConfiguracionGridview(griViewGrupos);
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;

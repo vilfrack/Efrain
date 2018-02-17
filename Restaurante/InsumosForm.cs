@@ -26,7 +26,7 @@ namespace Restaurante
         private void InsumosForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionGridview(griViewInsumos);
-           
+            utilidades.ConfiguracionFormulario(this);
             BindGrid();
 
             btnEditar.Enabled = false;

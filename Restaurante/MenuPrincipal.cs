@@ -16,7 +16,7 @@ namespace Restaurante
         {
             InitializeComponent();
         }
-
+        Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         private void BtnCliente_Click(object sender, EventArgs e)
         {
             ClienteForm ClienteForm = new ClienteForm();
@@ -25,7 +25,7 @@ namespace Restaurante
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-
+            utilidades.ConfiguracionFormulario(this);
         }
 
         private void btnMenuPedido_Click(object sender, EventArgs e)

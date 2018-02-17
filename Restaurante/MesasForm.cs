@@ -17,7 +17,7 @@ namespace Restaurante
         public Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMesas CRUDMesas = new CRUDMesas();
         public Mesas Mesas = new Mesas();
-        
+
 
         public MesasForm()
         {
@@ -46,7 +46,7 @@ namespace Restaurante
         private void MesasForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionGridview(griViewMesas);
-           
+            utilidades.ConfiguracionFormulario(this);
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;

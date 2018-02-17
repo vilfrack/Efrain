@@ -24,6 +24,33 @@ namespace Restaurante.Utilidades
                     e.Handled = false;
                 }
         }
+        public void ValidarSoloNumerosDecimales(object sender, KeyPressEventArgs e, TextBox texbox)
+        {
+            if (texbox.Text.Contains('.'))
+            {
+                if (!char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                if (e.KeyChar == '\b')
+                {
+                    e.Handled = false;
+                }
+            }
+            else
+            {
+                if (!char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                if (e.KeyChar == '.' || e.KeyChar == '\b')
+                {
+                    e.Handled = false;
+                }
+            }
+        }
         public void ConfiguracionGridview(DataGridView GridView) {
             // quitar triangulo negro
             GridView.RowHeadersVisible = false;
@@ -43,6 +70,8 @@ namespace Restaurante.Utilidades
             formulario.MinimizeBox = false;
             //se oculta el boton de maximizar
             formulario.MaximizeBox = false;
+            //evitamos que el usuario pueda modificar el tamaño de los formularios
+            formulario.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
     }
 }

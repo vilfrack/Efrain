@@ -32,6 +32,7 @@ namespace Restaurante
         private void ClienteForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionGridview(griViewCliente);
+            utilidades.ConfiguracionFormulario(this);
             btnEditar.Enabled = false;
             txtIDDomicilio.Enabled = false;
             btnEliminar.Enabled = false;

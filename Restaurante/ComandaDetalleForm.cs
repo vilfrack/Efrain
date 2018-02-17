@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace Restaurante
         }
 
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+        public CRUDInsumos CRUDInsumos = new CRUDInsumos();
 
         private int IDMesas = 0;
         private int NumeroMesa = 0;
@@ -25,14 +27,24 @@ namespace Restaurante
 
         private void ComandaDetalleForm_Load(object sender, EventArgs e)
         {
-            ComandaDetalleForm ComandaDetalleForm = new ComandaDetalleForm();
-            utilidades.ConfiguracionFormulario(ComandaDetalleForm);
+            utilidades.ConfiguracionFormulario(this);
 
             ComandaForm ComandaForm = new ComandaForm();
 
             IDMesas = ComandaForm.SetIDMesas;
             NumeroMesa = ComandaForm.SetNumeroMesa;
             CantidadPersona = ComandaForm.SetCantidadPersona;
+
+            ComboGrupos();
+        }
+
+        private void ComboGrupos()
+        {
+            DataTable dtGrupos = new DataTable();
+            dtGrupos = CRUDInsumos.GruposComboBox();
+            comboGrupoBusqueda.ValueMember = "IDGrupo";
+            comboGrupoBusqueda.DisplayMember = "Descripcion";
+            comboGrupoBusqueda.DataSource = dtGrupos;
         }
     }
 }

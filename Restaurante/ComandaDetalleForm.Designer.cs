@@ -36,10 +36,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboGrupoBusqueda = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -119,13 +119,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Buscar plato";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(699, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 20);
-            this.textBox1.TabIndex = 8;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(99, 29);
@@ -156,19 +149,32 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Panel de accion";
             // 
+            // comboGrupoBusqueda
+            // 
+            this.comboGrupoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboGrupoBusqueda.FormattingEnabled = true;
+            this.comboGrupoBusqueda.Location = new System.Drawing.Point(699, 24);
+            this.comboGrupoBusqueda.Name = "comboGrupoBusqueda";
+            this.comboGrupoBusqueda.Size = new System.Drawing.Size(218, 21);
+            this.comboGrupoBusqueda.TabIndex = 12;
+            // 
             // ComandaDetalleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(928, 481);
+            this.Controls.Add(this.comboGrupoBusqueda);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ComandaDetalleForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalle de la comanda";
             this.Load += new System.EventHandler(this.ComandaDetalleForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -191,9 +197,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox comboGrupoBusqueda;
     }
 }

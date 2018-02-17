@@ -29,9 +29,7 @@ namespace Restaurante
 
         private void ComandaForm_Load(object sender, EventArgs e)
         {
-            ComandaForm ComandaForm = new ComandaForm();
-
-            utilidades.ConfiguracionFormulario(ComandaForm);
+            utilidades.ConfiguracionFormulario(this);
             List<Mesas> ListMesas = new List<Mesas>();
 
             ListMesas.AddRange(CRUDComanda.DatosMesas());
