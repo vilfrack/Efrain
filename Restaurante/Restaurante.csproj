@@ -184,6 +184,12 @@
     </Content>
     <Content Include="BD\Cliente.sql" />
     <Content Include="BD\EnvioDomicilio.sql" />
+    <Content Include="Imagenes\mesa.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\mesa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MetroFramework.txt" />
   </ItemGroup>
   <ItemGroup>
