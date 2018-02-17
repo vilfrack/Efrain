@@ -17,6 +17,9 @@ namespace Restaurante
     {
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDComanda CRUDComanda = new CRUDComanda();
+        public static int SetIDMesas = 0;
+        public static int SetNumeroMesa = 0;
+        public static int SetCantidadPersona = 0;
 
         public ComandaForm()
         {
@@ -36,6 +39,8 @@ namespace Restaurante
             int x = 12;
             int y = 12;
             int contador = 0;
+            string s1 = "ss";
+            string s2 = "ww";
             foreach (var item in ListMesas)
             {
                 if (contador!=0)
@@ -53,7 +58,7 @@ namespace Restaurante
                 panel.Width = 162;
                 panel.Height = 191;
                 panel.Location = new Point(x, y);
-                panel.BackColor = Color.Aqua;
+                panel.BackColor = Color.LightGray;
                 //CREAMOS LOS PictureBox
                 PictureBox PictureBox = new PictureBox();
                 PictureBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Imagenes\\mesa.png"));
@@ -63,22 +68,57 @@ namespace Restaurante
                 panel.Controls.Add(PictureBox);
                 //CREAMOS LOS LABELS PARA LAS DIFERENTES MESAS
                 Label LabelNumeroMesa = new Label();
-                LabelNumeroMesa.Location = new Point(5,105);
+                LabelNumeroMesa.Name = "label" + item.IDMesas;
+                LabelNumeroMesa.Location = new Point(5,104);
                 LabelNumeroMesa.Width = 150;
-                //LabelNumeroMesa.BackColor = Color.Black;
+                LabelNumeroMesa.Height = 13;
                 LabelNumeroMesa.Text = "Numero de mesa: "+ Convert.ToString(item.NumeroMesa);
-
+                //CANTIDAD DE COMENSALES
                 Label LabelCantidad = new Label();
-                LabelCantidad.Location = new Point(5, 128);
+                LabelCantidad.Location = new Point(5, 120);
                 LabelCantidad.Width = 150;
+                LabelNumeroMesa.Height = 13;
                 LabelCantidad.Text = "Cantidad de comensales: " + Convert.ToString(item.CantidadPersona);
+                // DISPONIBILIDAD
+                Label LabelDisponible = new Label();
+                LabelDisponible.Location = new Point(5, 140);
+                LabelDisponible.TextAlign = ContentAlignment.MiddleCenter;
+                LabelDisponible.Width = 150;
+                LabelDisponible.ForeColor = Color.Green;
+                LabelDisponible.Font = new Font("Arial", 8, FontStyle.Bold);
+                LabelDisponible.Text = "DISPONIBLE";
+                //se crea el boton de seleccionar
+                Button btnSeleccionar = new Button();
+                btnSeleccionar.Name = "btn" + item.IDMesas;
+                btnSeleccionar.Width = 150;
+                btnSeleccionar.Text = "SELECCIONAR";
+                btnSeleccionar.Location = new Point(5, 160);
+                btnSeleccionar.Height = 30;
+                btnSeleccionar.BackColor = Color.WhiteSmoke;
+                //btnSeleccionar.Click += new EventHandler(panel_Click);
+                btnSeleccionar.Click += delegate(object senderButton, EventArgs eButton) { btnSeleccionarHandler(senderButton, eButton, item.IDMesas, item.NumeroMesa,item.CantidadPersona); };
+
                 //agremos los labels al panel
+                panel.Controls.Add(LabelDisponible);
                 panel.Controls.Add(LabelNumeroMesa);
                 panel.Controls.Add(LabelCantidad);
-
+                //se agrega el boton
+                panel.Controls.Add(btnSeleccionar);
+                //panel.Click += new EventHandler(panel_Click);
                 panelContenedor.Controls.Add(panel);
+
             }
         }
 
+
+        private void btnSeleccionarHandler(object sender, EventArgs e, int IDMesas, int NumeroMesa,int CantidadPersona)
+        {
+            SetIDMesas = IDMesas;
+            SetNumeroMesa = NumeroMesa;
+            SetCantidadPersona = CantidadPersona;
+
+            ComandaDetalleForm ComandaDetalleForm = new ComandaDetalleForm();
+            ComandaDetalleForm.Show();
+        }
     }
 }
