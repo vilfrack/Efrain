@@ -120,6 +120,7 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
+
         public DataSet BuscarInsumoByGrupo(string IDGrupos)
         {
             DataSet _ds = new DataSet();

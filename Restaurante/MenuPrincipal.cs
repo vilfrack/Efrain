@@ -20,7 +20,7 @@ namespace Restaurante
         private void BtnCliente_Click(object sender, EventArgs e)
         {
             ClienteForm ClienteForm = new ClienteForm();
-            ClienteForm.Show();
+            ClienteForm.ShowDialog();
         }
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
@@ -31,37 +31,37 @@ namespace Restaurante
         private void btnMenuPedido_Click(object sender, EventArgs e)
         {
             MenuPedido MenuPedido = new MenuPedido();
-            MenuPedido.Show();
+            MenuPedido.ShowDialog();
         }
 
         private void btnInsumos_Click(object sender, EventArgs e)
         {
             InsumosForm insumos = new InsumosForm();
-            insumos.Show();
+            insumos.ShowDialog();
         }
 
         private void btnGrupos_Click(object sender, EventArgs e)
         {
             GruposForm grupos = new GruposForm();
-            grupos.Show();
+            grupos.ShowDialog();
         }
 
         private void btnUnidadMedida_Click(object sender, EventArgs e)
         {
             UnidadMedidaForm UnidadMedida = new UnidadMedidaForm();
-            UnidadMedida.Show();
+            UnidadMedida.ShowDialog();
         }
 
         private void btnMesas_Click(object sender, EventArgs e)
         {
             MesasForm mesas = new MesasForm();
-            mesas.Show();
+            mesas.ShowDialog();
         }
 
         private void btnComanda_Click(object sender, EventArgs e)
         {
             ComandaForm comanda = new ComandaForm();
-            comanda.Show();
+            comanda.ShowDialog();
         }
     }
 }

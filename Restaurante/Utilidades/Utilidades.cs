@@ -72,6 +72,8 @@ namespace Restaurante.Utilidades
             formulario.MaximizeBox = false;
             //evitamos que el usuario pueda modificar el tamaño de los formularios
             formulario.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            //quitamos el boton (X) de los formularios
+            formulario.ControlBox = false;
         }
     }
 }

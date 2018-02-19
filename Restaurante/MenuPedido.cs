@@ -37,6 +37,8 @@ namespace Restaurante
             BindGrid();
             BindGridInsumos();
 
+
+
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
@@ -50,6 +52,7 @@ namespace Restaurante
 
         private void BindGrid()
         {
+            //METODO PARA CARGAR LOS REGISTROS DE LA TABLA MENU
             DataSet _ds = new DataSet();
             _ds = CRUDMenu.ListarMenu();
             if (_ds.Tables.Count > 0)
@@ -62,6 +65,7 @@ namespace Restaurante
         }
         private void BindGridInsumos()
         {
+            //METODO QUE CARGA LOS INSUMOS
             DataSet _ds = new DataSet();
             _ds = CRUDMenu.ListarInsumo();
             if (_ds.Tables.Count > 0)
@@ -72,6 +76,7 @@ namespace Restaurante
         }
         private void BindGridMasterInsumo()
         {
+            //METODO QUE CARGA LOS INSUMOS AGREGADOS A UN MENU
             DataSet _ds = new DataSet();
             _ds = CRUDMenu.ListarMasterInsumo();
             if (_ds.Tables.Count > 0)
@@ -82,8 +87,22 @@ namespace Restaurante
                 this.GridViewMasterInsumo.Columns["IDMenu"].Visible = false;
             }
         }
+        private void BindGridMasterInsumoByIDMenu(string IDMenu)
+        {
+            //METODOS QUE BUSCA LOS INSUMOS AGREGOS A UN MENU USANDO EL IDMENU COMO CONDICIONAL
+            DataSet _ds = new DataSet();
+            _ds = CRUDMenu.ListarMasterInsumoByIDmenu(IDMenu);
+            if (_ds.Tables.Count > 0)
+            {
+                GridViewMasterInsumo.DataSource = _ds.Tables[0];
+                this.GridViewMasterInsumo.Columns["IDMasterInsumos"].Visible = false;
+                this.GridViewMasterInsumo.Columns["IDInsumos"].Visible = false;
+                this.GridViewMasterInsumo.Columns["IDMenu"].Visible = false;
+            }
+        }
         private void BindGridByCombo(ComboBox combo, DataGridView GridView)
         {
+            //PERMITE HACER LA BUSQUEDA EN EL GRID POR GRUPOS
             string IDGrupos = combo.SelectedValue.ToString();
             DataSet _ds = new DataSet();
             _ds = CRUDMenu.BuscarInsumoByGrupo(IDGrupos);
@@ -104,21 +123,11 @@ namespace Restaurante
         {
             if (accion)
             {
-                //txtBuscarInsumo.Enabled = true;
-                //txtBuscarMenu.Enabled = true;
-                //txtIDGrupo.Enabled = true;
-                //txtIDMaesterInsumo.Enabled = true;
-                //txtIDMenu.Enabled = true;
                 txtNombre.Enabled = true;
                 txtPrecio.Enabled = true;
             }
             else
             {
-                //txtBuscarInsumo.Enabled = false;
-                //txtBuscarMenu.Enabled = false;
-                //txtIDGrupo.Enabled = false;
-                //txtIDMaesterInsumo.Enabled = false;
-                //txtIDMenu.Enabled = false;
                 txtNombre.Enabled = false;
                 txtPrecio.Enabled = false;
             }
@@ -153,13 +162,16 @@ namespace Restaurante
             {
                 if (txtPrecio.Text != "" && txtNombre.Text != "")
                 {
-                    //Insumos.IDInsumos = txtIDInsumo.Text;
                     Menu.Nombre = txtNombre.Text;
                     Menu.Precio = Convert.ToDecimal(txtPrecio.Text);
 
                     int validar = CRUDMenu.InsertarMenu(Menu);
                     if (validar == 1)
                     {
+                        DataTable _datatable = new DataTable();
+                        _datatable = CRUDMenu.UltimoIDMenu();
+                        string IDMenu = _datatable.Rows[0]["IDMenu"].ToString();
+                        CRUDMenu.InsertarMasterInsumos(IDMenu, MasterInsumos);
                         MessageBox.Show("Registro agregado");
                         BindGrid();
                     }
@@ -172,8 +184,6 @@ namespace Restaurante
                 {
                     MessageBox.Show("LOS CAMPOS DE COSTO PROMEDIO, COSTO IMPUESTO Y ULTIMO COSTO NO PUEDEN QUEDAR VACIOS");
                 }
-
-
             }
         }
 
@@ -232,6 +242,7 @@ namespace Restaurante
 
         private void btnAtras_Click(object sender, EventArgs e)
         {
+            CRUDMenu.EliminarMasterInsumosNotSave();
             this.Close();
         }
 
@@ -247,7 +258,6 @@ namespace Restaurante
             {
                 if (GridViewMenu.Rows[e.RowIndex].Cells[0].Selected)
                 {
-
                     int row_index = e.RowIndex;
                     for (int i = 0; i < GridViewMenu.Rows.Count; i++)
                     {
@@ -256,7 +266,6 @@ namespace Restaurante
                             GridViewMenu.Rows[i].Cells["check"].Value = false;
                         }
                     }
-
                     string IDMenu = GridViewMenu.Rows[e.RowIndex].Cells[1].Value.ToString();
                     DataTable _datatable = new DataTable();
                     _datatable = CRUDMenu.BuscarMenu(IDMenu);
@@ -264,10 +273,13 @@ namespace Restaurante
                     {
                         txtIDGrupo.Text = _datatable.Rows[0]["IDGrupo"].ToString();
                         txtIDMaesterInsumo.Text = _datatable.Rows[0]["IDMasterInsumos"].ToString();
-                        txtIDMenu.SelectedText = _datatable.Rows[0]["IDMenu"].ToString();
+                        txtIDMenu.Text = _datatable.Rows[0]["IDMenu"].ToString();
                         txtNombre.Text = _datatable.Rows[0]["Nombre"].ToString();
                         txtPrecio.SelectedText = _datatable.Rows[0]["Precio"].ToString();
                     }
+
+                    BindGridMasterInsumoByIDMenu(IDMenu);
+
                     Controles(true);
                     btnEditar.Enabled = true;
                     BtnNuevo.Enabled = false;
@@ -285,9 +297,6 @@ namespace Restaurante
         {
             BindGridByCombo(comboBuscarMenu,GridViewMenu);
         }
-
-
-
 
         private void GridViewInsumo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -336,6 +345,8 @@ namespace Restaurante
                     {
                         MessageBox.Show("Insumo agregado");
                         BindGridMasterInsumo();
+
+
                     }
                     else
                     {
@@ -348,6 +359,47 @@ namespace Restaurante
                 }
 
 
+            }
+        }
+
+        private void GridViewMasterInsumo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewMasterInsumo.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (GridViewMasterInsumo.Rows[e.RowIndex].Cells[0].Selected)
+                {
+
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < GridViewMasterInsumo.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            GridViewMasterInsumo.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+
+                    txtHiddenIDMasterInsumo.Text = GridViewMasterInsumo.Rows[e.RowIndex].Cells[1].Value.ToString();
+                }
+            }
+        }
+
+        private void btnEliminarInsumo_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro desea eliminar el registro?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (txtHiddenIDMasterInsumo.Text == "")
+                {
+                    MessageBox.Show("NO SE PUEDE ELIMINAR EL REGISTRO");
+                }
+                else
+                {
+                    CRUDMenu.EliminarMasterInsumos(txtHiddenIDMasterInsumo.Text);
+                    txtHiddenIDInsumo.Text = "";
+                    txtHiddenIDMasterInsumo.Text = "";
+                    txtDescripcionInsumo.Text = "";
+                    BindGridMasterInsumo();
+                    MessageBox.Show("INSUMO ELIMINADO");
+                }
             }
         }
     }

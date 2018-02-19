@@ -30,6 +30,7 @@
         {
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtHiddenIDMasterInsumo = new System.Windows.Forms.TextBox();
             this.txtCantidadInsumo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnEliminarInsumo = new System.Windows.Forms.Button();
@@ -93,6 +94,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.txtHiddenIDMasterInsumo);
             this.groupBox5.Controls.Add(this.txtCantidadInsumo);
             this.groupBox5.Controls.Add(this.label8);
             this.groupBox5.Controls.Add(this.btnEliminarInsumo);
@@ -107,6 +109,15 @@
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Insumos seleccionados";
+            // 
+            // txtHiddenIDMasterInsumo
+            // 
+            this.txtHiddenIDMasterInsumo.Enabled = false;
+            this.txtHiddenIDMasterInsumo.Location = new System.Drawing.Point(258, 10);
+            this.txtHiddenIDMasterInsumo.Name = "txtHiddenIDMasterInsumo";
+            this.txtHiddenIDMasterInsumo.Size = new System.Drawing.Size(50, 20);
+            this.txtHiddenIDMasterInsumo.TabIndex = 40;
+            this.txtHiddenIDMasterInsumo.Visible = false;
             // 
             // txtCantidadInsumo
             // 
@@ -132,6 +143,7 @@
             this.btnEliminarInsumo.TabIndex = 37;
             this.btnEliminarInsumo.Text = "Eliminar insumo";
             this.btnEliminarInsumo.UseVisualStyleBackColor = true;
+            this.btnEliminarInsumo.Click += new System.EventHandler(this.btnEliminarInsumo_Click);
             // 
             // txtDescripcionInsumo
             // 
@@ -150,6 +162,7 @@
             this.GridViewMasterInsumo.Name = "GridViewMasterInsumo";
             this.GridViewMasterInsumo.Size = new System.Drawing.Size(628, 177);
             this.GridViewMasterInsumo.TabIndex = 35;
+            this.GridViewMasterInsumo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewMasterInsumo_CellClick);
             // 
             // btnAgregarInsumo
             // 
@@ -491,7 +504,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 508);
+            this.ClientSize = new System.Drawing.Size(1348, 506);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel3);
@@ -561,5 +574,6 @@
         private System.Windows.Forms.TextBox txtDescripcionInsumo;
         private System.Windows.Forms.TextBox txtCantidadInsumo;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtHiddenIDMasterInsumo;
     }
 }

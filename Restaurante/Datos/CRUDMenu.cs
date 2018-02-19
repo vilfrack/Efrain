@@ -113,6 +113,16 @@ namespace Datos
             sda.Fill(_ds);
             return _ds;
         }
+        public DataSet ListarMasterInsumoByIDmenu(string IDMenu)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MasterInsumos.IDMasterInsumos,MasterInsumos.IDInsumos,MasterInsumos.IDMenu,MasterInsumos.Cantidad,Insumos.Descripcion " +
+                                                        "from MasterInsumos INNER JOIN Insumos on Insumos.IDInsumos = MasterInsumos.IDInsumos "+
+                                                        "INNER JOIN Menu on Menu.IDMenu = MasterInsumos.IDMenu " +
+                                                        "WHERE MasterInsumos.IDMenu ='"+IDMenu+"'", cn);
+            sda.Fill(_ds);
+            return _ds;
+        }
         public DataTable BuscarMenu(string IDMenu)
         {
             DataSet _ds = new DataSet();
@@ -132,9 +142,10 @@ namespace Datos
             {
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "INSERT INTO [MasterInsumos] (IDInsumos,Cantidad) VALUES (@IDInsumos,@Cantidad)";
+                cmd.CommandText = "INSERT INTO [MasterInsumos] (IDInsumos,Cantidad,IDMenu) VALUES (@IDInsumos,@Cantidad,@IDMenu)";
                 cmd.Parameters.AddWithValue("@IDInsumos", MasterInsumos.IDInsumos);
                 cmd.Parameters.AddWithValue("@Cantidad", MasterInsumos.Cantidad);
+                cmd.Parameters.AddWithValue("@IDMenu", MasterInsumos.IDMenu);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
@@ -147,5 +158,72 @@ namespace Datos
             }
         }
 
+        public void InsertarMasterInsumos(string IDMenu, MasterInsumos MasterInsumos)
+        {
+            //en este metodo se guarda con el IDMenu
+            try
+            {
+                cn.Open();
+                SqlCeCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "UPDATE MasterInsumos SET IDMenu=@IDMenu WHERE IDMenu= '" + MasterInsumos.IDMenu + "'";
+                cmd.Parameters.AddWithValue("@IDMenu", IDMenu);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SqlCeException ex)
+            {
+            }
+        }
+
+        public void EliminarMasterInsumos(string IDMasterInsumos)
+        {
+            try
+            {
+                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+
+                con.Open();
+                SqlCeCommand cmd = con.CreateCommand();
+                cmd.CommandText = "DELETE FROM MasterInsumos WHERE IDMasterInsumos= '" + IDMasterInsumos + "'";
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public void EliminarMasterInsumosNotSave()
+        {
+            try
+            {
+                //ESTE METODO BORRARA TODOS LOS INSUMOS QUE NO SE HAN GUARDADO, ESTE METODO SERA LLAMADO CUANDO SE DE CLICK EN ATRAS
+                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+
+                con.Open();
+                SqlCeCommand cmd = con.CreateCommand();
+                cmd.CommandText = "DELETE FROM MasterInsumos WHERE IDMenu= '" + 0 + "'";
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public DataTable BuscarMasterInsumo(string IDMasterInsumos)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from MasterInsumos WHERE IDMasterInsumos = '" + IDMasterInsumos + "'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
     }
 }
