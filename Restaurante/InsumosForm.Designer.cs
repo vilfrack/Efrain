@@ -396,6 +396,7 @@
             this.griViewInsumos.Size = new System.Drawing.Size(380, 300);
             this.griViewInsumos.TabIndex = 0;
             this.griViewInsumos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewInsumos_CellClick);
+            this.griViewInsumos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewInsumos_CellContentClick);
             // 
             // InsumosForm
             // 

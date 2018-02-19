@@ -26,7 +26,7 @@ namespace Restaurante.Utilidades
         }
         public void ValidarSoloNumerosDecimales(object sender, KeyPressEventArgs e, TextBox texbox)
         {
-            if (texbox.Text.Contains('.'))
+            if (texbox.Text.Contains(','))
             {
                 if (!char.IsDigit(e.KeyChar))
                 {
@@ -45,7 +45,7 @@ namespace Restaurante.Utilidades
                     e.Handled = true;
                 }
 
-                if (e.KeyChar == '.' || e.KeyChar == '\b')
+                if (e.KeyChar == ',' || e.KeyChar == '\b')
                 {
                     e.Handled = false;
                 }

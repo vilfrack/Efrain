@@ -340,5 +340,10 @@ namespace Restaurante
         {
 
         }
+
+        private void griViewInsumos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

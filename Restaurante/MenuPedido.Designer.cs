@@ -30,10 +30,14 @@
         {
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtCantidadInsumo = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnEliminarInsumo = new System.Windows.Forms.Button();
+            this.txtDescripcionInsumo = new System.Windows.Forms.TextBox();
             this.GridViewMasterInsumo = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAgregarInsumo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtHiddenIDInsumo = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboGrupo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,22 +53,22 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtBuscarInsumo = new System.Windows.Forms.TextBox();
-            this.comboBuscarInsumo = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.GridViewInsumo = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtBuscarMenu = new System.Windows.Forms.TextBox();
-            this.comboBuscarMenu = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.GridViewInsumo = new System.Windows.Forms.DataGridView();
+            this.txtBuscarInsumo = new System.Windows.Forms.TextBox();
+            this.comboBuscarInsumo = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.GridViewMenu = new System.Windows.Forms.DataGridView();
+            this.txtBuscarMenu = new System.Windows.Forms.TextBox();
+            this.comboBuscarMenu = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewMasterInsumo)).BeginInit();
@@ -89,10 +93,14 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.txtCantidadInsumo);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.btnEliminarInsumo);
+            this.groupBox5.Controls.Add(this.txtDescripcionInsumo);
             this.groupBox5.Controls.Add(this.GridViewMasterInsumo);
-            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Controls.Add(this.btnAgregarInsumo);
             this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.txtHiddenIDInsumo);
             this.groupBox5.Location = new System.Drawing.Point(6, 191);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(640, 256);
@@ -100,22 +108,58 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Insumos seleccionados";
             // 
+            // txtCantidadInsumo
+            // 
+            this.txtCantidadInsumo.Location = new System.Drawing.Point(295, 32);
+            this.txtCantidadInsumo.Name = "txtCantidadInsumo";
+            this.txtCantidadInsumo.Size = new System.Drawing.Size(96, 20);
+            this.txtCantidadInsumo.TabIndex = 39;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(189, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(100, 13);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "Cantidad de insumo";
+            // 
+            // btnEliminarInsumo
+            // 
+            this.btnEliminarInsumo.Location = new System.Drawing.Point(553, 19);
+            this.btnEliminarInsumo.Name = "btnEliminarInsumo";
+            this.btnEliminarInsumo.Size = new System.Drawing.Size(75, 44);
+            this.btnEliminarInsumo.TabIndex = 37;
+            this.btnEliminarInsumo.Text = "Eliminar insumo";
+            this.btnEliminarInsumo.UseVisualStyleBackColor = true;
+            // 
+            // txtDescripcionInsumo
+            // 
+            this.txtDescripcionInsumo.Enabled = false;
+            this.txtDescripcionInsumo.Location = new System.Drawing.Point(66, 32);
+            this.txtDescripcionInsumo.Name = "txtDescripcionInsumo";
+            this.txtDescripcionInsumo.Size = new System.Drawing.Size(105, 20);
+            this.txtDescripcionInsumo.TabIndex = 36;
+            // 
             // GridViewMasterInsumo
             // 
+            this.GridViewMasterInsumo.AllowUserToAddRows = false;
+            this.GridViewMasterInsumo.AllowUserToDeleteRows = false;
             this.GridViewMasterInsumo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewMasterInsumo.Location = new System.Drawing.Point(12, 75);
+            this.GridViewMasterInsumo.Location = new System.Drawing.Point(6, 69);
             this.GridViewMasterInsumo.Name = "GridViewMasterInsumo";
-            this.GridViewMasterInsumo.Size = new System.Drawing.Size(609, 175);
-            this.GridViewMasterInsumo.TabIndex = 28;
+            this.GridViewMasterInsumo.Size = new System.Drawing.Size(628, 177);
+            this.GridViewMasterInsumo.TabIndex = 35;
             // 
-            // button1
+            // btnAgregarInsumo
             // 
-            this.button1.Location = new System.Drawing.Point(287, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 44);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Agregar insumo";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregarInsumo.Location = new System.Drawing.Point(472, 19);
+            this.btnAgregarInsumo.Name = "btnAgregarInsumo";
+            this.btnAgregarInsumo.Size = new System.Drawing.Size(75, 44);
+            this.btnAgregarInsumo.TabIndex = 5;
+            this.btnAgregarInsumo.Text = "Agregar insumo";
+            this.btnAgregarInsumo.UseVisualStyleBackColor = true;
+            this.btnAgregarInsumo.Click += new System.EventHandler(this.btnAgregarInsumo_Click);
             // 
             // label1
             // 
@@ -126,13 +170,14 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Insumo";
             // 
-            // textBox1
+            // txtHiddenIDInsumo
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(65, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 20);
-            this.textBox1.TabIndex = 27;
+            this.txtHiddenIDInsumo.Enabled = false;
+            this.txtHiddenIDInsumo.Location = new System.Drawing.Point(202, 10);
+            this.txtHiddenIDInsumo.Name = "txtHiddenIDInsumo";
+            this.txtHiddenIDInsumo.Size = new System.Drawing.Size(50, 20);
+            this.txtHiddenIDInsumo.TabIndex = 27;
+            this.txtHiddenIDInsumo.Visible = false;
             // 
             // groupBox1
             // 
@@ -282,90 +327,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Acciones";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtBuscarInsumo);
-            this.groupBox2.Controls.Add(this.comboBuscarInsumo);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.GridViewInsumo);
-            this.groupBox2.Location = new System.Drawing.Point(1004, 44);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(337, 447);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Insumos";
-            // 
-            // txtBuscarInsumo
-            // 
-            this.txtBuscarInsumo.Location = new System.Drawing.Point(177, 26);
-            this.txtBuscarInsumo.Name = "txtBuscarInsumo";
-            this.txtBuscarInsumo.Size = new System.Drawing.Size(154, 20);
-            this.txtBuscarInsumo.TabIndex = 26;
-            // 
-            // comboBuscarInsumo
-            // 
-            this.comboBuscarInsumo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBuscarInsumo.FormattingEnabled = true;
-            this.comboBuscarInsumo.Location = new System.Drawing.Point(87, 25);
-            this.comboBuscarInsumo.Name = "comboBuscarInsumo";
-            this.comboBuscarInsumo.Size = new System.Drawing.Size(84, 21);
-            this.comboBuscarInsumo.TabIndex = 27;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(5, 28);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 13);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Buscar insumo";
-            // 
-            // GridViewInsumo
-            // 
-            this.GridViewInsumo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewInsumo.Location = new System.Drawing.Point(6, 59);
-            this.GridViewInsumo.Name = "GridViewInsumo";
-            this.GridViewInsumo.Size = new System.Drawing.Size(325, 382);
-            this.GridViewInsumo.TabIndex = 29;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.GridViewMenu);
-            this.groupBox3.Controls.Add(this.txtBuscarMenu);
-            this.groupBox3.Controls.Add(this.comboBuscarMenu);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(3, 42);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(341, 449);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Menu";
-            // 
-            // txtBuscarMenu
-            // 
-            this.txtBuscarMenu.Location = new System.Drawing.Point(179, 27);
-            this.txtBuscarMenu.Name = "txtBuscarMenu";
-            this.txtBuscarMenu.Size = new System.Drawing.Size(154, 20);
-            this.txtBuscarMenu.TabIndex = 30;
-            // 
-            // comboBuscarMenu
-            // 
-            this.comboBuscarMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBuscarMenu.FormattingEnabled = true;
-            this.comboBuscarMenu.Location = new System.Drawing.Point(89, 26);
-            this.comboBuscarMenu.Name = "comboBuscarMenu";
-            this.comboBuscarMenu.Size = new System.Drawing.Size(84, 21);
-            this.comboBuscarMenu.TabIndex = 32;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Buscar menu";
-            // 
             // BtnGuardar
             // 
             this.BtnGuardar.Location = new System.Drawing.Point(94, 16);
@@ -426,6 +387,69 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.GridViewInsumo);
+            this.groupBox2.Controls.Add(this.txtBuscarInsumo);
+            this.groupBox2.Controls.Add(this.comboBuscarInsumo);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Location = new System.Drawing.Point(1004, 44);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(337, 447);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Insumos";
+            // 
+            // GridViewInsumo
+            // 
+            this.GridViewInsumo.AllowUserToAddRows = false;
+            this.GridViewInsumo.AllowUserToDeleteRows = false;
+            this.GridViewInsumo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewInsumo.Location = new System.Drawing.Point(8, 59);
+            this.GridViewInsumo.Name = "GridViewInsumo";
+            this.GridViewInsumo.Size = new System.Drawing.Size(323, 382);
+            this.GridViewInsumo.TabIndex = 34;
+            this.GridViewInsumo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewInsumo_CellClick);
+            // 
+            // txtBuscarInsumo
+            // 
+            this.txtBuscarInsumo.Location = new System.Drawing.Point(177, 26);
+            this.txtBuscarInsumo.Name = "txtBuscarInsumo";
+            this.txtBuscarInsumo.Size = new System.Drawing.Size(154, 20);
+            this.txtBuscarInsumo.TabIndex = 26;
+            // 
+            // comboBuscarInsumo
+            // 
+            this.comboBuscarInsumo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBuscarInsumo.FormattingEnabled = true;
+            this.comboBuscarInsumo.Location = new System.Drawing.Point(87, 25);
+            this.comboBuscarInsumo.Name = "comboBuscarInsumo";
+            this.comboBuscarInsumo.Size = new System.Drawing.Size(84, 21);
+            this.comboBuscarInsumo.TabIndex = 27;
+            this.comboBuscarInsumo.SelectedIndexChanged += new System.EventHandler(this.comboBuscarInsumo_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 28);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(76, 13);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Buscar insumo";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.GridViewMenu);
+            this.groupBox3.Controls.Add(this.txtBuscarMenu);
+            this.groupBox3.Controls.Add(this.comboBuscarMenu);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Location = new System.Drawing.Point(3, 42);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(341, 449);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Menu";
+            // 
             // GridViewMenu
             // 
             this.GridViewMenu.AllowUserToAddRows = false;
@@ -436,6 +460,32 @@
             this.GridViewMenu.Size = new System.Drawing.Size(334, 382);
             this.GridViewMenu.TabIndex = 33;
             this.GridViewMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewMenu_CellClick);
+            // 
+            // txtBuscarMenu
+            // 
+            this.txtBuscarMenu.Location = new System.Drawing.Point(179, 27);
+            this.txtBuscarMenu.Name = "txtBuscarMenu";
+            this.txtBuscarMenu.Size = new System.Drawing.Size(154, 20);
+            this.txtBuscarMenu.TabIndex = 30;
+            // 
+            // comboBuscarMenu
+            // 
+            this.comboBuscarMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBuscarMenu.FormattingEnabled = true;
+            this.comboBuscarMenu.Location = new System.Drawing.Point(89, 26);
+            this.comboBuscarMenu.Name = "comboBuscarMenu";
+            this.comboBuscarMenu.Size = new System.Drawing.Size(84, 21);
+            this.comboBuscarMenu.TabIndex = 32;
+            this.comboBuscarMenu.SelectedIndexChanged += new System.EventHandler(this.comboBuscarMenu_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "Buscar menu";
             // 
             // MenuPedido
             // 
@@ -483,14 +533,12 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DataGridView GridViewMasterInsumo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAgregarInsumo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtHiddenIDInsumo;
         private System.Windows.Forms.TextBox txtBuscarInsumo;
         private System.Windows.Forms.ComboBox comboBuscarInsumo;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView GridViewInsumo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtIDGrupo;
         private System.Windows.Forms.TextBox txtIDMaesterInsumo;
@@ -507,5 +555,11 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView GridViewMenu;
+        private System.Windows.Forms.DataGridView GridViewMasterInsumo;
+        private System.Windows.Forms.DataGridView GridViewInsumo;
+        private System.Windows.Forms.Button btnEliminarInsumo;
+        private System.Windows.Forms.TextBox txtDescripcionInsumo;
+        private System.Windows.Forms.TextBox txtCantidadInsumo;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
+using System.Globalization;
 
 namespace Restaurante
 {
@@ -24,16 +25,25 @@ namespace Restaurante
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMenu CRUDMenu = new CRUDMenu();
         private Models.Menu Menu = new Models.Menu();
+        private MasterInsumos MasterInsumos = new MasterInsumos();
 
         private void MenuPedido_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
             utilidades.ConfiguracionGridview(GridViewMenu);
+            utilidades.ConfiguracionGridview(GridViewInsumo);
+            utilidades.ConfiguracionGridview(GridViewMasterInsumo);
+
             BindGrid();
+            BindGridInsumos();
 
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
+
+            ComboGrupos(comboBuscarInsumo);
+            ComboGrupos(comboGrupo);
+            //ComboGrupos(comboBuscarMenu);
 
             Controles(false);
         }
@@ -50,7 +60,46 @@ namespace Restaurante
                 this.GridViewMenu.Columns["IDMasterInsumos"].Visible = false;
             }
         }
-
+        private void BindGridInsumos()
+        {
+            DataSet _ds = new DataSet();
+            _ds = CRUDMenu.ListarInsumo();
+            if (_ds.Tables.Count > 0)
+            {
+                GridViewInsumo.DataSource = _ds.Tables[0];
+                this.GridViewInsumo.Columns["IDGrupos"].Visible = false;
+            }
+        }
+        private void BindGridMasterInsumo()
+        {
+            DataSet _ds = new DataSet();
+            _ds = CRUDMenu.ListarMasterInsumo();
+            if (_ds.Tables.Count > 0)
+            {
+                GridViewMasterInsumo.DataSource = _ds.Tables[0];
+                this.GridViewMasterInsumo.Columns["IDMasterInsumos"].Visible = false;
+                this.GridViewMasterInsumo.Columns["IDInsumos"].Visible = false;
+                this.GridViewMasterInsumo.Columns["IDMenu"].Visible = false;
+            }
+        }
+        private void BindGridByCombo(ComboBox combo, DataGridView GridView)
+        {
+            string IDGrupos = combo.SelectedValue.ToString();
+            DataSet _ds = new DataSet();
+            _ds = CRUDMenu.BuscarInsumoByGrupo(IDGrupos);
+            if (_ds.Tables.Count > 0)
+            {
+                GridView.DataSource = _ds.Tables[0];
+            }
+        }
+        private void ComboGrupos(ComboBox combo)
+        {
+            DataTable dtGrupos = new DataTable();
+            dtGrupos = CRUDMenu.GruposComboBox();
+            combo.ValueMember = "IDGrupo";
+            combo.DisplayMember = "Descripcion";
+            combo.DataSource = dtGrupos;
+        }
         private void Controles(bool accion)
         {
             if (accion)
@@ -178,6 +227,7 @@ namespace Restaurante
 
             BtnNuevo.Enabled = true;
             limpiarControles();
+            Controles(false);
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
@@ -187,7 +237,8 @@ namespace Restaurante
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
-           utilidades.ValidarSoloNumerosDecimales(sender, e,txtPrecio);
+             utilidades.ValidarSoloNumerosDecimales(sender, e,txtPrecio);
+
         }
 
         private void GridViewMenu_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -222,6 +273,81 @@ namespace Restaurante
                     BtnNuevo.Enabled = false;
                     btnEliminar.Enabled = true;
                 }
+            }
+        }
+
+        private void comboBuscarInsumo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridByCombo(comboBuscarInsumo, GridViewInsumo);
+        }
+
+        private void comboBuscarMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridByCombo(comboBuscarMenu,GridViewMenu);
+        }
+
+
+
+
+        private void GridViewInsumo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewInsumo.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (GridViewInsumo.Rows[e.RowIndex].Cells[0].Selected)
+                {
+
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < GridViewInsumo.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            GridViewInsumo.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+
+                    string IDInsumo = GridViewInsumo.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    DataTable _datatable = new DataTable();
+                    _datatable = CRUDMenu.BuscarInsumo(IDInsumo);
+                    if (_datatable.Rows.Count > 0)
+                    {
+                        txtHiddenIDInsumo.Text = _datatable.Rows[0]["IDInsumos"].ToString();
+                        txtDescripcionInsumo.Text = _datatable.Rows[0]["Descripcion"].ToString();
+                    }
+
+                }
+            }
+        }
+
+        private void btnAgregarInsumo_Click(object sender, EventArgs e)
+        {
+            if (txtHiddenIDInsumo.Text == "")
+            {
+                MessageBox.Show("DEBE SELECCIONAR UN INSUMO");
+            }
+            else
+            {
+                if (txtCantidadInsumo.Text != "")
+                {
+                    MasterInsumos.IDInsumos = Convert.ToInt32(txtHiddenIDInsumo.Text);
+                    MasterInsumos.Cantidad = Convert.ToDecimal(txtCantidadInsumo.Text);
+
+                    int validar = CRUDMenu.InsertarTemporalMasterInsumos(MasterInsumos);
+                    if (validar == 1)
+                    {
+                        MessageBox.Show("Insumo agregado");
+                        BindGridMasterInsumo();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("DEBE INDICAR UNA CANTIDAD");
+                }
+
+
             }
         }
     }

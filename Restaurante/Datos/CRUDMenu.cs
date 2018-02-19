@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CRUDMenu
+    public class CRUDMenu : CRUDInsumos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
@@ -106,6 +106,13 @@ namespace Datos
             sda.Fill(_ds);
             return _ds;
         }
+        public DataSet ListarMasterInsumo()
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDMasterInsumos,MasterInsumos.IDInsumos,IDMenu,Cantidad,Descripcion from MasterInsumos INNER JOIN Insumos on Insumos.IDInsumos = MasterInsumos.IDInsumos", cn);
+            sda.Fill(_ds);
+            return _ds;
+        }
         public DataTable BuscarMenu(string IDMenu)
         {
             DataSet _ds = new DataSet();
@@ -120,7 +127,25 @@ namespace Datos
             sda.Fill(_ds);
             return _ds;
         }
+        public int InsertarTemporalMasterInsumos(MasterInsumos MasterInsumos) {
+            try
+            {
+                cn.Open();
+                SqlCeCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "INSERT INTO [MasterInsumos] (IDInsumos,Cantidad) VALUES (@IDInsumos,@Cantidad)";
+                cmd.Parameters.AddWithValue("@IDInsumos", MasterInsumos.IDInsumos);
+                cmd.Parameters.AddWithValue("@Cantidad", MasterInsumos.Cantidad);
 
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                cn.Close();
+                return 1;
+            }
+            catch (SqlCeException ex)
+            {
+                return 0;
+            }
+        }
 
     }
 }
