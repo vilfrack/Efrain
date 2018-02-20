@@ -60,7 +60,6 @@ namespace Restaurante
                 GridViewMenu.DataSource = _ds.Tables[0];
                 this.GridViewMenu.Columns["IDMenu"].Visible = false;
                 this.GridViewMenu.Columns["IDGrupo"].Visible = false;
-                this.GridViewMenu.Columns["IDMasterInsumos"].Visible = false;
             }
         }
         private void BindGridInsumos()
@@ -135,8 +134,6 @@ namespace Restaurante
 
         private void limpiarControles()
         {
-            txtBuscarInsumo.Text = "";
-            txtBuscarMenu.Text = "";
             txtIDGrupo.Text = "";
             txtIDMaesterInsumo.Text = "";
             txtIDMenu.Text = "";
@@ -271,8 +268,8 @@ namespace Restaurante
                     _datatable = CRUDMenu.BuscarMenu(IDMenu);
                     if (_datatable.Rows.Count > 0)
                     {
+                        limpiarControles();
                         txtIDGrupo.Text = _datatable.Rows[0]["IDGrupo"].ToString();
-                        txtIDMaesterInsumo.Text = _datatable.Rows[0]["IDMasterInsumos"].ToString();
                         txtIDMenu.Text = _datatable.Rows[0]["IDMenu"].ToString();
                         txtNombre.Text = _datatable.Rows[0]["Nombre"].ToString();
                         txtPrecio.SelectedText = _datatable.Rows[0]["Precio"].ToString();
@@ -368,7 +365,6 @@ namespace Restaurante
             {
                 if (GridViewMasterInsumo.Rows[e.RowIndex].Cells[0].Selected)
                 {
-
                     int row_index = e.RowIndex;
                     for (int i = 0; i < GridViewMasterInsumo.Rows.Count; i++)
                     {
@@ -377,8 +373,9 @@ namespace Restaurante
                             GridViewMasterInsumo.Rows[i].Cells["check"].Value = false;
                         }
                     }
-
                     txtHiddenIDMasterInsumo.Text = GridViewMasterInsumo.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    txtCantidadInsumo.Text = GridViewMasterInsumo.Rows[0].Cells[4].Value.ToString();
+                    txtDescripcionInsumo.Text = GridViewMasterInsumo.Rows[0].Cells[5].Value.ToString();
                 }
             }
         }
@@ -397,10 +394,15 @@ namespace Restaurante
                     txtHiddenIDInsumo.Text = "";
                     txtHiddenIDMasterInsumo.Text = "";
                     txtDescripcionInsumo.Text = "";
-                    BindGridMasterInsumo();
+                    BindGridMasterInsumoByIDMenu(txtIDMenu.Text);
                     MessageBox.Show("INSUMO ELIMINADO");
                 }
             }
+        }
+
+        private void txtCantidadInsumo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            utilidades.ValidarSoloNumeros(sender, e, txtCantidadInsumo);
         }
     }
 }

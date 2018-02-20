@@ -35,6 +35,7 @@
             this.btnUnidadMedida = new System.Windows.Forms.Button();
             this.btnMesas = new System.Windows.Forms.Button();
             this.btnComanda = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMenuPedido
@@ -108,12 +109,23 @@
             this.btnComanda.UseVisualStyleBackColor = true;
             this.btnComanda.Click += new System.EventHandler(this.btnComanda_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(1055, 452);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(98, 64);
+            this.btnSalir.TabIndex = 7;
+            this.btnSalir.Text = "Salir del sistema";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1165, 685);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComanda);
             this.Controls.Add(this.btnMesas);
             this.Controls.Add(this.btnUnidadMedida);
@@ -139,6 +151,7 @@
         private System.Windows.Forms.Button btnUnidadMedida;
         private System.Windows.Forms.Button btnMesas;
         private System.Windows.Forms.Button btnComanda;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
 

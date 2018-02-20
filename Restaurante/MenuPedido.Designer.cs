@@ -62,12 +62,10 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.GridViewInsumo = new System.Windows.Forms.DataGridView();
-            this.txtBuscarInsumo = new System.Windows.Forms.TextBox();
             this.comboBuscarInsumo = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.GridViewMenu = new System.Windows.Forms.DataGridView();
-            this.txtBuscarMenu = new System.Windows.Forms.TextBox();
             this.comboBuscarMenu = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
@@ -125,6 +123,7 @@
             this.txtCantidadInsumo.Name = "txtCantidadInsumo";
             this.txtCantidadInsumo.Size = new System.Drawing.Size(96, 20);
             this.txtCantidadInsumo.TabIndex = 39;
+            this.txtCantidadInsumo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadInsumo_KeyPress);
             // 
             // label8
             // 
@@ -268,7 +267,7 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(458, 52);
+            this.txtPrecio.Location = new System.Drawing.Point(458, 49);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(163, 20);
             this.txtPrecio.TabIndex = 19;
@@ -403,7 +402,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.GridViewInsumo);
-            this.groupBox2.Controls.Add(this.txtBuscarInsumo);
             this.groupBox2.Controls.Add(this.comboBuscarInsumo);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Location = new System.Drawing.Point(1004, 44);
@@ -424,20 +422,13 @@
             this.GridViewInsumo.TabIndex = 34;
             this.GridViewInsumo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewInsumo_CellClick);
             // 
-            // txtBuscarInsumo
-            // 
-            this.txtBuscarInsumo.Location = new System.Drawing.Point(177, 26);
-            this.txtBuscarInsumo.Name = "txtBuscarInsumo";
-            this.txtBuscarInsumo.Size = new System.Drawing.Size(154, 20);
-            this.txtBuscarInsumo.TabIndex = 26;
-            // 
             // comboBuscarInsumo
             // 
             this.comboBuscarInsumo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBuscarInsumo.FormattingEnabled = true;
             this.comboBuscarInsumo.Location = new System.Drawing.Point(87, 25);
             this.comboBuscarInsumo.Name = "comboBuscarInsumo";
-            this.comboBuscarInsumo.Size = new System.Drawing.Size(84, 21);
+            this.comboBuscarInsumo.Size = new System.Drawing.Size(244, 21);
             this.comboBuscarInsumo.TabIndex = 27;
             this.comboBuscarInsumo.SelectedIndexChanged += new System.EventHandler(this.comboBuscarInsumo_SelectedIndexChanged);
             // 
@@ -453,7 +444,6 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.GridViewMenu);
-            this.groupBox3.Controls.Add(this.txtBuscarMenu);
             this.groupBox3.Controls.Add(this.comboBuscarMenu);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(3, 42);
@@ -474,20 +464,13 @@
             this.GridViewMenu.TabIndex = 33;
             this.GridViewMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewMenu_CellClick);
             // 
-            // txtBuscarMenu
-            // 
-            this.txtBuscarMenu.Location = new System.Drawing.Point(179, 27);
-            this.txtBuscarMenu.Name = "txtBuscarMenu";
-            this.txtBuscarMenu.Size = new System.Drawing.Size(154, 20);
-            this.txtBuscarMenu.TabIndex = 30;
-            // 
             // comboBuscarMenu
             // 
             this.comboBuscarMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBuscarMenu.FormattingEnabled = true;
             this.comboBuscarMenu.Location = new System.Drawing.Point(89, 26);
             this.comboBuscarMenu.Name = "comboBuscarMenu";
-            this.comboBuscarMenu.Size = new System.Drawing.Size(84, 21);
+            this.comboBuscarMenu.Size = new System.Drawing.Size(246, 21);
             this.comboBuscarMenu.TabIndex = 32;
             this.comboBuscarMenu.SelectedIndexChanged += new System.EventHandler(this.comboBuscarMenu_SelectedIndexChanged);
             // 
@@ -549,14 +532,12 @@
         private System.Windows.Forms.Button btnAgregarInsumo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtHiddenIDInsumo;
-        private System.Windows.Forms.TextBox txtBuscarInsumo;
         private System.Windows.Forms.ComboBox comboBuscarInsumo;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtIDGrupo;
         private System.Windows.Forms.TextBox txtIDMaesterInsumo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtBuscarMenu;
         private System.Windows.Forms.ComboBox comboBuscarMenu;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboGrupo;

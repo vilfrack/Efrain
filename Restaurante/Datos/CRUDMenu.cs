@@ -102,7 +102,7 @@ namespace Datos
         public DataSet ListarMenu()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDMenu,IDGrupo,IDMasterInsumos,Nombre,Precio from Menu", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDMenu,IDGrupo,Nombre,Precio from Menu", cn);
             sda.Fill(_ds);
             return _ds;
         }

@@ -63,5 +63,10 @@ namespace Restaurante
             ComandaForm comanda = new ComandaForm();
             comanda.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
