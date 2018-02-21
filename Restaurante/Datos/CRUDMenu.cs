@@ -133,7 +133,7 @@ namespace Datos
         public DataSet BuscarMenuByGrupo(string IDGrupos)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Menu WHERE IDGrupos = '" + IDGrupos + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Menu WHERE IDGrupo = '" + IDGrupos + "'", cn);
             sda.Fill(_ds);
             return _ds;
         }

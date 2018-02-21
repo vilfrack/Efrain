@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="Comanda.cs" />
     <Compile Include="EnvioDomicilio.cs" />
     <Compile Include="Grupos.cs" />
     <Compile Include="Insumos.cs" />
+    <Compile Include="MasterComanda.cs" />
     <Compile Include="MasterInsumos.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Mesas.cs" />

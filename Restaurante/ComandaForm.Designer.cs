@@ -29,21 +29,33 @@
         private void InitializeComponent()
         {
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.btnAtras = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelContenedor
             // 
             this.panelContenedor.AutoScroll = true;
-            this.panelContenedor.Location = new System.Drawing.Point(8, 15);
+            this.panelContenedor.Location = new System.Drawing.Point(8, 64);
             this.panelContenedor.Name = "panelContenedor";
             this.panelContenedor.Size = new System.Drawing.Size(721, 445);
             this.panelContenedor.TabIndex = 1;
+            // 
+            // btnAtras
+            // 
+            this.btnAtras.Location = new System.Drawing.Point(650, 12);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(75, 44);
+            this.btnAtras.TabIndex = 11;
+            this.btnAtras.Text = "Atras";
+            this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // ComandaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 472);
+            this.ClientSize = new System.Drawing.Size(737, 519);
+            this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.panelContenedor);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -58,5 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContenedor;
+        private System.Windows.Forms.Button btnAtras;
     }
 }

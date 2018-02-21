@@ -116,7 +116,12 @@ namespace Restaurante
             SetCantidadPersona = CantidadPersona;
 
             ComandaDetalleForm ComandaDetalleForm = new ComandaDetalleForm();
-            ComandaDetalleForm.Show();
+            ComandaDetalleForm.ShowDialog();
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -354,8 +354,6 @@ namespace Restaurante
                 {
                     MessageBox.Show("DEBE INDICAR UNA CANTIDAD");
                 }
-
-
             }
         }
 

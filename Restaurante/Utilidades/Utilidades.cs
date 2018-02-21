@@ -60,6 +60,10 @@ namespace Restaurante.Utilidades
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.HeaderText = "Seleccionar";
             checkBoxColumn.Width = 90;
+
+            checkBoxColumn.TrueValue = true;
+            checkBoxColumn.FalseValue = false;
+
             checkBoxColumn.Name = "check";
             GridView.Columns.Insert(0, checkBoxColumn);
         }
