@@ -31,7 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.GridViewComanda = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.GridViewMenu = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,18 +42,13 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnAtras = new System.Windows.Forms.Button();
             this.comboGrupoBusqueda = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.GridViewPlatos = new System.Windows.Forms.DataGridView();
             this.txtIDMenu = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.LabelTotal = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewComanda)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewMenu)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewPlatos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -75,9 +71,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.LabelTotal);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.dataGridView2);
+            this.groupBox1.Controls.Add(this.GridViewComanda);
             this.groupBox1.Location = new System.Drawing.Point(12, 47);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(292, 428);
@@ -85,15 +81,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pedido de la mesa";
             // 
-            // dataGridView2
+            // label5
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(276, 346);
-            this.dataGridView2.TabIndex = 36;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(97, 384);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 25);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "Total";
+            // 
+            // GridViewComanda
+            // 
+            this.GridViewComanda.AllowUserToAddRows = false;
+            this.GridViewComanda.AllowUserToDeleteRows = false;
+            this.GridViewComanda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewComanda.Location = new System.Drawing.Point(6, 19);
+            this.GridViewComanda.Name = "GridViewComanda";
+            this.GridViewComanda.Size = new System.Drawing.Size(276, 346);
+            this.GridViewComanda.TabIndex = 36;
+            this.GridViewComanda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewComanda_CellClick);
             // 
             // groupBox2
             // 
@@ -185,27 +192,6 @@
             this.comboGrupoBusqueda.TabIndex = 12;
             this.comboGrupoBusqueda.SelectedIndexChanged += new System.EventHandler(this.comboGrupoBusqueda_SelectedIndexChanged);
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.GridViewPlatos);
-            this.groupBox4.Location = new System.Drawing.Point(320, 154);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(511, 321);
-            this.groupBox4.TabIndex = 13;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Platos Seleccionados";
-            // 
-            // GridViewPlatos
-            // 
-            this.GridViewPlatos.AllowUserToAddRows = false;
-            this.GridViewPlatos.AllowUserToDeleteRows = false;
-            this.GridViewPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewPlatos.Location = new System.Drawing.Point(9, 75);
-            this.GridViewPlatos.Name = "GridViewPlatos";
-            this.GridViewPlatos.Size = new System.Drawing.Size(496, 236);
-            this.GridViewPlatos.TabIndex = 35;
-            this.GridViewPlatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewPlatos_CellClick);
-            // 
             // txtIDMenu
             // 
             this.txtIDMenu.Location = new System.Drawing.Point(419, 13);
@@ -214,23 +200,15 @@
             this.txtIDMenu.TabIndex = 14;
             this.txtIDMenu.Visible = false;
             // 
-            // textBox1
+            // LabelTotal
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(68, 384);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(214, 20);
-            this.textBox1.TabIndex = 39;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 384);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 25);
-            this.label5.TabIndex = 38;
-            this.label5.Text = "Total";
+            this.LabelTotal.AutoSize = true;
+            this.LabelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTotal.ForeColor = System.Drawing.Color.DarkRed;
+            this.LabelTotal.Location = new System.Drawing.Point(181, 384);
+            this.LabelTotal.Name = "LabelTotal";
+            this.LabelTotal.Size = new System.Drawing.Size(0, 25);
+            this.LabelTotal.TabIndex = 39;
             // 
             // ComandaDetalleForm
             // 
@@ -239,7 +217,6 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1137, 481);
             this.Controls.Add(this.txtIDMenu);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.comboGrupoBusqueda);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label3);
@@ -255,12 +232,10 @@
             this.Load += new System.EventHandler(this.ComandaDetalleForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewComanda)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridViewMenu)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewPlatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,11 +255,9 @@
         private System.Windows.Forms.ComboBox comboGrupoBusqueda;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.DataGridView GridViewMenu;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView GridViewPlatos;
+        private System.Windows.Forms.DataGridView GridViewComanda;
         private System.Windows.Forms.TextBox txtIDMenu;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LabelTotal;
     }
 }

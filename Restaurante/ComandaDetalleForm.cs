@@ -22,16 +22,18 @@ namespace Restaurante
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMenu CRUDMenu = new CRUDMenu();
         public CRUDInsumos CRUDInsumos = new CRUDInsumos();
-
+        public CRUDComanda CRUDComanda = new CRUDComanda();
+        public MasterComanda MasterComanda = new MasterComanda();
+        public Comanda Comanda = new Comanda();
         private int IDMesas = 0;
         private int NumeroMesa = 0;
         private int CantidadPersona = 0;
-
+        private int IDComanda = 0;
         private void ComandaDetalleForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
             utilidades.ConfiguracionGridview(GridViewMenu);
-            utilidades.ConfiguracionGridview(GridViewPlatos);
+            utilidades.ConfiguracionGridview(GridViewComanda);
 
             ComandaForm ComandaForm = new ComandaForm();
             ComboGrupos();
@@ -41,6 +43,30 @@ namespace Restaurante
             NumeroMesa = ComandaForm.SetNumeroMesa;
             CantidadPersona = ComandaForm.SetCantidadPersona;
 
+
+
+            //SE CREA LA COMANDA PARA OBTENER SI ID
+            Comanda.IDMesas = IDMesas;
+            Comanda.Status = "ABIERTA";
+            Comanda.Fecha = DateTime.Now.Date;
+            DataTable _datatable = new DataTable();
+            //VALIDAMOS SI LA COMANDA EXISTE POR MEDIO DEL ID DE MESA MAS EL STATUS
+            _datatable = CRUDComanda.ComandaAbierta(Comanda);
+            int existe = Convert.ToInt32(_datatable.Rows[0]["existe"].ToString());
+            if (existe==0)
+            {
+                CRUDComanda.InsertarComanda(Comanda);
+                //SE OBTIENE EL ID DE LA COMANDA CREADA
+                //DataTable _datatable = new DataTable();
+                _datatable = CRUDComanda.UltimoIDComanda(Comanda);
+                IDComanda = Convert.ToInt32(_datatable.Rows[0]["IDComanda"].ToString());
+            }
+            else
+            {
+                //en caso contrario se busca la comanda por medio del id de mesa y el status
+                _datatable = CRUDComanda.BuscarComanda(Comanda);
+                IDComanda = Convert.ToInt32(_datatable.Rows[0]["IDComanda"].ToString());
+            }
 
         }
         private void BindGrid(string IDGrupos)
@@ -57,7 +83,15 @@ namespace Restaurante
         }
         private void BindGridPlatos()
         {
-
+            DataSet _ds = new DataSet();
+            _ds = CRUDComanda.ListarMasterComanda(IDComanda);
+            if (_ds.Tables.Count > 0)
+            {
+                GridViewComanda.DataSource = _ds.Tables[0];
+                this.GridViewComanda.Columns["IDMenu"].Visible = false;
+                this.GridViewComanda.Columns["IDComanda"].Visible = false;
+                this.GridViewComanda.Columns["IDMasterComanda"].Visible = false;
+            }
         }
         private void ComboGrupos()
         {
@@ -84,7 +118,6 @@ namespace Restaurante
             {
                 if (GridViewMenu.Rows[e.RowIndex].Cells[0].Selected)
                 {
-
                     int row_index = e.RowIndex;
                     for (int i = 0; i < GridViewMenu.Rows.Count; i++)
                     {
@@ -93,24 +126,17 @@ namespace Restaurante
                             GridViewMenu.Rows[i].Cells["check"].Value = false;
                         }
                     }
-
-
                     string IDMenu = GridViewMenu.Rows[e.RowIndex].Cells[1].Value.ToString();
                     string NombreMenu = GridViewMenu.Rows[e.RowIndex].Cells[3].Value.ToString();
                     string Precio = GridViewMenu.Rows[e.RowIndex].Cells[4].Value.ToString();
 
-                    //ComandaView.Add(new Models.ComandaView
-                    //{
-                    //    ID = Guid.NewGuid(),
-                    //    IDMenu = Convert.ToInt32(IDMenu),
-                    //    IDMesas = IDMesas,
-                    //    Precio = Convert.ToDecimal(Precio),
-                    //    NombreMenu = NombreMenu,
-                    //});
+                    MasterComanda.IDComanda = IDComanda;
+                    MasterComanda.IDMenu = Convert.ToInt32(IDMenu);
+                    MasterComanda.Precio = Convert.ToDecimal(Precio);
 
-
+                    CRUDComanda.InsertarMasterComanda(MasterComanda);
+                    total();
                     BindGridPlatos();
-
                 }
             }
         }
@@ -121,9 +147,7 @@ namespace Restaurante
             {
                 if (GridViewPlatos.Rows[e.RowIndex].Cells[0].Selected)
                 {
-                    decimal totalPrecio = 0;
-                    Guid ID = new Guid(GridViewPlatos.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    var itemToRemove = ComandaView.SingleOrDefault(r => r.ID == ID);
+                    //decimal totalPrecio = 0;
                     int row_index = e.RowIndex;
                     for (int i = 0; i < GridViewPlatos.Rows.Count; i++)
                     {
@@ -132,25 +156,39 @@ namespace Restaurante
                             GridViewPlatos.Rows[i].Cells["check"].Value = false;
                         }
                     }
-                    if (itemToRemove != null) {
-                        totalPrecio = totalPrecio - itemToRemove.Precio;
-                        ComandaView.Remove(itemToRemove);
-                    }
-                    else
-                    {
-
-                    }
-
-                    BindGridPlatos();
-
                 }
             }
 
+        }
 
+        private void GridViewComanda_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewComanda.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (GridViewComanda.Rows[e.RowIndex].Cells[0].Selected)
+                {
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < GridViewComanda.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            GridViewComanda.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+                    string IDMasterComanda = GridViewComanda.Rows[e.RowIndex].Cells["IDMasterComanda"].Value.ToString();
 
+                    CRUDComanda.EliminarMasterComanda(Convert.ToInt32(IDMasterComanda));
 
+                    BindGridPlatos();
+                    total();
+                }
+            }
+        }
 
-
+        private void total() {
+            decimal TotalPrecio = CRUDComanda.GruposComboBox();
+            //separador de miles
+            LabelTotal.Text = "$ "+TotalPrecio.ToString("N2");
         }
     }
 }

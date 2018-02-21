@@ -41,6 +41,27 @@ namespace Datos
             cn.Close();
             return ListMesas;
         }
+        public DataTable UltimoIDComanda(Comanda Comanda)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDComanda) as IDComanda from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='ABIERTA'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
+        public DataTable ComandaAbierta(Comanda Comanda)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='"+Comanda.IDMesas+ "' AND Status='ABIERTA'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
+        public DataTable BuscarComanda(Comanda Comanda)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='ABIERTA'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
         public int InsertarComanda(Comanda Comanda)
         {
             try
@@ -121,9 +142,6 @@ namespace Datos
         {
             try
             {
-
-                //SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
-
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [MasterComanda] (IDComanda,IDMenu,Precio) VALUES (@IDComanda,@IDMenu,@Precio)";
@@ -163,7 +181,7 @@ namespace Datos
                 return 0;
             }
         }
-        public void EliminarMasterComanda(string IDMasterComanda)
+        public void EliminarMasterComanda(int IDMasterComanda)
         {
             try
             {
@@ -183,12 +201,31 @@ namespace Datos
                 throw;
             }
         }
-        public DataSet ListarMasterComanda()
+        public DataSet ListarMasterComanda(int IDComanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from MasterComanda", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Menu.Nombre as Menu,MasterComanda.* from MasterComanda " +
+                                                        "INNER JOIN Menu ON  Menu.IDMenu = MasterComanda.IDMenu "+
+                                                        "WHERE IDComanda ='"+ IDComanda + "'", cn);
             sda.Fill(_ds);
             return _ds;
+        }
+        public decimal GruposComboBox()
+        {
+            cn.Open();
+            SqlCeCommand sc = new SqlCeCommand("select Precio from MasterComanda", cn);
+            SqlCeDataReader reader;
+            reader = sc.ExecuteReader();
+            decimal Precio = 0;
+
+            while (reader.Read())
+            {
+                //int employeeID = rdr.GetInt32(0);   // or: rdr["EmployeeKey"];
+                Precio = Precio + Convert.ToDecimal(reader["Precio"].ToString()); // or: rdr["FirstName"];
+            }
+            cn.Close();
+            Precio = Math.Round(Convert.ToDecimal(Precio), 2);
+            return Precio;
         }
     }
 }
