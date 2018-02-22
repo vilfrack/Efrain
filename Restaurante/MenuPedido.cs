@@ -26,7 +26,7 @@ namespace Restaurante
         public CRUDMenu CRUDMenu = new CRUDMenu();
         private Models.Menu Menu = new Models.Menu();
         private MasterInsumos MasterInsumos = new MasterInsumos();
-
+        private int IntIDMenu = 0;
         private void MenuPedido_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
@@ -147,6 +147,11 @@ namespace Restaurante
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = true;
             Controles(true);
+
+            int validar = CRUDMenu.InsertarMenu(Menu);
+            DataTable _datatable = new DataTable();
+            _datatable = CRUDMenu.UltimoIDMenu();
+            IntIDMenu = Convert.ToInt32(_datatable.Rows[0]["IDMenu"].ToString());
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -336,13 +341,13 @@ namespace Restaurante
                 {
                     MasterInsumos.IDInsumos = Convert.ToInt32(txtHiddenIDInsumo.Text);
                     MasterInsumos.Cantidad = Convert.ToDecimal(txtCantidadInsumo.Text);
-
+                    MasterInsumos.IDMenu = IntIDMenu;
                     int validar = CRUDMenu.InsertarTemporalMasterInsumos(MasterInsumos);
                     if (validar == 1)
                     {
                         MessageBox.Show("Insumo agregado");
-                        BindGridMasterInsumo();
-
+                        //BindGridMasterInsumo();
+                        BindGridMasterInsumoByIDMenu(Convert.ToString(IntIDMenu));
 
                     }
                     else

@@ -49,6 +49,7 @@
     <Compile Include="MasterInsumos.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Mesas.cs" />
+    <Compile Include="Mesoneros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnidadMedida.cs" />
   </ItemGroup>

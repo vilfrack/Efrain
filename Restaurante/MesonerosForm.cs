@@ -12,34 +12,34 @@ using System.Windows.Forms;
 
 namespace Restaurante
 {
-    public partial class GruposForm : Form
+    public partial class MesonerosForm : Form
     {
-        private CRUDGrupos CRUDGrupos = new CRUDGrupos();
-        private Grupos Grupos = new Grupos();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+        public CRUDMesoneros CRUDMesoneros = new CRUDMesoneros();
+        private Mesoneros Mesoneros = new Mesoneros();
 
-        public GruposForm()
+        public MesonerosForm()
         {
             InitializeComponent();
-            BindGrid();
         }
 
-        private void GruposForm_Load(object sender, EventArgs e)
+        private void MesonerosForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
-            utilidades.ConfiguracionGridview(griViewGrupos);
+            utilidades.ConfiguracionGridview(griViewMesoneros);
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
-            txtDescripcion.Enabled = false;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
         }
         private void BindGrid()
         {
             DataSet _ds = new DataSet();
-            _ds = CRUDGrupos.ListarGrupo();
+            _ds = CRUDMesoneros.ListarMesoneros();
             if (_ds.Tables.Count > 0)
             {
-                griViewGrupos.DataSource = _ds.Tables[0];
+                griViewMesoneros.DataSource = _ds.Tables[0];
             }
         }
 
@@ -48,19 +48,21 @@ namespace Restaurante
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = true;
-            txtDescripcion.Enabled = true;
+            txtNombre.Enabled = true;
+            txtApellido.Enabled = true;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtIDGrupo.Text != "")
+            if (txtIDMesonero.Text != "")
             {
                 MessageBox.Show("DEBE BORRAR LOS REGISTROS PARA AGREGAR UNO NUEVO");
             }
             else
             {
-                Grupos.Descripcion = txtDescripcion.Text;
-                int validar = CRUDGrupos.InsertarGrupo(Grupos);
+                Mesoneros.Nombre = txtNombre.Text;
+                Mesoneros.Apellido = txtApellido.Text;
+                int validar = CRUDMesoneros.InsertarMesoneros(Mesoneros);
                 if (validar == 1)
                 {
                     MessageBox.Show("Registro agregado");
@@ -79,23 +81,27 @@ namespace Restaurante
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
-            txtDescripcion.Enabled = false;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
             BtnNuevo.Enabled = true;
             limpiarControles();
         }
-        private void limpiarControles() {
-            txtDescripcion.Text = "";
-            txtIDGrupo.Text = "";
+        private void limpiarControles()
+        {
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtIDMesonero.Text = "";
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (txtIDGrupo.Text != "")
+            if (txtIDMesonero.Text != "")
             {
-                Grupos.IDGrupo = Convert.ToInt32(txtIDGrupo.Text);
-                Grupos.Descripcion = txtDescripcion.Text;
+                Mesoneros.IDMesoneros = Convert.ToInt32(txtIDMesonero.Text);
+                Mesoneros.Nombre = txtNombre.Text;
+                Mesoneros.Apellido = txtApellido.Text;
 
-                int validar = CRUDGrupos.ModificarGrupo(Grupos);
+                int validar = CRUDMesoneros.ModificarMesoneros(Mesoneros);
                 if (validar != 0)
                 {
                     BindGrid();
@@ -116,13 +122,13 @@ namespace Restaurante
         {
             if (MessageBox.Show("Seguro desea eliminar el registro?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (txtIDGrupo.Text == "")
+                if (txtIDMesonero.Text == "")
                 {
                     MessageBox.Show("NO SE PUEDE ELIMINAR EL REGISTRO");
                 }
                 else
                 {
-                    CRUDGrupos.EliminarGrupo(txtIDGrupo.Text);
+                    CRUDMesoneros.EliminarMesoneros(txtIDMesonero.Text);
                     limpiarControles();
                     BindGrid();
                     MessageBox.Show("REGISTRO ELIMINADO");
@@ -130,25 +136,27 @@ namespace Restaurante
             }
         }
 
-        private void griViewGrupos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void griViewMesoneros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (griViewGrupos.Rows.Count > 0 && e.RowIndex != -1)
+            if (griViewMesoneros.Rows.Count > 0 && e.RowIndex != -1)
             {
-                if (griViewGrupos.Rows[e.RowIndex].Cells[0].Selected)
+                if (griViewMesoneros.Rows[e.RowIndex].Cells[0].Selected)
                 {
-                    string IDGrupo = griViewGrupos.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string IDMesoneros = griViewMesoneros.Rows[e.RowIndex].Cells[0].Value.ToString();
                     DataTable _datatable = new DataTable();
-                    _datatable = CRUDGrupos.BuscarGrupo(IDGrupo);
+                    _datatable = CRUDMesoneros.BuscarMesoneros(IDMesoneros);
                     if (_datatable.Rows.Count > 0)
                     {
-                        txtIDGrupo.Text = _datatable.Rows[0]["IDGrupo"].ToString();
-                        txtDescripcion.Text = _datatable.Rows[0]["Descripcion"].ToString();
+                        txtIDMesonero.Text = _datatable.Rows[0]["IDMesoneros"].ToString();
+                        txtNombre.Text = _datatable.Rows[0]["Nombre"].ToString();
+                        txtApellido.Text = _datatable.Rows[0]["Apellido"].ToString();
                     }
                     btnEditar.Enabled = true;
                     BtnNuevo.Enabled = false;
                     BtnGuardar.Enabled = false;
                     btnEliminar.Enabled = true;
-                    txtDescripcion.Enabled = true;
+                    txtNombre.Enabled = true;
+                    txtApellido.Enabled = true;
                 }
             }
         }

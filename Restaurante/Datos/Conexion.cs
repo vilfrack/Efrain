@@ -29,5 +29,8 @@ namespace Datos
         {
             cn.Close();
         }
+        public void ValidateConexion() {
+
+        }
     }
 }

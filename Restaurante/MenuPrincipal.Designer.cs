@@ -36,6 +36,7 @@
             this.btnMesas = new System.Windows.Forms.Button();
             this.btnComanda = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnMesoneros = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMenuPedido
@@ -119,12 +120,23 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnMesoneros
+            // 
+            this.btnMesoneros.Location = new System.Drawing.Point(314, 426);
+            this.btnMesoneros.Name = "btnMesoneros";
+            this.btnMesoneros.Size = new System.Drawing.Size(98, 64);
+            this.btnMesoneros.TabIndex = 8;
+            this.btnMesoneros.Text = "Mesoneros";
+            this.btnMesoneros.UseVisualStyleBackColor = true;
+            this.btnMesoneros.Click += new System.EventHandler(this.btnMesoneros_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1165, 685);
+            this.Controls.Add(this.btnMesoneros);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComanda);
             this.Controls.Add(this.btnMesas);
@@ -152,6 +164,7 @@
         private System.Windows.Forms.Button btnMesas;
         private System.Windows.Forms.Button btnComanda;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnMesoneros;
     }
 }
 

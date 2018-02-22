@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelNumeroMesa = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.GridViewComanda = new System.Windows.Forms.DataGridView();
@@ -37,7 +37,7 @@
             this.GridViewMenu = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCrearComanda = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnAtras = new System.Windows.Forms.Button();
@@ -60,14 +60,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Numero de la mesa:";
             // 
-            // label2
+            // labelNumeroMesa
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.labelNumeroMesa.AutoSize = true;
+            this.labelNumeroMesa.Location = new System.Drawing.Point(116, 9);
+            this.labelNumeroMesa.Name = "labelNumeroMesa";
+            this.labelNumeroMesa.Size = new System.Drawing.Size(35, 13);
+            this.labelNumeroMesa.TabIndex = 1;
+            this.labelNumeroMesa.Text = "label2";
             // 
             // groupBox1
             // 
@@ -87,9 +87,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(97, 384);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 25);
+            this.label5.Size = new System.Drawing.Size(72, 25);
             this.label5.TabIndex = 38;
-            this.label5.Text = "Total";
+            this.label5.Text = "Total $";
             // 
             // GridViewComanda
             // 
@@ -141,14 +141,15 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Buscar plato";
             // 
-            // button2
+            // btnCrearComanda
             // 
-            this.button2.Location = new System.Drawing.Point(99, 29);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 51);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Crear Comanda";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCrearComanda.Location = new System.Drawing.Point(99, 29);
+            this.btnCrearComanda.Name = "btnCrearComanda";
+            this.btnCrearComanda.Size = new System.Drawing.Size(84, 51);
+            this.btnCrearComanda.TabIndex = 9;
+            this.btnCrearComanda.Text = "Crear Comanda";
+            this.btnCrearComanda.UseVisualStyleBackColor = true;
+            this.btnCrearComanda.Click += new System.EventHandler(this.btnCrearComanda_Click);
             // 
             // button3
             // 
@@ -164,7 +165,7 @@
             this.groupBox3.Controls.Add(this.btnAtras);
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.btnCrearComanda);
             this.groupBox3.Location = new System.Drawing.Point(320, 47);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(511, 91);
@@ -222,7 +223,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelNumeroMesa);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -244,12 +245,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelNumeroMesa;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCrearComanda;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboGrupoBusqueda;

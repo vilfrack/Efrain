@@ -50,6 +50,7 @@
     <Compile Include="CRUDInsumos.cs" />
     <Compile Include="CRUDMenu.cs" />
     <Compile Include="CRUDMesas.cs" />
+    <Compile Include="CRUDMesoneros.cs" />
     <Compile Include="CRUDUnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

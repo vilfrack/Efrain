@@ -68,5 +68,10 @@ namespace Restaurante
         {
             this.Close();
         }
+
+        private void btnMesoneros_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

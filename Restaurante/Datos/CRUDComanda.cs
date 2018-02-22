@@ -55,6 +55,13 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
+        public DataTable ComandaCerrada(Comanda Comanda)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='CERRADA'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
         public DataTable BuscarComanda(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
@@ -94,11 +101,11 @@ namespace Datos
             {
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Comanda SET IDMesas=@IDMesas,TotalPrecio=@TotalPrecio,Status=@Status,Fecha=@Fecha WHERE IDComanda= '" + Comanda.IDComanda + "'";
+                cmd.CommandText = "UPDATE Comanda SET IDMesas=@IDMesas,TotalPrecio=@TotalPrecio,Status=@Status WHERE IDComanda= '" + Comanda.IDComanda + "'";
                 cmd.Parameters.AddWithValue("@IDMesas", Comanda.IDMesas);
                 cmd.Parameters.AddWithValue("@TotalPrecio", Comanda.TotalPrecio);
                 cmd.Parameters.AddWithValue("@Status", Comanda.Status);
-                cmd.Parameters.AddWithValue("@Fecha", Comanda.Fecha);
+                //cmd.Parameters.AddWithValue("@Fecha", Comanda.Fecha);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
@@ -206,7 +213,8 @@ namespace Datos
             DataSet _ds = new DataSet();
             SqlCeDataAdapter sda = new SqlCeDataAdapter("select Menu.Nombre as Menu,MasterComanda.* from MasterComanda " +
                                                         "INNER JOIN Menu ON  Menu.IDMenu = MasterComanda.IDMenu "+
-                                                        "WHERE IDComanda ='"+ IDComanda + "'", cn);
+                                                        "INNER JOIN Comanda ON Comanda.IDComanda = MasterComanda.IDComanda "+
+                                                        "WHERE Comanda.IDComanda ='" + IDComanda + "' AND Comanda.Status='ABIERTA'", cn);
             sda.Fill(_ds);
             return _ds;
         }

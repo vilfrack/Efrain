@@ -109,7 +109,8 @@ namespace Datos
         public DataSet ListarMasterInsumo()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDMasterInsumos,MasterInsumos.IDInsumos,IDMenu,Cantidad,Descripcion from MasterInsumos INNER JOIN Insumos on Insumos.IDInsumos = MasterInsumos.IDInsumos", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDMasterInsumos,MasterInsumos.IDInsumos,IDMenu,Cantidad,Descripcion from MasterInsumos "+
+                                                        "INNER JOIN Insumos on Insumos.IDInsumos = MasterInsumos.IDInsumos", cn);
             sda.Fill(_ds);
             return _ds;
         }
@@ -140,6 +141,10 @@ namespace Datos
         public int InsertarTemporalMasterInsumos(MasterInsumos MasterInsumos) {
             try
             {
+                //DETERMINA SI LA CONEXION ESTA ABIERTA
+                if (cn.State == ConnectionState.Open) {
+                    cn.Close();
+                }
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [MasterInsumos] (IDInsumos,Cantidad,IDMenu) VALUES (@IDInsumos,@Cantidad,@IDMenu)";

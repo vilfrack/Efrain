@@ -29,26 +29,35 @@ namespace Restaurante
         private int NumeroMesa = 0;
         private int CantidadPersona = 0;
         private int IDComanda = 0;
+
         private void ComandaDetalleForm_Load(object sender, EventArgs e)
         {
-            utilidades.ConfiguracionFormulario(this);
-            utilidades.ConfiguracionGridview(GridViewMenu);
-            utilidades.ConfiguracionGridview(GridViewComanda);
+
+            #region SE CREAN LAS CONFIGURACIONES DEL FORMULARIO Y DE LOS GRID
+                utilidades.ConfiguracionFormulario(this);
+                utilidades.ConfiguracionGridview(GridViewMenu);
+                utilidades.ConfiguracionGridview(GridViewComanda);
+            #endregion
 
             ComandaForm ComandaForm = new ComandaForm();
             ComboGrupos();
             string IDGrupos = comboGrupoBusqueda.SelectedValue.ToString();
             BindGrid(IDGrupos);
-            IDMesas = ComandaForm.SetIDMesas;
-            NumeroMesa = ComandaForm.SetNumeroMesa;
-            CantidadPersona = ComandaForm.SetCantidadPersona;
+
+            #region SE OBTIENE LOS VALORES DEL FORMULARIO ANTERIOR
+                IDMesas = ComandaForm.SetIDMesas;
+                NumeroMesa = ComandaForm.SetNumeroMesa;
+                CantidadPersona = ComandaForm.SetCantidadPersona;
+                labelNumeroMesa.Text = NumeroMesa.ToString();
+            #endregion
 
 
 
-            //SE CREA LA COMANDA PARA OBTENER SI ID
+            //SE CREA LA COMANDA PARA OBTENER SU ID
             Comanda.IDMesas = IDMesas;
             Comanda.Status = "ABIERTA";
             Comanda.Fecha = DateTime.Now.Date;
+
             DataTable _datatable = new DataTable();
             //VALIDAMOS SI LA COMANDA EXISTE POR MEDIO DEL ID DE MESA MAS EL STATUS
             _datatable = CRUDComanda.ComandaAbierta(Comanda);
@@ -69,6 +78,7 @@ namespace Restaurante
             }
 
         }
+
         private void BindGrid(string IDGrupos)
         {
 
@@ -81,9 +91,11 @@ namespace Restaurante
                 this.GridViewMenu.Columns["IDGrupo"].Visible = false;
             }
         }
+
         private void BindGridPlatos()
         {
             DataSet _ds = new DataSet();
+            DataTable _datatable = new DataTable();
             _ds = CRUDComanda.ListarMasterComanda(IDComanda);
             if (_ds.Tables.Count > 0)
             {
@@ -93,6 +105,7 @@ namespace Restaurante
                 this.GridViewComanda.Columns["IDMasterComanda"].Visible = false;
             }
         }
+
         private void ComboGrupos()
         {
             DataTable dtGrupos = new DataTable();
@@ -133,32 +146,14 @@ namespace Restaurante
                     MasterComanda.IDComanda = IDComanda;
                     MasterComanda.IDMenu = Convert.ToInt32(IDMenu);
                     MasterComanda.Precio = Convert.ToDecimal(Precio);
-
+                    //INSERTARMOS LOS VALORES AL MASTER
                     CRUDComanda.InsertarMasterComanda(MasterComanda);
+                    // SE LLAMA AL METODO TOTAL QUE PERMITE IR CALCULADO EL TOTAL DE LOS PRECIOS
                     total();
+                    //SE CAGAR EL GRID DE PLATOS
                     BindGridPlatos();
                 }
             }
-        }
-
-        private void GridViewPlatos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (GridViewPlatos.Rows.Count > 0 && e.RowIndex != -1)
-            {
-                if (GridViewPlatos.Rows[e.RowIndex].Cells[0].Selected)
-                {
-                    //decimal totalPrecio = 0;
-                    int row_index = e.RowIndex;
-                    for (int i = 0; i < GridViewPlatos.Rows.Count; i++)
-                    {
-                        if (row_index != i)
-                        {
-                            GridViewPlatos.Rows[i].Cells["check"].Value = false;
-                        }
-                    }
-                }
-            }
-
         }
 
         private void GridViewComanda_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -188,7 +183,29 @@ namespace Restaurante
         private void total() {
             decimal TotalPrecio = CRUDComanda.GruposComboBox();
             //separador de miles
-            LabelTotal.Text = "$ "+TotalPrecio.ToString("N2");
+            LabelTotal.Text = TotalPrecio.ToString("N2");
+        }
+
+        private void btnCrearComanda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Seguro desea registrar la comanda?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Comanda.IDComanda = IDComanda;
+                    Comanda.IDMesas = IDMesas;
+                    Comanda.Status = "CERRADA";
+                    Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
+                    CRUDComanda.ModificarComanda(Comanda);
+                    MessageBox.Show("Comanda registrada");
+                    this.Close();
+                }
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show("ERROR: "+ex.Message);
+            }
+
         }
     }
 }
