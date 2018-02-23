@@ -41,6 +41,7 @@ namespace Restaurante
 
             ComandaForm ComandaForm = new ComandaForm();
             ComboGrupos();
+            ComboMesonero();
             string IDGrupos = comboGrupoBusqueda.SelectedValue.ToString();
             BindGrid(IDGrupos);
 
@@ -114,7 +115,18 @@ namespace Restaurante
             comboGrupoBusqueda.DisplayMember = "Descripcion";
             comboGrupoBusqueda.DataSource = dtGrupos;
         }
+        private void ComboMesonero()
+        {
+            DataSet dsMesoneros = new DataSet();
+            DataTable dtMesoneros = new DataTable();
+            //dsMesoneros = CRUDComanda.MesonerosComboBox();
+            dtMesoneros = CRUDComanda.MesonerosComboBox();
 
+
+            comboMesonero.ValueMember = "IDMesoneros";
+            comboMesonero.DisplayMember = "Nombre";
+            comboMesonero.DataSource = dtMesoneros;
+        }
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -195,6 +207,7 @@ namespace Restaurante
                     Comanda.IDComanda = IDComanda;
                     Comanda.IDMesas = IDMesas;
                     Comanda.Status = "CERRADA";
+                    Comanda.IDMesoneros = Convert.ToInt32(comboMesonero.SelectedValue);
                     Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
                     CRUDComanda.ModificarComanda(Comanda);
                     MessageBox.Show("Comanda registrada");
@@ -205,6 +218,11 @@ namespace Restaurante
             {
                 MessageBox.Show("ERROR: "+ex.Message);
             }
+
+        }
+
+        private void comboMesonero_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

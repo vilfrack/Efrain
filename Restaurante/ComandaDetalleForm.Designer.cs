@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelNumeroMesa = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LabelTotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.GridViewComanda = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -43,7 +44,8 @@
             this.btnAtras = new System.Windows.Forms.Button();
             this.comboGrupoBusqueda = new System.Windows.Forms.ComboBox();
             this.txtIDMenu = new System.Windows.Forms.TextBox();
-            this.LabelTotal = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboMesonero = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewComanda)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -80,6 +82,16 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pedido de la mesa";
+            // 
+            // LabelTotal
+            // 
+            this.LabelTotal.AutoSize = true;
+            this.LabelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTotal.ForeColor = System.Drawing.Color.DarkRed;
+            this.LabelTotal.Location = new System.Drawing.Point(181, 384);
+            this.LabelTotal.Name = "LabelTotal";
+            this.LabelTotal.Size = new System.Drawing.Size(0, 25);
+            this.LabelTotal.TabIndex = 39;
             // 
             // label5
             // 
@@ -195,21 +207,31 @@
             // 
             // txtIDMenu
             // 
-            this.txtIDMenu.Location = new System.Drawing.Point(419, 13);
+            this.txtIDMenu.Location = new System.Drawing.Point(320, 166);
             this.txtIDMenu.Name = "txtIDMenu";
             this.txtIDMenu.Size = new System.Drawing.Size(100, 20);
             this.txtIDMenu.TabIndex = 14;
             this.txtIDMenu.Visible = false;
             // 
-            // LabelTotal
+            // label2
             // 
-            this.LabelTotal.AutoSize = true;
-            this.LabelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelTotal.ForeColor = System.Drawing.Color.DarkRed;
-            this.LabelTotal.Location = new System.Drawing.Point(181, 384);
-            this.LabelTotal.Name = "LabelTotal";
-            this.LabelTotal.Size = new System.Drawing.Size(0, 25);
-            this.LabelTotal.TabIndex = 39;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(322, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Mesonero: ";
+            // 
+            // comboMesonero
+            // 
+            this.comboMesonero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMesonero.FormattingEnabled = true;
+            this.comboMesonero.Location = new System.Drawing.Point(407, 19);
+            this.comboMesonero.Name = "comboMesonero";
+            this.comboMesonero.Size = new System.Drawing.Size(218, 21);
+            this.comboMesonero.TabIndex = 16;
+            this.comboMesonero.SelectedIndexChanged += new System.EventHandler(this.comboMesonero_SelectedIndexChanged);
             // 
             // ComandaDetalleForm
             // 
@@ -217,6 +239,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1137, 481);
+            this.Controls.Add(this.comboMesonero);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtIDMenu);
             this.Controls.Add(this.comboGrupoBusqueda);
             this.Controls.Add(this.groupBox3);
@@ -260,5 +284,7 @@
         private System.Windows.Forms.TextBox txtIDMenu;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label LabelTotal;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboMesonero;
     }
 }

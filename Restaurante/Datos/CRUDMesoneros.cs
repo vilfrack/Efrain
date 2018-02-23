@@ -79,7 +79,6 @@ namespace Datos
             try
             {
                 SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
-
                 con.Open();
                 SqlCeCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Mesoneros WHERE IDMesoneros= '" + IDMesoneros + "'";
@@ -87,7 +86,6 @@ namespace Datos
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
                 con.Close();
-
             }
             catch (Exception ex)
             {
@@ -107,6 +105,19 @@ namespace Datos
             SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Mesoneros WHERE IDMesoneros = '" + IDMesoneros + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
+        }
+        public DataTable MesonerosComboBox()
+        {
+            cn.Open();
+            SqlCeCommand sc = new SqlCeCommand("select IDMesoneros, (Nombre +' '+ Apellido) as nombre from Mesoneros", cn);
+            SqlCeDataReader reader;
+            reader = sc.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IDMesoneros", typeof(string));
+            dt.Columns.Add("nombre", typeof(string));
+            dt.Load(reader);
+            cn.Close();
+            return dt;
         }
     }
 }

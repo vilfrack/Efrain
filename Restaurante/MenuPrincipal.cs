@@ -71,7 +71,8 @@ namespace Restaurante
 
         private void btnMesoneros_Click(object sender, EventArgs e)
         {
-
+            MesonerosForm mesoneros = new MesonerosForm();
+            mesoneros.ShowDialog();
         }
     }
 }

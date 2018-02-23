@@ -32,6 +32,7 @@ namespace Restaurante
             BtnGuardar.Enabled = false;
             txtNombre.Enabled = false;
             txtApellido.Enabled = false;
+            BindGrid();
         }
         private void BindGrid()
         {
@@ -142,7 +143,7 @@ namespace Restaurante
             {
                 if (griViewMesoneros.Rows[e.RowIndex].Cells[0].Selected)
                 {
-                    string IDMesoneros = griViewMesoneros.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string IDMesoneros = griViewMesoneros.Rows[e.RowIndex].Cells[1].Value.ToString();
                     DataTable _datatable = new DataTable();
                     _datatable = CRUDMesoneros.BuscarMesoneros(IDMesoneros);
                     if (_datatable.Rows.Count > 0)

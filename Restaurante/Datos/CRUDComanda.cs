@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CRUDComanda
+    public class CRUDComanda : CRUDMesoneros
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
@@ -101,10 +101,14 @@ namespace Datos
             {
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Comanda SET IDMesas=@IDMesas,TotalPrecio=@TotalPrecio,Status=@Status WHERE IDComanda= '" + Comanda.IDComanda + "'";
+                cmd.CommandText = "UPDATE Comanda SET IDMesas=@IDMesas, "+
+                                  "TotalPrecio=@TotalPrecio,Status=@Status, "+
+                                  "IDMesoneros=@IDMesoneros WHERE IDComanda= '" + Comanda.IDComanda + "'";
+
                 cmd.Parameters.AddWithValue("@IDMesas", Comanda.IDMesas);
                 cmd.Parameters.AddWithValue("@TotalPrecio", Comanda.TotalPrecio);
                 cmd.Parameters.AddWithValue("@Status", Comanda.Status);
+                cmd.Parameters.AddWithValue("@IDMesoneros", Comanda.IDMesoneros);
                 //cmd.Parameters.AddWithValue("@Fecha", Comanda.Fecha);
 
                 cmd.CommandType = CommandType.Text;
