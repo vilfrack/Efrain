@@ -239,6 +239,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Name = "MesonerosForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MesonerosForm";
             this.Load += new System.EventHandler(this.MesonerosForm_Load);
             this.panel3.ResumeLayout(false);

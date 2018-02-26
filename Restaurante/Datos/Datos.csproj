@@ -45,6 +45,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="CRUDCliente.cs" />
     <Compile Include="CRUDComanda.cs" />
+    <Compile Include="CRUDCuenta.cs" />
     <Compile Include="CRUDEnvioDomicilio.cs" />
     <Compile Include="CRUDGrupos.cs" />
     <Compile Include="CRUDInsumos.cs" />

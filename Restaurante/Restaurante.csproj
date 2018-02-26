@@ -94,6 +94,12 @@
     <Compile Include="ComandaForm.Designer.cs">
       <DependentUpon>ComandaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CuentaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentaForm.Designer.cs">
+      <DependentUpon>CuentaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GruposForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,7 @@
     <Compile Include="UnidadMedidaForm.Designer.cs">
       <DependentUpon>UnidadMedidaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\Status.cs" />
     <Compile Include="Utilidades\Utilidades.cs" />
     <EmbeddedResource Include="ClienteForm.resx">
       <DependentUpon>ClienteForm.cs</DependentUpon>
@@ -147,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComandaForm.resx">
       <DependentUpon>ComandaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentaForm.resx">
+      <DependentUpon>CuentaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GruposForm.resx">
       <DependentUpon>GruposForm.cs</DependentUpon>
