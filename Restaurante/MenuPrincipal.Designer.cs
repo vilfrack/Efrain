@@ -37,6 +37,7 @@
             this.btnComanda = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnMesoneros = new System.Windows.Forms.Button();
+            this.btnCuenta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMenuPedido
@@ -126,9 +127,19 @@
             this.btnMesoneros.Name = "btnMesoneros";
             this.btnMesoneros.Size = new System.Drawing.Size(98, 64);
             this.btnMesoneros.TabIndex = 8;
-            this.btnMesoneros.Text = "Mesoneros";
+            this.btnMesoneros.Text = "Meseros";
             this.btnMesoneros.UseVisualStyleBackColor = true;
             this.btnMesoneros.Click += new System.EventHandler(this.btnMesoneros_Click);
+            // 
+            // btnCuenta
+            // 
+            this.btnCuenta.Location = new System.Drawing.Point(418, 13);
+            this.btnCuenta.Name = "btnCuenta";
+            this.btnCuenta.Size = new System.Drawing.Size(98, 64);
+            this.btnCuenta.TabIndex = 9;
+            this.btnCuenta.Text = "Cuenta";
+            this.btnCuenta.UseVisualStyleBackColor = true;
+            this.btnCuenta.Click += new System.EventHandler(this.btnCuenta_Click);
             // 
             // MenuPrincipal
             // 
@@ -136,6 +147,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1165, 685);
+            this.Controls.Add(this.btnCuenta);
             this.Controls.Add(this.btnMesoneros);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComanda);
@@ -165,6 +177,7 @@
         private System.Windows.Forms.Button btnComanda;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnMesoneros;
+        private System.Windows.Forms.Button btnCuenta;
     }
 }
 

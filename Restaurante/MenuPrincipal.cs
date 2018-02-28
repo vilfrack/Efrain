@@ -74,5 +74,11 @@ namespace Restaurante
             MesonerosForm mesoneros = new MesonerosForm();
             mesoneros.ShowDialog();
         }
+
+        private void btnCuenta_Click(object sender, EventArgs e)
+        {
+            CuentaForm cuenta = new CuentaForm();
+            cuenta.ShowDialog();
+        }
     }
 }

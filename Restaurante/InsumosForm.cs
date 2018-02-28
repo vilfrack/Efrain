@@ -321,6 +321,7 @@ namespace Restaurante
         {
             BindGridByCombo();
         }
+
         private void BindGridByCombo() {
             string IDGrupos = comboIDGrupoBusqueda.SelectedValue.ToString();
             DataSet _ds = new DataSet();

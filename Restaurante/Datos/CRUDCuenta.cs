@@ -125,7 +125,9 @@ namespace Datos
         public DataSet ListarCuenta()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupos,Descripcion,UnidadMedida from Cuenta", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Cuenta.* from Cuenta " +
+                                                        "INNER JOIN Comanda ON Comanda.IDComanda = Cuenta.IDComanda " +
+                                                        "WHERE Comanda.Status='CERRADA'", cn);
             sda.Fill(_ds);
             return _ds;
         }
@@ -137,26 +139,14 @@ namespace Datos
             return _ds.Tables[0];
         }
 
-        public DataSet BuscarCuentaByGrupo(string IDGrupos)
+        public DataSet BuscarCuentaByMesa(string IDMesa)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDCuenta,Descripcion,UnidadMedida from Cuenta WHERE IDGrupos = '" + IDGrupos + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Cuenta.* from Cuenta " +
+                                                        "INNER JOIN Comanda ON Comanda.IDComanda = Cuenta.IDComanad " +
+                                                        "WHERE Comanda.IDMesas = '" + IDMesa + "' AND Comanda.Status='CERRADA'", cn);
             sda.Fill(_ds);
             return _ds;
         }
-        public DataTable UnidadMedida()
-        {
-            cn.Open();
-            SqlCeCommand sc = new SqlCeCommand("select IDUnidad,Descripcion from UnidadMedida", cn);
-            SqlCeDataReader reader;
-            reader = sc.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("IDUnidad", typeof(string));
-            dt.Columns.Add("Descripcion", typeof(string));
-            dt.Load(reader);
-            cn.Close();
-            return dt;
-        }
-
     }
 }
