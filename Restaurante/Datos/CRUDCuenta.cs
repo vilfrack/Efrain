@@ -198,5 +198,28 @@ namespace Datos
 
             return consecutivo;
         }
+        public int Folio() {
+            int folio = 0;
+            string FechaCierre = DateTime.Now.ToShortDateString();
+            string FechaApertura = DateTime.Now.ToShortDateString();
+
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAXCOD(folio) as folio from Cuenta WHERE Cierre ='" + FechaCierre + "'", cn);
+            sda.Fill(_ds);
+
+            DataTable _datatable = new DataTable();
+            _datatable = _ds.Tables[0];
+            int validar = _datatable.Rows[0]["folio"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["folio"].ToString());
+            if (validar > 0)
+            {
+                folio = 1;
+            }
+            else
+            {
+                folio = validar + 1;
+            }
+
+            return folio;
+        }
     }
 }
