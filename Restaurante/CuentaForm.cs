@@ -326,8 +326,13 @@ namespace Restaurante
         }
         private void Orden()
         {
-            //consecutivo que se reinicia al cerrar el turno
+           //consecutivo que se reinicia al cerrar el turno
+           int consecutivo = CRUDCuenta.Consecutivo();
+           txtOrden.Text = Convert.ToString(consecutivo);
+        }
 
+        private void btnCerrarCuenta_Click(object sender, EventArgs e)
+        {
         }
     }
 }

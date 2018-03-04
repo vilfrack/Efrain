@@ -33,6 +33,8 @@
             this.comboBuscarMesa = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCerrarCuenta = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
@@ -41,6 +43,8 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.GridViewComanda = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCierre = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -75,10 +79,6 @@
             this.txtIDCuenta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCierre = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.btnCerrarCuenta = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCuenta)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -144,6 +144,26 @@
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Acciones";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(13, 66);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 44);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Pagar Cuenta";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnCerrarCuenta
+            // 
+            this.btnCerrarCuenta.Location = new System.Drawing.Point(94, 16);
+            this.btnCerrarCuenta.Name = "btnCerrarCuenta";
+            this.btnCerrarCuenta.Size = new System.Drawing.Size(75, 44);
+            this.btnCerrarCuenta.TabIndex = 12;
+            this.btnCerrarCuenta.Text = "Cerrar Cuenta";
+            this.btnCerrarCuenta.UseVisualStyleBackColor = true;
+            this.btnCerrarCuenta.Click += new System.EventHandler(this.btnCerrarCuenta_Click);
             // 
             // BtnGuardar
             // 
@@ -263,6 +283,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la cuenta";
             // 
+            // txtCierre
+            // 
+            this.txtCierre.Enabled = false;
+            this.txtCierre.Location = new System.Drawing.Point(458, 134);
+            this.txtCierre.Name = "txtCierre";
+            this.txtCierre.ReadOnly = true;
+            this.txtCierre.Size = new System.Drawing.Size(163, 20);
+            this.txtCierre.TabIndex = 65;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(401, 141);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(34, 13);
+            this.label18.TabIndex = 64;
+            this.label18.Text = "Cierre";
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -278,6 +316,7 @@
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotal.Location = new System.Drawing.Point(497, 545);
             this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(137, 20);
             this.txtTotal.TabIndex = 63;
             // 
@@ -374,6 +413,7 @@
             // 
             this.txtSubTotal.Location = new System.Drawing.Point(497, 388);
             this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(137, 20);
             this.txtSubTotal.TabIndex = 51;
             this.txtSubTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSubTotal_KeyPress);
@@ -452,6 +492,7 @@
             this.txtOrden.Enabled = false;
             this.txtOrden.Location = new System.Drawing.Point(458, 75);
             this.txtOrden.Name = "txtOrden";
+            this.txtOrden.ReadOnly = true;
             this.txtOrden.Size = new System.Drawing.Size(163, 20);
             this.txtOrden.TabIndex = 42;
             // 
@@ -512,6 +553,7 @@
             // 
             this.txtFolio.Location = new System.Drawing.Point(458, 49);
             this.txtFolio.Name = "txtFolio";
+            this.txtFolio.ReadOnly = true;
             this.txtFolio.Size = new System.Drawing.Size(163, 20);
             this.txtFolio.TabIndex = 19;
             // 
@@ -558,43 +600,6 @@
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Folio";
-            // 
-            // txtCierre
-            // 
-            this.txtCierre.Enabled = false;
-            this.txtCierre.Location = new System.Drawing.Point(458, 134);
-            this.txtCierre.Name = "txtCierre";
-            this.txtCierre.ReadOnly = true;
-            this.txtCierre.Size = new System.Drawing.Size(163, 20);
-            this.txtCierre.TabIndex = 65;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(401, 141);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(34, 13);
-            this.label18.TabIndex = 64;
-            this.label18.Text = "Cierre";
-            // 
-            // btnCerrarCuenta
-            // 
-            this.btnCerrarCuenta.Location = new System.Drawing.Point(94, 16);
-            this.btnCerrarCuenta.Name = "btnCerrarCuenta";
-            this.btnCerrarCuenta.Size = new System.Drawing.Size(75, 44);
-            this.btnCerrarCuenta.TabIndex = 12;
-            this.btnCerrarCuenta.Text = "Cerrar Cuenta";
-            this.btnCerrarCuenta.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(13, 66);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 44);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Pagar Cuenta";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // CuentaForm
             // 
