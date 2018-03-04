@@ -39,8 +39,22 @@
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.GridViewOrden = new System.Windows.Forms.DataGridView();
+            this.GridViewComanda = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtCargo = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtPropina = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtImpuesto = new System.Windows.Forms.TextBox();
+            this.txtMonedero = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtSubTotal = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.labelNumeroMesa = new System.Windows.Forms.Label();
             this.labelIDMesero = new System.Windows.Forms.Label();
             this.txtComisionista = new System.Windows.Forms.TextBox();
@@ -61,24 +75,14 @@
             this.txtIDCuenta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtMonedero = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtDescuento = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtSubTotal = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtImpuesto = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtPropina = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtCargo = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtCierre = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.btnCerrarCuenta = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCuenta)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewOrden)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewComanda)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +93,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(9, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(346, 651);
+            this.groupBox3.Size = new System.Drawing.Size(346, 698);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Buscar Mesas";
@@ -101,8 +105,9 @@
             this.GridViewCuenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewCuenta.Location = new System.Drawing.Point(6, 53);
             this.GridViewCuenta.Name = "GridViewCuenta";
-            this.GridViewCuenta.Size = new System.Drawing.Size(329, 592);
+            this.GridViewCuenta.Size = new System.Drawing.Size(329, 639);
             this.GridViewCuenta.TabIndex = 33;
+            this.GridViewCuenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCuenta_CellClick);
             // 
             // comboBuscarMesa
             // 
@@ -125,6 +130,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnCerrarCuenta);
             this.groupBox4.Controls.Add(this.BtnGuardar);
             this.groupBox4.Controls.Add(this.btnCancelar);
             this.groupBox4.Controls.Add(this.btnAtras);
@@ -133,14 +140,14 @@
             this.groupBox4.Controls.Add(this.btnEliminar);
             this.groupBox4.Location = new System.Drawing.Point(371, 8);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(638, 68);
+            this.groupBox4.Size = new System.Drawing.Size(638, 117);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Acciones";
             // 
             // BtnGuardar
             // 
-            this.BtnGuardar.Location = new System.Drawing.Point(94, 16);
+            this.BtnGuardar.Location = new System.Drawing.Point(172, 16);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(75, 44);
             this.BtnGuardar.TabIndex = 11;
@@ -150,7 +157,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(337, 16);
+            this.btnCancelar.Location = new System.Drawing.Point(415, 16);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 44);
             this.btnCancelar.TabIndex = 9;
@@ -170,17 +177,18 @@
             // 
             // BtnNuevo
             // 
+            this.BtnNuevo.Enabled = false;
             this.BtnNuevo.Location = new System.Drawing.Point(13, 16);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(75, 44);
             this.BtnNuevo.TabIndex = 6;
-            this.BtnNuevo.Text = "Nuevo";
+            this.BtnNuevo.Text = "Abrir Cuenta";
             this.BtnNuevo.UseVisualStyleBackColor = true;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(175, 16);
+            this.btnEditar.Location = new System.Drawing.Point(253, 16);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 44);
             this.btnEditar.TabIndex = 7;
@@ -190,7 +198,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(256, 16);
+            this.btnEliminar.Location = new System.Drawing.Point(334, 16);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 44);
             this.btnEliminar.TabIndex = 8;
@@ -198,18 +206,20 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // GridViewOrden
+            // GridViewComanda
             // 
-            this.GridViewOrden.AllowUserToAddRows = false;
-            this.GridViewOrden.AllowUserToDeleteRows = false;
-            this.GridViewOrden.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewOrden.Location = new System.Drawing.Point(6, 182);
-            this.GridViewOrden.Name = "GridViewOrden";
-            this.GridViewOrden.Size = new System.Drawing.Size(628, 188);
-            this.GridViewOrden.TabIndex = 35;
+            this.GridViewComanda.AllowUserToAddRows = false;
+            this.GridViewComanda.AllowUserToDeleteRows = false;
+            this.GridViewComanda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewComanda.Location = new System.Drawing.Point(6, 182);
+            this.GridViewComanda.Name = "GridViewComanda";
+            this.GridViewComanda.Size = new System.Drawing.Size(628, 188);
+            this.GridViewComanda.TabIndex = 35;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCierre);
+            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.txtTotal);
             this.groupBox1.Controls.Add(this.label16);
@@ -230,7 +240,7 @@
             this.groupBox1.Controls.Add(this.txtApertura);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.GridViewOrden);
+            this.groupBox1.Controls.Add(this.GridViewComanda);
             this.groupBox1.Controls.Add(this.txtNomCliente);
             this.groupBox1.Controls.Add(this.txtOrden);
             this.groupBox1.Controls.Add(this.label9);
@@ -245,13 +255,137 @@
             this.groupBox1.Controls.Add(this.txtIDCuenta);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(370, 82);
+            this.groupBox1.Location = new System.Drawing.Point(370, 129);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(640, 578);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la cuenta";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(428, 548);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(31, 13);
+            this.label17.TabIndex = 62;
+            this.label17.Text = "Total";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(497, 545);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(137, 20);
+            this.txtTotal.TabIndex = 63;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(428, 522);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(35, 13);
+            this.label16.TabIndex = 60;
+            this.label16.Text = "Cargo";
+            // 
+            // txtCargo
+            // 
+            this.txtCargo.Enabled = false;
+            this.txtCargo.Location = new System.Drawing.Point(497, 519);
+            this.txtCargo.Name = "txtCargo";
+            this.txtCargo.Size = new System.Drawing.Size(137, 20);
+            this.txtCargo.TabIndex = 61;
+            this.txtCargo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCargo_KeyPress);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(428, 496);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 13);
+            this.label15.TabIndex = 58;
+            this.label15.Text = "Propina";
+            // 
+            // txtPropina
+            // 
+            this.txtPropina.Enabled = false;
+            this.txtPropina.Location = new System.Drawing.Point(497, 493);
+            this.txtPropina.Name = "txtPropina";
+            this.txtPropina.Size = new System.Drawing.Size(137, 20);
+            this.txtPropina.TabIndex = 59;
+            this.txtPropina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPropina_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(428, 470);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 13);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Impuestos";
+            // 
+            // txtImpuesto
+            // 
+            this.txtImpuesto.Enabled = false;
+            this.txtImpuesto.Location = new System.Drawing.Point(497, 467);
+            this.txtImpuesto.Name = "txtImpuesto";
+            this.txtImpuesto.Size = new System.Drawing.Size(137, 20);
+            this.txtImpuesto.TabIndex = 57;
+            this.txtImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtImpuesto_KeyPress);
+            // 
+            // txtMonedero
+            // 
+            this.txtMonedero.Location = new System.Drawing.Point(497, 414);
+            this.txtMonedero.Name = "txtMonedero";
+            this.txtMonedero.Size = new System.Drawing.Size(137, 20);
+            this.txtMonedero.TabIndex = 55;
+            this.txtMonedero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonedero_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(428, 444);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "Descuento";
+            // 
+            // txtDescuento
+            // 
+            this.txtDescuento.Enabled = false;
+            this.txtDescuento.Location = new System.Drawing.Point(497, 441);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.Size = new System.Drawing.Size(137, 20);
+            this.txtDescuento.TabIndex = 54;
+            this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(425, 417);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "Monedero";
+            // 
+            // txtSubTotal
+            // 
+            this.txtSubTotal.Location = new System.Drawing.Point(497, 388);
+            this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.Size = new System.Drawing.Size(137, 20);
+            this.txtSubTotal.TabIndex = 51;
+            this.txtSubTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSubTotal_KeyPress);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(427, 391);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 13);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "SubTotal";
             // 
             // labelNumeroMesa
             // 
@@ -281,8 +415,9 @@
             // txtApertura
             // 
             this.txtApertura.Enabled = false;
-            this.txtApertura.Location = new System.Drawing.Point(458, 102);
+            this.txtApertura.Location = new System.Drawing.Point(458, 106);
             this.txtApertura.Name = "txtApertura";
+            this.txtApertura.ReadOnly = true;
             this.txtApertura.Size = new System.Drawing.Size(163, 20);
             this.txtApertura.TabIndex = 46;
             // 
@@ -369,6 +504,7 @@
             this.txtMesero.Enabled = false;
             this.txtMesero.Location = new System.Drawing.Point(245, 23);
             this.txtMesero.Name = "txtMesero";
+            this.txtMesero.ReadOnly = true;
             this.txtMesero.Size = new System.Drawing.Size(146, 20);
             this.txtMesero.TabIndex = 27;
             // 
@@ -383,6 +519,7 @@
             // 
             this.txtNumeroMesa.Location = new System.Drawing.Point(79, 49);
             this.txtNumeroMesa.Name = "txtNumeroMesa";
+            this.txtNumeroMesa.ReadOnly = true;
             this.txtNumeroMesa.Size = new System.Drawing.Size(312, 20);
             this.txtNumeroMesa.TabIndex = 4;
             // 
@@ -400,6 +537,7 @@
             this.txtIDCuenta.Enabled = false;
             this.txtIDCuenta.Location = new System.Drawing.Point(79, 23);
             this.txtIDCuenta.Name = "txtIDCuenta";
+            this.txtIDCuenta.ReadOnly = true;
             this.txtIDCuenta.Size = new System.Drawing.Size(88, 20);
             this.txtIDCuenta.TabIndex = 2;
             // 
@@ -421,146 +559,60 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Folio";
             // 
-            // txtMonedero
+            // txtCierre
             // 
-            this.txtMonedero.Location = new System.Drawing.Point(497, 414);
-            this.txtMonedero.Name = "txtMonedero";
-            this.txtMonedero.Size = new System.Drawing.Size(137, 20);
-            this.txtMonedero.TabIndex = 55;
-            this.txtMonedero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonedero_KeyPress);
+            this.txtCierre.Enabled = false;
+            this.txtCierre.Location = new System.Drawing.Point(458, 134);
+            this.txtCierre.Name = "txtCierre";
+            this.txtCierre.ReadOnly = true;
+            this.txtCierre.Size = new System.Drawing.Size(163, 20);
+            this.txtCierre.TabIndex = 65;
             // 
-            // label1
+            // label18
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(428, 444);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "Descuento";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(401, 141);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(34, 13);
+            this.label18.TabIndex = 64;
+            this.label18.Text = "Cierre";
             // 
-            // txtDescuento
+            // btnCerrarCuenta
             // 
-            this.txtDescuento.Enabled = false;
-            this.txtDescuento.Location = new System.Drawing.Point(497, 441);
-            this.txtDescuento.Name = "txtDescuento";
-            this.txtDescuento.Size = new System.Drawing.Size(137, 20);
-            this.txtDescuento.TabIndex = 54;
-            this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
+            this.btnCerrarCuenta.Location = new System.Drawing.Point(94, 16);
+            this.btnCerrarCuenta.Name = "btnCerrarCuenta";
+            this.btnCerrarCuenta.Size = new System.Drawing.Size(75, 44);
+            this.btnCerrarCuenta.TabIndex = 12;
+            this.btnCerrarCuenta.Text = "Cerrar Cuenta";
+            this.btnCerrarCuenta.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // button1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(425, 417);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
-            this.label8.TabIndex = 52;
-            this.label8.Text = "Monedero";
-            // 
-            // txtSubTotal
-            // 
-            this.txtSubTotal.Location = new System.Drawing.Point(497, 388);
-            this.txtSubTotal.Name = "txtSubTotal";
-            this.txtSubTotal.Size = new System.Drawing.Size(137, 20);
-            this.txtSubTotal.TabIndex = 51;
-            this.txtSubTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSubTotal_KeyPress);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(427, 391);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(50, 13);
-            this.label12.TabIndex = 50;
-            this.label12.Text = "SubTotal";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(428, 470);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(55, 13);
-            this.label14.TabIndex = 56;
-            this.label14.Text = "Impuestos";
-            // 
-            // txtImpuesto
-            // 
-            this.txtImpuesto.Enabled = false;
-            this.txtImpuesto.Location = new System.Drawing.Point(497, 467);
-            this.txtImpuesto.Name = "txtImpuesto";
-            this.txtImpuesto.Size = new System.Drawing.Size(137, 20);
-            this.txtImpuesto.TabIndex = 57;
-            this.txtImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtImpuesto_KeyPress);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(428, 496);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(43, 13);
-            this.label15.TabIndex = 58;
-            this.label15.Text = "Propina";
-            // 
-            // txtPropina
-            // 
-            this.txtPropina.Enabled = false;
-            this.txtPropina.Location = new System.Drawing.Point(497, 493);
-            this.txtPropina.Name = "txtPropina";
-            this.txtPropina.Size = new System.Drawing.Size(137, 20);
-            this.txtPropina.TabIndex = 59;
-            this.txtPropina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPropina_KeyPress);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(428, 522);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(35, 13);
-            this.label16.TabIndex = 60;
-            this.label16.Text = "Cargo";
-            // 
-            // txtCargo
-            // 
-            this.txtCargo.Enabled = false;
-            this.txtCargo.Location = new System.Drawing.Point(497, 519);
-            this.txtCargo.Name = "txtCargo";
-            this.txtCargo.Size = new System.Drawing.Size(137, 20);
-            this.txtCargo.TabIndex = 61;
-            this.txtCargo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCargo_KeyPress);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(428, 548);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(31, 13);
-            this.label17.TabIndex = 62;
-            this.label17.Text = "Total";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Enabled = false;
-            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(497, 545);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(137, 20);
-            this.txtTotal.TabIndex = 63;
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(13, 66);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 44);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Pagar Cuenta";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // CuentaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 664);
+            this.ClientSize = new System.Drawing.Size(1026, 721);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Name = "CuentaForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cuenta";
             this.Load += new System.EventHandler(this.CuentaForm_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCuenta)).EndInit();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewOrden)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewComanda)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -579,7 +631,7 @@
         private System.Windows.Forms.Button BtnNuevo;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.DataGridView GridViewOrden;
+        private System.Windows.Forms.DataGridView GridViewComanda;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtComisionista;
         private System.Windows.Forms.TextBox txtApertura;
@@ -616,5 +668,9 @@
         private System.Windows.Forms.TextBox txtPropina;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtImpuesto;
+        private System.Windows.Forms.TextBox txtCierre;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnCerrarCuenta;
+        private System.Windows.Forms.Button button1;
     }
 }

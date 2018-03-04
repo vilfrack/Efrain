@@ -10,5 +10,6 @@ namespace Restaurante.Utilidades
     {
         public const string Cerrado = "CERRADA";
         public const string Abierta = "ABIERTA";
+        public const string Pagada = "PAGADA";
     }
 }

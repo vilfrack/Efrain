@@ -114,7 +114,7 @@ namespace Datos
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
                 con.Close();
-                
+
             }
             catch (Exception ex)
             {

@@ -25,11 +25,11 @@ namespace Restaurante
 
         private void CuentaForm_Load(object sender, EventArgs e)
         {
-            utilidades.ConfiguracionGridview(GridViewOrden);
+            utilidades.ConfiguracionGridview(GridViewComanda);
             utilidades.ConfiguracionGridview(GridViewCuenta);
             utilidades.ConfiguracionFormulario(this);
             BindGrid();
-
+            //BindGridComanda();
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
@@ -51,15 +51,35 @@ namespace Restaurante
             if (_ds.Tables.Count > 0)
             {
                 GridViewCuenta.DataSource = _ds.Tables[0];
+                this.GridViewCuenta.Columns["IDMesas"].Visible = false;
+                this.GridViewCuenta.Columns["IDMesoneros"].Visible = false;
+                this.GridViewCuenta.Columns["IDComanda"].Visible = false;
+                this.GridViewCuenta.Columns["Mesero"].Visible = false;
+                this.GridViewCuenta.Columns["NumeroMesa"].Visible = false;
+                this.GridViewCuenta.Columns["Status"].Visible = false;
             }
         }
-
+        private void BindGridComanda(string IDComanda)
+        {
+            DataSet _ds = new DataSet();
+            _ds = CRUDCuenta.ListarComanda(IDComanda);
+            if (_ds.Tables.Count > 0)
+            {
+                GridViewComanda.DataSource = _ds.Tables[0];
+                this.GridViewComanda.Columns["IDMesas"].Visible = false;
+                this.GridViewComanda.Columns["IDMesoneros"].Visible = false;
+                this.GridViewComanda.Columns["IDComanda"].Visible = false;
+                this.GridViewComanda.Columns["Status"].Visible = false;
+                this.GridViewComanda.Columns["TotalPrecio"].Visible = false;
+            }
+        }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = true;
             Controles(true);
+            txtApertura.Text = DateTime.Now.ToString();
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -261,6 +281,53 @@ namespace Restaurante
         {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             this.Close();
+        }
+
+        private void GridViewCuenta_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewCuenta.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (GridViewCuenta.Rows[e.RowIndex].Cells[0].Selected)
+                {
+
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < GridViewCuenta.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            GridViewCuenta.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+
+                    string IDComanda = GridViewCuenta.Rows[e.RowIndex].Cells["IDComanda"].Value.ToString();
+                    DataTable _datatable = new DataTable();
+                    _datatable = CRUDCuenta.BuscarCuenta(IDComanda);
+                    if (_datatable.Rows.Count > 0)
+                    {
+                        txtIDCuenta.Text = IDComanda;
+                        txtMesero.Text = _datatable.Rows[0]["Mesero"].ToString();
+                        txtNumeroMesa.SelectedText = _datatable.Rows[0]["NumeroMesa"].ToString();
+                        labelIDMesero.Text = _datatable.Rows[0]["IDMesoneros"].ToString();
+                        txtSubTotal.Text = _datatable.Rows[0]["TotalPrecio"].ToString();
+                        BindGridComanda(IDComanda);
+                        Folio();
+                        Orden();
+                    }
+                    Controles(true);
+                    btnEditar.Enabled = true;
+                    //BtnNuevo.Enabled = false;
+                    btnEliminar.Enabled = true;
+                }
+            }
+        }
+        private void Folio() {
+            //Indica el folio de la cuenta. Es un número consecutivo que se asigna en el momento de imprimir la cuenta.
+
+        }
+        private void Orden()
+        {
+            //consecutivo que se reinicia al cerrar el turno
+
         }
     }
 }

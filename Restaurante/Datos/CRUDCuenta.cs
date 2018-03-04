@@ -124,17 +124,42 @@ namespace Datos
         }
         public DataSet ListarCuenta()
         {
+            /*
+             select Comanda.*, Mesas.IDMesas,Mesoneros.IDMesoneros, Mesoneros.Nombre,Mesoneros.Apellido from Comanda
+            inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas
+            inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros
+            WHERE Comanda.Status='CERRADA'
+             */
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Cuenta.* from Cuenta " +
-                                                        "INNER JOIN Comanda ON Comanda.IDComanda = Cuenta.IDComanda " +
-                                                        "WHERE Comanda.Status='CERRADA'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Comanda.*,Mesas.NumeroMesa, (Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero "+
+                                                        "from Comanda " +
+                                                        "inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas "+
+                                                        "inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros "+
+                                                        "WHERE Comanda.Status = 'CERRADA'", cn);
             sda.Fill(_ds);
             return _ds;
         }
-        public DataTable BuscarCuenta(string IDCuenta)
+        public DataSet ListarComanda(string IDComanda)
+        {
+            //DEBE MOSTRAR LA CUENTA CON TODOS LOS PEDIDOS DEL CLIENTE
+
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select  Menu.Nombre as Menu, Menu.Precio, Comanda.* from Comanda " +
+                                                        "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda " +
+                                                        "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu " +
+                                                        "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
+            sda.Fill(_ds);
+            return _ds;
+        }
+        public DataTable BuscarCuenta(string IDComanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Cuenta WHERE IDCuenta = '" + IDCuenta + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Comanda.*, Menu.Nombre,(Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero,Mesas.NumeroMesa from Comanda " +
+                                                        "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda "+
+                                                        "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu "+
+                                                        "inner join Mesoneros ON Mesoneros.IDMesoneros = Comanda.IDMesoneros "+
+                                                        "inner join Mesas ON Mesas.IDMesas = Comanda.IDMesas "+
+                                                        "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
