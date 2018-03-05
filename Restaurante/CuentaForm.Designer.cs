@@ -457,7 +457,6 @@
             // 
             // txtOrden
             // 
-            this.txtOrden.Enabled = false;
             this.txtOrden.Location = new System.Drawing.Point(458, 75);
             this.txtOrden.Name = "txtOrden";
             this.txtOrden.ReadOnly = true;

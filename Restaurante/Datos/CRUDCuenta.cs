@@ -202,14 +202,34 @@ namespace Datos
                 return 0;
             }
         }
-        public int Consecutivo()
+        public void ActualizarOrden(Cuenta cuenta)
+        {
+            try
+            {
+
+                cn.Open();
+                SqlCeCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "UPDATE Cuenta SET Orden=@Orden WHERE IDComanda= '" + cuenta.IDComanda + "'";
+                cmd.Parameters.AddWithValue("@Orden", cuenta.Orden);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                cn.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public int Consecutivo(string status)
         {
             int consecutivo = 0;
             string FechaCierre = DateTime.Now.ToShortDateString();
             string FechaApertura = DateTime.Now.ToShortDateString();
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as Validar from Cuenta WHERE Cierre ='" + FechaCierre + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as Validar from Cuenta WHERE Status ='" + status + "'", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -217,11 +237,11 @@ namespace Datos
             int validar = _datatable.Rows[0]["Validar"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["Validar"].ToString());
             if (validar > 0)
             {
-                consecutivo = 1;
+                consecutivo = validar + 1;
             }
             else
             {
-                consecutivo = validar+1;
+                consecutivo = 1;
             }
 
             return consecutivo;

@@ -180,6 +180,7 @@ namespace Restaurante
 
         private void GridViewCuenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            bool orden = false;
             if (GridViewCuenta.Rows.Count > 0 && e.RowIndex != -1)
             {
                 if (GridViewCuenta.Rows[e.RowIndex].Cells[0].Selected)
@@ -212,9 +213,11 @@ namespace Restaurante
                         _datatable = CRUDCuenta.BuscarCuenta(IDComanda, status.Abierta);
                         if (_datatable.Rows.Count > 0)
                         {
+
                             txtFolio.Text = _datatable.Rows[0]["Folio"].ToString();
                             txtOrden.Text = _datatable.Rows[0]["Orden"].ToString();
                             txtCierre.Text = _datatable.Rows[0]["Cierre"].ToString();
+                            orden = true;
                             if (txtCierre.Text == "01/01/1950 0:00:00")
                             {
                                 txtCierre.Text = string.Empty;
@@ -226,6 +229,7 @@ namespace Restaurante
                         }
                         else
                         {
+                            orden = false;
                             //EN CASO DE NO EXISTIR LO CREAMOS LA CUENTA CON STATUS ABIERTO
                             Cuenta.IDComanda = Convert.ToInt32(IDComanda);
                             Cuenta.Folio = 0;
@@ -241,7 +245,13 @@ namespace Restaurante
                             CRUDCuenta.InsertarCuenta(Cuenta);
                         }
                         BindGridComanda(IDComanda);
-                        Orden();
+                        if (orden==false)
+                        {
+                            //en caso de que sea true no genera consecutivo, si no que muestra el que tiene en base de datos
+                            Orden(IDComanda);
+                        }
+
+
                     }
                     Controles(true);
                     //btnEditar.Enabled = true;
@@ -255,11 +265,16 @@ namespace Restaurante
             int Folio = CRUDCuenta.Folio();
             txtFolio.Text = Convert.ToString(Folio);
         }
-        private void Orden()
+        private void Orden(string IDComanda)
         {
            //consecutivo que se reinicia al cerrar el turno
-           int consecutivo = CRUDCuenta.Consecutivo();
+           int consecutivo = CRUDCuenta.Consecutivo(status.Abierta);
            txtOrden.Text = Convert.ToString(consecutivo);
+
+            ////se actualiza el orden nuevo
+            Cuenta.IDComanda = Convert.ToInt32(IDComanda);
+            Cuenta.Orden = Convert.ToInt32(txtOrden.Text);
+            CRUDCuenta.ActualizarOrden(Cuenta);
         }
 
         private void btnCerrarCuenta_Click(object sender, EventArgs e)
@@ -276,6 +291,7 @@ namespace Restaurante
                 Cuenta.Orden = Convert.ToInt32(txtOrden.Text);
                 Cuenta.IDCuenta = Convert.ToInt32(txtIDCuenta.Text);
                 Cuenta.Cierre = Convert.ToDateTime(DateTime.Now.ToString());
+                Cuenta.Status = status.Cerrado;
                 int validar = CRUDCuenta.Actualizar(Cuenta);
             }
         }
