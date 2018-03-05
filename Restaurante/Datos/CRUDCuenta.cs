@@ -23,7 +23,7 @@ namespace Datos
             connectionString = cns.ConnectionString;
             cn = new SqlCeConnection(connectionString);
         }
-        public int InsertarCuenta(Cuenta Cuenta)
+        public void InsertarCuenta(Cuenta Cuenta)
         {
             try
             {
@@ -32,11 +32,12 @@ namespace Datos
 
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "INSERT INTO [Cuenta] (IDMesas,IDMesoneros,Reserva,Apertura,Cierre,Orden,Folio, "+
-                    "SubTotal,Total,Descuento,Impuesto,Propina,Status) VALUES (@IDMesas,@IDMesoneros,@Reserva, "+
+                cmd.CommandText = "INSERT INTO [Cuenta] (IDMesas,IDMesoneros,IDComanda,Reserva,Apertura,Cierre,Orden,Folio, "+
+                    "SubTotal,Total,Descuento,Impuesto,Propina,Status) VALUES (@IDMesas,@IDMesoneros,@IDComanda,@Reserva, " +
                     "@Apertura,@Cierre,@Orden,@Folio,@SubTotal,@Total,@Descuento,@Impuesto,@Propina,@Status)";
                 cmd.Parameters.AddWithValue("@IDMesas", Cuenta.IDMesas);
                 cmd.Parameters.AddWithValue("@IDMesoneros", Cuenta.IDMesoneros);
+                cmd.Parameters.AddWithValue("@IDComanda", Cuenta.IDComanda);
                 cmd.Parameters.AddWithValue("@Reserva", Cuenta.Reserva);
                 cmd.Parameters.AddWithValue("@Apertura", Cuenta.Apertura);
                 cmd.Parameters.AddWithValue("@Cierre", Cuenta.Cierre);
@@ -52,11 +53,11 @@ namespace Datos
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
                 cn.Close();
-                return 1;
+
             }
             catch (SqlCeException ex)
             {
-                return 0;
+
             }
 
         }
@@ -151,10 +152,10 @@ namespace Datos
             sda.Fill(_ds);
             return _ds;
         }
-        public DataTable BuscarCuenta(string IDComanda)
+        public DataTable BuscarComandaCuenta(string IDComanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Comanda.*, Menu.Nombre,(Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero,Mesas.NumeroMesa from Comanda " +
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Comanda.*, Menu.Nombre,(Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero,Mesas.NumeroMesa,Mesas.IDMesas from Comanda " +
                                                         "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda "+
                                                         "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu "+
                                                         "inner join Mesoneros ON Mesoneros.IDMesoneros = Comanda.IDMesoneros "+
@@ -163,7 +164,14 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
-
+        public DataTable BuscarCuenta(string IDComanda,string Status)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * FROM Cuenta " +
+                                                        "where Status = '"+ Status + "' AND IDComanda ='" + IDComanda + "' ", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
         public DataSet BuscarCuentaByMesa(string IDMesa)
         {
             DataSet _ds = new DataSet();
@@ -173,7 +181,27 @@ namespace Datos
             sda.Fill(_ds);
             return _ds;
         }
+        public int Actualizar(Cuenta cuenta) {
+            try
+            {
 
+                cn.Open();
+                SqlCeCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "UPDATE Cuenta SET Orden=@Orden,Folio=@Folio,Cierre=@Cierre WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
+                cmd.Parameters.AddWithValue("@Orden", cuenta.Orden);
+                cmd.Parameters.AddWithValue("@Folio", cuenta.Folio);
+                cmd.Parameters.AddWithValue("@Cierre", cuenta.Cierre);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                cn.Close();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
         public int Consecutivo()
         {
             int consecutivo = 0;
@@ -204,7 +232,7 @@ namespace Datos
             string FechaApertura = DateTime.Now.ToShortDateString();
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAXCOD(folio) as folio from Cuenta WHERE Cierre ='" + FechaCierre + "'", cn);
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as folio from Cuenta WHERE Imprimir =1", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();

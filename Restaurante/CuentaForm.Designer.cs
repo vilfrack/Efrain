@@ -35,12 +35,10 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCerrarCuenta = new System.Windows.Forms.Button();
-            this.BtnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
-            this.BtnNuevo = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
+            this.BtnAbrirCuenta = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.GridViewComanda = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCierre = new System.Windows.Forms.TextBox();
@@ -59,7 +57,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.labelNumeroMesa = new System.Windows.Forms.Label();
+            this.labeIDMesa = new System.Windows.Forms.Label();
             this.labelIDMesero = new System.Windows.Forms.Label();
             this.txtComisionista = new System.Windows.Forms.TextBox();
             this.txtApertura = new System.Windows.Forms.TextBox();
@@ -132,15 +130,13 @@
             // 
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.btnCerrarCuenta);
-            this.groupBox4.Controls.Add(this.BtnGuardar);
             this.groupBox4.Controls.Add(this.btnCancelar);
             this.groupBox4.Controls.Add(this.btnAtras);
-            this.groupBox4.Controls.Add(this.BtnNuevo);
-            this.groupBox4.Controls.Add(this.btnEditar);
-            this.groupBox4.Controls.Add(this.btnEliminar);
+            this.groupBox4.Controls.Add(this.BtnAbrirCuenta);
+            this.groupBox4.Controls.Add(this.btnImprimir);
             this.groupBox4.Location = new System.Drawing.Point(371, 8);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(638, 117);
+            this.groupBox4.Size = new System.Drawing.Size(638, 115);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Acciones";
@@ -148,7 +144,7 @@
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(13, 66);
+            this.button1.Location = new System.Drawing.Point(256, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 44);
             this.button1.TabIndex = 13;
@@ -161,29 +157,17 @@
             this.btnCerrarCuenta.Name = "btnCerrarCuenta";
             this.btnCerrarCuenta.Size = new System.Drawing.Size(75, 44);
             this.btnCerrarCuenta.TabIndex = 12;
-            this.btnCerrarCuenta.Text = "Cerrar Cuenta";
+            this.btnCerrarCuenta.Text = "Borrar Cuenta";
             this.btnCerrarCuenta.UseVisualStyleBackColor = true;
-            this.btnCerrarCuenta.Click += new System.EventHandler(this.btnCerrarCuenta_Click);
-            // 
-            // BtnGuardar
-            // 
-            this.BtnGuardar.Location = new System.Drawing.Point(172, 16);
-            this.BtnGuardar.Name = "BtnGuardar";
-            this.BtnGuardar.Size = new System.Drawing.Size(75, 44);
-            this.BtnGuardar.TabIndex = 11;
-            this.BtnGuardar.Text = "Guardar";
-            this.BtnGuardar.UseVisualStyleBackColor = true;
-            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(415, 16);
+            this.btnCancelar.Location = new System.Drawing.Point(337, 16);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 44);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAtras
             // 
@@ -195,36 +179,25 @@
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
-            // BtnNuevo
+            // BtnAbrirCuenta
             // 
-            this.BtnNuevo.Enabled = false;
-            this.BtnNuevo.Location = new System.Drawing.Point(13, 16);
-            this.BtnNuevo.Name = "BtnNuevo";
-            this.BtnNuevo.Size = new System.Drawing.Size(75, 44);
-            this.BtnNuevo.TabIndex = 6;
-            this.BtnNuevo.Text = "Abrir Cuenta";
-            this.BtnNuevo.UseVisualStyleBackColor = true;
-            this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
+            this.BtnAbrirCuenta.Enabled = false;
+            this.BtnAbrirCuenta.Location = new System.Drawing.Point(13, 16);
+            this.BtnAbrirCuenta.Name = "BtnAbrirCuenta";
+            this.BtnAbrirCuenta.Size = new System.Drawing.Size(75, 44);
+            this.BtnAbrirCuenta.TabIndex = 6;
+            this.BtnAbrirCuenta.Text = "Abrir Cuenta";
+            this.BtnAbrirCuenta.UseVisualStyleBackColor = true;
             // 
-            // btnEditar
+            // btnImprimir
             // 
-            this.btnEditar.Location = new System.Drawing.Point(253, 16);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 44);
-            this.btnEditar.TabIndex = 7;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(334, 16);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 44);
-            this.btnEliminar.TabIndex = 8;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.btnImprimir.Location = new System.Drawing.Point(175, 16);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(75, 44);
+            this.btnImprimir.TabIndex = 8;
+            this.btnImprimir.Text = "Imprimir Cuenta";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // GridViewComanda
             // 
@@ -254,7 +227,7 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtSubTotal);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.labelNumeroMesa);
+            this.groupBox1.Controls.Add(this.labeIDMesa);
             this.groupBox1.Controls.Add(this.labelIDMesero);
             this.groupBox1.Controls.Add(this.txtComisionista);
             this.groupBox1.Controls.Add(this.txtApertura);
@@ -285,7 +258,6 @@
             // 
             // txtCierre
             // 
-            this.txtCierre.Enabled = false;
             this.txtCierre.Location = new System.Drawing.Point(458, 134);
             this.txtCierre.Name = "txtCierre";
             this.txtCierre.ReadOnly = true;
@@ -331,7 +303,6 @@
             // 
             // txtCargo
             // 
-            this.txtCargo.Enabled = false;
             this.txtCargo.Location = new System.Drawing.Point(497, 519);
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.Size = new System.Drawing.Size(137, 20);
@@ -349,7 +320,6 @@
             // 
             // txtPropina
             // 
-            this.txtPropina.Enabled = false;
             this.txtPropina.Location = new System.Drawing.Point(497, 493);
             this.txtPropina.Name = "txtPropina";
             this.txtPropina.Size = new System.Drawing.Size(137, 20);
@@ -367,7 +337,6 @@
             // 
             // txtImpuesto
             // 
-            this.txtImpuesto.Enabled = false;
             this.txtImpuesto.Location = new System.Drawing.Point(497, 467);
             this.txtImpuesto.Name = "txtImpuesto";
             this.txtImpuesto.Size = new System.Drawing.Size(137, 20);
@@ -393,7 +362,6 @@
             // 
             // txtDescuento
             // 
-            this.txtDescuento.Enabled = false;
             this.txtDescuento.Location = new System.Drawing.Point(497, 441);
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(137, 20);
@@ -427,14 +395,14 @@
             this.label12.TabIndex = 50;
             this.label12.Text = "SubTotal";
             // 
-            // labelNumeroMesa
+            // labeIDMesa
             // 
-            this.labelNumeroMesa.AutoSize = true;
-            this.labelNumeroMesa.Location = new System.Drawing.Point(281, 141);
-            this.labelNumeroMesa.Name = "labelNumeroMesa";
-            this.labelNumeroMesa.Size = new System.Drawing.Size(92, 13);
-            this.labelNumeroMesa.TabIndex = 49;
-            this.labelNumeroMesa.Text = "labelNumeroMesa";
+            this.labeIDMesa.AutoSize = true;
+            this.labeIDMesa.Location = new System.Drawing.Point(281, 141);
+            this.labeIDMesa.Name = "labeIDMesa";
+            this.labeIDMesa.Size = new System.Drawing.Size(92, 13);
+            this.labeIDMesa.TabIndex = 49;
+            this.labeIDMesa.Text = "labelNumeroMesa";
             // 
             // labelIDMesero
             // 
@@ -630,12 +598,10 @@
         private System.Windows.Forms.DataGridView GridViewCuenta;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAtras;
-        private System.Windows.Forms.Button BtnNuevo;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button BtnAbrirCuenta;
+        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.DataGridView GridViewComanda;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtComisionista;
@@ -658,7 +624,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBuscarMesa;
         private System.Windows.Forms.Label labelIDMesero;
-        private System.Windows.Forms.Label labelNumeroMesa;
+        private System.Windows.Forms.Label labeIDMesa;
         private System.Windows.Forms.TextBox txtMonedero;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDescuento;

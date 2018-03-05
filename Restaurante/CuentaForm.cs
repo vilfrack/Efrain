@@ -22,6 +22,7 @@ namespace Restaurante
         public CRUDCuenta CRUDCuenta = new CRUDCuenta();
         private Cuenta Cuenta = new Cuenta();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+        private Utilidades.Status status = new Utilidades.Status();
 
         private void CuentaForm_Load(object sender, EventArgs e)
         {
@@ -30,9 +31,9 @@ namespace Restaurante
             utilidades.ConfiguracionFormulario(this);
             BindGrid();
             //BindGridComanda();
-            btnEditar.Enabled = false;
-            btnEliminar.Enabled = false;
-            BtnGuardar.Enabled = false;
+            //btnEditar.Enabled = false;
+            btnImprimir.Enabled = false;
+            //BtnGuardar.Enabled = false;
 
             //Controles(false);
 
@@ -73,113 +74,7 @@ namespace Restaurante
                 this.GridViewComanda.Columns["TotalPrecio"].Visible = false;
             }
         }
-        private void BtnNuevo_Click(object sender, EventArgs e)
-        {
-            btnEditar.Enabled = false;
-            btnEliminar.Enabled = false;
-            BtnGuardar.Enabled = true;
-            Controles(true);
-            txtApertura.Text = DateTime.Now.ToString();
-        }
 
-        private void BtnGuardar_Click(object sender, EventArgs e)
-        {
-            if (txtIDCuenta.Text != "")
-            {
-                MessageBox.Show("DEBE BORRAR LOS REGISTROS PARA AGREGAR UNO NUEVO");
-            }
-            else
-            {
-                if (txtMesero.Text != "" && txtNumeroMesa.Text != "")
-                {
-                    //Insumos.IDInsumos = txtIDInsumo.Text;
-                    Cuenta.IDMesoneros =Convert.ToInt32(labelIDMesero.Text);
-                    Cuenta.Reserva = txtReserva.Text;
-                    Cuenta.IDMesas = Convert.ToInt32(labelNumeroMesa.Text);
-                    Cuenta.Folio = txtFolio.Text;
-                    Cuenta.Comisionista = txtComisionista.Text;
-                    Cuenta.Orden = txtOrden.Text;
-                    //Cuenta.IDCliente = txtNomCliente.Text;
-                    Cuenta.Apertura = Convert.ToDateTime(txtApertura.Text);
-
-                    int validar = CRUDCuenta.InsertarCuenta(Cuenta);
-                    if (validar == 1)
-                    {
-                        MessageBox.Show("Registro agregado");
-                        BindGridByCombo();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("LOS CAMPOS DE COSTO PROMEDIO, COSTO IMPUESTO Y ULTIMO COSTO NO PUEDEN QUEDAR VACIOS");
-                }
-
-
-            }
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            //if (txtIDInsumo.Text != "")
-            //{
-            //    Insumos.IDInsumos = Convert.ToInt32(txtIDInsumo.Text);
-            //    Insumos.IDGrupos = Convert.ToInt32(comboIDGrupo.SelectedValue.ToString());
-            //    Insumos.Descripcion = txtDescripcionInsumo.Text;
-            //    Insumos.UnidadMedida = comboUnidadMedida.SelectedText;
-            //    Insumos.UltimoCosto = Convert.ToDouble(txtUltimoCosto.Text);
-            //    Insumos.CostoPromedio = Convert.ToDouble(txtCostoPromedio.Text);
-            //    Insumos.CostoImpuesto = Convert.ToDouble(txtCostoImpuesto.Text);
-            //    Insumos.IVA = Convert.ToDouble(txtIva.Text);
-            //    Insumos.Inventariable = comboInventariable.SelectedText;
-
-            //    int validar = CRUDInsumos.ModificarInsumo(Insumos);
-            //    if (validar != 0)
-            //    {
-            //        BindGridByCombo();
-            //        MessageBox.Show("REGISTRO MODIFICADO");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("ERROR");
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Debe seleccionar un registro de la Lista");
-            //}
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            //if (MessageBox.Show("Seguro desea eliminar el registro?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //{
-            //    if (txtIDInsumo.Text == "")
-            //    {
-            //        MessageBox.Show("NO SE PUEDE ELIMINAR EL REGISTRO");
-            //    }
-            //    else
-            //    {
-            //        CRUDInsumos.EliminarInsumo(txtIDInsumo.Text);
-            //        limpiarControles();
-            //        BindGridByCombo();
-            //        MessageBox.Show("REGISTRO ELIMINADO");
-            //    }
-            //}
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            btnEditar.Enabled = false;
-            btnEliminar.Enabled = false;
-            BtnGuardar.Enabled = false;
-
-            BtnNuevo.Enabled = true;
-            //limpiarControles();
-        }
 
         private void Controles(bool accion)
         {
@@ -301,28 +196,64 @@ namespace Restaurante
 
                     string IDComanda = GridViewCuenta.Rows[e.RowIndex].Cells["IDComanda"].Value.ToString();
                     DataTable _datatable = new DataTable();
-                    _datatable = CRUDCuenta.BuscarCuenta(IDComanda);
+                    _datatable = CRUDCuenta.BuscarComandaCuenta(IDComanda);
                     if (_datatable.Rows.Count > 0)
                     {
                         txtIDCuenta.Text = IDComanda;
                         txtMesero.Text = _datatable.Rows[0]["Mesero"].ToString();
-                        txtNumeroMesa.SelectedText = _datatable.Rows[0]["NumeroMesa"].ToString();
+                        txtNumeroMesa.Text = _datatable.Rows[0]["NumeroMesa"].ToString();
+                        txtApertura.Text = _datatable.Rows[0]["fecha"].ToString();
                         labelIDMesero.Text = _datatable.Rows[0]["IDMesoneros"].ToString();
+                        labeIDMesa.Text = _datatable.Rows[0]["IDMesas"].ToString();
                         txtSubTotal.Text = _datatable.Rows[0]["TotalPrecio"].ToString();
+                        txtTotal.Text = _datatable.Rows[0]["TotalPrecio"].ToString();
+
+                        //BUSCAMOS SI LA COMANDA EXISTE EN LA TABLA DE CUENTA
+                        _datatable = CRUDCuenta.BuscarCuenta(IDComanda, status.Abierta);
+                        if (_datatable.Rows.Count > 0)
+                        {
+                            txtFolio.Text = _datatable.Rows[0]["Folio"].ToString();
+                            txtOrden.Text = _datatable.Rows[0]["Orden"].ToString();
+                            txtCierre.Text = _datatable.Rows[0]["Cierre"].ToString();
+                            if (txtCierre.Text == "01/01/1950 0:00:00")
+                            {
+                                txtCierre.Text = string.Empty;
+                            }
+                            if (txtFolio.Text =="0")
+                            {
+                                txtFolio.Text = string.Empty;
+                            }
+                        }
+                        else
+                        {
+                            //EN CASO DE NO EXISTIR LO CREAMOS LA CUENTA CON STATUS ABIERTO
+                            Cuenta.IDComanda = Convert.ToInt32(IDComanda);
+                            Cuenta.Folio = 0;
+                            Cuenta.Orden = 0;
+                            Cuenta.Status = status.Abierta;
+                            Cuenta.IDMesas = Convert.ToInt32(labeIDMesa.Text);
+                            Cuenta.IDMesoneros = Convert.ToInt32(labelIDMesero.Text);
+                            Cuenta.Apertura = Convert.ToDateTime(txtApertura.Text);
+                            Cuenta.SubTotal = Convert.ToDecimal(txtTotal.Text);
+                            Cuenta.Total = Convert.ToDecimal(txtTotal.Text);
+                            Cuenta.Reserva = string.Empty;
+                            Cuenta.Cierre = Convert.ToDateTime("01/01/1950 00:00:00");
+                            CRUDCuenta.InsertarCuenta(Cuenta);
+                        }
                         BindGridComanda(IDComanda);
-                        Folio();
                         Orden();
                     }
                     Controles(true);
-                    btnEditar.Enabled = true;
+                    //btnEditar.Enabled = true;
                     //BtnNuevo.Enabled = false;
-                    btnEliminar.Enabled = true;
+                    btnImprimir.Enabled = true;
                 }
             }
         }
         private void Folio() {
             //Indica el folio de la cuenta. Es un número consecutivo que se asigna en el momento de imprimir la cuenta.
-
+            int Folio = CRUDCuenta.Folio();
+            txtFolio.Text = Convert.ToString(Folio);
         }
         private void Orden()
         {
@@ -333,6 +264,20 @@ namespace Restaurante
 
         private void btnCerrarCuenta_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro desea imprimir la cuenta?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtCierre.Text = DateTime.Now.ToString();
+                Folio();
+                Cuenta.Folio = Convert.ToInt32(txtFolio.Text);
+                Cuenta.Orden = Convert.ToInt32(txtOrden.Text);
+                Cuenta.IDCuenta = Convert.ToInt32(txtIDCuenta.Text);
+                Cuenta.Cierre = Convert.ToDateTime(DateTime.Now.ToString());
+                int validar = CRUDCuenta.Actualizar(Cuenta);
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Restaurante.Utilidades
 {
     public class Status
     {
-        public const string Cerrado = "CERRADA";
-        public const string Abierta = "ABIERTA";
-        public const string Pagada = "PAGADA";
+        public string Cerrado = "CERRADA";
+        public string Abierta = "ABIERTA";
+        public string Pagada = "PAGADA";
     }
 }

@@ -12,12 +12,13 @@ namespace Models
         public int IDMesas { get; set; }
         public int IDMesoneros { get; set; }
         public int IDCliente { get; set; }
+        public int IDComanda { get; set; }
         public string Reserva { get; set; }
         public DateTime Apertura { get; set; }
-        public DateTime Cierre { get; set; }
-        public string Orden { get; set; }
+        public DateTime? Cierre { get; set; }
+        public int Orden { get; set; }
         public string Comisionista { get; set; }
-        public string Folio { get; set; }
+        public int Folio { get; set; }
         public decimal SubTotal { get; set; }
         public decimal Total { get; set; }
         public decimal Descuento { get; set; }
