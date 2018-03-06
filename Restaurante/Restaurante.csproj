@@ -136,6 +136,12 @@
     <Compile Include="MesonerosForm.Designer.cs">
       <DependentUpon>MesonerosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PagarCuentaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagarCuentaForm.Designer.cs">
+      <DependentUpon>PagarCuentaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnidadMedidaForm.cs">
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesonerosForm.resx">
       <DependentUpon>MesonerosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagarCuentaForm.resx">
+      <DependentUpon>PagarCuentaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -150,6 +150,7 @@
             this.btnPagarCuenta.TabIndex = 13;
             this.btnPagarCuenta.Text = "Pagar Cuenta";
             this.btnPagarCuenta.UseVisualStyleBackColor = true;
+            this.btnPagarCuenta.Click += new System.EventHandler(this.btnPagarCuenta_Click);
             // 
             // btnCerrarCuenta
             // 
@@ -187,6 +188,7 @@
             this.BtnAbrirCuenta.TabIndex = 6;
             this.BtnAbrirCuenta.Text = "Abrir Cuenta";
             this.BtnAbrirCuenta.UseVisualStyleBackColor = true;
+            this.BtnAbrirCuenta.Click += new System.EventHandler(this.BtnAbrirCuenta_Click);
             // 
             // btnImprimir
             // 

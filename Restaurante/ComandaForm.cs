@@ -26,6 +26,14 @@ namespace Restaurante
             InitializeComponent();
 
         }
+        //se crea dos contructores de ComandaForm, el vacio es cuado se llamada del menu principal, el otro cuando se llama de CuentaForm y se necesita
+        //refrescar el gridview de CuentaForm al dar click en agregar cuenta
+        public CuentaForm _CuentaForm;
+        public ComandaForm(CuentaForm CuentaForm)
+        {
+            InitializeComponent();
+            this._CuentaForm = CuentaForm;
+        }
 
         private void ComandaForm_Load(object sender, EventArgs e)
         {
@@ -115,8 +123,22 @@ namespace Restaurante
             SetNumeroMesa = NumeroMesa;
             SetCantidadPersona = CantidadPersona;
 
-            ComandaDetalleForm ComandaDetalleForm = new ComandaDetalleForm();
-            ComandaDetalleForm.ShowDialog();
+            //VALIDAMOS SI _CuentaForm ESTA VACIO O NO, EN CASO DE NO ESTAR VACIO SIGNIFICA QUE SE ESTA LLAMANDO AL FORMULARIO DESDE CuentaForm 
+            // Y ESTE SE USA PARA REFRESCAR EL GRID
+            if (_CuentaForm==null)
+            {
+                ComandaDetalleForm ComandaDetalleForm = new ComandaDetalleForm();
+                ComandaDetalleForm.ShowDialog();
+            }
+            else
+            {
+                using (var ComandaDetalleForm = new ComandaDetalleForm(_CuentaForm))
+                {
+                    ComandaDetalleForm.ShowDialog();
+                }
+            }
+
+            
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

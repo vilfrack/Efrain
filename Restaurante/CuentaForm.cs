@@ -31,7 +31,7 @@ namespace Restaurante
             utilidades.ConfiguracionGridview(GridViewComanda);
             utilidades.ConfiguracionGridview(GridViewCuenta);
             utilidades.ConfiguracionFormulario(this);
-            BindGrid();
+            BindGridCuenta();
             //BindGridComanda();
             //btnEditar.Enabled = false;
             btnImprimir.Enabled = false;
@@ -47,7 +47,7 @@ namespace Restaurante
             //GRUPOS
             //ComboGrupos();
         }
-        private void BindGrid()
+        public void BindGridCuenta()
         {
             DataSet _ds = new DataSet();
             _ds = CRUDCuenta.ListarCuenta();
@@ -353,6 +353,23 @@ namespace Restaurante
         private void txtDescuento_TextChanged(object sender, EventArgs e)
         {
             RestAndDisplay();
+        }
+
+        private void btnPagarCuenta_Click(object sender, EventArgs e)
+        {
+            PagarCuentaForm PagarCuentaForm = new PagarCuentaForm();
+            PagarCuentaForm.ShowDialog();
+        }
+
+        private void BtnAbrirCuenta_Click(object sender, EventArgs e)
+        {
+            //ComandaForm ComandaForm = new ComandaForm();
+            //ComandaForm.ShowDialog(this);
+
+            using (var ComandaForm = new ComandaForm(this))
+            {
+                ComandaForm.ShowDialog();
+            }
         }
     }
 }

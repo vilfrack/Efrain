@@ -14,9 +14,18 @@ namespace Restaurante
 {
     public partial class ComandaDetalleForm : Form
     {
+        public CuentaForm _CuentaForm;
         public ComandaDetalleForm()
         {
             InitializeComponent();
+
+        }
+        //se crea dos contructores de ComandaDetalleForm, el vacio es cuado se llamada del menu principal comanda y luego ComandaDetalleForm,
+        //el otro cuando se llama de CuentaForm y se necesita refrescar el gridview de CuentaForm al dar click en agregar cuenta
+        public ComandaDetalleForm(CuentaForm CuentaForm)
+        {
+            InitializeComponent();
+            this._CuentaForm = CuentaForm;
         }
 
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
@@ -57,7 +66,7 @@ namespace Restaurante
             //SE CREA LA COMANDA PARA OBTENER SU ID
             Comanda.IDMesas = IDMesas;
             Comanda.Status = "ABIERTA";
-            Comanda.Fecha = DateTime.Now.Date;
+            Comanda.Fecha = DateTime.Now;
 
             DataTable _datatable = new DataTable();
             //VALIDAMOS SI LA COMANDA EXISTE POR MEDIO DEL ID DE MESA MAS EL STATUS
@@ -210,6 +219,11 @@ namespace Restaurante
                     Comanda.IDMesoneros = Convert.ToInt32(comboMesonero.SelectedValue);
                     Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
                     CRUDComanda.ModificarComanda(Comanda);
+                    //SE ACTUALIZA EL GRID DE CUENTAFORM
+                    _CuentaForm.BindGridCuenta();
+
+
+
                     MessageBox.Show("Comanda registrada");
                     this.Close();
                 }
