@@ -24,6 +24,8 @@ namespace Models
         public decimal Descuento { get; set; }
         public decimal Impuesto { get; set; }
         public decimal Propina { get; set; }
+        public decimal Monedero { get; set; }
+        public decimal Cargo { get; set; }
         public string Status { get; set; }
     }
 }

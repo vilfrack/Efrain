@@ -26,6 +26,8 @@ namespace Restaurante
 
         private void CuentaForm_Load(object sender, EventArgs e)
         {
+            labelIDMesero.Visible = false;
+            labeIDMesa.Visible = false;
             utilidades.ConfiguracionGridview(GridViewComanda);
             utilidades.ConfiguracionGridview(GridViewCuenta);
             utilidades.ConfiguracionFormulario(this);
@@ -181,6 +183,7 @@ namespace Restaurante
         private void GridViewCuenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             bool orden = false;
+            btnPagarCuenta.Enabled = true;
             if (GridViewCuenta.Rows.Count > 0 && e.RowIndex != -1)
             {
                 if (GridViewCuenta.Rows[e.RowIndex].Cells[0].Selected)
@@ -292,8 +295,64 @@ namespace Restaurante
                 Cuenta.IDCuenta = Convert.ToInt32(txtIDCuenta.Text);
                 Cuenta.Cierre = Convert.ToDateTime(DateTime.Now.ToString());
                 Cuenta.Status = status.Cerrado;
+
+                Cuenta.Total = Convert.ToDecimal(txtTotal.Text);
+                Cuenta.Propina = Convert.ToDecimal(txtPropina.Text);
+                Cuenta.Impuesto = Convert.ToDecimal(txtImpuesto.Text);
+                Cuenta.Cargo = Convert.ToDecimal(txtCargo.Text);
+                Cuenta.Monedero = Convert.ToDecimal(txtMonedero.Text);
+                Cuenta.Descuento = Convert.ToDecimal(txtDescuento.Text);
                 int validar = CRUDCuenta.Actualizar(Cuenta);
+                if (validar==1)
+                {
+                    MessageBox.Show("Cambios Guardados");
+                }
             }
+        }
+
+        private void txtImpuesto_TextChanged(object sender, EventArgs e)
+        {
+            SumAndDisplay();
+        }
+        private void SumAndDisplay()
+        {
+            decimal SubTotal, Impuesto, Monedero, Propina, Cargo = 0;
+
+            SubTotal =Convert.ToDecimal(txtSubTotal.Text);
+            Impuesto = txtImpuesto.Text == "" ? 0 : Convert.ToDecimal(txtImpuesto.Text);
+            Monedero = txtMonedero.Text == "" ? 0 : Convert.ToDecimal(txtMonedero.Text);
+            Propina = txtPropina.Text == "" ? 0 : Convert.ToDecimal(txtPropina.Text);
+            Cargo = txtCargo.Text == "" ? 0 : Convert.ToDecimal(txtCargo.Text);
+
+            txtTotal.Text = (SubTotal + Impuesto + Monedero + Propina + Cargo).ToString();
+        }
+        private void RestAndDisplay()
+        {
+            decimal Total, Descuento = 0;
+            if (Decimal.TryParse(txtTotal.Text, out Total) &&
+                Decimal.TryParse(txtDescuento.Text, out Descuento))
+            {
+                txtTotal.Text = (Total - Descuento).ToString();
+            }
+        }
+        private void txtMonedero_TextChanged(object sender, EventArgs e)
+        {
+            SumAndDisplay();
+        }
+
+        private void txtPropina_TextChanged(object sender, EventArgs e)
+        {
+            SumAndDisplay();
+        }
+
+        private void txtCargo_TextChanged(object sender, EventArgs e)
+        {
+            SumAndDisplay();
+        }
+
+        private void txtDescuento_TextChanged(object sender, EventArgs e)
+        {
+            RestAndDisplay();
         }
     }
 }

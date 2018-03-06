@@ -33,7 +33,7 @@
             this.comboBuscarMesa = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPagarCuenta = new System.Windows.Forms.Button();
             this.btnCerrarCuenta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
@@ -91,7 +91,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(9, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(346, 698);
+            this.groupBox3.Size = new System.Drawing.Size(346, 670);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Buscar Mesas";
@@ -103,7 +103,7 @@
             this.GridViewCuenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewCuenta.Location = new System.Drawing.Point(6, 53);
             this.GridViewCuenta.Name = "GridViewCuenta";
-            this.GridViewCuenta.Size = new System.Drawing.Size(329, 639);
+            this.GridViewCuenta.Size = new System.Drawing.Size(329, 611);
             this.GridViewCuenta.TabIndex = 33;
             this.GridViewCuenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCuenta_CellClick);
             // 
@@ -128,7 +128,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnPagarCuenta);
             this.groupBox4.Controls.Add(this.btnCerrarCuenta);
             this.groupBox4.Controls.Add(this.btnCancelar);
             this.groupBox4.Controls.Add(this.btnAtras);
@@ -136,26 +136,26 @@
             this.groupBox4.Controls.Add(this.btnImprimir);
             this.groupBox4.Location = new System.Drawing.Point(371, 8);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(638, 115);
+            this.groupBox4.Size = new System.Drawing.Size(638, 84);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Acciones";
             // 
-            // button1
+            // btnPagarCuenta
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(256, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 44);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Pagar Cuenta";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPagarCuenta.Enabled = false;
+            this.btnPagarCuenta.Location = new System.Drawing.Point(256, 16);
+            this.btnPagarCuenta.Name = "btnPagarCuenta";
+            this.btnPagarCuenta.Size = new System.Drawing.Size(75, 54);
+            this.btnPagarCuenta.TabIndex = 13;
+            this.btnPagarCuenta.Text = "Pagar Cuenta";
+            this.btnPagarCuenta.UseVisualStyleBackColor = true;
             // 
             // btnCerrarCuenta
             // 
             this.btnCerrarCuenta.Location = new System.Drawing.Point(94, 16);
             this.btnCerrarCuenta.Name = "btnCerrarCuenta";
-            this.btnCerrarCuenta.Size = new System.Drawing.Size(75, 44);
+            this.btnCerrarCuenta.Size = new System.Drawing.Size(75, 54);
             this.btnCerrarCuenta.TabIndex = 12;
             this.btnCerrarCuenta.Text = "Borrar Cuenta";
             this.btnCerrarCuenta.UseVisualStyleBackColor = true;
@@ -164,7 +164,7 @@
             // 
             this.btnCancelar.Location = new System.Drawing.Point(337, 16);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 44);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 54);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@
             // 
             this.btnAtras.Location = new System.Drawing.Point(551, 16);
             this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(75, 44);
+            this.btnAtras.Size = new System.Drawing.Size(75, 54);
             this.btnAtras.TabIndex = 10;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
@@ -181,10 +181,9 @@
             // 
             // BtnAbrirCuenta
             // 
-            this.BtnAbrirCuenta.Enabled = false;
             this.BtnAbrirCuenta.Location = new System.Drawing.Point(13, 16);
             this.BtnAbrirCuenta.Name = "BtnAbrirCuenta";
-            this.BtnAbrirCuenta.Size = new System.Drawing.Size(75, 44);
+            this.BtnAbrirCuenta.Size = new System.Drawing.Size(75, 54);
             this.BtnAbrirCuenta.TabIndex = 6;
             this.BtnAbrirCuenta.Text = "Abrir Cuenta";
             this.BtnAbrirCuenta.UseVisualStyleBackColor = true;
@@ -193,9 +192,9 @@
             // 
             this.btnImprimir.Location = new System.Drawing.Point(175, 16);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(75, 44);
+            this.btnImprimir.Size = new System.Drawing.Size(75, 54);
             this.btnImprimir.TabIndex = 8;
-            this.btnImprimir.Text = "Imprimir Cuenta";
+            this.btnImprimir.Text = "Imprimir Cuenta / Guardar";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
@@ -248,7 +247,7 @@
             this.groupBox1.Controls.Add(this.txtIDCuenta);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(370, 129);
+            this.groupBox1.Location = new System.Drawing.Point(370, 101);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(640, 578);
@@ -307,6 +306,7 @@
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.Size = new System.Drawing.Size(137, 20);
             this.txtCargo.TabIndex = 61;
+            this.txtCargo.TextChanged += new System.EventHandler(this.txtCargo_TextChanged);
             this.txtCargo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCargo_KeyPress);
             // 
             // label15
@@ -324,6 +324,7 @@
             this.txtPropina.Name = "txtPropina";
             this.txtPropina.Size = new System.Drawing.Size(137, 20);
             this.txtPropina.TabIndex = 59;
+            this.txtPropina.TextChanged += new System.EventHandler(this.txtPropina_TextChanged);
             this.txtPropina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPropina_KeyPress);
             // 
             // label14
@@ -341,6 +342,7 @@
             this.txtImpuesto.Name = "txtImpuesto";
             this.txtImpuesto.Size = new System.Drawing.Size(137, 20);
             this.txtImpuesto.TabIndex = 57;
+            this.txtImpuesto.TextChanged += new System.EventHandler(this.txtImpuesto_TextChanged);
             this.txtImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtImpuesto_KeyPress);
             // 
             // txtMonedero
@@ -349,6 +351,7 @@
             this.txtMonedero.Name = "txtMonedero";
             this.txtMonedero.Size = new System.Drawing.Size(137, 20);
             this.txtMonedero.TabIndex = 55;
+            this.txtMonedero.TextChanged += new System.EventHandler(this.txtMonedero_TextChanged);
             this.txtMonedero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonedero_KeyPress);
             // 
             // label1
@@ -366,6 +369,7 @@
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(137, 20);
             this.txtDescuento.TabIndex = 54;
+            this.txtDescuento.TextChanged += new System.EventHandler(this.txtDescuento_TextChanged);
             this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             // 
             // label8
@@ -572,7 +576,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 721);
+            this.ClientSize = new System.Drawing.Size(1026, 685);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -641,6 +645,6 @@
         private System.Windows.Forms.TextBox txtCierre;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnCerrarCuenta;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPagarCuenta;
     }
 }

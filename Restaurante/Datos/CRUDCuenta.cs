@@ -184,13 +184,19 @@ namespace Datos
         public int Actualizar(Cuenta cuenta) {
             try
             {
-
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Cuenta SET Orden=@Orden,Folio=@Folio,Cierre=@Cierre WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
+                cmd.CommandText = "UPDATE Cuenta SET Orden=@Orden,Folio=@Folio,Cierre=@Cierre,Total=@Total,Propina=@Propina,Impuesto=@Impuesto,Cargo=@Cargo,Monedero=@Monedero,Descuento=@Descuento WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
                 cmd.Parameters.AddWithValue("@Orden", cuenta.Orden);
                 cmd.Parameters.AddWithValue("@Folio", cuenta.Folio);
                 cmd.Parameters.AddWithValue("@Cierre", cuenta.Cierre);
+
+                cmd.Parameters.AddWithValue("@Total", cuenta.Total);
+                cmd.Parameters.AddWithValue("@Propina", cuenta.Propina);
+                cmd.Parameters.AddWithValue("@Impuesto", cuenta.Impuesto);
+                cmd.Parameters.AddWithValue("@Cargo", cuenta.Cargo);
+                cmd.Parameters.AddWithValue("@Monedero", cuenta.Monedero);
+                cmd.Parameters.AddWithValue("@Descuento", cuenta.Descuento);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
