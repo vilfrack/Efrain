@@ -29,161 +29,207 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnCheque = new System.Windows.Forms.Button();
+            this.btnEfectivo = new System.Windows.Forms.Button();
+            this.btnMasterCard = new System.Windows.Forms.Button();
+            this.btnVisa = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtConsumo = new System.Windows.Forms.TextBox();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.txtPropina = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTotalMN = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCambioMN = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.gridViewPago = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPago)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnCheque);
+            this.groupBox1.Controls.Add(this.btnEfectivo);
+            this.groupBox1.Controls.Add(this.btnMasterCard);
+            this.groupBox1.Controls.Add(this.btnVisa);
             this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(113, 438);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Forma de pago";
             // 
-            // button1
+            // btnCheque
             // 
-            this.button1.Location = new System.Drawing.Point(6, 32);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 49);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCheque.Location = new System.Drawing.Point(6, 199);
+            this.btnCheque.Name = "btnCheque";
+            this.btnCheque.Size = new System.Drawing.Size(101, 49);
+            this.btnCheque.TabIndex = 5;
+            this.btnCheque.Text = "Cheque";
+            this.btnCheque.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnEfectivo
             // 
-            this.button2.Location = new System.Drawing.Point(6, 87);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 49);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEfectivo.Location = new System.Drawing.Point(6, 32);
+            this.btnEfectivo.Name = "btnEfectivo";
+            this.btnEfectivo.Size = new System.Drawing.Size(101, 49);
+            this.btnEfectivo.TabIndex = 5;
+            this.btnEfectivo.Text = "Efectivo";
+            this.btnEfectivo.UseVisualStyleBackColor = true;
+            this.btnEfectivo.Click += new System.EventHandler(this.btnEfectivo_Click);
             // 
-            // button3
+            // btnMasterCard
             // 
-            this.button3.Location = new System.Drawing.Point(6, 142);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(101, 49);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnMasterCard.Location = new System.Drawing.Point(6, 87);
+            this.btnMasterCard.Name = "btnMasterCard";
+            this.btnMasterCard.Size = new System.Drawing.Size(101, 49);
+            this.btnMasterCard.TabIndex = 5;
+            this.btnMasterCard.Text = "Master Card";
+            this.btnMasterCard.UseVisualStyleBackColor = true;
+            this.btnMasterCard.Click += new System.EventHandler(this.btnMasterCard_Click);
             // 
-            // button4
+            // btnVisa
             // 
-            this.button4.Location = new System.Drawing.Point(6, 309);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(101, 49);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(6, 254);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(101, 49);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(6, 199);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(101, 49);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(6, 364);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(101, 49);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnVisa.Location = new System.Drawing.Point(6, 142);
+            this.btnVisa.Name = "btnVisa";
+            this.btnVisa.Size = new System.Drawing.Size(101, 49);
+            this.btnVisa.TabIndex = 5;
+            this.btnVisa.Text = "Visa";
+            this.btnVisa.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(408, 15);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(140, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Consumo";
             // 
-            // textBox1
+            // txtConsumo
             // 
-            this.textBox1.Location = new System.Drawing.Point(483, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtConsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConsumo.Location = new System.Drawing.Point(229, 11);
+            this.txtConsumo.Name = "txtConsumo";
+            this.txtConsumo.Size = new System.Drawing.Size(140, 20);
+            this.txtConsumo.TabIndex = 2;
             // 
-            // button8
+            // btnAceptar
             // 
-            this.button8.Location = new System.Drawing.Point(634, 14);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 44);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnAceptar.Location = new System.Drawing.Point(511, 14);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 44);
+            this.btnAceptar.TabIndex = 3;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // textBox2
+            // txtPropina
             // 
-            this.textBox2.Location = new System.Drawing.Point(483, 38);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtPropina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPropina.Location = new System.Drawing.Point(229, 37);
+            this.txtPropina.Name = "txtPropina";
+            this.txtPropina.Size = new System.Drawing.Size(140, 20);
+            this.txtPropina.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(408, 41);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(140, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Prop Incluida";
             // 
-            // button9
+            // btnCancelar
             // 
-            this.button9.Location = new System.Drawing.Point(715, 14);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 44);
-            this.button9.TabIndex = 6;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(592, 14);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 44);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtCambioMN);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.txtTotalMN);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(143, 64);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(524, 78);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Datos";
+            // 
+            // txtTotalMN
+            // 
+            this.txtTotalMN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalMN.ForeColor = System.Drawing.Color.Maroon;
+            this.txtTotalMN.Location = new System.Drawing.Point(15, 38);
+            this.txtTotalMN.Name = "txtTotalMN";
+            this.txtTotalMN.Size = new System.Drawing.Size(211, 23);
+            this.txtTotalMN.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Total en M.N";
+            // 
+            // txtCambioMN
+            // 
+            this.txtCambioMN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCambioMN.ForeColor = System.Drawing.Color.Maroon;
+            this.txtCambioMN.Location = new System.Drawing.Point(256, 38);
+            this.txtCambioMN.Name = "txtCambioMN";
+            this.txtCambioMN.Size = new System.Drawing.Size(211, 23);
+            this.txtCambioMN.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(253, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Cambio M.N";
+            // 
+            // gridViewPago
+            // 
+            this.gridViewPago.AllowUserToAddRows = false;
+            this.gridViewPago.AllowUserToDeleteRows = false;
+            this.gridViewPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewPago.Location = new System.Drawing.Point(143, 169);
+            this.gridViewPago.Name = "gridViewPago";
+            this.gridViewPago.Size = new System.Drawing.Size(524, 152);
+            this.gridViewPago.TabIndex = 14;
             // 
             // PagarCuentaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 456);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(685, 456);
+            this.Controls.Add(this.gridViewPago);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.txtPropina);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.txtConsumo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "PagarCuentaForm";
@@ -191,6 +237,9 @@
             this.Text = "Pagar cuenta";
             this.Load += new System.EventHandler(this.PagarCuentaForm_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPago)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,18 +248,21 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCheque;
+        private System.Windows.Forms.Button btnMasterCard;
+        private System.Windows.Forms.Button btnVisa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtConsumo;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.TextBox txtPropina;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtCambioMN;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtTotalMN;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnEfectivo;
+        private System.Windows.Forms.DataGridView gridViewPago;
     }
 }

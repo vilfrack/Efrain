@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CRUDCuenta
+    public class CRUDCuenta : Comanda
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
@@ -197,6 +197,25 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Cargo", cuenta.Cargo);
                 cmd.Parameters.AddWithValue("@Monedero", cuenta.Monedero);
                 cmd.Parameters.AddWithValue("@Descuento", cuenta.Descuento);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                cn.Close();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        public int ActualizarStatusCuenta(Cuenta cuenta) {
+            try
+            {
+                cn.Open();
+                SqlCeCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "UPDATE Cuenta SET Status=@Status WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
+                cmd.Parameters.AddWithValue("@Status", cuenta.Status);
+
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();

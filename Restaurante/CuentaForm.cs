@@ -24,6 +24,10 @@ namespace Restaurante
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         private Utilidades.Status status = new Utilidades.Status();
 
+        public static decimal _SetTotal = 0;
+        public static decimal _SetPropina = 0;
+        public static int _IDCuenta = 0;
+
         private void CuentaForm_Load(object sender, EventArgs e)
         {
             labelIDMesero.Visible = false;
@@ -357,6 +361,11 @@ namespace Restaurante
 
         private void btnPagarCuenta_Click(object sender, EventArgs e)
         {
+
+          _SetTotal = txtTotal.Text==""? 0: Convert.ToDecimal(txtTotal.Text);
+          _SetPropina = txtPropina.Text == ""? 0 : Convert.ToDecimal(txtPropina.Text);
+          _IDCuenta = txtIDCuenta.Text == "" ? 0 : Convert.ToInt32(txtIDCuenta.Text);
+
             PagarCuentaForm PagarCuentaForm = new PagarCuentaForm();
             PagarCuentaForm.ShowDialog();
         }
@@ -370,6 +379,11 @@ namespace Restaurante
             {
                 ComandaForm.ShowDialog();
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
