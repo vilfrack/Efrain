@@ -38,5 +38,26 @@ namespace Datos
             cn.Close();
 
         }
+        public int ObtenerTurnoAbierto(string Status) {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("SELECT COUNT(1) as Turno FROM Turno WHERE StatusTurno = '" + Status + "'", cn);
+            sda.Fill(_ds);
+
+            DataTable _datatable = new DataTable();
+            _datatable = _ds.Tables[0];
+            int Turno = _datatable.Rows[0]["Turno"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["Turno"].ToString());
+            return Turno;
+        }
+        public int ObtenerIDTurnoAbierto(string Status)
+        {
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("SELECT MAX(IDTurno) as IDTurno FROM Turno WHERE StatusTurno = '" + Status + "'", cn);
+            sda.Fill(_ds);
+
+            DataTable _datatable = new DataTable();
+            _datatable = _ds.Tables[0];
+            int Turno = _datatable.Rows[0]["Turno"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["Turno"].ToString());
+            return Turno;
+        }
     }
 }

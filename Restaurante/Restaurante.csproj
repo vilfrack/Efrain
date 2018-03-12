@@ -82,6 +82,12 @@
     <Compile Include="AbrirTurnoForm.Designer.cs">
       <DependentUpon>AbrirTurnoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CerrarTurnoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CerrarTurnoForm.Designer.cs">
+      <DependentUpon>CerrarTurnoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     <Compile Include="Utilidades\Utilidades.cs" />
     <EmbeddedResource Include="AbrirTurnoForm.resx">
       <DependentUpon>AbrirTurnoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CerrarTurnoForm.resx">
+      <DependentUpon>CerrarTurnoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClienteForm.resx">
       <DependentUpon>ClienteForm.cs</DependentUpon>

@@ -13,6 +13,7 @@ namespace Models
         public int IDMesoneros { get; set; }
         public int IDCliente { get; set; }
         public int IDComanda { get; set; }
+        public int IDTurno { get; set; }
         public string Reserva { get; set; }
         public DateTime Apertura { get; set; }
         public DateTime? Cierre { get; set; }

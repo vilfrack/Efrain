@@ -33,11 +33,21 @@ namespace Restaurante
                 }
                 else
                 {
-                    Turno.Apertura = DateTime.Now;
-                    Turno.StatusTurno = Status.Abierta;
-                    Turno.FondoInicial = Convert.ToDecimal(txtFondoInicial.Text);
-                    CRUDTurno.Apertura(Turno);
-                    MessageBox.Show("Registro agregado");
+                    int TurnoAbierto = 0;
+                    TurnoAbierto = CRUDTurno.ObtenerTurnoAbierto(Status.Abierta);
+                    if (TurnoAbierto > 0)
+                    {
+                        MessageBox.Show("Existe un Turno Abierto");
+                    }
+                    else
+                    {
+                        Turno.Apertura = DateTime.Now;
+                        Turno.StatusTurno = Status.Abierta;
+                        Turno.FondoInicial = Convert.ToDecimal(txtFondoInicial.Text);
+                        CRUDTurno.Apertura(Turno);
+                        MessageBox.Show("Registro agregado");
+                    }
+
                 }
             }
             catch (Exception ex)

@@ -33,8 +33,8 @@ namespace Datos
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [Cuenta] (IDMesas,IDMesoneros,IDComanda,Reserva,Apertura,Cierre,Orden,Folio, "+
-                    "SubTotal,Total,Descuento,Impuesto,Propina,Status) VALUES (@IDMesas,@IDMesoneros,@IDComanda,@Reserva, " +
-                    "@Apertura,@Cierre,@Orden,@Folio,@SubTotal,@Total,@Descuento,@Impuesto,@Propina,@Status)";
+                    "SubTotal,Total,Descuento,Impuesto,Propina,Status,IDTurno) VALUES (@IDMesas,@IDMesoneros,@IDComanda,@Reserva, " +
+                    "@Apertura,@Cierre,@Orden,@Folio,@SubTotal,@Total,@Descuento,@Impuesto,@Propina,@Status,@IDTurno)";
                 cmd.Parameters.AddWithValue("@IDMesas", Cuenta.IDMesas);
                 cmd.Parameters.AddWithValue("@IDMesoneros", Cuenta.IDMesoneros);
                 cmd.Parameters.AddWithValue("@IDComanda", Cuenta.IDComanda);
@@ -49,6 +49,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Impuesto", Cuenta.Impuesto);
                 cmd.Parameters.AddWithValue("@Propina", Cuenta.Propina);
                 cmd.Parameters.AddWithValue("@Status", Cuenta.Status);
+                cmd.Parameters.AddWithValue("@IDTurno", Cuenta.IDTurno);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
