@@ -80,5 +80,11 @@ namespace Restaurante
             CuentaForm cuenta = new CuentaForm();
             cuenta.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AbrirTurnoForm AbrirTurnoForm = new AbrirTurnoForm();
+            AbrirTurnoForm.ShowDialog();
+        }
     }
 }

@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbrirTurnoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbrirTurnoForm.Designer.cs">
+      <DependentUpon>AbrirTurnoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     <Compile Include="Utilidades\FormaPago.cs" />
     <Compile Include="Utilidades\Status.cs" />
     <Compile Include="Utilidades\Utilidades.cs" />
+    <EmbeddedResource Include="AbrirTurnoForm.resx">
+      <DependentUpon>AbrirTurnoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClienteForm.resx">
       <DependentUpon>ClienteForm.cs</DependentUpon>
     </EmbeddedResource>

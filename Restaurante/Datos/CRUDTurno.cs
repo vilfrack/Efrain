@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -22,29 +23,20 @@ namespace Datos
             cn = new SqlCeConnection(connectionString);
         }
         public void Cierre() { }
-        public void Apertura() { }
-        //public int Consecutivo() {
-        //    int consecutivo = 0;
-        //    string FechaCierre = DateTime.Now.ToShortDateString();
-        //    string FechaApertura = DateTime.Now.ToShortDateString();
+        public void Apertura(Turno Turno) {
+            cn.Open();
+            SqlCeCommand cmd = cn.CreateCommand();
+            cmd.CommandText = "insert into Turno(Apertura,StatusTurno,FondoInicial) " +
+                              "values (@Apertura,@StatusTurno,@FondoInicial)";
+            cmd.Parameters.AddWithValue("@Apertura", Turno.Apertura);
+            cmd.Parameters.AddWithValue("@StatusTurno", Turno.StatusTurno);
+            cmd.Parameters.AddWithValue("@FondoInicial", Turno.FondoInicial);
 
-        //    DataSet _ds = new DataSet();
-        //    SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as Validar from Cierre WHERE Cierre ='"+ FechaCierre + "'" , cn);
-        //    sda.Fill(_ds);
 
-        //    DataTable _datatable = new DataTable();
-        //    _datatable = _ds.Tables[0];
-        //    int validar =  _datatable.Rows[0]["Validar"].ToString() == "" ?0 : Convert.ToInt32(_datatable.Rows[0]["Validar"].ToString());
-        //    if (validar > 0)
-        //    {
-        //        consecutivo = 1;
-        //    }
-        //    else
-        //    {
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            cn.Close();
 
-        //    }
-
-        //    return consecutivo;
-        //}
+        }
     }
 }
