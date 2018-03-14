@@ -23,6 +23,7 @@ namespace Restaurante
         private Cuenta Cuenta = new Cuenta();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         private Utilidades.Status status = new Utilidades.Status();
+        CRUDTurno CRUDTurno = new CRUDTurno();
 
         public static decimal _SetTotal = 0;
         public static decimal _SetPropina = 0;
@@ -361,24 +362,41 @@ namespace Restaurante
 
         private void btnPagarCuenta_Click(object sender, EventArgs e)
         {
+            int turno = CRUDTurno.ObtenerTurnoAbierto(status.Abierta);
+            if (turno > 0)
+            {
+                using (var ComandaForm = new ComandaForm(this))
+                {
+                    _SetTotal = txtTotal.Text == "" ? 0 : Convert.ToDecimal(txtTotal.Text);
+                    _SetPropina = txtPropina.Text == "" ? 0 : Convert.ToDecimal(txtPropina.Text);
+                    _IDCuenta = txtIDCuenta.Text == "" ? 0 : Convert.ToInt32(txtIDCuenta.Text);
 
-          _SetTotal = txtTotal.Text==""? 0: Convert.ToDecimal(txtTotal.Text);
-          _SetPropina = txtPropina.Text == ""? 0 : Convert.ToDecimal(txtPropina.Text);
-          _IDCuenta = txtIDCuenta.Text == "" ? 0 : Convert.ToInt32(txtIDCuenta.Text);
+                    PagarCuentaForm PagarCuentaForm = new PagarCuentaForm();
+                    PagarCuentaForm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe haber un turno abierto");
+            }
 
-            PagarCuentaForm PagarCuentaForm = new PagarCuentaForm();
-            PagarCuentaForm.ShowDialog();
         }
 
         private void BtnAbrirCuenta_Click(object sender, EventArgs e)
         {
-            //ComandaForm ComandaForm = new ComandaForm();
-            //ComandaForm.ShowDialog(this);
-
-            using (var ComandaForm = new ComandaForm(this))
+            int turno = CRUDTurno.ObtenerTurnoAbierto(status.Abierta);
+            if (turno > 0)
             {
-                ComandaForm.ShowDialog();
+                using (var ComandaForm = new ComandaForm(this))
+                {
+                    ComandaForm.ShowDialog();
+                }
             }
+            else
+            {
+                MessageBox.Show("Debe haber un turno abierto");
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

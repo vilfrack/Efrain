@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,9 @@ namespace Restaurante
             InitializeComponent();
         }
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+        CRUDTurno CRUDTurno = new CRUDTurno();
+        private Utilidades.Status status = new Utilidades.Status();
+
         private void BtnCliente_Click(object sender, EventArgs e)
         {
             ClienteForm ClienteForm = new ClienteForm();
@@ -60,8 +64,17 @@ namespace Restaurante
 
         private void btnComanda_Click(object sender, EventArgs e)
         {
-            ComandaForm comanda = new ComandaForm();
-            comanda.ShowDialog();
+            int turno = CRUDTurno.ObtenerTurnoAbierto(status.Abierta);
+            if (turno>0)
+            {
+                ComandaForm comanda = new ComandaForm();
+                comanda.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Debe haber un turno abierto");
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
