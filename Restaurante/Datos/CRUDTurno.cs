@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CRUDTurno
+    public class CRUDTurno : CRUDCuenta
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
@@ -22,7 +22,17 @@ namespace Datos
             connectionString = cns.ConnectionString;
             cn = new SqlCeConnection(connectionString);
         }
-        public void Cierre() { }
+        public void Cierre(Turno Turno) {
+            cn.Open();
+            SqlCeCommand cmd = cn.CreateCommand();
+            cmd.CommandText = "UPDATE Turno SET StatusTurno = StatusTurno, Cerrar = @Cerrar WHERE IDTurno ='"+Turno.IDTurno+"'";
+            cmd.Parameters.AddWithValue("@Cerrar", Turno.Cerrar);
+            cmd.Parameters.AddWithValue("@StatusTurno", Turno.StatusTurno);
+
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
         public void Apertura(Turno Turno) {
             cn.Open();
             SqlCeCommand cmd = cn.CreateCommand();
@@ -56,7 +66,7 @@ namespace Datos
 
             DataTable _datatable = new DataTable();
             _datatable = _ds.Tables[0];
-            int Turno = _datatable.Rows[0]["Turno"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["Turno"].ToString());
+            int Turno = _datatable.Rows[0]["IDTurno"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["IDTurno"].ToString());
             return Turno;
         }
     }

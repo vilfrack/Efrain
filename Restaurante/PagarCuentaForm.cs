@@ -77,7 +77,7 @@ namespace Restaurante
         {
             if (MessageBox.Show("Seguro desea pagar la cuenta?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Cuenta.Status = status.Pagada;
+                Cuenta.Status = status.Cerrado;
                 Cuenta.IDCuenta = _IDCuenta;
                 int validar = CRUDCuenta.ActualizarStatusCuenta(Cuenta);
                 if (validar == 1)

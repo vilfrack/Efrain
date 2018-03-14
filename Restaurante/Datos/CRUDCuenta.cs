@@ -295,5 +295,20 @@ namespace Datos
 
             return folio;
         }
+        public bool CuentaAbierta(string Status) {
+            bool cuenta = false;
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select COUNT(1) as cuenta from Cuenta WHERE Status='"+Status+"'", cn);
+            sda.Fill(_ds);
+
+            DataTable _datatable = new DataTable();
+            _datatable = _ds.Tables[0];
+            int Turno = _datatable.Rows[0]["cuenta"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["cuenta"].ToString());
+            if (Turno != 0)
+            {
+                cuenta = true;
+            }
+            return cuenta;
+        }
     }
 }

@@ -41,28 +41,26 @@ namespace Restaurante
         {
             try
             {
-                //if (txtFondoInicial.Text == "")
-                //{
-                //    MessageBox.Show("DEBE INDICAR UN FONDO INICIAL");
-                //}
-                //else
-                //{
-                //    Turno.Apertura = DateTime.Now;
-                //    Turno.StatusTurno = Status.Abierta;
-                //    Turno.FondoInicial = Convert.ToDecimal(txtFondoInicial.Text);
-                //    CRUDTurno.Apertura(Turno);
-                //    MessageBox.Show("Registro agregado");
-                //}
-                if (MessageBox.Show("Seguro desea cerrar el turno?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                bool cuentaAbierta = CRUDTurno.CuentaAbierta(Status.Abierta);
+                if (cuentaAbierta)
                 {
-                    Turno.Cerrar = DateTime.Now;
-                    Turno.StatusTurno = Status.Cerrado;
-                    Turno.FondoFinal = 0;
-                    Turno.IDTurno = 0;
-                    CRUDTurno.Apertura(Turno);
-
-                    MessageBox.Show("Turno Cerrado");
+                    MessageBox.Show("Para cerrar turno se deben cerrar las cuentas");
                 }
+                else
+                {
+                    if (MessageBox.Show("Seguro desea cerrar el turno?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+
+                        Turno.Cerrar = DateTime.Now;
+                        Turno.StatusTurno = Status.Cerrado;
+                        //Turno.FondoFinal = 0;
+                        Turno.IDTurno = CRUDTurno.ObtenerIDTurnoAbierto(Status.Abierta);
+                        CRUDTurno.Cierre(Turno);
+
+                        MessageBox.Show("Turno Cerrado");
+                    }
+                }
+
 
             }
             catch (Exception ex)

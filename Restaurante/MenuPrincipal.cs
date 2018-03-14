@@ -99,5 +99,11 @@ namespace Restaurante
             AbrirTurnoForm AbrirTurnoForm = new AbrirTurnoForm();
             AbrirTurnoForm.ShowDialog();
         }
+
+        private void btnCerrarTurno_Click(object sender, EventArgs e)
+        {
+            CerrarTurnoForm CerrarTurnoForm = new CerrarTurnoForm();
+            CerrarTurnoForm.ShowDialog();
+        }
     }
 }

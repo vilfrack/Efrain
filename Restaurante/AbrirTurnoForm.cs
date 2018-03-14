@@ -45,7 +45,7 @@ namespace Restaurante
                         Turno.StatusTurno = Status.Abierta;
                         Turno.FondoInicial = Convert.ToDecimal(txtFondoInicial.Text);
                         CRUDTurno.Apertura(Turno);
-                        MessageBox.Show("Registro agregado");
+                        MessageBox.Show("Turno Abierto");
                     }
 
                 }
