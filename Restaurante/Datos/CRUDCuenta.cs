@@ -214,9 +214,9 @@ namespace Datos
             {
                 cn.Open();
                 SqlCeCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Cuenta SET Status=@Status WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
+                cmd.CommandText = "UPDATE Cuenta SET Status=@Status,FormaPago = @FormaPago WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
                 cmd.Parameters.AddWithValue("@Status", cuenta.Status);
-
+                cmd.Parameters.AddWithValue("@FormaPago", cuenta.FormaPago);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();

@@ -32,8 +32,8 @@ namespace Restaurante
         public CRUDMenu CRUDMenu = new CRUDMenu();
         public CRUDInsumos CRUDInsumos = new CRUDInsumos();
         public CRUDComanda CRUDComanda = new CRUDComanda();
-        public MasterComanda MasterComanda = new MasterComanda();
-        public Comanda Comanda = new Comanda();
+        public Models.MasterComanda MasterComanda = new Models.MasterComanda();
+        public Models.Comanda Comanda = new Models.Comanda();
         private int IDMesas = 0;
         private int NumeroMesa = 0;
         private int CantidadPersona = 0;

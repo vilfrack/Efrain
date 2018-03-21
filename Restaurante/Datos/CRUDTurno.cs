@@ -69,5 +69,15 @@ namespace Datos
             int Turno = _datatable.Rows[0]["IDTurno"].ToString() == "" ? 0 : Convert.ToInt32(_datatable.Rows[0]["IDTurno"].ToString());
             return Turno;
         }
+        public DataSet ListarCuentasPagadas(string IDTurno)
+        {
+            //DEBE MOSTRAR LA CUENTA CON TODOS LOS PEDIDOS DEL CLIENTE
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("SELECT Cuenta.FormaPago,Cuenta.Total FROM Cuenta " +
+                                                        "INNER JOIN Turno ON Turno.IDTurno = Cuenta.IDTurno "+
+                                                        "WHERE Turno.IDTurno ='"+ IDTurno + "'", cn);
+            sda.Fill(_ds);
+            return _ds;
+        }
     }
 }

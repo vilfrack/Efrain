@@ -18,8 +18,8 @@ namespace Restaurante
     public partial class ClienteForm : Form
     {
         //public Conexion conexion = new Conexion();
-        private Cliente cliente = new Cliente();
-        private EnvioDomicilio envioDomicilio = new EnvioDomicilio();
+        private Models.Cliente cliente = new Models.Cliente();
+        private Models.EnvioDomicilio envioDomicilio = new Models.EnvioDomicilio();
         private CRUDCliente CRUD = new CRUDCliente();
         private CRUDEnvioDomicilio CRUDDomicilio = new CRUDEnvioDomicilio();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();

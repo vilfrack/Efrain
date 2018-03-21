@@ -22,7 +22,7 @@ namespace Restaurante
         private Utilidades.Status status = new Utilidades.Status();
         private Utilidades.FormaPago formaPago = new Utilidades.FormaPago();
         public CRUDCuenta CRUDCuenta = new CRUDCuenta();
-        private Cuenta Cuenta = new Cuenta();
+        private Models.Cuenta Cuenta = new Models.Cuenta();
 
         private static int _IDCuenta = 0;
 
@@ -45,6 +45,7 @@ namespace Restaurante
 
         private void btnEfectivo_Click(object sender, EventArgs e)
         {
+            lblFormaPago.Text = formaPago.Efectivo;
             binGriew(formaPago.Efectivo);
         }
 
@@ -70,6 +71,7 @@ namespace Restaurante
 
         private void btnMasterCard_Click(object sender, EventArgs e)
         {
+            lblFormaPago.Text = formaPago.MasterCard;
             binGriew(formaPago.MasterCard);
         }
 
@@ -79,12 +81,25 @@ namespace Restaurante
             {
                 Cuenta.Status = status.Cerrado;
                 Cuenta.IDCuenta = _IDCuenta;
+                Cuenta.FormaPago = lblFormaPago.Text;
                 int validar = CRUDCuenta.ActualizarStatusCuenta(Cuenta);
                 if (validar == 1)
                 {
                     MessageBox.Show("Cuenta Pagada");
                 }
             }
+        }
+
+        private void btnVisa_Click(object sender, EventArgs e)
+        {
+            lblFormaPago.Text = formaPago.Visa;
+            binGriew(formaPago.Visa);
+        }
+
+        private void btnCheque_Click(object sender, EventArgs e)
+        {
+            lblFormaPago.Text = formaPago.Cheque;
+            binGriew(formaPago.Cheque);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Restaurante
     public partial class GruposForm : Form
     {
         private CRUDGrupos CRUDGrupos = new CRUDGrupos();
-        private Grupos Grupos = new Grupos();
+        private Models.Grupos Grupos = new Models.Grupos();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
 
         public GruposForm()

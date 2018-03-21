@@ -21,7 +21,7 @@ namespace Restaurante
         public Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public Utilidades.Status Status = new Utilidades.Status();
         public CRUDTurno CRUDTurno = new CRUDTurno();
-        public Turno Turno = new Turno();
+        public Models.Turno Turnos = new Models.Turno();
 
         private void btnAbrirTurno_Click(object sender, EventArgs e)
         {
@@ -41,10 +41,11 @@ namespace Restaurante
                     }
                     else
                     {
-                        Turno.Apertura = DateTime.Now;
-                        Turno.StatusTurno = Status.Abierta;
-                        Turno.FondoInicial = Convert.ToDecimal(txtFondoInicial.Text);
-                        CRUDTurno.Apertura(Turno);
+
+                        Turnos.Apertura = DateTime.Now;
+                        Turnos.StatusTurno = Status.Abierta;
+                        Turnos.FondoInicial = Convert.ToDecimal(txtFondoInicial.Text);
+                        CRUDTurno.Apertura(Turnos);
                         MessageBox.Show("Turno Abierto");
                     }
 

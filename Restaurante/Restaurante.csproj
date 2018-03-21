@@ -61,10 +61,21 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,17 +93,34 @@
     <Compile Include="AbrirTurnoForm.Designer.cs">
       <DependentUpon>AbrirTurnoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BDResDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDResDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CerrarCajaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CerrarCajaForm.Designer.cs">
+      <DependentUpon>CerrarCajaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CerrarTurnoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CerrarTurnoForm.Designer.cs">
       <DependentUpon>CerrarTurnoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cliente.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="ClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClienteForm.Designer.cs">
       <DependentUpon>ClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comanda.cs">
+      <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="ComandaDetalleForm.cs">
       <SubType>Form</SubType>
@@ -106,11 +134,32 @@
     <Compile Include="ComandaForm.Designer.cs">
       <DependentUpon>ComandaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cuenta.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="CuentaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CuentaForm.Designer.cs">
       <DependentUpon>CuentaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Grupos.cs">
+      <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="GruposForm.cs">
       <SubType>Form</SubType>
@@ -118,11 +167,26 @@
     <Compile Include="GruposForm.Designer.cs">
       <DependentUpon>GruposForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Insumos.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="InsumosForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InsumosForm.Designer.cs">
       <DependentUpon>InsumosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterCierreCuenta.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterComanda.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterInsumos.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuPedido.cs">
       <SubType>Form</SubType>
@@ -136,11 +200,17 @@
     <Compile Include="MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mesas.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="MesasForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesasForm.Designer.cs">
       <DependentUpon>MesasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mesoneros.cs">
+      <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="MesonerosForm.cs">
       <SubType>Form</SubType>
@@ -156,6 +226,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prueba.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PruebaForm.Designer.cs">
+      <DependentUpon>PruebaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServicioDomicilio.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Turno.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnidadMedida.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnidadMedidaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,9 +302,30 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PruebaForm.resx">
+      <DependentUpon>PruebaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UnidadMedidaForm.resx">
       <DependentUpon>UnidadMedidaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EntityDeploy Include="EF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BDResDataSet.xsc">
+      <DependentUpon>BDResDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BDResDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BDResDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BDResDataSet.xss">
+      <DependentUpon>BDResDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EF.edmx.diagram">
+      <DependentUpon>EF.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -235,11 +344,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Imagenes\cliente.jpg" />
+    <None Include="BDRes.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="BDRes_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>BDRes.mdf</DependentUpon>
+    </Content>
     <Content Include="BD\BDRestaurante.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="BD\Cliente.sql" />
     <Content Include="BD\EnvioDomicilio.sql" />
+    <Content Include="EF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EF.edmx</DependentUpon>
+      <LastGenOutput>EF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EF.edmx</DependentUpon>
+      <LastGenOutput>EF.cs</LastGenOutput>
+    </Content>
     <Content Include="Imagenes\mesa.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -269,6 +395,9 @@
       <Project>{a2376303-b1dc-4cf8-8e65-eb999bec52b5}</Project>
       <Name>Datos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

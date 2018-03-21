@@ -40,11 +40,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtTotalMN = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtCambioMN = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtTotalMN = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.gridViewPago = new System.Windows.Forms.DataGridView();
+            this.lblFormaPago = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPago)).BeginInit();
@@ -71,6 +72,7 @@
             this.btnCheque.TabIndex = 5;
             this.btnCheque.Text = "Cheque";
             this.btnCheque.UseVisualStyleBackColor = true;
+            this.btnCheque.Click += new System.EventHandler(this.btnCheque_Click);
             // 
             // btnEfectivo
             // 
@@ -100,6 +102,7 @@
             this.btnVisa.TabIndex = 5;
             this.btnVisa.Text = "Visa";
             this.btnVisa.UseVisualStyleBackColor = true;
+            this.btnVisa.Click += new System.EventHandler(this.btnVisa_Click);
             // 
             // label1
             // 
@@ -170,25 +173,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos";
             // 
-            // txtTotalMN
-            // 
-            this.txtTotalMN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalMN.ForeColor = System.Drawing.Color.Maroon;
-            this.txtTotalMN.Location = new System.Drawing.Point(15, 38);
-            this.txtTotalMN.Name = "txtTotalMN";
-            this.txtTotalMN.Size = new System.Drawing.Size(211, 23);
-            this.txtTotalMN.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Total en M.N";
-            // 
             // txtCambioMN
             // 
             this.txtCambioMN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,6 +192,25 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Cambio M.N";
             // 
+            // txtTotalMN
+            // 
+            this.txtTotalMN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalMN.ForeColor = System.Drawing.Color.Maroon;
+            this.txtTotalMN.Location = new System.Drawing.Point(15, 38);
+            this.txtTotalMN.Name = "txtTotalMN";
+            this.txtTotalMN.Size = new System.Drawing.Size(211, 23);
+            this.txtTotalMN.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Total en M.N";
+            // 
             // gridViewPago
             // 
             this.gridViewPago.AllowUserToAddRows = false;
@@ -218,11 +221,22 @@
             this.gridViewPago.Size = new System.Drawing.Size(524, 152);
             this.gridViewPago.TabIndex = 14;
             // 
+            // lblFormaPago
+            // 
+            this.lblFormaPago.AutoSize = true;
+            this.lblFormaPago.Location = new System.Drawing.Point(416, 14);
+            this.lblFormaPago.Name = "lblFormaPago";
+            this.lblFormaPago.Size = new System.Drawing.Size(35, 13);
+            this.lblFormaPago.TabIndex = 15;
+            this.lblFormaPago.Text = "label5";
+            this.lblFormaPago.Visible = false;
+            // 
             // PagarCuentaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 456);
+            this.Controls.Add(this.lblFormaPago);
             this.Controls.Add(this.gridViewPago);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancelar);
@@ -264,5 +278,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnEfectivo;
         private System.Windows.Forms.DataGridView gridViewPago;
+        private System.Windows.Forms.Label lblFormaPago;
     }
 }

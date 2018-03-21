@@ -28,5 +28,6 @@ namespace Models
         public decimal Monedero { get; set; }
         public decimal Cargo { get; set; }
         public string Status { get; set; }
+        public string FormaPago { get; set; }
     }
 }

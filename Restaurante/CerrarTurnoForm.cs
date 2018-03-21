@@ -22,10 +22,13 @@ namespace Restaurante
         public Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public Utilidades.Status Status = new Utilidades.Status();
         public CRUDTurno CRUDTurno = new CRUDTurno();
-        public Turno Turno = new Turno();
+        public CRUDCuenta CRUDCuenta = new CRUDCuenta();
+        public Models.Turno Turno = new Models.Turno();
+        private static int IDTurno = 0;
 
         private void CerrarTurnoForm_Load(object sender, EventArgs e)
         {
+            IDTurno = CRUDTurno.ObtenerIDTurnoAbierto(Status.Abierta);
             utilidades.ConfiguracionFormulario(this);
             BindGrid();
         }
@@ -36,6 +39,17 @@ namespace Restaurante
         }
         private void BindGrid() {
 
+            DataSet _ds = new DataSet();
+            _ds = CRUDTurno.ListarCuentasPagadas(Convert.ToString(IDTurno));
+            if (_ds.Tables.Count > 0)
+            {
+                griViewTurno.DataSource = _ds.Tables[0];
+                //this.griViewTurno.Columns[""].Visible = false;
+                //this.griViewTurno.Columns[""].Visible = false;
+                //this.griViewTurno.Columns[""].Visible = false;
+                //this.griViewTurno.Columns[""].Visible = false;
+                //this.griViewTurno.Columns[""].Visible = false;
+            }
         }
         private void btnCerrarTurno_Click(object sender, EventArgs e)
         {

@@ -20,7 +20,7 @@ namespace Restaurante
         }
 
         public CRUDCuenta CRUDCuenta = new CRUDCuenta();
-        private Cuenta Cuenta = new Cuenta();
+        private Models.Cuenta Cuenta = new Models.Cuenta();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         private Utilidades.Status status = new Utilidades.Status();
         CRUDTurno CRUDTurno = new CRUDTurno();
@@ -250,6 +250,7 @@ namespace Restaurante
                             Cuenta.Total = Convert.ToDecimal(txtTotal.Text);
                             Cuenta.Reserva = string.Empty;
                             Cuenta.Cierre = Convert.ToDateTime("01/01/1950 00:00:00");
+                            Cuenta.IDTurno = CRUDTurno.ObtenerIDTurnoAbierto(status.Abierta);
                             CRUDCuenta.InsertarCuenta(Cuenta);
                         }
                         BindGridComanda(IDComanda);
@@ -270,6 +271,7 @@ namespace Restaurante
         }
         private void Folio() {
             //Indica el folio de la cuenta. Es un número consecutivo que se asigna en el momento de imprimir la cuenta.
+            //EN FOLIO DEBE HABER TENER UN CAMPO DE FECHA
             int Folio = CRUDCuenta.Folio();
             txtFolio.Text = Convert.ToString(Folio);
         }

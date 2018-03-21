@@ -38,7 +38,7 @@ namespace Restaurante
         private void ComandaForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
-            List<Mesas> ListMesas = new List<Mesas>();
+            List<Models.Mesas> ListMesas = new List<Models.Mesas>();
 
             ListMesas.AddRange(CRUDComanda.DatosMesas());
             //180
@@ -123,7 +123,7 @@ namespace Restaurante
             SetNumeroMesa = NumeroMesa;
             SetCantidadPersona = CantidadPersona;
 
-            //VALIDAMOS SI _CuentaForm ESTA VACIO O NO, EN CASO DE NO ESTAR VACIO SIGNIFICA QUE SE ESTA LLAMANDO AL FORMULARIO DESDE CuentaForm 
+            //VALIDAMOS SI _CuentaForm ESTA VACIO O NO, EN CASO DE NO ESTAR VACIO SIGNIFICA QUE SE ESTA LLAMANDO AL FORMULARIO DESDE CuentaForm
             // Y ESTE SE USA PARA REFRESCAR EL GRID
             if (_CuentaForm==null)
             {
@@ -138,7 +138,7 @@ namespace Restaurante
                 }
             }
 
-            
+
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

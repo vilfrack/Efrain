@@ -102,8 +102,23 @@ namespace Restaurante
 
         private void btnCerrarTurno_Click(object sender, EventArgs e)
         {
-            CerrarTurnoForm CerrarTurnoForm = new CerrarTurnoForm();
-            CerrarTurnoForm.ShowDialog();
+            int turno = CRUDTurno.ObtenerTurnoAbierto(status.Abierta);
+            if (turno > 0)
+            {
+                CerrarTurnoForm CerrarTurnoForm = new CerrarTurnoForm();
+                CerrarTurnoForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Debe haber un turno abierto");
+            }
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            PruebaForm PruebaForm = new PruebaForm();
+            PruebaForm.ShowDialog();
         }
     }
 }

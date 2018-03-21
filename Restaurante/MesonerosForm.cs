@@ -16,7 +16,7 @@ namespace Restaurante
     {
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMesoneros CRUDMesoneros = new CRUDMesoneros();
-        private Mesoneros Mesoneros = new Mesoneros();
+        private Models.Mesoneros Mesoneros = new Models.Mesoneros();
 
         public MesonerosForm()
         {

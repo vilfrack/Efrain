@@ -15,7 +15,7 @@ namespace Restaurante
     public partial class InsumosForm : Form
     {
         public CRUDInsumos CRUDInsumos = new CRUDInsumos();
-        private Insumos Insumos = new Insumos();
+        private Models.Insumos Insumos = new Models.Insumos();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
 
         public InsumosForm()

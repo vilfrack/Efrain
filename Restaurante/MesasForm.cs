@@ -16,7 +16,7 @@ namespace Restaurante
     {
         public Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMesas CRUDMesas = new CRUDMesas();
-        public Mesas Mesas = new Mesas();
+        public Models.Mesas Mesas = new Models.Mesas();
 
 
         public MesasForm()

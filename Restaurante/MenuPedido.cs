@@ -25,7 +25,7 @@ namespace Restaurante
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public CRUDMenu CRUDMenu = new CRUDMenu();
         private Models.Menu Menu = new Models.Menu();
-        private MasterInsumos MasterInsumos = new MasterInsumos();
+        private Models.MasterInsumos MasterInsumos = new Models.MasterInsumos();
         private int IntIDMenu = 0;
         private void MenuPedido_Load(object sender, EventArgs e)
         {

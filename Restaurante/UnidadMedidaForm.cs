@@ -15,7 +15,7 @@ namespace Restaurante
     public partial class UnidadMedidaForm : Form
     {
         private CRUDUnidadMedida CRUDUnidadMedida = new CRUDUnidadMedida();
-        private UnidadMedida UnidadMedida = new UnidadMedida();
+        private Models.UnidadMedida UnidadMedida = new Models.UnidadMedida();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         public UnidadMedidaForm()
         {
