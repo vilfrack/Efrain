@@ -20,6 +20,8 @@ namespace Restaurante
         public SubGrupoForm()
         {
             InitializeComponent();
+            ComboGrupo();
+            BindGrid();
         }
 
         private void SubGrupoForm_Load(object sender, EventArgs e)
@@ -30,7 +32,7 @@ namespace Restaurante
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
             txtDescripcion.Enabled = false;
-            BindGrid();
+            comboGrupo.Enabled = false;
         }
         private void BindGrid()
         {
@@ -41,13 +43,20 @@ namespace Restaurante
                 griViewSubGrupos.DataSource = _ds.Tables[0];
             }
         }
-
+        private void ComboGrupo() {
+            DataTable dt = new DataTable();
+            dt = CRUDSubGrupos.GruposComboBox();
+            comboGrupo.ValueMember = "IDGrupo";
+            comboGrupo.DisplayMember = "Descripcion";
+            comboGrupo.DataSource = dt;
+        }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = true;
             txtDescripcion.Enabled = true;
+            comboGrupo.Enabled = true;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -61,6 +70,14 @@ namespace Restaurante
             {
                 SubGrupos.Descripcion = txtDescripcion.Text;
                 int validar = CRUDSubGrupos.InsertarSubGrupo(SubGrupos);
+                //se obtiene el ID del SubGrupo recien insertado
+                DataTable _datatable = new DataTable();
+                _datatable = CRUDSubGrupos.UltimoIDSubGrupo();
+                string IDSubGrupo = _datatable.Rows[0]["IDSubGrupo"].ToString();
+                //se obtiene el id del grupo
+                string IDGrupo = comboGrupo.SelectedValue.ToString();
+                // se insertar en el mastergrupoSubGrupo
+                CRUDSubGrupos.InsertarSubGrupoMaster(IDGrupo, IDSubGrupo);
                 if (validar == 1)
                 {
                     MessageBox.Show("Registro agregado");
@@ -97,6 +114,10 @@ namespace Restaurante
                 SubGrupos.Descripcion = txtDescripcion.Text;
 
                 int validar = CRUDSubGrupos.ModificarSubGrupo(SubGrupos);
+                string IDSubGrupo = txtIDSubGrupo.Text;
+                string IDGrupo = comboGrupo.SelectedValue.ToString();
+                //se actualiza el masterGrupo
+                CRUDSubGrupos.ActualizarSubGrupoMaster(IDGrupo, IDSubGrupo);
                 if (validar != 0)
                 {
                     BindGrid();
@@ -124,6 +145,11 @@ namespace Restaurante
                 else
                 {
                     CRUDSubGrupos.EliminarSubGrupo(txtIDSubGrupo.Text);
+
+                    string IDSubGrupo = txtIDSubGrupo.Text;
+                    string IDGrupo = comboGrupo.SelectedValue.ToString();
+                    //se elimina el masterGrupo
+                    CRUDSubGrupos.EliminarSubGrupoMaster(IDSubGrupo);
                     limpiarControles();
                     BindGrid();
                     MessageBox.Show("REGISTRO ELIMINADO");

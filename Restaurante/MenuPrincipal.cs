@@ -120,5 +120,11 @@ namespace Restaurante
             PruebaForm PruebaForm = new PruebaForm();
             PruebaForm.ShowDialog();
         }
+
+        private void btnSubGrupo_Click(object sender, EventArgs e)
+        {
+            SubGrupoForm SubGrupoForm = new SubGrupoForm();
+            SubGrupoForm.ShowDialog();
+        }
     }
 }

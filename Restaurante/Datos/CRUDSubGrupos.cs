@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-   public class CRUDSubGrupos
+   public class CRUDSubGrupos : CRUDGrupos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
@@ -119,6 +119,38 @@ namespace Datos
             dt.Load(reader);
             cn.Close();
             return dt;
+        }
+
+        public void InsertarSubGrupoMaster(string IDGrupo, string IDSubGrupo)
+        {
+            cn.Open();
+            SqlCeCommand cmd = cn.CreateCommand();
+            cmd.CommandText = "insert into MasterGrupoSubGrupo(IDGrupo,IDSubGrupos)values (@IDGrupo,@IDSubGrupos)";
+            cmd.Parameters.AddWithValue("@IDSubGrupos", IDSubGrupo);
+            cmd.Parameters.AddWithValue("@IDGrupo", IDGrupo);
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+        public void ActualizarSubGrupoMaster(string IDGrupo, string IDSubGrupo) {
+            cn.Open();
+            SqlCeCommand cmd = cn.CreateCommand();
+            cmd.CommandText = "UPDATE MasterGrupoSubGrupo SET IDGrupo=@IDGrupo,IDSubGrupos=@IDSubGrupos WHERE IDSubGrupos= '" + IDSubGrupo + "'";
+            cmd.Parameters.AddWithValue("@IDSubGrupo", IDSubGrupo);
+            cmd.Parameters.AddWithValue("@IDGrupo", IDGrupo);
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+        public void EliminarSubGrupoMaster(string IDSubGrupos)
+        {
+            SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+            con.Open();
+            SqlCeCommand cmd = con.CreateCommand();
+            cmd.CommandText = "DELETE FROM MasterGrupoSubGrupo WHERE IDSubGrupos= '" + IDSubGrupos + "'";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }
