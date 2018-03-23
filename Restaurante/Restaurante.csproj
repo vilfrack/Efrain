@@ -244,6 +244,12 @@
     <Compile Include="SubGrupoForm.Designer.cs">
       <DependentUpon>SubGrupoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TipoDescuentoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipoDescuentoForm.Designer.cs">
+      <DependentUpon>TipoDescuentoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Turno.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
@@ -313,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubGrupoForm.resx">
       <DependentUpon>SubGrupoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TipoDescuentoForm.resx">
+      <DependentUpon>TipoDescuentoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnidadMedidaForm.resx">
       <DependentUpon>UnidadMedidaForm.cs</DependentUpon>

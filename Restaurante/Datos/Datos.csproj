@@ -62,6 +62,7 @@
     <Compile Include="CRUDMesas.cs" />
     <Compile Include="CRUDMesoneros.cs" />
     <Compile Include="CRUDSubGrupos.cs" />
+    <Compile Include="CRUDTipoDescuento.cs" />
     <Compile Include="CRUDTurno.cs" />
     <Compile Include="CRUDUnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
