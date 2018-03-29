@@ -126,5 +126,52 @@ namespace Restaurante
             SubGrupoForm SubGrupoForm = new SubGrupoForm();
             SubGrupoForm.ShowDialog();
         }
+
+        private void btnTipoDescuento_Click(object sender, EventArgs e)
+        {
+            TipoDescuentoForm TipoDescuentoForm = new TipoDescuentoForm();
+            TipoDescuentoForm.ShowDialog();
+        }
+
+        private void tipoDeDescuentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TipoDescuentoForm TipoDescuentoForm = new TipoDescuentoForm();
+            TipoDescuentoForm.ShowDialog();
+        }
+
+        private void mesasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MesasForm mesas = new MesasForm();
+            mesas.ShowDialog();
+        }
+
+        private void unidadDeMedidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UnidadMedidaForm UnidadMedida = new UnidadMedidaForm();
+            UnidadMedida.ShowDialog();
+        }
+
+        private void gruposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GruposForm grupos = new GruposForm();
+            grupos.ShowDialog();
+        }
+
+        private void subGruposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubGrupoForm SubGrupoForm = new SubGrupoForm();
+            SubGrupoForm.ShowDialog();
+        }
+
+        private void promocionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void meserosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MesonerosForm mesoneros = new MesonerosForm();
+            mesoneros.ShowDialog();
+        }
     }
 }

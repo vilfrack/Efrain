@@ -11,20 +11,20 @@ using System.Windows.Forms;
 
 namespace Restaurante
 {
-    public partial class TipoDescuentoForm : Form
+    public partial class PromocionesForm : Form
     {
-        private CRUDTipoDescuento CRUDTipoDescuento = new CRUDTipoDescuento();
-        private Models.TipoDescuento TipoDescuento = new Models.TipoDescuento();
-        private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
-
-        public TipoDescuentoForm()
+        public PromocionesForm()
         {
             InitializeComponent();
             ComboVisible();
             BindGrid();
         }
 
-        private void TipoDescuentoForm_Load(object sender, EventArgs e)
+        private CRUDPromocion CRUDPromocion = new CRUDPromocion();
+        private Models.TipoDescuento TipoDescuento = new Models.TipoDescuento();
+        private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+
+        private void PromocionesForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
             utilidades.ConfiguracionGridview(griViewTipoDescuento);
@@ -32,8 +32,9 @@ namespace Restaurante
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
             txtDescripcion.Enabled = false;
-            comboVisible.Enabled = false;
+            comboTipo.Enabled = false;
         }
+
         private void BindGrid()
         {
             DataSet _ds = new DataSet();
@@ -45,7 +46,6 @@ namespace Restaurante
                 this.griViewTipoDescuento.Columns["Visible"].Visible = false;
             }
         }
-
         private void ComboVisible()
         {
             DataTable dataTable = new DataTable();
@@ -71,7 +71,6 @@ namespace Restaurante
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-
             if (txtIDTipoDescuento.Text != "")
             {
                 MessageBox.Show("DEBE BORRAR LOS REGISTROS PARA AGREGAR UNO NUEVO");
@@ -80,7 +79,7 @@ namespace Restaurante
             {
                 TipoDescuento.Descripcion = txtDescripcion.Text;
                 TipoDescuento.Descuento = Convert.ToDecimal(txtDescuento.Text);
-                TipoDescuento.Visible = comboVisible.SelectedValue.ToString() =="1"?true:false;
+                TipoDescuento.Visible = comboVisible.SelectedValue.ToString() == "1" ? true : false;
                 int validar = CRUDTipoDescuento.InsertarTipoDescuento(TipoDescuento);
 
                 if (validar == 1)
@@ -169,47 +168,6 @@ namespace Restaurante
             txtDescripcion.Text = "";
             txtIDTipoDescuento.Text = "";
             comboVisible.SelectedIndex = -1;
-        }
-
-        private void griViewTipoDescuento_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (griViewTipoDescuento.Rows.Count > 0 && e.RowIndex != -1)
-            {
-                if (griViewTipoDescuento.Rows[e.RowIndex].Cells[0].Selected)
-                {
-                    string IDTipoDescuento = griViewTipoDescuento.Rows[e.RowIndex].Cells["IDTipoDescuento"].Value.ToString();
-
-                    DataTable _datatable = new DataTable();
-                    _datatable = CRUDTipoDescuento.BuscarTipoDescuento(IDTipoDescuento);
-                    if (_datatable.Rows.Count > 0)
-                    {
-                        txtIDTipoDescuento.Text = _datatable.Rows[0]["IDTipoDescuento"].ToString();
-                        txtDescripcion.Text = _datatable.Rows[0]["Descripcion"].ToString();
-                        txtDescuento.Text = _datatable.Rows[0]["Descuento"].ToString();
-                        string sVisible = _datatable.Rows[0]["Visible"].ToString();
-                        if (sVisible == "True")
-                        {
-                            comboVisible.SelectedValue = 1;
-                        }
-                        else
-                        {
-                            comboVisible.SelectedValue = 0;
-                        }
-
-                    }
-                    btnEditar.Enabled = true;
-                    BtnNuevo.Enabled = false;
-                    BtnGuardar.Enabled = false;
-                    btnEliminar.Enabled = true;
-                    txtDescripcion.Enabled = true;
-                    comboVisible.Enabled = true;
-                }
-            }
-        }
-
-        private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            utilidades.ValidarSoloNumerosDecimales(sender, e, txtDescuento);
         }
     }
 }
