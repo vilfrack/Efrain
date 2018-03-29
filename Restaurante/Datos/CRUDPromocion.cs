@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CRUDPromocion
+    public class CRUDPromocion : CRUDMenu
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;

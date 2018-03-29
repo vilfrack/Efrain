@@ -16,18 +16,23 @@ namespace Restaurante
         public PromocionesForm()
         {
             InitializeComponent();
-            ComboVisible();
-            BindGrid();
+            BindGridProductos();
+            BindGridPromociones();
+            ComboTipo();
+            ComboTipoDescuento();
+            ComboStatus();
         }
 
         private CRUDPromocion CRUDPromocion = new CRUDPromocion();
-        private Models.TipoDescuento TipoDescuento = new Models.TipoDescuento();
+        private CRUDTipoDescuento CRUDTipoDescuento = new CRUDTipoDescuento();
+        private Models.Promociones Promociones = new Models.Promociones();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
 
         private void PromocionesForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
-            utilidades.ConfiguracionGridview(griViewTipoDescuento);
+            utilidades.ConfiguracionGridview(GridViewPromociones);
+            utilidades.ConfiguracionGridview(GridViewProducto);
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = false;
@@ -35,57 +40,127 @@ namespace Restaurante
             comboTipo.Enabled = false;
         }
 
-        private void BindGrid()
+        private void BindGridPromociones()
         {
             DataSet _ds = new DataSet();
-            _ds = CRUDTipoDescuento.ListarTipoDescuento();
+            _ds = CRUDPromocion.ListarPromocion();
             if (_ds.Tables.Count > 0)
             {
-                griViewTipoDescuento.DataSource = _ds.Tables[0];
-                this.griViewTipoDescuento.Columns["IDTipoDescuento"].Visible = false;
-                this.griViewTipoDescuento.Columns["Visible"].Visible = false;
+                GridViewPromociones.DataSource = _ds.Tables[0];
+                #region Columns
+                this.GridViewPromociones.Columns["IDPromocion"].Visible = false;
+                this.GridViewPromociones.Columns["lunesinicio"].Visible = false;
+                this.GridViewPromociones.Columns["lunesfin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicalunes"].Visible = false;
+                this.GridViewPromociones.Columns["lunesdiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["martesinicio"].Visible = false;
+                this.GridViewPromociones.Columns["martesfin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicamartes"].Visible = false;
+                this.GridViewPromociones.Columns["martesdiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["miercolesinicio"].Visible = false;
+                this.GridViewPromociones.Columns["miercolesfin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicamiercoles"].Visible = false;
+                this.GridViewPromociones.Columns["miercolesdiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["juevesinicio"].Visible = false;
+                this.GridViewPromociones.Columns["juevesfin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicajueves"].Visible = false;
+                this.GridViewPromociones.Columns["juevesdiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["viernesinicio"].Visible = false;
+                this.GridViewPromociones.Columns["viernesfin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicaviernes"].Visible = false;
+                this.GridViewPromociones.Columns["viernesdiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["sabadoinicio"].Visible = false;
+                this.GridViewPromociones.Columns["sabadofin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicasabado"].Visible = false;
+                this.GridViewPromociones.Columns["domingoinicio"].Visible = false;
+                this.GridViewPromociones.Columns["sabadodiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["domingofin"].Visible = false;
+                this.GridViewPromociones.Columns["aplicadomingo"].Visible = false;
+                this.GridViewPromociones.Columns["domingodiasalida"].Visible = false;
+                this.GridViewPromociones.Columns["visualizar"].Visible = false;
+                this.GridViewPromociones.Columns["Relacionuno"].Visible = false;
+                this.GridViewPromociones.Columns["Relaciondos"].Visible = false;
+                this.GridViewPromociones.Columns["forzarporproducto"].Visible = false;
+                #endregion
             }
         }
-        private void ComboVisible()
+        private void BindGridProductos()
+        {
+            DataSet _ds = new DataSet();
+            _ds = CRUDPromocion.ListarMenu();
+            if (_ds.Tables.Count > 0)
+            {
+                GridViewProducto.DataSource = _ds.Tables[0];
+                this.GridViewProducto.Columns["IDMenu"].Visible = false;
+                this.GridViewProducto.Columns["IDGrupo"].Visible = false;
+            }
+        }
+        private void ComboTipo()
         {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Value");
             dataTable.Columns.Add("Text");
-            dataTable.Rows.Add(1, "Si");
-            dataTable.Rows.Add(0, "No");
+            dataTable.Rows.Add("Descuento", "Descuento");
+            dataTable.Rows.Add("Volumen", "Volumen");
 
-            comboVisible.DataSource = dataTable;
-            comboVisible.DisplayMember = "Text";
-            comboVisible.ValueMember = "Value";
+            comboTipo.DataSource = dataTable;
+            comboTipo.DisplayMember = "Text";
+            comboTipo.ValueMember = "Value";
 
         }
+        private void ComboTipoDescuento()
+        {
+            //TipoDescuentoComboBox
 
+            DataTable dataTable = new DataTable();
+            dataTable = CRUDTipoDescuento.TipoDescuentoComboBox();
+
+            comboTipoDescuento.DataSource = dataTable;
+            comboTipoDescuento.DisplayMember = "IDTipoDescuento";
+            comboTipoDescuento.ValueMember = "Descripcion";
+
+        }
+        private void ComboStatus()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Value");
+            dataTable.Columns.Add("Text");
+            dataTable.Rows.Add("Activa", "Activa");
+            dataTable.Rows.Add("Inactiva", "Inactiva");
+
+            comboStatus.DataSource = dataTable;
+            comboStatus.DisplayMember = "Text";
+            comboStatus.ValueMember = "Value";
+
+        }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
             BtnGuardar.Enabled = true;
             txtDescripcion.Enabled = true;
-            comboVisible.Enabled = true;
+            comboStatus.Enabled = true;
+            comboTipo.Enabled = true;
+            comboTipoDescuento.Enabled = true;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtIDTipoDescuento.Text != "")
+            if (txtIDPromocion.Text != "")
             {
                 MessageBox.Show("DEBE BORRAR LOS REGISTROS PARA AGREGAR UNO NUEVO");
             }
             else
             {
-                TipoDescuento.Descripcion = txtDescripcion.Text;
-                TipoDescuento.Descuento = Convert.ToDecimal(txtDescuento.Text);
-                TipoDescuento.Visible = comboVisible.SelectedValue.ToString() == "1" ? true : false;
-                int validar = CRUDTipoDescuento.InsertarTipoDescuento(TipoDescuento);
+                Promociones.Descripcion = txtDescripcion.Text;
+                Promociones.Descuento = Convert.ToDecimal(txtDescuento.Text);
+                Promociones.Visible = comboVisible.SelectedValue.ToString() == "1" ? true : false;
+                int validar = CRUDPromocion.InsertarPromocion(Promociones);
 
                 if (validar == 1)
                 {
                     MessageBox.Show("Registro agregado");
-                    BindGrid();
+                    BindGridPromociones();
                     limpiarControles();
                 }
                 else
@@ -98,17 +173,17 @@ namespace Restaurante
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (txtIDTipoDescuento.Text != "")
+            if (txtIDPromociones.Text != "")
             {
-                TipoDescuento.IDTipoDescuento = Convert.ToInt32(txtIDTipoDescuento.Text);
-                TipoDescuento.Descripcion = txtDescripcion.Text;
-                TipoDescuento.Descuento = Convert.ToDecimal(txtDescuento.Text);
-                TipoDescuento.Visible = comboVisible.SelectedValue.ToString() == "Si" ? true : false;
-                int validar = CRUDTipoDescuento.ModificarTipoDescuento(TipoDescuento);
-                //string IDSubGrupo = txtIDTipoDescuento.Text;
+                Promociones.IDPromociones = Convert.ToInt32(txtIDPromociones.Text);
+                Promociones.Descripcion = txtDescripcion.Text;
+                Promociones.Descuento = Convert.ToDecimal(txtDescuento.Text);
+                Promociones.Visible = comboVisible.SelectedValue.ToString() == "Si" ? true : false;
+                int validar = CRUDPromociones.ModificarPromociones(Promociones);
+                //string IDSubGrupo = txtIDPromociones.Text;
                 //string IDGrupo = comboVisible.SelectedValue.ToString();
                 //se actualiza el masterGrupo
-                //CRUDTipoDescuento.ActualizarSubGrupoMaster(IDGrupo, IDSubGrupo);
+                //CRUDPromociones.ActualizarSubGrupoMaster(IDGrupo, IDSubGrupo);
                 if (validar != 0)
                 {
                     BindGrid();
@@ -129,18 +204,18 @@ namespace Restaurante
         {
             if (MessageBox.Show("Seguro desea eliminar el registro?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (txtIDTipoDescuento.Text == "")
+                if (txtIDPromociones.Text == "")
                 {
                     MessageBox.Show("NO SE PUEDE ELIMINAR EL REGISTRO");
                 }
                 else
                 {
-                    CRUDTipoDescuento.EliminarTipoDescuento(txtIDTipoDescuento.Text);
+                    CRUDPromociones.EliminarPromociones(txtIDPromociones.Text);
 
-                    string IDSubGrupo = txtIDTipoDescuento.Text;
+                    string IDSubGrupo = txtIDPromociones.Text;
                     string IDGrupo = comboVisible.SelectedValue.ToString();
                     //se elimina el masterGrupo
-                    //CRUDTipoDescuento.EliminarSubGrupoMaster(IDSubGrupo);
+                    //CRUDPromociones.EliminarSubGrupoMaster(IDSubGrupo);
                     limpiarControles();
                     BindGrid();
                     MessageBox.Show("REGISTRO ELIMINADO");
@@ -166,7 +241,7 @@ namespace Restaurante
         {
             txtDescuento.Text = "";
             txtDescripcion.Text = "";
-            txtIDTipoDescuento.Text = "";
+            txtIDPromociones.Text = "";
             comboVisible.SelectedIndex = -1;
         }
     }

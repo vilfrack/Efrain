@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.griViewTipoDescuento = new System.Windows.Forms.DataGridView();
+            this.GridViewPromociones = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
@@ -54,29 +54,29 @@
             this.comboTipo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtIDTipoDescuento = new System.Windows.Forms.TextBox();
+            this.txtIDPromocion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.griViewTipoDescuento)).BeginInit();
+            this.GridViewProducto = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewPromociones)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewProducto)).BeginInit();
             this.SuspendLayout();
             // 
-            // griViewTipoDescuento
+            // GridViewPromociones
             // 
-            this.griViewTipoDescuento.AllowUserToAddRows = false;
-            this.griViewTipoDescuento.AllowUserToDeleteRows = false;
-            this.griViewTipoDescuento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.griViewTipoDescuento.Location = new System.Drawing.Point(6, 20);
-            this.griViewTipoDescuento.Name = "griViewTipoDescuento";
-            this.griViewTipoDescuento.Size = new System.Drawing.Size(277, 427);
-            this.griViewTipoDescuento.TabIndex = 1;
+            this.GridViewPromociones.AllowUserToAddRows = false;
+            this.GridViewPromociones.AllowUserToDeleteRows = false;
+            this.GridViewPromociones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewPromociones.Location = new System.Drawing.Point(6, 20);
+            this.GridViewPromociones.Name = "GridViewPromociones";
+            this.GridViewPromociones.Size = new System.Drawing.Size(277, 427);
+            this.GridViewPromociones.TabIndex = 1;
             // 
             // groupBox4
             // 
@@ -172,7 +172,7 @@
             this.groupBox1.Controls.Add(this.comboTipo);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtIDTipoDescuento);
+            this.groupBox1.Controls.Add(this.txtIDPromocion);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Location = new System.Drawing.Point(315, 99);
@@ -338,13 +338,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Clave";
             // 
-            // txtIDTipoDescuento
+            // txtIDPromocion
             // 
-            this.txtIDTipoDescuento.Enabled = false;
-            this.txtIDTipoDescuento.Location = new System.Drawing.Point(116, 26);
-            this.txtIDTipoDescuento.Name = "txtIDTipoDescuento";
-            this.txtIDTipoDescuento.Size = new System.Drawing.Size(51, 20);
-            this.txtIDTipoDescuento.TabIndex = 2;
+            this.txtIDPromocion.Enabled = false;
+            this.txtIDPromocion.Location = new System.Drawing.Point(116, 26);
+            this.txtIDPromocion.Name = "txtIDPromocion";
+            this.txtIDPromocion.Size = new System.Drawing.Size(51, 20);
+            this.txtIDPromocion.TabIndex = 2;
             // 
             // label5
             // 
@@ -364,7 +364,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.griViewTipoDescuento);
+            this.groupBox2.Controls.Add(this.GridViewPromociones);
             this.groupBox2.Location = new System.Drawing.Point(14, 12);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.groupBox2.Name = "groupBox2";
@@ -375,7 +375,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.GridViewProducto);
             this.groupBox3.Location = new System.Drawing.Point(861, 12);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.groupBox3.Name = "groupBox3";
@@ -384,15 +384,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Productos";
             // 
-            // dataGridView1
+            // GridViewProducto
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(277, 427);
-            this.dataGridView1.TabIndex = 1;
+            this.GridViewProducto.AllowUserToAddRows = false;
+            this.GridViewProducto.AllowUserToDeleteRows = false;
+            this.GridViewProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewProducto.Location = new System.Drawing.Point(6, 20);
+            this.GridViewProducto.Name = "GridViewProducto";
+            this.GridViewProducto.Size = new System.Drawing.Size(277, 427);
+            this.GridViewProducto.TabIndex = 1;
             // 
             // PromocionesForm
             // 
@@ -407,20 +407,20 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Promociones";
             this.Load += new System.EventHandler(this.PromocionesForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.griViewTipoDescuento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewPromociones)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewProducto)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView griViewTipoDescuento;
+        private System.Windows.Forms.DataGridView GridViewPromociones;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button BtnGuardar;
@@ -435,12 +435,12 @@
         private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIDTipoDescuento;
+        private System.Windows.Forms.TextBox txtIDPromocion;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GridViewProducto;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;

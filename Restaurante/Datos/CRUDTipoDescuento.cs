@@ -109,19 +109,19 @@ namespace Datos
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
-        //public DataTable TipoDescuentoComboBox()
-        //{
-        //    cn.Open();
-        //    SqlCeCommand sc = new SqlCeCommand("select IDSubGrupo,Descripcion from SubGrupos", cn);
-        //    SqlCeDataReader reader;
-        //    reader = sc.ExecuteReader();
-        //    DataTable dt = new DataTable();
-        //    dt.Columns.Add("IDSubGrupo", typeof(string));
-        //    dt.Columns.Add("Descripcion", typeof(string));
-        //    dt.Load(reader);
-        //    cn.Close();
-        //    return dt;
-        //}
+        public DataTable TipoDescuentoComboBox()
+        {
+            cn.Open();
+            SqlCeCommand sc = new SqlCeCommand("select IDTipoDescuento,Descripcion from TipoDescuento", cn);
+            SqlCeDataReader reader;
+            reader = sc.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IDTipoDescuento", typeof(string));
+            dt.Columns.Add("Descripcion", typeof(string));
+            dt.Load(reader);
+            cn.Close();
+            return dt;
+        }
 
     }
 }

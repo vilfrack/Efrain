@@ -10,7 +10,7 @@ namespace Models
     {
         public int IDPromociones { get; set; }
         public string descripcion { get; set; }
-        public decimal status { get; set; }
+        public string status { get; set; }
         public decimal tipopromocion { get; set; }
         public string lunesinicio { get; set; }
         public string lunesfin { get; set; }
