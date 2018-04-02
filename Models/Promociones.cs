@@ -9,8 +9,11 @@ namespace Models
     public class Promociones
     {
         public int IDPromociones { get; set; }
+        public int IDTipoDescuento { get; set; }
         public string descripcion { get; set; }
         public string status { get; set; }
+        public decimal descuento { get; set; }
+        public string tipo { get; set; }
         public decimal tipopromocion { get; set; }
         public string lunesinicio { get; set; }
         public string lunesfin { get; set; }

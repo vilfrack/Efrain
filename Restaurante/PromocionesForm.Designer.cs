@@ -37,13 +37,13 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkDomingo = new System.Windows.Forms.CheckBox();
+            this.checkSabado = new System.Windows.Forms.CheckBox();
+            this.checkViernes = new System.Windows.Forms.CheckBox();
+            this.checkJueves = new System.Windows.Forms.CheckBox();
+            this.checkMiercoles = new System.Windows.Forms.CheckBox();
+            this.checkMartes = new System.Windows.Forms.CheckBox();
+            this.checkLunes = new System.Windows.Forms.CheckBox();
             this.comboStatus = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboTipoDescuento = new System.Windows.Forms.ComboBox();
@@ -60,6 +60,27 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.GridViewProducto = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.datePickerLunesInicio = new System.Windows.Forms.DateTimePicker();
+            this.datePickerLunesFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerMartesFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerMartesInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.datePickerJuevesFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerJuevesInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.datePickerMiercolesFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerMiercolesInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.datePickerSabadoFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerSabadoInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.datePickerViernesFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerViernesInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.datePickerDomingoFin = new System.Windows.Forms.DateTimePicker();
+            this.datePickerDomingoInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewPromociones)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -155,13 +176,34 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox7);
-            this.groupBox1.Controls.Add(this.checkBox5);
-            this.groupBox1.Controls.Add(this.checkBox6);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.datePickerDomingoFin);
+            this.groupBox1.Controls.Add(this.datePickerDomingoInicio);
+            this.groupBox1.Controls.Add(this.comboBox7);
+            this.groupBox1.Controls.Add(this.datePickerSabadoFin);
+            this.groupBox1.Controls.Add(this.datePickerSabadoInicio);
+            this.groupBox1.Controls.Add(this.comboBox5);
+            this.groupBox1.Controls.Add(this.datePickerViernesFin);
+            this.groupBox1.Controls.Add(this.datePickerViernesInicio);
+            this.groupBox1.Controls.Add(this.comboBox6);
+            this.groupBox1.Controls.Add(this.datePickerJuevesFin);
+            this.groupBox1.Controls.Add(this.datePickerJuevesInicio);
+            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.datePickerMiercolesFin);
+            this.groupBox1.Controls.Add(this.datePickerMiercolesInicio);
+            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.datePickerMartesFin);
+            this.groupBox1.Controls.Add(this.datePickerMartesInicio);
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.datePickerLunesFin);
+            this.groupBox1.Controls.Add(this.datePickerLunesInicio);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.checkDomingo);
+            this.groupBox1.Controls.Add(this.checkSabado);
+            this.groupBox1.Controls.Add(this.checkViernes);
+            this.groupBox1.Controls.Add(this.checkJueves);
+            this.groupBox1.Controls.Add(this.checkMiercoles);
+            this.groupBox1.Controls.Add(this.checkMartes);
+            this.groupBox1.Controls.Add(this.checkLunes);
             this.groupBox1.Controls.Add(this.comboStatus);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.comboTipoDescuento);
@@ -183,75 +225,82 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la Promocion";
             // 
-            // checkBox7
+            // checkDomingo
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(17, 343);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(80, 17);
-            this.checkBox7.TabIndex = 22;
-            this.checkBox7.Text = "checkBox7";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkDomingo.AutoSize = true;
+            this.checkDomingo.Location = new System.Drawing.Point(17, 345);
+            this.checkDomingo.Name = "checkDomingo";
+            this.checkDomingo.Size = new System.Drawing.Size(100, 17);
+            this.checkDomingo.TabIndex = 22;
+            this.checkDomingo.Text = "Aplica Domingo";
+            this.checkDomingo.UseVisualStyleBackColor = true;
+            this.checkDomingo.Click += new System.EventHandler(this.checkDomingo_Click);
             // 
-            // checkBox5
+            // checkSabado
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(17, 320);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(80, 17);
-            this.checkBox5.TabIndex = 21;
-            this.checkBox5.Text = "checkBox5";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkSabado.AutoSize = true;
+            this.checkSabado.Location = new System.Drawing.Point(17, 323);
+            this.checkSabado.Name = "checkSabado";
+            this.checkSabado.Size = new System.Drawing.Size(95, 17);
+            this.checkSabado.TabIndex = 21;
+            this.checkSabado.Text = "Aplica Sabado";
+            this.checkSabado.UseVisualStyleBackColor = true;
+            this.checkSabado.Click += new System.EventHandler(this.checkSabado_Click);
             // 
-            // checkBox6
+            // checkViernes
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(17, 297);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(80, 17);
-            this.checkBox6.TabIndex = 20;
-            this.checkBox6.Text = "checkBox6";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkViernes.AutoSize = true;
+            this.checkViernes.Location = new System.Drawing.Point(17, 299);
+            this.checkViernes.Name = "checkViernes";
+            this.checkViernes.Size = new System.Drawing.Size(93, 17);
+            this.checkViernes.TabIndex = 20;
+            this.checkViernes.Text = "Aplica Viernes";
+            this.checkViernes.UseVisualStyleBackColor = true;
+            this.checkViernes.Click += new System.EventHandler(this.checkViernes_Click);
             // 
-            // checkBox3
+            // checkJueves
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(17, 274);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(80, 17);
-            this.checkBox3.TabIndex = 19;
-            this.checkBox3.Text = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkJueves.AutoSize = true;
+            this.checkJueves.Location = new System.Drawing.Point(17, 274);
+            this.checkJueves.Name = "checkJueves";
+            this.checkJueves.Size = new System.Drawing.Size(92, 17);
+            this.checkJueves.TabIndex = 19;
+            this.checkJueves.Text = "Aplica Jueves";
+            this.checkJueves.UseVisualStyleBackColor = true;
+            this.checkJueves.Click += new System.EventHandler(this.checkJueves_Click);
             // 
-            // checkBox4
+            // checkMiercoles
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(17, 251);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(80, 17);
-            this.checkBox4.TabIndex = 18;
-            this.checkBox4.Text = "checkBox4";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkMiercoles.AutoSize = true;
+            this.checkMiercoles.Location = new System.Drawing.Point(17, 251);
+            this.checkMiercoles.Name = "checkMiercoles";
+            this.checkMiercoles.Size = new System.Drawing.Size(103, 17);
+            this.checkMiercoles.TabIndex = 18;
+            this.checkMiercoles.Text = "Aplica Miercoles";
+            this.checkMiercoles.UseVisualStyleBackColor = true;
+            this.checkMiercoles.Click += new System.EventHandler(this.checkMiercoles_Click);
             // 
-            // checkBox2
+            // checkMartes
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(17, 226);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 17);
-            this.checkBox2.TabIndex = 17;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkMartes.AutoSize = true;
+            this.checkMartes.Location = new System.Drawing.Point(17, 226);
+            this.checkMartes.Name = "checkMartes";
+            this.checkMartes.Size = new System.Drawing.Size(90, 17);
+            this.checkMartes.TabIndex = 17;
+            this.checkMartes.Text = "Aplica Martes";
+            this.checkMartes.UseVisualStyleBackColor = true;
+            this.checkMartes.Click += new System.EventHandler(this.checkMartes_Click);
             // 
-            // checkBox1
+            // checkLunes
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(17, 203);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkLunes.AutoSize = true;
+            this.checkLunes.Location = new System.Drawing.Point(17, 203);
+            this.checkLunes.Name = "checkLunes";
+            this.checkLunes.Size = new System.Drawing.Size(87, 17);
+            this.checkLunes.TabIndex = 16;
+            this.checkLunes.Text = "Aplica Lunes";
+            this.checkLunes.UseVisualStyleBackColor = true;
+            this.checkLunes.Click += new System.EventHandler(this.checkLunes_Click);
             // 
             // comboStatus
             // 
@@ -394,6 +443,160 @@
             this.GridViewProducto.Size = new System.Drawing.Size(277, 427);
             this.GridViewProducto.TabIndex = 1;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(246, 199);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(81, 21);
+            this.comboBox1.TabIndex = 23;
+            // 
+            // datePickerLunesInicio
+            // 
+            this.datePickerLunesInicio.Location = new System.Drawing.Point(116, 199);
+            this.datePickerLunesInicio.Name = "datePickerLunesInicio";
+            this.datePickerLunesInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerLunesInicio.TabIndex = 25;
+            // 
+            // datePickerLunesFin
+            // 
+            this.datePickerLunesFin.Location = new System.Drawing.Point(370, 198);
+            this.datePickerLunesFin.Name = "datePickerLunesFin";
+            this.datePickerLunesFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerLunesFin.TabIndex = 26;
+            // 
+            // datePickerMartesFin
+            // 
+            this.datePickerMartesFin.Location = new System.Drawing.Point(370, 221);
+            this.datePickerMartesFin.Name = "datePickerMartesFin";
+            this.datePickerMartesFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerMartesFin.TabIndex = 29;
+            // 
+            // datePickerMartesInicio
+            // 
+            this.datePickerMartesInicio.Location = new System.Drawing.Point(116, 222);
+            this.datePickerMartesInicio.Name = "datePickerMartesInicio";
+            this.datePickerMartesInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerMartesInicio.TabIndex = 28;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(246, 222);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(81, 21);
+            this.comboBox2.TabIndex = 27;
+            // 
+            // datePickerJuevesFin
+            // 
+            this.datePickerJuevesFin.Location = new System.Drawing.Point(370, 270);
+            this.datePickerJuevesFin.Name = "datePickerJuevesFin";
+            this.datePickerJuevesFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerJuevesFin.TabIndex = 35;
+            // 
+            // datePickerJuevesInicio
+            // 
+            this.datePickerJuevesInicio.Location = new System.Drawing.Point(116, 271);
+            this.datePickerJuevesInicio.Name = "datePickerJuevesInicio";
+            this.datePickerJuevesInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerJuevesInicio.TabIndex = 34;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(246, 271);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(81, 21);
+            this.comboBox3.TabIndex = 33;
+            // 
+            // datePickerMiercolesFin
+            // 
+            this.datePickerMiercolesFin.Location = new System.Drawing.Point(370, 247);
+            this.datePickerMiercolesFin.Name = "datePickerMiercolesFin";
+            this.datePickerMiercolesFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerMiercolesFin.TabIndex = 32;
+            // 
+            // datePickerMiercolesInicio
+            // 
+            this.datePickerMiercolesInicio.Location = new System.Drawing.Point(116, 248);
+            this.datePickerMiercolesInicio.Name = "datePickerMiercolesInicio";
+            this.datePickerMiercolesInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerMiercolesInicio.TabIndex = 31;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(246, 248);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(81, 21);
+            this.comboBox4.TabIndex = 30;
+            // 
+            // datePickerSabadoFin
+            // 
+            this.datePickerSabadoFin.Location = new System.Drawing.Point(370, 320);
+            this.datePickerSabadoFin.Name = "datePickerSabadoFin";
+            this.datePickerSabadoFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerSabadoFin.TabIndex = 41;
+            // 
+            // datePickerSabadoInicio
+            // 
+            this.datePickerSabadoInicio.Location = new System.Drawing.Point(116, 321);
+            this.datePickerSabadoInicio.Name = "datePickerSabadoInicio";
+            this.datePickerSabadoInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerSabadoInicio.TabIndex = 40;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(246, 321);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(81, 21);
+            this.comboBox5.TabIndex = 39;
+            // 
+            // datePickerViernesFin
+            // 
+            this.datePickerViernesFin.Location = new System.Drawing.Point(370, 297);
+            this.datePickerViernesFin.Name = "datePickerViernesFin";
+            this.datePickerViernesFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerViernesFin.TabIndex = 38;
+            // 
+            // datePickerViernesInicio
+            // 
+            this.datePickerViernesInicio.Location = new System.Drawing.Point(116, 298);
+            this.datePickerViernesInicio.Name = "datePickerViernesInicio";
+            this.datePickerViernesInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerViernesInicio.TabIndex = 37;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(246, 298);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(81, 21);
+            this.comboBox6.TabIndex = 36;
+            // 
+            // datePickerDomingoFin
+            // 
+            this.datePickerDomingoFin.Location = new System.Drawing.Point(370, 342);
+            this.datePickerDomingoFin.Name = "datePickerDomingoFin";
+            this.datePickerDomingoFin.Size = new System.Drawing.Size(112, 20);
+            this.datePickerDomingoFin.TabIndex = 44;
+            // 
+            // datePickerDomingoInicio
+            // 
+            this.datePickerDomingoInicio.Location = new System.Drawing.Point(116, 343);
+            this.datePickerDomingoInicio.Name = "datePickerDomingoInicio";
+            this.datePickerDomingoInicio.Size = new System.Drawing.Size(112, 20);
+            this.datePickerDomingoInicio.TabIndex = 43;
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Location = new System.Drawing.Point(246, 343);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(81, 21);
+            this.comboBox7.TabIndex = 42;
+            // 
             // PromocionesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,16 +644,37 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView GridViewProducto;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkDomingo;
+        private System.Windows.Forms.CheckBox checkSabado;
+        private System.Windows.Forms.CheckBox checkViernes;
+        private System.Windows.Forms.CheckBox checkJueves;
+        private System.Windows.Forms.CheckBox checkMiercoles;
+        private System.Windows.Forms.CheckBox checkMartes;
+        private System.Windows.Forms.CheckBox checkLunes;
         private System.Windows.Forms.ComboBox comboStatus;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboTipoDescuento;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker datePickerLunesInicio;
+        private System.Windows.Forms.DateTimePicker datePickerDomingoFin;
+        private System.Windows.Forms.DateTimePicker datePickerDomingoInicio;
+        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.DateTimePicker datePickerSabadoFin;
+        private System.Windows.Forms.DateTimePicker datePickerSabadoInicio;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.DateTimePicker datePickerViernesFin;
+        private System.Windows.Forms.DateTimePicker datePickerViernesInicio;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.DateTimePicker datePickerJuevesFin;
+        private System.Windows.Forms.DateTimePicker datePickerJuevesInicio;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.DateTimePicker datePickerMiercolesFin;
+        private System.Windows.Forms.DateTimePicker datePickerMiercolesInicio;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.DateTimePicker datePickerMartesFin;
+        private System.Windows.Forms.DateTimePicker datePickerMartesInicio;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DateTimePicker datePickerLunesFin;
     }
 }

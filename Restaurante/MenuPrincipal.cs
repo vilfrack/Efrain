@@ -165,7 +165,8 @@ namespace Restaurante
 
         private void promocionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            PromocionesForm PromocionesForm = new PromocionesForm();
+            PromocionesForm.ShowDialog();
         }
 
         private void meserosToolStripMenuItem_Click(object sender, EventArgs e)
