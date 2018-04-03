@@ -260,10 +260,10 @@
             this.griViewTipoDescuento.AllowUserToAddRows = false;
             this.griViewTipoDescuento.AllowUserToDeleteRows = false;
             this.griViewTipoDescuento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.griViewTipoDescuento.Location = new System.Drawing.Point(7, 14);
+            this.griViewTipoDescuento.Location = new System.Drawing.Point(12, 14);
             this.griViewTipoDescuento.Name = "griViewTipoDescuento";
             this.griViewTipoDescuento.Size = new System.Drawing.Size(277, 227);
-            this.griViewTipoDescuento.TabIndex = 0;
+            this.griViewTipoDescuento.TabIndex = 34;
             this.griViewTipoDescuento.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewTipoDescuento_CellClick);
             // 
             // TipoDescuentoForm

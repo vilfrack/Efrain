@@ -173,10 +173,20 @@ namespace Restaurante
 
         private void griViewTipoDescuento_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (griViewTipoDescuento.Rows.Count > 0 && e.RowIndex != -1)
             {
                 if (griViewTipoDescuento.Rows[e.RowIndex].Cells[0].Selected)
                 {
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < griViewTipoDescuento.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            griViewTipoDescuento.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+
                     string IDTipoDescuento = griViewTipoDescuento.Rows[e.RowIndex].Cells["IDTipoDescuento"].Value.ToString();
 
                     DataTable _datatable = new DataTable();

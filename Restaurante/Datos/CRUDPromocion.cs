@@ -37,17 +37,22 @@ namespace Datos
                    ",martesinicio,martesfin,aplicamartes,martesdiasalida,miercolesinicio,miercolesfin,aplicamiercoles,miercolesdiasalida " +
                    ",juevesinicio,juevesfin,aplicajueves,juevesdiasalida,viernesinicio,viernesfin,aplicaviernes,viernesdiasalida,sabadoinicio," +
                    "sabadofin,aplicasabado,domingoinicio,sabadodiasalida,domingofin,aplicadomingo,domingodiasalida,visualizar,Relacionuno,Relaciondos," +
-                   "forzarporproducto)values (@descripcion,@status,@tipopromocion,@lunesinicio,@lunesfin,@aplicalunes,@lunesdiasalida " +
+                   "forzarporproducto,IDMenu,Descuento,IDTipoDescuento)values (@descripcion,@status,@tipopromocion,@lunesinicio,@lunesfin,@aplicalunes,@lunesdiasalida " +
                    ",@martesinicio,@martesfin,@aplicamartes,@martesdiasalida,@miercolesinicio,@miercolesfin,@aplicamiercoles,@miercolesdiasalida" +
                    ",@juevesinicio,@juevesfin,@aplicajueves,@juevesdiasalida,@viernesinicio,@viernesfin,@aplicaviernes,@viernesdiasalida,@sabadoinicio," +
                    "@sabadofin,@aplicasabado,@domingoinicio,@sabadodiasalida,@domingofin,@aplicadomingo,@domingodiasalida,@visualizar,@Relacionuno,@Relaciondos," +
-                   "@forzarporproducto)";
+                   "@forzarporproducto,@IDMenu,@Descuento,@IDTipoDescuento)";
                 #endregion
 
                 #region Parametros
                 cmd.Parameters.AddWithValue("@descripcion", Promocion.descripcion);
                 cmd.Parameters.AddWithValue("@status", Promocion.status);
                 cmd.Parameters.AddWithValue("@tipopromocion", Promocion.tipopromocion);
+                cmd.Parameters.AddWithValue("@IDMenu", Promocion.IDMenu);
+                cmd.Parameters.AddWithValue("@Descuento", Promocion.descuento);
+                cmd.Parameters.AddWithValue("@IDTipoDescuento", Promocion.IDTipoDescuento);
+
+
                 cmd.Parameters.AddWithValue("@lunesinicio", Promocion.lunesinicio);
                 cmd.Parameters.AddWithValue("@lunesfin", Promocion.lunesfin);
                 cmd.Parameters.AddWithValue("@aplicalunes", Promocion.aplicalunes);
@@ -80,6 +85,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Relacionuno", Promocion.Relacionuno);
                 cmd.Parameters.AddWithValue("@Relaciondos", Promocion.Relaciondos);
                 cmd.Parameters.AddWithValue("@forzarporproducto", Promocion.forzarporproducto);
+
                 #endregion
 
                 cmd.CommandType = CommandType.Text;
@@ -115,7 +121,8 @@ namespace Datos
                 "aplicajueves=@aplicajueves,juevesdiasalida=@juevesdiasalida,viernesinicio=@viernesinicio,viernesfin=@viernesfin," +
                 "aplicaviernes=@aplicaviernes,viernesdiasalida=@viernesdiasalida,sabadoinicio=@sabadoinicio,sabadofin=@sabadofin," +
                 "aplicasabado=@aplicasabado,domingoinicio=@domingoinicio,sabadodiasalida=@sabadodiasalida,domingofin=@domingofin,aplicadomingo=@aplicadomingo" +
-                ",domingodiasalida=@domingodiasalida,visualizar=@visualizar,Relacionuno=@Relacionuno,Relaciondos=@Relaciondos,forzarporproducto=@forzarporproducto " +
+                ",domingodiasalida=@domingodiasalida,visualizar=@visualizar,Relacionuno=@Relacionuno,Relaciondos=@Relaciondos,forzarporproducto=@forzarporproducto, "+
+                "IDMenu=@IDMenu,Descuento = @Descuento,IDTipoDescuento =@IDTipoDescuento " +
                 "WHERE IDPromocion= '" + Promocion.IDPromociones + "'";
                 #endregion
 
@@ -123,6 +130,11 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@descripcion", Promocion.descripcion);
                 cmd.Parameters.AddWithValue("@status", Promocion.status);
                 cmd.Parameters.AddWithValue("@tipopromocion", Promocion.tipopromocion);
+                cmd.Parameters.AddWithValue("@IDMenu", Promocion.IDMenu);
+                cmd.Parameters.AddWithValue("@Descuento", Promocion.descuento);
+                cmd.Parameters.AddWithValue("@IDTipoDescuento", Promocion.IDTipoDescuento);
+
+
                 cmd.Parameters.AddWithValue("@lunesinicio", Promocion.lunesinicio);
                 cmd.Parameters.AddWithValue("@lunesfin", Promocion.lunesfin);
                 cmd.Parameters.AddWithValue("@aplicalunes", Promocion.aplicalunes);
@@ -155,7 +167,6 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Relacionuno", Promocion.Relacionuno);
                 cmd.Parameters.AddWithValue("@Relaciondos", Promocion.Relaciondos);
                 cmd.Parameters.AddWithValue("@forzarporproducto", Promocion.forzarporproducto);
-
                 #endregion
 
                 cmd.CommandType = CommandType.Text;
