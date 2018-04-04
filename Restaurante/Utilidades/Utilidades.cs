@@ -85,5 +85,9 @@ namespace Restaurante.Utilidades
             //quitamos el boton (X) de los formularios
             formulario.ControlBox = false;
         }
+
+        public void DiasDescuento() {
+
+        }
     }
 }

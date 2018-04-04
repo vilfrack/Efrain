@@ -88,6 +88,7 @@ namespace Restaurante
                 #endregion
             }
         }
+
         private void BindGridProductos()
         {
             try
@@ -108,6 +109,7 @@ namespace Restaurante
             }
 
         }
+
         private void ComboTipo()
         {
             //SE AGREGA INFORMACION AL COMBO TIPO
@@ -122,6 +124,7 @@ namespace Restaurante
             comboTipo.ValueMember = "Value";
 
         }
+
         private void ComboTipoDescuento()
         {
             //TipoDescuentoComboBox
@@ -133,6 +136,7 @@ namespace Restaurante
             comboTipoDescuento.DisplayMember = "Descripcion";
             comboTipoDescuento.ValueMember = "IDTipoDescuento";
         }
+
         private void ComboStatus()
         {
             //SE AGREGA INFORMACION AL COMBO STATUS
@@ -154,7 +158,15 @@ namespace Restaurante
             txtDescuento.Enabled = false;
             comboTipoDescuento.Enabled = false;
             comboStatus.Enabled = false;
+            checkLunes.Enabled = false;
+            checkMartes.Enabled = false;
+            checkMiercoles.Enabled = false;
+            checkJueves.Enabled = false;
+            checkViernes.Enabled = false;
+            checkSabado.Enabled = false;
+            checkDomingo.Enabled = false;
         }
+
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             btnEditar.Enabled = false;
@@ -165,6 +177,16 @@ namespace Restaurante
             comboTipo.Enabled = true;
             comboTipoDescuento.Enabled = true;
             GridViewProducto.Enabled = true;
+            checkLunes.Enabled = true;
+            checkMartes.Enabled = true;
+            checkMiercoles.Enabled = true;
+            checkJueves.Enabled = true;
+            checkViernes.Enabled = true;
+            checkSabado.Enabled = true;
+            checkDomingo.Enabled = true;
+            comboStatus.Enabled = true;
+            comboTipo.Enabled = true;
+            comboTipoDescuento.Enabled = true;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -342,6 +364,19 @@ namespace Restaurante
             BtnGuardar.Enabled = false;
             txtDescripcion.Enabled = false;
             BtnNuevo.Enabled = true;
+
+            checkLunes.Enabled = false;
+            checkMartes.Enabled = false;
+            checkMiercoles.Enabled = false;
+            checkJueves.Enabled = false;
+            checkViernes.Enabled = false;
+            checkSabado.Enabled = false;
+            checkDomingo.Enabled = false;
+
+            comboStatus.Enabled = false;
+            comboTipo.Enabled = false;
+            comboTipoDescuento.Enabled = false;
+
             limpiarControles();
         }
 
@@ -349,15 +384,43 @@ namespace Restaurante
         {
             this.Close();
         }
+
         private void limpiarControles()
         {
             txtDescuento.Text = "";
             txtDescripcion.Text = "";
-            //txtIDPromociones.Text = "";
-            //comboVisible.SelectedIndex = -1;
+            txtIDProducto.Text = "";
+            txtIDPromocion.Text = "";
+            txtPrecio.Text = "";
+            txtProductoDescripcion.Text = "";
+            comboStatus.SelectedIndex = 0;
+            comboTipo.SelectedIndex = 0;
+            comboTipoDescuento.SelectedIndex = 0;
+            checkDomingo.Checked = false;
+            checkSabado.Checked = false;
+            checkViernes.Checked = false;
+            checkJueves.Checked = false;
+            checkMiercoles.Checked = false;
+            checkMartes.Checked = false;
+            checkLunes.Checked = false;
+            datePickerDomingoFin.Text = "";
+            datePickerDomingoInicio.Text = "";
+            datePickerJuevesFin.Text = "";
+            datePickerJuevesInicio.Text = "";
+            datePickerLunesFin.Text = "";
+            datePickerLunesInicio.Text = "";
+            datePickerMartesFin.Text = "";
+            datePickerMartesInicio.Text = "";
+            datePickerMiercolesFin.Text = "";
+            datePickerMiercolesInicio.Text = "";
+            datePickerSabadoFin.Text = "";
+            datePickerSabadoInicio.Text = "";
+            datePickerViernesFin.Text = "";
+            datePickerViernesInicio.Text = "";
         }
 
         private void HorasMinutos() {
+            // LE DAMOS EL FORMATO A LOS DATA PICKER
             datePickerLunesInicio.Format = DateTimePickerFormat.Time;
             datePickerLunesInicio.ShowUpDown = true;
             datePickerLunesFin.Format = DateTimePickerFormat.Time;
@@ -398,7 +461,7 @@ namespace Restaurante
         {
             datePickerLunesInicio.Visible = checkLunes.Checked == true ? true : false;
             datePickerLunesFin.Visible = checkLunes.Checked == true ? true : false;
-            comboLunesSalida.Visible = checkLunes.Checked == true ? true : false;
+            //comboLunesSalida.Visible = checkLunes.Checked == true ? true : false;
         }
 
         private void checkMartes_Click(object sender, EventArgs e)
@@ -512,6 +575,7 @@ namespace Restaurante
                         checkMartes.Checked = _datatable.Rows[0]["aplicamartes"].ToString() == "True" ? true : false;
                         checkLunes.Checked = _datatable.Rows[0]["aplicalunes"].ToString() == "True" ? true : false;
                         #endregion
+
                         #region DataPicker
                         datePickerLunesInicio.Text = _datatable.Rows[0]["lunesinicio"].ToString();
                         datePickerLunesFin.Text = _datatable.Rows[0]["lunesfin"].ToString();
@@ -538,6 +602,11 @@ namespace Restaurante
                             txtProductoDescripcion.Text = _datatable.Rows[0]["Nombre"].ToString();
                             txtPrecio.Text = _datatable.Rows[0]["Precio"].ToString();
                         }
+                        BtnNuevo.Enabled = false;
+                        btnEditar.Enabled = true;
+                        btnEliminar.Enabled = true;
+                        BtnGuardar.Enabled = true;
+
                     }
                 }
             }
@@ -547,7 +616,16 @@ namespace Restaurante
         {
             //SE OBTIENE EL DESCUENTO CUANDO SE HACE UN CAMBIO EN EL COMBO
             DataTable dataTable = new DataTable();
-            string IDTipoDescuento = comboTipoDescuento.SelectedValue.ToString();
+            string IDTipoDescuento;
+            if ((comboTipoDescuento.SelectedValue == null) || string.IsNullOrEmpty(comboTipoDescuento.SelectedValue.ToString()))
+            {
+                IDTipoDescuento = "System.Data.DataRowView";
+            }
+            else
+            {
+                IDTipoDescuento = comboTipoDescuento.SelectedValue.ToString();
+            }
+
             if (IDTipoDescuento != "System.Data.DataRowView")
             {
                 dataTable = CRUDTipoDescuento.BuscarTipoDescuento(IDTipoDescuento);

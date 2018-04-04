@@ -37,6 +37,12 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtProductoDescripcion = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtIDProducto = new System.Windows.Forms.TextBox();
             this.datePickerDomingoFin = new System.Windows.Forms.DateTimePicker();
             this.datePickerDomingoInicio = new System.Windows.Forms.DateTimePicker();
             this.comboDomingoSalida = new System.Windows.Forms.ComboBox();
@@ -81,12 +87,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.GridViewProducto = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtIDProducto = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtProductoDescripcion = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewPromociones)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -237,6 +237,57 @@
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la Promocion";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(331, 85);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(37, 13);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "Precio";
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.Enabled = false;
+            this.txtPrecio.Location = new System.Drawing.Point(387, 82);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(127, 20);
+            this.txtPrecio.TabIndex = 50;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(331, 55);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Producto";
+            // 
+            // txtProductoDescripcion
+            // 
+            this.txtProductoDescripcion.Enabled = false;
+            this.txtProductoDescripcion.Location = new System.Drawing.Point(387, 52);
+            this.txtProductoDescripcion.Name = "txtProductoDescripcion";
+            this.txtProductoDescripcion.Size = new System.Drawing.Size(127, 20);
+            this.txtProductoDescripcion.TabIndex = 48;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(331, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 13);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Clave del producto";
+            // 
+            // txtIDProducto
+            // 
+            this.txtIDProducto.Enabled = false;
+            this.txtIDProducto.Location = new System.Drawing.Point(442, 26);
+            this.txtIDProducto.Name = "txtIDProducto";
+            this.txtIDProducto.Size = new System.Drawing.Size(72, 20);
+            this.txtIDProducto.TabIndex = 46;
             // 
             // datePickerDomingoFin
             // 
@@ -416,6 +467,7 @@
             // checkDomingo
             // 
             this.checkDomingo.AutoSize = true;
+            this.checkDomingo.Enabled = false;
             this.checkDomingo.Location = new System.Drawing.Point(17, 345);
             this.checkDomingo.Name = "checkDomingo";
             this.checkDomingo.Size = new System.Drawing.Size(100, 17);
@@ -427,6 +479,7 @@
             // checkSabado
             // 
             this.checkSabado.AutoSize = true;
+            this.checkSabado.Enabled = false;
             this.checkSabado.Location = new System.Drawing.Point(17, 323);
             this.checkSabado.Name = "checkSabado";
             this.checkSabado.Size = new System.Drawing.Size(95, 17);
@@ -438,6 +491,7 @@
             // checkViernes
             // 
             this.checkViernes.AutoSize = true;
+            this.checkViernes.Enabled = false;
             this.checkViernes.Location = new System.Drawing.Point(17, 299);
             this.checkViernes.Name = "checkViernes";
             this.checkViernes.Size = new System.Drawing.Size(93, 17);
@@ -449,6 +503,7 @@
             // checkJueves
             // 
             this.checkJueves.AutoSize = true;
+            this.checkJueves.Enabled = false;
             this.checkJueves.Location = new System.Drawing.Point(17, 274);
             this.checkJueves.Name = "checkJueves";
             this.checkJueves.Size = new System.Drawing.Size(92, 17);
@@ -460,6 +515,7 @@
             // checkMiercoles
             // 
             this.checkMiercoles.AutoSize = true;
+            this.checkMiercoles.Enabled = false;
             this.checkMiercoles.Location = new System.Drawing.Point(17, 251);
             this.checkMiercoles.Name = "checkMiercoles";
             this.checkMiercoles.Size = new System.Drawing.Size(103, 17);
@@ -471,6 +527,7 @@
             // checkMartes
             // 
             this.checkMartes.AutoSize = true;
+            this.checkMartes.Enabled = false;
             this.checkMartes.Location = new System.Drawing.Point(17, 226);
             this.checkMartes.Name = "checkMartes";
             this.checkMartes.Size = new System.Drawing.Size(90, 17);
@@ -482,6 +539,7 @@
             // checkLunes
             // 
             this.checkLunes.AutoSize = true;
+            this.checkLunes.Enabled = false;
             this.checkLunes.Location = new System.Drawing.Point(17, 203);
             this.checkLunes.Name = "checkLunes";
             this.checkLunes.Size = new System.Drawing.Size(87, 17);
@@ -492,6 +550,7 @@
             // 
             // comboStatus
             // 
+            this.comboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboStatus.Enabled = false;
             this.comboStatus.FormattingEnabled = true;
             this.comboStatus.Location = new System.Drawing.Point(116, 158);
@@ -510,6 +569,7 @@
             // 
             // comboTipoDescuento
             // 
+            this.comboTipoDescuento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipoDescuento.Enabled = false;
             this.comboTipoDescuento.FormattingEnabled = true;
             this.comboTipoDescuento.Location = new System.Drawing.Point(116, 132);
@@ -555,6 +615,7 @@
             // 
             // comboTipo
             // 
+            this.comboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipo.Enabled = false;
             this.comboTipo.FormattingEnabled = true;
             this.comboTipo.Location = new System.Drawing.Point(116, 55);
@@ -638,57 +699,6 @@
             this.GridViewProducto.Size = new System.Drawing.Size(277, 427);
             this.GridViewProducto.TabIndex = 1;
             this.GridViewProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewProducto_CellClick);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(331, 29);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 13);
-            this.label8.TabIndex = 45;
-            this.label8.Text = "Clave del producto";
-            // 
-            // txtIDProducto
-            // 
-            this.txtIDProducto.Enabled = false;
-            this.txtIDProducto.Location = new System.Drawing.Point(442, 26);
-            this.txtIDProducto.Name = "txtIDProducto";
-            this.txtIDProducto.Size = new System.Drawing.Size(72, 20);
-            this.txtIDProducto.TabIndex = 46;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(331, 55);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 13);
-            this.label9.TabIndex = 47;
-            this.label9.Text = "Producto";
-            // 
-            // txtProductoDescripcion
-            // 
-            this.txtProductoDescripcion.Enabled = false;
-            this.txtProductoDescripcion.Location = new System.Drawing.Point(387, 52);
-            this.txtProductoDescripcion.Name = "txtProductoDescripcion";
-            this.txtProductoDescripcion.Size = new System.Drawing.Size(127, 20);
-            this.txtProductoDescripcion.TabIndex = 48;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(331, 85);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 13);
-            this.label10.TabIndex = 49;
-            this.label10.Text = "Precio";
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Enabled = false;
-            this.txtPrecio.Location = new System.Drawing.Point(387, 82);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(127, 20);
-            this.txtPrecio.TabIndex = 50;
             // 
             // PromocionesForm
             // 
