@@ -82,6 +82,7 @@ namespace Restaurante
                 this.GridViewComanda.Columns["Status"].Visible = false;
                 this.GridViewComanda.Columns["TotalPrecio"].Visible = false;
                 var menuList = _ds.Tables[0].AsEnumerable().ToList();
+                ViewModelMenu = new List<Models.Menu>();
                 foreach (var item in menuList)
                 {
                     ViewModelMenu.Add(new Models.Menu
@@ -309,6 +310,7 @@ namespace Restaurante
             {
                 descuento = descuento +CRUDCuenta.obtenerDescuento(Convert.ToString(item.IDMenu));
             }
+            txtDescuento.Text = "";
             txtDescuento.Text = descuento.ToString() + " %";
 
             descuento = descuento / 100;
