@@ -370,6 +370,7 @@
             // 
             this.txtDescuento.Location = new System.Drawing.Point(497, 441);
             this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
             this.txtDescuento.Size = new System.Drawing.Size(137, 20);
             this.txtDescuento.TabIndex = 54;
             this.txtDescuento.TextChanged += new System.EventHandler(this.txtDescuento_TextChanged);

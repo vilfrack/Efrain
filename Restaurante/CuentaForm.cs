@@ -23,6 +23,7 @@ namespace Restaurante
         private Models.Cuenta Cuenta = new Models.Cuenta();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         private Utilidades.Status status = new Utilidades.Status();
+        private List<Models.Menu> ViewModelMenu = new List<Models.Menu>();
         CRUDTurno CRUDTurno = new CRUDTurno();
 
         public static decimal _SetTotal = 0;
@@ -74,11 +75,23 @@ namespace Restaurante
             if (_ds.Tables.Count > 0)
             {
                 GridViewComanda.DataSource = _ds.Tables[0];
+                this.GridViewComanda.Columns["IDMenu"].Visible = false;
                 this.GridViewComanda.Columns["IDMesas"].Visible = false;
                 this.GridViewComanda.Columns["IDMesoneros"].Visible = false;
                 this.GridViewComanda.Columns["IDComanda"].Visible = false;
                 this.GridViewComanda.Columns["Status"].Visible = false;
                 this.GridViewComanda.Columns["TotalPrecio"].Visible = false;
+                var menuList = _ds.Tables[0].AsEnumerable().ToList();
+                foreach (var item in menuList)
+                {
+                    ViewModelMenu.Add(new Models.Menu
+                    {
+                        IDMenu = Convert.ToInt32(item.ItemArray[0].ToString()),
+                        Nombre = item.ItemArray[1].ToString(),
+                        Precio = Convert.ToDecimal(item.ItemArray[2].ToString())
+                    });
+                }
+                DescuentoPromocion();
             }
         }
 
@@ -285,6 +298,23 @@ namespace Restaurante
             Cuenta.IDComanda = Convert.ToInt32(IDComanda);
             Cuenta.Orden = Convert.ToInt32(txtOrden.Text);
             CRUDCuenta.ActualizarOrden(Cuenta);
+        }
+        //DESARROLLA LOS DESCUENTOS POR PROMOCION
+        private void DescuentoPromocion() {
+            //Si el descuento que queremos calcular es del 40%, deberás dividir 40/100 = 0,4
+            //Si el precio original es de 120€, la operación a realizar será 120 x 0,4 = 48€
+            decimal descuento = 0;
+            decimal total =Convert.ToDecimal(txtTotal.Text);
+            foreach (var item in ViewModelMenu)
+            {
+                descuento = descuento +CRUDCuenta.obtenerDescuento(Convert.ToString(item.IDMenu));
+            }
+            txtDescuento.Text = descuento.ToString() + " %";
+
+            descuento = descuento / 100;
+            total = total * descuento;
+
+            txtTotal.Text = Math.Round(total, 2).ToString();
         }
 
         private void btnCerrarCuenta_Click(object sender, EventArgs e)

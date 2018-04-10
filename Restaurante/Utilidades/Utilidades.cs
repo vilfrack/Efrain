@@ -86,8 +86,10 @@ namespace Restaurante.Utilidades
             formulario.ControlBox = false;
         }
 
-        public void DiasDescuento() {
-
-        }
+        //public decimal DiasDescuento() {
+        //    decimal Descuento = 0;
+        //    DayOfWeek d = System.DateTime.Now.DayOfWeek;
+        //    return Descuento;
+        //}
     }
 }

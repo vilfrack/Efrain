@@ -141,18 +141,7 @@ namespace Datos
             sda.Fill(_ds);
             return _ds;
         }
-        public DataSet ListarComanda(string IDComanda)
-        {
-            //DEBE MOSTRAR LA CUENTA CON TODOS LOS PEDIDOS DEL CLIENTE
 
-            DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select  Menu.Nombre as Menu, Menu.Precio, Comanda.* from Comanda " +
-                                                        "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda " +
-                                                        "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu " +
-                                                        "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
-            sda.Fill(_ds);
-            return _ds;
-        }
         public DataTable BuscarComandaCuenta(string IDComanda)
         {
             DataSet _ds = new DataSet();
@@ -309,6 +298,35 @@ namespace Datos
                 cuenta = true;
             }
             return cuenta;
+        }
+        public DataSet ListarComanda(string IDComanda)
+        {
+            //DEBE MOSTRAR LA CUENTA CON TODOS LOS PEDIDOS DEL CLIENTE
+
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select  Menu.IDMenu,Menu.Nombre as Menu, Menu.Precio, Comanda.* from Comanda " +
+                                                        "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda " +
+                                                        "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu " +
+                                                        "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
+            sda.Fill(_ds);
+            return _ds;
+        }
+        public decimal obtenerDescuento(string IDMenu) {
+            decimal descuento = 0;
+            //SE OBTENDRIA EL IDMENU DE PROMOCIONES
+            DataSet _ds = new DataSet();
+            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Descuento FROM Promociones " +
+                                                        "where IDMenu = '" + IDMenu + "'", cn);
+            sda.Fill(_ds);
+
+            DataTable _datatable = new DataTable();
+            _datatable = _ds.Tables[0];
+            string dato = _datatable.Rows.Count > 0? _datatable.Rows[0]["Descuento"].ToString(): "0";
+            //dato = dato == "" ? "0" : dato;
+
+            descuento = Convert.ToDecimal(dato);
+
+            return descuento;
         }
     }
 }
