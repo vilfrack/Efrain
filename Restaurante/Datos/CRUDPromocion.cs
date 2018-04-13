@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,24 +14,22 @@ namespace Datos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
-        public SqlCeConnection cn;
+        public SqlConnection cn;
         public string connectionString = "";
 
         public CRUDPromocion()
         {
             cns = ConfigurationManager.ConnectionStrings["BD"];
             connectionString = cns.ConnectionString;
-            cn = new SqlCeConnection(connectionString);
+            cn = new SqlConnection(connectionString);
         }
         public int InsertarPromocion(Promociones Promocion)
         {
             try
             {
-
-                //SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
-
+                //SqlConnection con = new SqlConnection(conexion.connectionString);
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 #region Query
                 cmd.CommandText = "insert into Promociones(descripcion,status,tipopromocion,lunesinicio,lunesfin,aplicalunes,lunesdiasalida " +
                    ",martesinicio,martesfin,aplicamartes,martesdiasalida,miercolesinicio,miercolesfin,aplicamiercoles,miercolesdiasalida " +
@@ -93,17 +91,16 @@ namespace Datos
                 cn.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
-
         }
         public DataTable UltimoIDPromocion()
         {
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDPromociones) as IDPromocion from Promociones", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select MAX(IDPromociones) as IDPromocion from Promociones", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -112,7 +109,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 #region Query
                 cmd.CommandText = "UPDATE Promociones SET descripcion=@descripcion,status=@status,tipopromocion=@tipopromocion,lunesinicio=@lunesinicio," +
                 "lunesfin=@lunesfin,aplicalunes=@aplicalunes,lunesdiasalida=@lunesdiasalida,martesinicio=@martesinicio,martesfin=@martesfin," +
@@ -123,9 +120,9 @@ namespace Datos
                 "aplicasabado=@aplicasabado,domingoinicio=@domingoinicio,sabadodiasalida=@sabadodiasalida,domingofin=@domingofin,aplicadomingo=@aplicadomingo" +
                 ",domingodiasalida=@domingodiasalida,visualizar=@visualizar,Relacionuno=@Relacionuno,Relaciondos=@Relaciondos,forzarporproducto=@forzarporproducto, "+
                 "IDMenu=@IDMenu,Descuento = @Descuento,IDTipoDescuento =@IDTipoDescuento " +
-                "WHERE IDPromocion= '" + Promocion.IDPromociones + "'";
+                "WHERE IDPromociones= '" + Promocion.IDPromociones + "'";
                 #endregion
-
+                //"The parameterized query '(@descripcion nvarchar(6),@status nvarchar(6),@tipopromocion nva' expects the parameter '@lunesdiasalida', which was not supplied."
                 #region Parametros
                 cmd.Parameters.AddWithValue("@descripcion", Promocion.descripcion);
                 cmd.Parameters.AddWithValue("@status", Promocion.status);
@@ -133,7 +130,6 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@IDMenu", Promocion.IDMenu);
                 cmd.Parameters.AddWithValue("@Descuento", Promocion.descuento);
                 cmd.Parameters.AddWithValue("@IDTipoDescuento", Promocion.IDTipoDescuento);
-
 
                 cmd.Parameters.AddWithValue("@lunesinicio", Promocion.lunesinicio);
                 cmd.Parameters.AddWithValue("@lunesfin", Promocion.lunesfin);
@@ -183,10 +179,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Promociones WHERE IDPromociones= '" + IDPromocion + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -202,22 +198,22 @@ namespace Datos
         public DataSet ListarPromocion()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Promociones", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Promociones", cn);
             sda.Fill(_ds);
             return _ds;
         }
         public DataTable BuscarPromocion(string IDPromocion)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Promociones WHERE IDPromociones = '" + IDPromocion + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Promociones WHERE IDPromociones = '" + IDPromocion + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
         //public DataTable PromocionComboBox()
         //{
         //    cn.Open();
-        //    SqlCeCommand sc = new SqlCeCommand("select IDSubGrupo,Descripcion from SubGrupos", cn);
-        //    SqlCeDataReader reader;
+        //    SqlCommand sc = new SqlCommand("select IDSubGrupo,Descripcion from SubGrupos", cn);
+        //    SqlDataReader reader;
         //    reader = sc.ExecuteReader();
         //    DataTable dt = new DataTable();
         //    dt.Columns.Add("IDSubGrupo", typeof(string));

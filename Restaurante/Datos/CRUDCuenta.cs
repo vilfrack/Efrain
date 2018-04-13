@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,24 +14,24 @@ namespace Datos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
-        public SqlCeConnection cn;
+        public SqlConnection cn;
         public string connectionString = "";
 
         public CRUDCuenta()
         {
             cns = ConfigurationManager.ConnectionStrings["BD"];
             connectionString = cns.ConnectionString;
-            cn = new SqlCeConnection(connectionString);
+            cn = new SqlConnection(connectionString);
         }
         public void InsertarCuenta(Cuenta Cuenta)
         {
             try
             {
 
-                //SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                //SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [Cuenta] (IDMesas,IDMesoneros,IDComanda,Reserva,Apertura,Cierre,Orden,Folio, "+
                     "SubTotal,Total,Descuento,Impuesto,Propina,Status,IDTurno) VALUES (@IDMesas,@IDMesoneros,@IDComanda,@Reserva, " +
                     "@Apertura,@Cierre,@Orden,@Folio,@SubTotal,@Total,@Descuento,@Impuesto,@Propina,@Status,@IDTurno)";
@@ -56,7 +56,7 @@ namespace Datos
                 cn.Close();
 
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
 
             }
@@ -66,7 +66,7 @@ namespace Datos
         {
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDCuenta) as IDCuenta from Cuenta", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select MAX(IDCuenta) as IDCuenta from Cuenta", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -76,7 +76,7 @@ namespace Datos
             {
 
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Cuenta SET IDMesas=@IDMesas,IDMesoneros=@IDMesoneros,Reserva=@Reserva, " +
                     "Apertura=@Apertura,Cierre=@Cierre,Orden=@Orden,Folio=@Folio,SubTotal=@SubTotal,Total=@Total, " +
                     "Descuento=@Descuento,Impuesto=@Impuesto,Propina=@Propina,Status=@Status WHERE IDCuenta= '" + Cuenta.IDCuenta + "'";
@@ -108,10 +108,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Cuenta WHERE IDCuenta= '" + IDCuenta + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -133,7 +133,7 @@ namespace Datos
             WHERE Comanda.Status='CERRADA'
              */
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Comanda.*,Mesas.NumeroMesa, (Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero "+
+            SqlDataAdapter sda = new SqlDataAdapter("select Comanda.*,Mesas.NumeroMesa, (Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero "+
                                                         "from Comanda " +
                                                         "inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas "+
                                                         "inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros "+
@@ -145,7 +145,7 @@ namespace Datos
         public DataTable BuscarComandaCuenta(string IDComanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Comanda.*, Menu.Nombre,(Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero,Mesas.NumeroMesa,Mesas.IDMesas from Comanda " +
+            SqlDataAdapter sda = new SqlDataAdapter("select Comanda.*, Menu.Nombre,(Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero,Mesas.NumeroMesa,Mesas.IDMesas from Comanda " +
                                                         "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda "+
                                                         "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu "+
                                                         "inner join Mesoneros ON Mesoneros.IDMesoneros = Comanda.IDMesoneros "+
@@ -157,7 +157,7 @@ namespace Datos
         public DataTable BuscarCuenta(string IDComanda,string Status)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * FROM Cuenta " +
+            SqlDataAdapter sda = new SqlDataAdapter("select * FROM Cuenta " +
                                                         "where Status = '"+ Status + "' AND IDComanda ='" + IDComanda + "' ", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
@@ -165,7 +165,7 @@ namespace Datos
         public DataSet BuscarCuentaByMesa(string IDMesa)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Cuenta.* from Cuenta " +
+            SqlDataAdapter sda = new SqlDataAdapter("select Cuenta.* from Cuenta " +
                                                         "INNER JOIN Comanda ON Comanda.IDComanda = Cuenta.IDComanad " +
                                                         "WHERE Comanda.IDMesas = '" + IDMesa + "' AND Comanda.Status='CERRADA'", cn);
             sda.Fill(_ds);
@@ -175,7 +175,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Cuenta SET Orden=@Orden,Folio=@Folio,Cierre=@Cierre,Total=@Total,Propina=@Propina,Impuesto=@Impuesto,Cargo=@Cargo,Monedero=@Monedero,Descuento=@Descuento WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
                 cmd.Parameters.AddWithValue("@Orden", cuenta.Orden);
                 cmd.Parameters.AddWithValue("@Folio", cuenta.Folio);
@@ -202,7 +202,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Cuenta SET Status=@Status,FormaPago = @FormaPago WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
                 cmd.Parameters.AddWithValue("@Status", cuenta.Status);
                 cmd.Parameters.AddWithValue("@FormaPago", cuenta.FormaPago);
@@ -223,7 +223,7 @@ namespace Datos
             {
 
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Cuenta SET Orden=@Orden WHERE IDComanda= '" + cuenta.IDComanda + "'";
                 cmd.Parameters.AddWithValue("@Orden", cuenta.Orden);
 
@@ -244,7 +244,7 @@ namespace Datos
             string FechaApertura = DateTime.Now.ToShortDateString();
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as Validar from Cuenta WHERE Status ='" + status + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select count(1) as Validar from Cuenta WHERE Status ='" + status + "'", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -267,7 +267,7 @@ namespace Datos
             string FechaApertura = DateTime.Now.ToShortDateString();
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as folio from Cuenta WHERE Imprimir =1", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select count(1) as folio from Cuenta WHERE Imprimir =1", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -287,7 +287,7 @@ namespace Datos
         public bool CuentaAbierta(string Status) {
             bool cuenta = false;
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select COUNT(1) as cuenta from Cuenta WHERE Status='"+Status+"'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select COUNT(1) as cuenta from Cuenta WHERE Status='"+Status+"'", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -304,7 +304,7 @@ namespace Datos
             //DEBE MOSTRAR LA CUENTA CON TODOS LOS PEDIDOS DEL CLIENTE
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select  Menu.IDMenu,Menu.Nombre as Menu, Menu.Precio, Comanda.* from Comanda " +
+            SqlDataAdapter sda = new SqlDataAdapter("select  Menu.IDMenu,Menu.Nombre as Menu, Menu.Precio, Comanda.* from Comanda " +
                                                         "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda " +
                                                         "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu " +
                                                         "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
@@ -315,7 +315,7 @@ namespace Datos
             decimal descuento = 0;
             //SE OBTENDRIA EL IDMENU DE PROMOCIONES
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Descuento FROM Promociones " +
+            SqlDataAdapter sda = new SqlDataAdapter("select Descuento FROM Promociones " +
                                                         "where IDMenu = '" + IDMenu + "'", cn);
             sda.Fill(_ds);
 
@@ -327,6 +327,15 @@ namespace Datos
             descuento = Convert.ToDecimal(dato);
 
             return descuento;
+        }
+        public DataTable HorasDias(string IDMenu) {
+            decimal descuento = 0;
+            DataSet _ds = new DataSet();
+            
+            SqlDataAdapter sda = new SqlDataAdapter("select * FROM Promociones " +
+                                                        "where IDMenu = '" + IDMenu + "'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
         }
     }
 }

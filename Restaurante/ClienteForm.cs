@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos;
 using Models;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.IO;
 using System.Configuration;
 

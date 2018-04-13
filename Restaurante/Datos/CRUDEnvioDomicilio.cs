@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +19,10 @@ namespace Datos
             try
             {
 
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "insert into ServicioDomicilio(IDCliente,Calle,Direccion,NumExterior,NumInterior,Cruzamientos,Cruzamientos2,Colonia,Zona,Referencia,Ciudad,Delegación,Estado,Pais,CP)values (@IDCliente,@Calle,@Direccion,@NumExterior,@NumInterior,@Cruzamientos,@Cruzamientos2,@Colonia,@Zona,@Referencia,@Ciudad,@Delegación,@Estado,@Pais,@CP)";
                 cmd.Parameters.AddWithValue("@IDCliente", envioDomicilio.IDCliente);
                 cmd.Parameters.AddWithValue("@Calle", envioDomicilio.Calle);
@@ -44,7 +44,7 @@ namespace Datos
                 con.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
@@ -54,10 +54,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "UPDATE ServicioDomicilio SET Calle=@Calle,Direccion=@Direccion,NumExterior=@NumExterior,NumInterior=@NumInterior,Cruzamientos=@Cruzamientos,Cruzamientos2=@Cruzamientos2,Colonia=@Colonia,Zona=@Zona,Referencia=@Referencia,Ciudad=@Ciudad,Delegación=@Delegación,Estado=@Estado,Pais=@Pais,CP=@CP WHERE IDCliente= '" + envioDomicilio.IDCliente + "'";
                 cmd.Parameters.AddWithValue("@IDCliente", envioDomicilio.IDCliente);
                 cmd.Parameters.AddWithValue("@Calle", envioDomicilio.Calle);
@@ -89,17 +89,17 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM ServicioDomicilio WHERE IDCliente= '" + IDCliente + "'";
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
                 con.Close();
 
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 throw;
             }
@@ -109,10 +109,10 @@ namespace Datos
             DataSet _ds = new DataSet();
             ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
             string connectionString = cns.ConnectionString;
-            SqlCeConnection cn = new SqlCeConnection(connectionString);
+            SqlConnection cn = new SqlConnection(connectionString);
 
 
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from ServicioDomicilio WHERE IDCliente = '" + IDCliente + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from ServicioDomicilio WHERE IDCliente = '" + IDCliente + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -121,10 +121,10 @@ namespace Datos
             DataSet _ds = new DataSet();
             ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
             string connectionString = cns.ConnectionString;
-            SqlCeConnection cn = new SqlCeConnection(connectionString);
+            SqlConnection cn = new SqlConnection(connectionString);
 
 
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select count(1) as validar from ServicioDomicilio WHERE IDCliente = '" + IDCliente + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select count(1) as validar from ServicioDomicilio WHERE IDCliente = '" + IDCliente + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }

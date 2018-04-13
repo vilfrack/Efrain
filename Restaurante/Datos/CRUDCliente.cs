@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using Models;
 using System.Configuration;
 using System.Data;
@@ -18,10 +18,10 @@ namespace Datos
             try
             {
 
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "insert into Cliente(Nombre,Direccion,Tipo_Facturacion,Estado,Pais,CodPostal,FolioFiscal,rfc,Curp,Giro,Poblacion,Contacto,Telefono1,Telefono2,Telefono3,Telefono4,Telefono5)values (@Nombre,@Direccion,@Tipo_Facturacion,@Estado,@Pais,@CodPostal,@FolioFiscal,@rfc,@Curp,@Giro,@Poblacion,@Contacto,@Telefono1,@Telefono2,@Telefono3,@Telefono4,@Telefono5)";
                 cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                 cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion);
@@ -46,7 +46,7 @@ namespace Datos
                 con.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
@@ -57,10 +57,10 @@ namespace Datos
             DataSet _ds = new DataSet();
             ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
             string connectionString = cns.ConnectionString;
-            SqlCeConnection cn = new SqlCeConnection(connectionString);
+            SqlConnection cn = new SqlConnection(connectionString);
 
 
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDCliente) as IDCliente from Cliente", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select MAX(IDCliente) as IDCliente from Cliente", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -68,10 +68,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "UPDATE Cliente SET Nombre=@Nombre,Direccion=@Direccion,Tipo_Facturacion=@Tipo_Facturacion,Estado=@Estado,Pais=@Pais,CodPostal=@CodPostal,FolioFiscal=@FolioFiscal,rfc=@rfc,Curp=@Curp,Giro=@Giro,Poblacion=@Poblacion,Contacto=@Contacto,Telefono1=@Telefono1,Telefono2=@Telefono2,Telefono3=@Telefono3,Telefono4=@Telefono4,Telefono5=@Telefono5 WHERE IDCliente= '" + cliente .IDCliente+ "'";
                 cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                 cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion);
@@ -105,10 +105,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Cliente WHERE IDCliente= '" + IDCliente + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -126,10 +126,10 @@ namespace Datos
             DataSet _ds = new DataSet();
             ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
             string connectionString = cns.ConnectionString;
-            SqlCeConnection cn = new SqlCeConnection(connectionString);
+            SqlConnection cn = new SqlConnection(connectionString);
 
 
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDCliente,Nombre,Contacto from Cliente", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select IDCliente,Nombre,Contacto from Cliente", cn);
             sda.Fill(_ds);
             return _ds;
         }
@@ -138,10 +138,10 @@ namespace Datos
             DataSet _ds = new DataSet();
             ConnectionStringSettings cns = ConfigurationManager.ConnectionStrings["BD"];
             string connectionString = cns.ConnectionString;
-            SqlCeConnection cn = new SqlCeConnection(connectionString);
+            SqlConnection cn = new SqlConnection(connectionString);
 
 
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Cliente WHERE IDCliente = '" + IDCliente + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Cliente WHERE IDCliente = '" + IDCliente + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }

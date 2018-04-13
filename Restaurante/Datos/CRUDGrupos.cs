@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,23 +14,23 @@ namespace Datos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
-        public SqlCeConnection cn;
+        public SqlConnection cn;
         public string connectionString = "";
 
         public CRUDGrupos() {
            cns = ConfigurationManager.ConnectionStrings["BD"];
            connectionString = cns.ConnectionString;
-           cn = new SqlCeConnection(connectionString);
+           cn = new SqlConnection(connectionString);
         }
         public int InsertarGrupo(Grupos Grupos)
         {
             try
             {
 
-                //SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                //SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "insert into Grupos(Descripcion)values (@Descripcion)";
                 cmd.Parameters.AddWithValue("@Descripcion", Grupos.Descripcion);
 
@@ -39,7 +39,7 @@ namespace Datos
                 cn.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
@@ -49,7 +49,7 @@ namespace Datos
         {
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDGrupo) as IDGrupo from Grupos", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select MAX(IDGrupo) as IDGrupo from Grupos", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -58,7 +58,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Grupos SET Descripcion=@Descripcion WHERE IDGrupo= '" + Grupos.IDGrupo + "'";
                 cmd.Parameters.AddWithValue("@Descripcion", Grupos.Descripcion);
 
@@ -76,10 +76,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Grupos WHERE IDGrupo= '" + IDGrupos + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -95,22 +95,22 @@ namespace Datos
         public DataSet ListarGrupo()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDGrupo,Descripcion from Grupos", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select IDGrupo,Descripcion from Grupos", cn);
             sda.Fill(_ds);
             return _ds;
         }
         public DataTable BuscarGrupo(string IDGrupos)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Grupos WHERE IDGrupo = '" + IDGrupos + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Grupos WHERE IDGrupo = '" + IDGrupos + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
         public DataTable GruposComboBox()
         {
             cn.Open();
-            SqlCeCommand sc = new SqlCeCommand("select IDGrupo,Descripcion from Grupos", cn);
-            SqlCeDataReader reader;
+            SqlCommand sc = new SqlCommand("select IDGrupo,Descripcion from Grupos", cn);
+            SqlDataReader reader;
             reader = sc.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Columns.Add("IDGrupo", typeof(string));

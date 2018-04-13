@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,23 +14,23 @@ namespace Datos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
-        public SqlCeConnection cn;
+        public SqlConnection cn;
         public string connectionString = "";
 
         public CRUDMesoneros() {
             cns = ConfigurationManager.ConnectionStrings["BD"];
             connectionString = cns.ConnectionString;
-            cn = new SqlCeConnection(connectionString);
+            cn = new SqlConnection(connectionString);
         }
         public int InsertarMesoneros(Mesoneros Mesoneros)
         {
             try
             {
 
-                //SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                //SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [Mesoneros] (Nombre,Apellido) VALUES (@Nombre,@Apellido)";
                 cmd.Parameters.AddWithValue("@Nombre", Mesoneros.Nombre);
                 cmd.Parameters.AddWithValue("@Apellido", Mesoneros.Apellido);
@@ -40,7 +40,7 @@ namespace Datos
                 cn.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
@@ -50,7 +50,7 @@ namespace Datos
         {
 
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDMesoneros) as IDMesoneros from Mesoneros", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select MAX(IDMesoneros) as IDMesoneros from Mesoneros", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -59,7 +59,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Mesoneros SET Nombre=@Nombre,Apellido=@Apellido WHERE IDMesoneros= '" + Mesoneros.IDMesoneros + "'";
                 cmd.Parameters.AddWithValue("@Nombre", Mesoneros.Nombre);
                 cmd.Parameters.AddWithValue("@Apellido", Mesoneros.Apellido);
@@ -78,9 +78,9 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Mesoneros WHERE IDMesoneros= '" + IDMesoneros + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -95,22 +95,22 @@ namespace Datos
         public DataSet ListarMesoneros()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select IDMesoneros,Nombre,Apellido from Mesoneros", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select IDMesoneros,Nombre,Apellido from Mesoneros", cn);
             sda.Fill(_ds);
             return _ds;
         }
         public DataTable BuscarMesoneros(string IDMesoneros)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Mesoneros WHERE IDMesoneros = '" + IDMesoneros + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Mesoneros WHERE IDMesoneros = '" + IDMesoneros + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
         public DataTable MesonerosComboBox()
         {
             cn.Open();
-            SqlCeCommand sc = new SqlCeCommand("select IDMesoneros, (Nombre +' '+ Apellido) as nombre from Mesoneros", cn);
-            SqlCeDataReader reader;
+            SqlCommand sc = new SqlCommand("select IDMesoneros, (Nombre +' '+ Apellido) as nombre from Mesoneros", cn);
+            SqlDataReader reader;
             reader = sc.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Columns.Add("IDMesoneros", typeof(string));

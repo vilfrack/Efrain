@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +14,17 @@ namespace Datos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
-        public SqlCeConnection cn;
+        public SqlConnection cn;
         public string connectionString = "";
 
         public CRUDTurno() {
             cns = ConfigurationManager.ConnectionStrings["BD"];
             connectionString = cns.ConnectionString;
-            cn = new SqlCeConnection(connectionString);
+            cn = new SqlConnection(connectionString);
         }
         public void Cierre(Turno Turno) {
             cn.Open();
-            SqlCeCommand cmd = cn.CreateCommand();
+            SqlCommand cmd = cn.CreateCommand();
             cmd.CommandText = "UPDATE Turno SET StatusTurno = StatusTurno, Cerrar = @Cerrar WHERE IDTurno ='"+Turno.IDTurno+"'";
             cmd.Parameters.AddWithValue("@Cerrar", Turno.Cerrar);
             cmd.Parameters.AddWithValue("@StatusTurno", Turno.StatusTurno);
@@ -35,7 +35,7 @@ namespace Datos
         }
         public void Apertura(Turno Turno) {
             cn.Open();
-            SqlCeCommand cmd = cn.CreateCommand();
+            SqlCommand cmd = cn.CreateCommand();
             cmd.CommandText = "insert into Turno(Apertura,StatusTurno,FondoInicial) " +
                               "values (@Apertura,@StatusTurno,@FondoInicial)";
             cmd.Parameters.AddWithValue("@Apertura", Turno.Apertura);
@@ -50,7 +50,7 @@ namespace Datos
         }
         public int ObtenerTurnoAbierto(string Status) {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("SELECT COUNT(1) as Turno FROM Turno WHERE StatusTurno = '" + Status + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(1) as Turno FROM Turno WHERE StatusTurno = '" + Status + "'", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -61,7 +61,7 @@ namespace Datos
         public int ObtenerIDTurnoAbierto(string Status)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("SELECT MAX(IDTurno) as IDTurno FROM Turno WHERE StatusTurno = '" + Status + "'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT MAX(IDTurno) as IDTurno FROM Turno WHERE StatusTurno = '" + Status + "'", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -73,7 +73,7 @@ namespace Datos
         {
             //DEBE MOSTRAR LA CUENTA CON TODOS LOS PEDIDOS DEL CLIENTE
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("SELECT Cuenta.FormaPago,Cuenta.Total FROM Cuenta " +
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT Cuenta.FormaPago,Cuenta.Total FROM Cuenta " +
                                                         "INNER JOIN Turno ON Turno.IDTurno = Cuenta.IDTurno "+
                                                         "WHERE Turno.IDTurno ='"+ IDTurno + "'", cn);
             sda.Fill(_ds);

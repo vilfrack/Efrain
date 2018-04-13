@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlServerCe;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,21 +14,21 @@ namespace Datos
     {
         public Conexion conexion = new Conexion();
         public ConnectionStringSettings cns;
-        public SqlCeConnection cn;
+        public SqlConnection cn;
         public string connectionString = "";
 
         public CRUDComanda() {
             cns = ConfigurationManager.ConnectionStrings["BD"];
             connectionString = cns.ConnectionString;
-            cn = new SqlCeConnection(connectionString);
+            cn = new SqlConnection(connectionString);
         }
 
         public List<Mesas> DatosMesas() {
             List<Mesas> ListMesas = new List<Mesas>();
 
-            SqlCeCommand command = new SqlCeCommand("SELECT IDMesas,NumeroMesa,CantidadPersona FROM Mesas;", cn);
+            SqlCommand command = new SqlCommand("SELECT IDMesas,NumeroMesa,CantidadPersona FROM Mesas;", cn);
             cn.Open();
-            SqlCeDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 ListMesas.Add(new Mesas {
@@ -44,28 +44,28 @@ namespace Datos
         public DataTable UltimoIDComanda(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select MAX(IDComanda) as IDComanda from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='ABIERTA'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select MAX(IDComanda) as IDComanda from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='ABIERTA'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
         public DataTable ComandaAbierta(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='"+Comanda.IDMesas+ "' AND Status='ABIERTA'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='"+Comanda.IDMesas+ "' AND Status='ABIERTA'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
         public DataTable ComandaCerrada(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='CERRADA'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='CERRADA'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
         public DataTable BuscarComanda(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='ABIERTA'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='ABIERTA'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -74,10 +74,10 @@ namespace Datos
             try
             {
 
-                //SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                //SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [Comanda] (IDMesas,TotalPrecio,Status,Fecha) VALUES (@IDMesas,@TotalPrecio,@Status,@Fecha)";
                 cmd.Parameters.AddWithValue("@IDMesas", Comanda.IDMesas);
                 cmd.Parameters.AddWithValue("@TotalPrecio", Comanda.TotalPrecio);
@@ -89,7 +89,7 @@ namespace Datos
                 cn.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
@@ -100,7 +100,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE Comanda SET IDMesas=@IDMesas, "+
                                   "TotalPrecio=@TotalPrecio,Status=@Status, "+
                                   "IDMesoneros=@IDMesoneros WHERE IDComanda= '" + Comanda.IDComanda + "'";
@@ -125,10 +125,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM Comanda WHERE IDComanda= '" + IDComanda + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -144,7 +144,7 @@ namespace Datos
         public DataSet ListarComanda()
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select * from Comanda", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Comanda", cn);
             sda.Fill(_ds);
             return _ds;
         }
@@ -154,7 +154,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "INSERT INTO [MasterComanda] (IDComanda,IDMenu,Precio) VALUES (@IDComanda,@IDMenu,@Precio)";
                 cmd.Parameters.AddWithValue("@IDComanda", MasterComanda.IDComanda);
                 cmd.Parameters.AddWithValue("@IDMenu", MasterComanda.IDMenu);
@@ -165,7 +165,7 @@ namespace Datos
                 cn.Close();
                 return 1;
             }
-            catch (SqlCeException ex)
+            catch (SqlException ex)
             {
                 return 0;
             }
@@ -176,7 +176,7 @@ namespace Datos
             try
             {
                 cn.Open();
-                SqlCeCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "UPDATE MasterComanda SET IDComanda=@IDComanda,IDMenu=@IDMenu,Precio=@Precio WHERE IDMasterComanda= '" + MasterComanda.IDMasterComanda + "'";
                 cmd.Parameters.AddWithValue("@IDComanda", MasterComanda.IDComanda);
                 cmd.Parameters.AddWithValue("@IDMenu", MasterComanda.IDMenu);
@@ -196,10 +196,10 @@ namespace Datos
         {
             try
             {
-                SqlCeConnection con = new SqlCeConnection(conexion.connectionString);
+                SqlConnection con = new SqlConnection(conexion.connectionString);
 
                 con.Open();
-                SqlCeCommand cmd = con.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "DELETE FROM MasterComanda WHERE IDMasterComanda= '" + IDMasterComanda + "'";
 
                 cmd.CommandType = CommandType.Text;
@@ -215,7 +215,7 @@ namespace Datos
         public DataSet ListarMasterComanda(int IDComanda)
         {
             DataSet _ds = new DataSet();
-            SqlCeDataAdapter sda = new SqlCeDataAdapter("select Menu.Nombre as Menu,MasterComanda.* from MasterComanda " +
+            SqlDataAdapter sda = new SqlDataAdapter("select Menu.Nombre as Menu,MasterComanda.* from MasterComanda " +
                                                         "INNER JOIN Menu ON  Menu.IDMenu = MasterComanda.IDMenu "+
                                                         "INNER JOIN Comanda ON Comanda.IDComanda = MasterComanda.IDComanda "+
                                                         "WHERE Comanda.IDComanda ='" + IDComanda + "' AND Comanda.Status='ABIERTA'", cn);
@@ -225,8 +225,8 @@ namespace Datos
         public decimal GruposComboBox()
         {
             cn.Open();
-            SqlCeCommand sc = new SqlCeCommand("select Precio from MasterComanda", cn);
-            SqlCeDataReader reader;
+            SqlCommand sc = new SqlCommand("select Precio from MasterComanda", cn);
+            SqlDataReader reader;
             reader = sc.ExecuteReader();
             decimal Precio = 0;
 
