@@ -232,6 +232,12 @@
       <DependentUpon>PromocionesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propinas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Propinas.Designer.cs">
+      <DependentUpon>Propinas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prueba.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
@@ -323,6 +329,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Propinas.resx">
+      <DependentUpon>Propinas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PruebaForm.resx">
       <DependentUpon>PruebaForm.cs</DependentUpon>
     </EmbeddedResource>

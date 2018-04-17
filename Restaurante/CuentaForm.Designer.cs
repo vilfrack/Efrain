@@ -327,6 +327,7 @@
             this.txtPropina.Name = "txtPropina";
             this.txtPropina.Size = new System.Drawing.Size(137, 20);
             this.txtPropina.TabIndex = 59;
+            this.txtPropina.Click += new System.EventHandler(this.txtPropina_Click);
             this.txtPropina.TextChanged += new System.EventHandler(this.txtPropina_TextChanged);
             this.txtPropina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPropina_KeyPress);
             // 

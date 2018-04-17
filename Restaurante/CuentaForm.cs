@@ -18,7 +18,12 @@ namespace Restaurante
         {
             InitializeComponent();
         }
-
+        public Propinas _Propinas;
+        //public CuentaForm(Propinas propinas)
+        //{
+        //    InitializeComponent();
+        //    this._Propinas = propinas;
+        //}
         public CRUDCuenta CRUDCuenta = new CRUDCuenta();
         private Models.Cuenta Cuenta = new Models.Cuenta();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
@@ -27,6 +32,7 @@ namespace Restaurante
         private List<Promociones> listPromociones = new List<Promociones>();
         CRUDTurno CRUDTurno = new CRUDTurno();
 
+        public static decimal _SubTotal = 0;
         public static decimal _SetTotal = 0;
         public static decimal _SetPropina = 0;
         public static int _IDCuenta = 0;
@@ -534,6 +540,22 @@ namespace Restaurante
         private void btnCancelar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPropina_Click(object sender, EventArgs e)
+        {
+            _SubTotal = txtSubTotal.Text == "" ? 0 : Convert.ToDecimal(txtSubTotal.Text);
+            _SetTotal = txtTotal.Text == "" ? 0 : Convert.ToDecimal(txtTotal.Text);
+            _SetPropina = txtPropina.Text == "" ? 0 : Convert.ToDecimal(txtPropina.Text);
+            _IDCuenta = txtIDCuenta.Text == "" ? 0 : Convert.ToInt32(txtIDCuenta.Text);
+
+            Propinas propinas = new Propinas();
+            propinas.ShowDialog();
+        }
+        /* METODO QUE RECIBE LA VARIABLE DEL FORMULARIO DE PROPINA AL HACER CLICK EN ACEPTAR*/
+        public void propina(string propina) {
+
+            txtPropina.Text = propina;
         }
     }
 }
