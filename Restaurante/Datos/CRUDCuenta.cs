@@ -32,7 +32,7 @@ namespace Datos
 
                 cn.Open();
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "INSERT INTO [Cuenta] (IDMesas,IDMesoneros,IDComanda,Reserva,Apertura,Cierre,Orden,Folio, "+
+                cmd.CommandText = "INSERT INTO [Cuenta] (IDMesas,IDMesoneros,IDComanda,Reserva,Apertura,Cierre,Orden,Folio, " +
                     "SubTotal,Total,Descuento,Impuesto,Propina,Status,IDTurno) VALUES (@IDMesas,@IDMesoneros,@IDComanda,@Reserva, " +
                     "@Apertura,@Cierre,@Orden,@Folio,@SubTotal,@Total,@Descuento,@Impuesto,@Propina,@Status,@IDTurno)";
                 cmd.Parameters.AddWithValue("@IDMesas", Cuenta.IDMesas);
@@ -133,10 +133,10 @@ namespace Datos
             WHERE Comanda.Status='CERRADA'
              */
             DataSet _ds = new DataSet();
-            SqlDataAdapter sda = new SqlDataAdapter("select Comanda.*,Mesas.NumeroMesa, (Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero "+
+            SqlDataAdapter sda = new SqlDataAdapter("select Comanda.*,Mesas.NumeroMesa, (Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero " +
                                                         "from Comanda " +
-                                                        "inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas "+
-                                                        "inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros "+
+                                                        "inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas " +
+                                                        "inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros " +
                                                         "WHERE Comanda.Status = 'CERRADA'", cn);
             sda.Fill(_ds);
             return _ds;
@@ -146,19 +146,19 @@ namespace Datos
         {
             DataSet _ds = new DataSet();
             SqlDataAdapter sda = new SqlDataAdapter("select Comanda.*, Menu.Nombre,(Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero,Mesas.NumeroMesa,Mesas.IDMesas from Comanda " +
-                                                        "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda "+
-                                                        "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu "+
-                                                        "inner join Mesoneros ON Mesoneros.IDMesoneros = Comanda.IDMesoneros "+
-                                                        "inner join Mesas ON Mesas.IDMesas = Comanda.IDMesas "+
+                                                        "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda " +
+                                                        "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu " +
+                                                        "inner join Mesoneros ON Mesoneros.IDMesoneros = Comanda.IDMesoneros " +
+                                                        "inner join Mesas ON Mesas.IDMesas = Comanda.IDMesas " +
                                                         "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
-        public DataTable BuscarCuenta(string IDComanda,string Status)
+        public DataTable BuscarCuenta(string IDComanda, string Status)
         {
             DataSet _ds = new DataSet();
             SqlDataAdapter sda = new SqlDataAdapter("select * FROM Cuenta " +
-                                                        "where Status = '"+ Status + "' AND IDComanda ='" + IDComanda + "' ", cn);
+                                                        "where Status = '" + Status + "' AND IDComanda ='" + IDComanda + "' ", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }
@@ -287,7 +287,7 @@ namespace Datos
         public bool CuentaAbierta(string Status) {
             bool cuenta = false;
             DataSet _ds = new DataSet();
-            SqlDataAdapter sda = new SqlDataAdapter("select COUNT(1) as cuenta from Cuenta WHERE Status='"+Status+"'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select COUNT(1) as cuenta from Cuenta WHERE Status='" + Status + "'", cn);
             sda.Fill(_ds);
 
             DataTable _datatable = new DataTable();
@@ -321,21 +321,95 @@ namespace Datos
 
             DataTable _datatable = new DataTable();
             _datatable = _ds.Tables[0];
-            string dato = _datatable.Rows.Count > 0? _datatable.Rows[0]["Descuento"].ToString(): "0";
+            string dato = _datatable.Rows.Count > 0 ? _datatable.Rows[0]["Descuento"].ToString() : "0";
             //dato = dato == "" ? "0" : dato;
 
             descuento = Convert.ToDecimal(dato);
 
             return descuento;
         }
+        public List<Promociones> PromocionesDia(string IDMenu, string dia) {
+
+            List<Promociones> lista = new List<Promociones>();
+            SqlCommand command = new SqlCommand("select * FROM Promociones where IDMenu = '" + IDMenu + "'", cn);
+            cn.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                switch (dia)
+                {
+                    case "lunes":
+                        lista.Add(new Promociones
+                        {
+                            aplicalunes = true,
+                            lunesinicio = reader["lunesinicio"].ToString(),
+                            lunesfin = reader["lunesfin"].ToString()
+                        });
+                        break;
+                    case "martes":
+                        lista.Add(new Promociones
+                        {
+                            aplicamartes = true,
+                            martesinicio = reader["martesinicio"].ToString(),
+                            martesfin = reader["martesfin"].ToString(),
+                        });
+                        break;
+                    case "miércoles":
+                        lista.Add(new Promociones
+                        {
+                            aplicamiercoles = true,
+                            miercolesinicio = reader["miercolesinicio"].ToString(),
+                            miercolesfin = reader["miercolesfin"].ToString(),
+                        });
+                        break;
+                    case "jueves":
+                        lista.Add(new Promociones
+                        {
+                            aplicajueves = true,
+                            juevesinicio = reader["juevesinicio"].ToString(),
+                            juevesfin = reader["juevesfin"].ToString(),
+                        });
+                        break;
+                    case "viernes":
+                        lista.Add(new Promociones
+                        {
+                            aplicaviernes = true,
+                            viernesinicio = reader["viernesinicio"].ToString(),
+                            viernesfin = reader["viernesfin"].ToString(),
+                        });
+                        break;
+                    case "sabado":
+                        lista.Add(new Promociones
+                        {
+                            aplicasabado = true,
+                            sabadoinicio = reader["sabadoinicio"].ToString(),
+                            sabadofin = reader["sabadofin"].ToString(),
+                        });
+                        break;
+                    case "domingo":
+                        lista.Add(new Promociones
+                        {
+                            aplicadomingo = true,
+                            domingoinicio = reader["domingoinicio"].ToString(),
+                            domingofin = reader["domingofin"].ToString(),
+                        });
+                        break;
+                }
+
+            }
+            reader.Close();
+            cn.Close();
+            return lista;
+        }
         public DataTable HorasDias(string IDMenu) {
             decimal descuento = 0;
             DataSet _ds = new DataSet();
-            
+
             SqlDataAdapter sda = new SqlDataAdapter("select * FROM Promociones " +
                                                         "where IDMenu = '" + IDMenu + "'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
+
         }
     }
 }

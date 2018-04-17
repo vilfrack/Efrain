@@ -325,47 +325,47 @@ namespace Restaurante
             {
                 DateTime FechaI;
                 DateTime FechaF;
-
+                DateTime o = new DateTime();
                 if (itemHoras.aplicalunes == true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.lunesinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.lunesfin);
+                    FechaI = itemHoras.lunesinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.lunesinicio);
+                    FechaF = itemHoras.lunesfin == ""? new DateTime() : Convert.ToDateTime(itemHoras.lunesfin);
                     lunes = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
                 if (itemHoras.aplicamartes==true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.miercolesinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.miercolesfin);
+                    FechaI = itemHoras.martesinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.miercolesinicio);
+                    FechaF = itemHoras.martesfin == "" ? new DateTime() : Convert.ToDateTime(itemHoras.miercolesfin);
                     martes = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
                 if (itemHoras.aplicamiercoles==true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.miercolesinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.miercolesfin);
+                    FechaI = itemHoras.miercolesinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.miercolesinicio);
+                    FechaF = itemHoras.miercolesfin == "" ? new DateTime() : Convert.ToDateTime(itemHoras.miercolesfin);
                     miercoles = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
                 if (itemHoras.aplicajueves==true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.juevesinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.juevesfin);
+                    FechaI = itemHoras.juevesinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.juevesinicio);
+                    FechaF = itemHoras.juevesfin == "" ? new DateTime() : Convert.ToDateTime(itemHoras.juevesfin);
                     jueves = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
                 if (itemHoras.aplicaviernes==true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.viernesinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.viernesfin);
+                    FechaI = itemHoras.viernesinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.viernesinicio);
+                    FechaF = itemHoras.viernesfin == "" ? new DateTime() : Convert.ToDateTime(itemHoras.viernesfin);
                     viernes = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
                 if (itemHoras.aplicasabado==true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.sabadoinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.sabadofin);
+                    FechaI = itemHoras.sabadoinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.sabadoinicio);
+                    FechaF = itemHoras.sabadofin == "" ? new DateTime() : Convert.ToDateTime(itemHoras.sabadofin);
                     sabado = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
                 if (itemHoras.aplicadomingo == true)
                 {
-                    FechaI = Convert.ToDateTime(itemHoras.domingoinicio);
-                    FechaF = Convert.ToDateTime(itemHoras.domingofin);
+                    FechaI = itemHoras.domingoinicio == "" ? new DateTime() : Convert.ToDateTime(itemHoras.domingoinicio);
+                    FechaF = itemHoras.domingofin == "" ? new DateTime() : Convert.ToDateTime(itemHoras.domingofin);
                     domingo = CalculoHorasPromocion(FechaI, FechaF, FechaH);
                 }
             }
@@ -407,74 +407,9 @@ namespace Restaurante
 
             listPromociones = new List<Promociones>();
 
-            foreach (var item in ViewModelMenu)
+            foreach (var item in ViewModelMenu.Select(s=>s.IDMenu).Distinct())
             {
-                DataTable _datatable = new DataTable();
-                _datatable = CRUDCuenta.HorasDias(Convert.ToString(item.IDMenu));
-                if (_datatable.Rows.Count>0)
-                {
-                    switch (dia)
-                    {
-                        case "lunes":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicalunes = true,
-                                lunesinicio = _datatable.Rows[0]["lunesinicio"].ToString(),
-                                lunesfin = _datatable.Rows[0]["lunesfin"].ToString()
-                            });
-                            DateTime lunesI = Convert.ToDateTime(_datatable.Rows[0]["lunesinicio"].ToString());
-                            break;
-                        case "martes":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicamartes = true,
-                                martesinicio = _datatable.Rows[0]["martesinicio"].ToString(),
-                                martesfin = _datatable.Rows[0]["martesfin"].ToString()
-                            });
-                            break;
-                        case "miércoles":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicamiercoles = true,
-                                miercolesinicio = _datatable.Rows[0]["miercolesinicio"].ToString(),
-                                miercolesfin = _datatable.Rows[0]["miercolesfin"].ToString()
-                            });
-                            break;
-                        case "jueves":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicajueves = true,
-                                juevesinicio = _datatable.Rows[0]["juevesinicio"].ToString(),
-                                juevesfin = _datatable.Rows[0]["juevesfin"].ToString()
-                            });
-                            break;
-                        case "viernes":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicaviernes = true,
-                                viernesinicio = _datatable.Rows[0]["viernesinicio"].ToString(),
-                                viernesfin = _datatable.Rows[0]["viernesfin"].ToString()
-                            });
-                            break;
-                        case "sabado":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicasabado = true,
-                                sabadoinicio = _datatable.Rows[0]["sabadoinicio"].ToString(),
-                                sabadofin = _datatable.Rows[0]["sabadofin"].ToString()
-                            });
-                            break;
-                        case "domingo":
-                            listPromociones.Add(new Promociones
-                            {
-                                aplicadomingo = true,
-                                domingoinicio = _datatable.Rows[0]["domingoinicio"].ToString(),
-                                domingofin = _datatable.Rows[0]["domingofin"].ToString()
-                            });
-                            break;
-                    }
-                }
-
+                listPromociones.AddRange(CRUDCuenta.PromocionesDia(Convert.ToString(item), dia));
             }
 
 
