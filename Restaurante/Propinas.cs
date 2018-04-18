@@ -55,6 +55,7 @@ namespace Restaurante
             else
             {
                 string propina = "";
+                bool porcentaje = false;
                 if (txtPropinaCantidad.Text != "")
                 {
                     propina = txtPropinaCantidad.Text;
@@ -62,10 +63,11 @@ namespace Restaurante
                 if (txtPropinaPorcentaje.Text !="")
                 {
                     propina = txtPropinaPorcentaje.Text;
+                    porcentaje = true;
                 }
                 CuentaForm form2 = new CuentaForm();
 
-                form2.propina(propina);
+                form2.propina(propina, porcentaje);
                 this.Close();
             }
 

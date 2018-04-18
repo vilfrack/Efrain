@@ -35,6 +35,9 @@ namespace Restaurante
         public static decimal _SubTotal = 0;
         public static decimal _SetTotal = 0;
         public static decimal _SetPropina = 0;
+        public static decimal _SetDescuento = 0;
+        //public static decimal _SetTotalDescuento = 0;
+        public static bool _SetPropinaPorcentaje = false;
         public static int _IDCuenta = 0;
 
         private void CuentaForm_Load(object sender, EventArgs e)
@@ -314,6 +317,7 @@ namespace Restaurante
             DiasPromocion();
             decimal descuento = 0;
             decimal total =Convert.ToDecimal(txtTotal.Text);
+
             foreach (var item in ViewModelMenu)
             {
                 descuento = descuento +CRUDCuenta.obtenerDescuento(Convert.ToString(item.IDMenu));
@@ -381,7 +385,10 @@ namespace Restaurante
                 txtDescuento.Text = descuento.ToString() + " %";
 
                 descuento = descuento / 100;
+                _SetDescuento = descuento;
                 total = total * descuento;
+
+                //_SetTotalDescuento = total;
 
                 txtTotal.Text = Math.Round(total, 2).ToString();
             }
@@ -459,16 +466,44 @@ namespace Restaurante
         }
         private void SumAndDisplay()
         {
-            decimal SubTotal, Impuesto, Monedero, Propina, Cargo = 0;
+            decimal SubTotal, Impuesto, Monedero, Propina, Cargo,total = 0;
 
-            SubTotal =Convert.ToDecimal(txtSubTotal.Text);
+            SubTotal = txtSubTotal.Text == "" ? 0 : Convert.ToDecimal(txtSubTotal.Text);
             Impuesto = txtImpuesto.Text == "" ? 0 : Convert.ToDecimal(txtImpuesto.Text);
             Monedero = txtMonedero.Text == "" ? 0 : Convert.ToDecimal(txtMonedero.Text);
             Propina = txtPropina.Text == "" ? 0 : Convert.ToDecimal(txtPropina.Text);
             Cargo = txtCargo.Text == "" ? 0 : Convert.ToDecimal(txtCargo.Text);
 
-            txtTotal.Text = (SubTotal + Impuesto + Monedero + Propina + Cargo).ToString();
+            _SetDescuento = _SetDescuento != 0 ? _SetDescuento : 1;
+            //total = (((SubTotal * propina) + Impuesto + Monedero + Cargo) * _SetDescuento); formula como estaba al principio
+            //se calcula la propina
+            total = PropinaPorcentajeCantidad(SubTotal, Propina, _SetPropinaPorcentaje);
+            //se calcula el descuento
+            total = CalcularDescuento(_SetDescuento, total);
+            txtTotal.Text = Convert.ToString(total);
+
         }
+        #region FUNCIONES PARA EL CALCULO DEL TOTAL
+        private decimal PropinaPorcentajeCantidad(decimal SubTotal, decimal propina,bool propinaPorcentaje)
+        {
+            decimal total = 0;
+            if (propinaPorcentaje)
+            {
+                total = SubTotal * propina;
+                total = SubTotal + total;
+            }
+            else
+            {
+                total = (SubTotal + propina);
+            }
+            return total;
+        }
+        private decimal CalcularDescuento(decimal descuento, decimal SubTotal) {
+            decimal total = 0;
+            total = SubTotal * descuento;
+            return total;
+        }
+        #endregion
         private void RestAndDisplay()
         {
             decimal Total, Descuento = 0;
@@ -551,11 +586,21 @@ namespace Restaurante
 
             Propinas propinas = new Propinas();
             propinas.ShowDialog();
+            txtPropina.Text = Convert.ToString(_SetPropina);
         }
         /* METODO QUE RECIBE LA VARIABLE DEL FORMULARIO DE PROPINA AL HACER CLICK EN ACEPTAR*/
-        public void propina(string propina) {
+        public void propina(string propina, bool porcentaje) {
 
-            txtPropina.Text = propina;
+            if (porcentaje)
+            {
+                _SetPropina = Convert.ToDecimal(propina) / 100;
+                _SetPropinaPorcentaje = true;
+            }
+            else
+            {
+                _SetPropina = Convert.ToDecimal(propina);
+            }
+
         }
     }
 }
