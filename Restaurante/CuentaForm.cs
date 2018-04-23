@@ -80,6 +80,7 @@ namespace Restaurante
         }
         private void BindGridComanda(string IDComanda)
         {
+            // GRID DONDE SE MUESTRAN LAS COMANDAS
             DataSet _ds = new DataSet();
             _ds = CRUDCuenta.ListarComanda(IDComanda);
             if (_ds.Tables.Count > 0)
@@ -480,6 +481,7 @@ namespace Restaurante
             total = PropinaPorcentajeCantidad(SubTotal, Propina, _SetPropinaPorcentaje);
             //se calcula el descuento
             total = CalcularDescuento(_SetDescuento, total);
+
             txtTotal.Text = Convert.ToString(total);
 
         }
@@ -543,6 +545,7 @@ namespace Restaurante
                     _SetTotal = txtTotal.Text == "" ? 0 : Convert.ToDecimal(txtTotal.Text);
                     _SetPropina = txtPropina.Text == "" ? 0 : Convert.ToDecimal(txtPropina.Text);
                     _IDCuenta = txtIDCuenta.Text == "" ? 0 : Convert.ToInt32(txtIDCuenta.Text);
+                    _SetDescuento = txtDescuento.Text == "" ? 0 : Convert.ToDecimal(txtDescuento.Text);
 
                     PagarCuentaForm PagarCuentaForm = new PagarCuentaForm();
                     PagarCuentaForm.ShowDialog();

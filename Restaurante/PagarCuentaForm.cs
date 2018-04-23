@@ -25,7 +25,9 @@ namespace Restaurante
         private Models.Cuenta Cuenta = new Models.Cuenta();
 
         private static int _IDCuenta = 0;
-
+        private decimal _descuento = 0;
+        private decimal _propina = 0;
+        private decimal _total = 0;
         private void PagarCuentaForm_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
@@ -38,7 +40,11 @@ namespace Restaurante
 
             txtTotalMN.Text = Convert.ToString(CuentaForm._SetTotal);
             txtCambioMN.Text = Convert.ToString(CuentaForm._SetPropina);
+
+            _total = CuentaForm._SetTotal;
             _IDCuenta = CuentaForm._IDCuenta;
+            _descuento = CuentaForm._SetDescuento;
+            _propina = CuentaForm._SetPropina;
 
             #endregion
         }
@@ -82,6 +88,10 @@ namespace Restaurante
                 Cuenta.Status = status.Cerrado;
                 Cuenta.IDCuenta = _IDCuenta;
                 Cuenta.FormaPago = lblFormaPago.Text;
+                Cuenta.Descuento = _descuento;
+                Cuenta.Propina = _propina;
+                Cuenta.Total = _total;
+
                 int validar = CRUDCuenta.ActualizarStatusCuenta(Cuenta);
                 if (validar == 1)
                 {

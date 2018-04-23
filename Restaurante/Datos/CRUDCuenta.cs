@@ -203,9 +203,19 @@ namespace Datos
             {
                 cn.Open();
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "UPDATE Cuenta SET Status=@Status,FormaPago = @FormaPago WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
+                cmd.CommandText = "UPDATE Cuenta SET "+
+                                        "Status=@Status, "+
+                                        "FormaPago = @FormaPago, " +
+                                        "Total =@Total, " +
+                                        "Propina = @Propina " +
+                                        "Descuento = @Descuento " +
+                                    "WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
+
                 cmd.Parameters.AddWithValue("@Status", cuenta.Status);
                 cmd.Parameters.AddWithValue("@FormaPago", cuenta.FormaPago);
+                cmd.Parameters.AddWithValue("@Total", cuenta.Total);
+                cmd.Parameters.AddWithValue("@Propina", cuenta.Propina);
+                cmd.Parameters.AddWithValue("@Descuento", cuenta.Descuento);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
