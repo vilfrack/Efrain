@@ -36,10 +36,10 @@
             this.GridViewComanda = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.GridViewMenu = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCerrarComanda = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCrearComanda = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnBorrarComanda = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnAtras = new System.Windows.Forms.Button();
             this.comboGrupoBusqueda = new System.Windows.Forms.ComboBox();
@@ -129,20 +129,23 @@
             this.GridViewMenu.AllowUserToAddRows = false;
             this.GridViewMenu.AllowUserToDeleteRows = false;
             this.GridViewMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewMenu.Enabled = false;
             this.GridViewMenu.Location = new System.Drawing.Point(6, 19);
             this.GridViewMenu.Name = "GridViewMenu";
             this.GridViewMenu.Size = new System.Drawing.Size(276, 399);
             this.GridViewMenu.TabIndex = 35;
             this.GridViewMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewMenu_CellClick);
             // 
-            // button1
+            // btnCerrarComanda
             // 
-            this.button1.Location = new System.Drawing.Point(9, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 51);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Agregar Nota";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCerrarComanda.Enabled = false;
+            this.btnCerrarComanda.Location = new System.Drawing.Point(190, 29);
+            this.btnCerrarComanda.Name = "btnCerrarComanda";
+            this.btnCerrarComanda.Size = new System.Drawing.Size(84, 51);
+            this.btnCerrarComanda.TabIndex = 6;
+            this.btnCerrarComanda.Text = "Cerrar Comanda";
+            this.btnCerrarComanda.UseVisualStyleBackColor = true;
+            this.btnCerrarComanda.Click += new System.EventHandler(this.btnCerrarComanda_Click);
             // 
             // label3
             // 
@@ -155,7 +158,7 @@
             // 
             // btnCrearComanda
             // 
-            this.btnCrearComanda.Location = new System.Drawing.Point(99, 29);
+            this.btnCrearComanda.Location = new System.Drawing.Point(10, 29);
             this.btnCrearComanda.Name = "btnCrearComanda";
             this.btnCrearComanda.Size = new System.Drawing.Size(84, 51);
             this.btnCrearComanda.TabIndex = 9;
@@ -163,20 +166,22 @@
             this.btnCrearComanda.UseVisualStyleBackColor = true;
             this.btnCrearComanda.Click += new System.EventHandler(this.btnCrearComanda_Click);
             // 
-            // button3
+            // btnBorrarComanda
             // 
-            this.button3.Location = new System.Drawing.Point(189, 29);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 51);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Borrar Comanda";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBorrarComanda.Enabled = false;
+            this.btnBorrarComanda.Location = new System.Drawing.Point(100, 29);
+            this.btnBorrarComanda.Name = "btnBorrarComanda";
+            this.btnBorrarComanda.Size = new System.Drawing.Size(84, 51);
+            this.btnBorrarComanda.TabIndex = 10;
+            this.btnBorrarComanda.Text = "Borrar Comanda";
+            this.btnBorrarComanda.UseVisualStyleBackColor = true;
+            this.btnBorrarComanda.Click += new System.EventHandler(this.btnBorrarComanda_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnAtras);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnBorrarComanda);
+            this.groupBox3.Controls.Add(this.btnCerrarComanda);
             this.groupBox3.Controls.Add(this.btnCrearComanda);
             this.groupBox3.Location = new System.Drawing.Point(320, 47);
             this.groupBox3.Name = "groupBox3";
@@ -226,6 +231,7 @@
             // comboMesonero
             // 
             this.comboMesonero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMesonero.Enabled = false;
             this.comboMesonero.FormattingEnabled = true;
             this.comboMesonero.Location = new System.Drawing.Point(407, 19);
             this.comboMesonero.Name = "comboMesonero";
@@ -272,10 +278,10 @@
         private System.Windows.Forms.Label labelNumeroMesa;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCerrarComanda;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCrearComanda;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBorrarComanda;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboGrupoBusqueda;
         private System.Windows.Forms.Button btnAtras;

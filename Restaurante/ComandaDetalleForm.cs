@@ -81,21 +81,16 @@ namespace Restaurante
             //VALIDAMOS SI LA COMANDA EXISTE POR MEDIO DEL ID DE MESA MAS EL STATUS
             _datatable = CRUDComanda.ComandaAbierta(Comanda);
             int existe = Convert.ToInt32(_datatable.Rows[0]["existe"].ToString());
-            if (existe==0)
+            if (existe!=0)
             {
-                CRUDComanda.InsertarComanda(Comanda);
-                //SE OBTIENE EL ID DE LA COMANDA CREADA
-                //DataTable _datatable = new DataTable();
-                _datatable = CRUDComanda.UltimoIDComanda(Comanda);
-                IDComanda = Convert.ToInt32(_datatable.Rows[0]["IDComanda"].ToString());
-            }
-            else
-            {
-                //en caso contrario se busca la comanda por medio del id de mesa y el status
+                //se busca la comanda por medio del id de mesa y el status
                 _datatable = CRUDComanda.BuscarComanda(Comanda);
                 IDComanda = Convert.ToInt32(_datatable.Rows[0]["IDComanda"].ToString());
+                total();
+                DesbloquearControles();
             }
             BindGridPlatos();
+
         }
 
         private void BindGrid(string IDGrupos)
@@ -152,6 +147,12 @@ namespace Restaurante
         }
         private void btnAtras_Click(object sender, EventArgs e)
         {
+            //se cierra el formulario de comanda y el de comanda detalle
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == "ComandaForm")   //Closing all other
+                    f.Close();           //forms
+            }
             this.Close();
         }
 
@@ -223,38 +224,77 @@ namespace Restaurante
 
         private void btnCrearComanda_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (MessageBox.Show("Seguro desea registrar la comanda?. Una vez registrada la comanda se debe proceder a pagar la cuenta", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    Comanda.IDComanda = IDComanda;
-                    Comanda.IDMesas = IDMesas;
-                    Comanda.Status = status.Cerrado;
-                    Comanda.IDMesoneros = Convert.ToInt32(comboMesonero.SelectedValue);
-                    Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
-                    CRUDComanda.ModificarComanda(Comanda);
-                    //SE ACTUALIZA EL GRID DE CUENTAFORM
-                    if (_CuentaForm!=null)
-                    {
-                        _CuentaForm.BindGridCuenta();
-                    }
+            DataTable _datatable = new DataTable();
+            CRUDComanda.InsertarComanda(Comanda);
+            //SE OBTIENE EL ID DE LA COMANDA CREADA
+            _datatable = CRUDComanda.UltimoIDComanda(Comanda);
+            IDComanda = Convert.ToInt32(_datatable.Rows[0]["IDComanda"].ToString());
+            DesbloquearControles();
 
 
-
-
-                    MessageBox.Show("Comanda registrada");
-                    this.Close();
-                }
-            }
-            catch (Exception ex )
-            {
-                MessageBox.Show("ERROR: "+ex.Message);
-            }
+            MessageBox.Show("Comanda Creada");
+        }
+        private void DesbloquearControles() {
+            btnBorrarComanda.Enabled = true;
+            btnCerrarComanda.Enabled = true;
+            comboMesonero.Enabled = true;
+            GridViewMenu.Enabled = true;
+        }
+        private void BloquearControles()
+        {
+            btnBorrarComanda.Enabled = false;
+            btnCerrarComanda.Enabled = false;
+            comboMesonero.Enabled = false;
+            GridViewMenu.Enabled = false;
+        }
+        private void comboMesonero_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void comboMesonero_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnCerrarComanda_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (MessageBox.Show("Seguro desea cerrar la comanda?. Una vez cerrada la comanda se debe proceder a pagar la cuenta", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (LabelTotal.Text =="")
+                    {
+                        MessageBox.Show("Debe registrar pedidos a la comanda");
+                    }
+                    else
+                    {
+                        Comanda.IDComanda = IDComanda;
+                        Comanda.IDMesas = IDMesas;
+                        Comanda.Status = status.Cerrado;
+                        Comanda.IDMesoneros = Convert.ToInt32(comboMesonero.SelectedValue);
+                        Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
+                        CRUDComanda.ModificarComanda(Comanda);
+                        //SE ACTUALIZA EL GRID DE CUENTAFORM
+                        if (_CuentaForm != null)
+                        {
+                            _CuentaForm.BindGridCuenta();
+                        }
+                        MessageBox.Show("Comanda registrada");
+                        this.Close();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+        }
+
+        private void btnBorrarComanda_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro desea eliminar la comanda?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                CRUDComanda.EliminarComanda(Convert.ToString(IDComanda));
+                MessageBox.Show("Comanda eliminada");
+                this.Close();
+            }
 
         }
     }
