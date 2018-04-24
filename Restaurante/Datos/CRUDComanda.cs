@@ -64,7 +64,14 @@ namespace Datos
         public DataTable ComandaAbierta(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
-            SqlDataAdapter sda = new SqlDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='"+Comanda.IDMesas+ "' AND Status='ABIERTA'", cn);
+            SqlDataAdapter sda = new SqlDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='"+Comanda.IDMesas+ "' AND IDTurno = '"+Comanda.IDTurno+"' AND Status='ABIERTA'", cn);
+            sda.Fill(_ds);
+            return _ds.Tables[0];
+        }
+        public DataTable ComandaProcesando(Comanda Comanda)
+        {
+            DataSet _ds = new DataSet();
+            SqlDataAdapter sda = new SqlDataAdapter("select Count(1) as existe from Comanda WHERE IDMesas ='" + Comanda.IDMesas + "' AND Status='PROCESANDO'", cn);
             sda.Fill(_ds);
             return _ds.Tables[0];
         }

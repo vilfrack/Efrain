@@ -99,7 +99,7 @@ namespace Restaurante
                 LabelDisponible.Font = new Font("Arial", 8, FontStyle.Bold);
 
                 //VALIDAMOS SI LA MESA ESTA DISPONIBLE
-                string validar = CRUDComanda.DisponibilidadMesa(_IDTurno, status.Procesando,item.IDMesas);
+                string validar = CRUDComanda.DisponibilidadMesa(_IDTurno, status.Abierta,item.IDMesas);
                 //FIN DE LA VALIDACION
                 LabelDisponible.ForeColor = validar =="DISPONIBLE" ? Color.Green : Color.Red;
                 LabelDisponible.Text = validar;

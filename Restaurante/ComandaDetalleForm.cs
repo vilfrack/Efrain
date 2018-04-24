@@ -95,7 +95,7 @@ namespace Restaurante
                 _datatable = CRUDComanda.BuscarComanda(Comanda);
                 IDComanda = Convert.ToInt32(_datatable.Rows[0]["IDComanda"].ToString());
             }
-
+            BindGridPlatos();
         }
 
         private void BindGrid(string IDGrupos)
@@ -113,16 +113,21 @@ namespace Restaurante
 
         private void BindGridPlatos()
         {
+            //GRID QUE MUESTRA LOS MENUS QUE SE HAN SELECCIONADO PARA LA COMANDA
             DataSet _ds = new DataSet();
             DataTable _datatable = new DataTable();
-            _ds = CRUDComanda.ListarMasterComanda(IDComanda);
-            if (_ds.Tables.Count > 0)
+            if (IDComanda != 0)
             {
-                GridViewComanda.DataSource = _ds.Tables[0];
-                this.GridViewComanda.Columns["IDMenu"].Visible = false;
-                this.GridViewComanda.Columns["IDComanda"].Visible = false;
-                this.GridViewComanda.Columns["IDMasterComanda"].Visible = false;
+                _ds = CRUDComanda.ListarMasterComanda(IDComanda);
+                if (_ds.Tables.Count > 0)
+                {
+                    GridViewComanda.DataSource = _ds.Tables[0];
+                    this.GridViewComanda.Columns["IDMenu"].Visible = false;
+                    this.GridViewComanda.Columns["IDComanda"].Visible = false;
+                    this.GridViewComanda.Columns["IDMasterComanda"].Visible = false;
+                }
             }
+
         }
 
         private void ComboGrupos()
@@ -220,11 +225,11 @@ namespace Restaurante
         {
             try
             {
-                if (MessageBox.Show("Seguro desea registrar la comanda?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Seguro desea registrar la comanda?. Una vez registrada la comanda se debe proceder a pagar la cuenta", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Comanda.IDComanda = IDComanda;
                     Comanda.IDMesas = IDMesas;
-                    Comanda.Status = status.Procesando;
+                    Comanda.Status = status.Cerrado;
                     Comanda.IDMesoneros = Convert.ToInt32(comboMesonero.SelectedValue);
                     Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
                     CRUDComanda.ModificarComanda(Comanda);
