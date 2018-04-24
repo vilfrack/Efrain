@@ -124,20 +124,14 @@ namespace Datos
                 throw;
             }
         }
-        public DataSet ListarCuenta()
+        public DataSet ListarCuenta(int IDTurno)
         {
-            /*
-             select Comanda.*, Mesas.IDMesas,Mesoneros.IDMesoneros, Mesoneros.Nombre,Mesoneros.Apellido from Comanda
-            inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas
-            inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros
-            WHERE Comanda.Status='CERRADA'
-             */
             DataSet _ds = new DataSet();
             SqlDataAdapter sda = new SqlDataAdapter("select Comanda.*,Mesas.NumeroMesa, (Mesoneros.Nombre + ' ' + Mesoneros.Apellido) as Mesero " +
                                                         "from Comanda " +
                                                         "inner join Mesas ON Comanda.IDMesas = Mesas.IDMesas " +
                                                         "inner join Mesoneros ON Comanda.IDMesoneros = Mesoneros.IDMesoneros " +
-                                                        "WHERE Comanda.Status = 'CERRADA'", cn);
+                                                        "WHERE Comanda.Status = 'CERRADA' AND Comanda.IDTurno='"+ IDTurno + "'", cn);
             sda.Fill(_ds);
             return _ds;
         }
@@ -207,7 +201,7 @@ namespace Datos
                                         "Status=@Status, "+
                                         "FormaPago = @FormaPago, " +
                                         "Total =@Total, " +
-                                        "Propina = @Propina " +
+                                        "Propina = @Propina, " +
                                         "Descuento = @Descuento " +
                                     "WHERE IDCuenta= '" + cuenta.IDCuenta + "'";
 
@@ -317,7 +311,7 @@ namespace Datos
             SqlDataAdapter sda = new SqlDataAdapter("select  Menu.IDMenu,Menu.Nombre as Menu, Menu.Precio, Comanda.* from Comanda " +
                                                         "inner join MasterComanda ON MasterComanda.IDComanda = Comanda.IDComanda " +
                                                         "inner join Menu ON Menu.IDMenu = MasterComanda.IDMenu " +
-                                                        "where Comanda.Status = 'CERRADA' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
+                                                        "where Comanda.Status = 'PROCESANDO' AND Comanda.IDComanda ='" + IDComanda + "' ", cn);
             sda.Fill(_ds);
             return _ds;
         }

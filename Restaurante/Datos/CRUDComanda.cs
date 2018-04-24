@@ -41,6 +41,19 @@ namespace Datos
             cn.Close();
             return ListMesas;
         }
+
+        public string DisponibilidadMesa(int IDTurno, string Status, int IDMesas) {
+            string disponibilidad = "DISPONIBLE";
+            DataSet _ds = new DataSet();
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(1) as validar FROM Comanda WHERE IDMesas ='"+ IDMesas + "' AND IDTurno = '"+ IDTurno + "' AND Status ='"+ Status + "';", cn);
+            sda.Fill(_ds);
+            string validar = _ds.Tables[0].Rows[0]["validar"].ToString();
+            if (validar !="0")
+            {
+                disponibilidad = "NO DISPONIBLE";
+            }
+            return disponibilidad;
+        }
         public DataTable UltimoIDComanda(Comanda Comanda)
         {
             DataSet _ds = new DataSet();
@@ -78,11 +91,12 @@ namespace Datos
 
                 cn.Open();
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "INSERT INTO [Comanda] (IDMesas,TotalPrecio,Status,Fecha) VALUES (@IDMesas,@TotalPrecio,@Status,@Fecha)";
+                cmd.CommandText = "INSERT INTO [Comanda] (IDMesas,TotalPrecio,Status,Fecha,IDTurno) VALUES (@IDMesas,@TotalPrecio,@Status,@Fecha,@IDTurno)";
                 cmd.Parameters.AddWithValue("@IDMesas", Comanda.IDMesas);
                 cmd.Parameters.AddWithValue("@TotalPrecio", Comanda.TotalPrecio);
                 cmd.Parameters.AddWithValue("@Status", Comanda.Status);
                 cmd.Parameters.AddWithValue("@Fecha", Comanda.Fecha);
+                cmd.Parameters.AddWithValue("@IDTurno", Comanda.IDTurno);
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();

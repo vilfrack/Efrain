@@ -10,6 +10,7 @@ namespace Restaurante.Utilidades
     {
         public string Cerrado = "CERRADA";
         public string Abierta = "ABIERTA";
+        public string Procesando = "PROCESANDO";
         public string Pagada = "PAGADA";
     }
 }

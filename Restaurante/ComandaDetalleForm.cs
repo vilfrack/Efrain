@@ -27,18 +27,26 @@ namespace Restaurante
             InitializeComponent();
             this._CuentaForm = CuentaForm;
         }
-
+        #region UTILIDADES
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+        private Utilidades.Status status = new Utilidades.Status();
+        #endregion
+
+        #region CRUD CLASES
         public CRUDMenu CRUDMenu = new CRUDMenu();
         public CRUDInsumos CRUDInsumos = new CRUDInsumos();
         public CRUDComanda CRUDComanda = new CRUDComanda();
+        CRUDTurno CRUDTurno = new CRUDTurno();
+        #endregion
+
         public Models.MasterComanda MasterComanda = new Models.MasterComanda();
         public Models.Comanda Comanda = new Models.Comanda();
+
         private int IDMesas = 0;
         private int NumeroMesa = 0;
         private int CantidadPersona = 0;
         private int IDComanda = 0;
-
+        private int _IDTurno = 0;
         private void ComandaDetalleForm_Load(object sender, EventArgs e)
         {
 
@@ -61,12 +69,13 @@ namespace Restaurante
                 labelNumeroMesa.Text = NumeroMesa.ToString();
             #endregion
 
-
+            _IDTurno = CRUDTurno.ObtenerIDTurnoAbierto(status.Abierta);
 
             //SE CREA LA COMANDA PARA OBTENER SU ID
             Comanda.IDMesas = IDMesas;
             Comanda.Status = "ABIERTA";
             Comanda.Fecha = DateTime.Now;
+            Comanda.IDTurno = _IDTurno;
 
             DataTable _datatable = new DataTable();
             //VALIDAMOS SI LA COMANDA EXISTE POR MEDIO DEL ID DE MESA MAS EL STATUS
@@ -215,12 +224,16 @@ namespace Restaurante
                 {
                     Comanda.IDComanda = IDComanda;
                     Comanda.IDMesas = IDMesas;
-                    Comanda.Status = "CERRADA";
+                    Comanda.Status = status.Procesando;
                     Comanda.IDMesoneros = Convert.ToInt32(comboMesonero.SelectedValue);
                     Comanda.TotalPrecio = Convert.ToDecimal(LabelTotal.Text);
                     CRUDComanda.ModificarComanda(Comanda);
                     //SE ACTUALIZA EL GRID DE CUENTAFORM
-                    _CuentaForm.BindGridCuenta();
+                    if (_CuentaForm!=null)
+                    {
+                        _CuentaForm.BindGridCuenta();
+                    }
+
 
 
 

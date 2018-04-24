@@ -14,16 +14,8 @@ namespace Restaurante
 {
     public partial class CuentaForm : Form
     {
-        public CuentaForm()
-        {
-            InitializeComponent();
-        }
+
         public Propinas _Propinas;
-        //public CuentaForm(Propinas propinas)
-        //{
-        //    InitializeComponent();
-        //    this._Propinas = propinas;
-        //}
         public CRUDCuenta CRUDCuenta = new CRUDCuenta();
         private Models.Cuenta Cuenta = new Models.Cuenta();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
@@ -39,6 +31,12 @@ namespace Restaurante
         //public static decimal _SetTotalDescuento = 0;
         public static bool _SetPropinaPorcentaje = false;
         public static int _IDCuenta = 0;
+        public int _IDTurno = 0;
+
+        public CuentaForm()
+        {
+            InitializeComponent();
+        }
 
         private void CuentaForm_Load(object sender, EventArgs e)
         {
@@ -47,26 +45,18 @@ namespace Restaurante
             utilidades.ConfiguracionGridview(GridViewComanda);
             utilidades.ConfiguracionGridview(GridViewCuenta);
             utilidades.ConfiguracionFormulario(this);
+            _IDTurno = CRUDTurno.ObtenerIDTurnoAbierto(status.Abierta);
+
             BindGridCuenta();
-            //BindGridComanda();
-            //btnEditar.Enabled = false;
+
             btnImprimir.Enabled = false;
-            //BtnGuardar.Enabled = false;
+            //se obtiene el id del turno que este abierto
 
-            //Controles(false);
-
-            //comboInventariable.Items.Add("Si");
-            //comboInventariable.Items.Add("No");
-            //comboInventariable.SelectedIndex = 0;
-            //UNIDAD DE MEDIDA
-            //ComboUnidadMedida();
-            //GRUPOS
-            //ComboGrupos();
         }
         public void BindGridCuenta()
         {
             DataSet _ds = new DataSet();
-            _ds = CRUDCuenta.ListarCuenta();
+            _ds = CRUDCuenta.ListarCuenta(_IDTurno);
             if (_ds.Tables.Count > 0)
             {
                 GridViewCuenta.DataSource = _ds.Tables[0];

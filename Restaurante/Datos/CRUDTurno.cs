@@ -25,7 +25,7 @@ namespace Datos
         public void Cierre(Turno Turno) {
             cn.Open();
             SqlCommand cmd = cn.CreateCommand();
-            cmd.CommandText = "UPDATE Turno SET StatusTurno = StatusTurno, Cerrar = @Cerrar WHERE IDTurno ='"+Turno.IDTurno+"'";
+            cmd.CommandText = "UPDATE Turno SET StatusTurno = @StatusTurno, Cerrar = @Cerrar WHERE IDTurno ='"+Turno.IDTurno+"'";
             cmd.Parameters.AddWithValue("@Cerrar", Turno.Cerrar);
             cmd.Parameters.AddWithValue("@StatusTurno", Turno.StatusTurno);
 

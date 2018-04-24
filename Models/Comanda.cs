@@ -14,5 +14,6 @@ namespace Models
         public string Status { get; set; }
         public DateTime Fecha { get; set; }
         public int IDMesoneros { get; set; }
+        public int IDTurno { get; set; }
     }
 }

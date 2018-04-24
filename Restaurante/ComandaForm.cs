@@ -16,11 +16,15 @@ namespace Restaurante
     public partial class ComandaForm : Form
     {
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
-        public CRUDComanda CRUDComanda = new CRUDComanda();
+        Utilidades.Status status = new Utilidades.Status();
+
+        CRUDComanda CRUDComanda = new CRUDComanda();
+        CRUDTurno CRUDTurno = new CRUDTurno();
+
         public static int SetIDMesas = 0;
         public static int SetNumeroMesa = 0;
         public static int SetCantidadPersona = 0;
-
+        public int _IDTurno = 0;
         public ComandaForm()
         {
             InitializeComponent();
@@ -39,6 +43,8 @@ namespace Restaurante
         {
             utilidades.ConfiguracionFormulario(this);
             List<Models.Mesas> ListMesas = new List<Models.Mesas>();
+            // se obtiene el turno
+            _IDTurno = CRUDTurno.ObtenerIDTurnoAbierto(status.Abierta);
 
             ListMesas.AddRange(CRUDComanda.DatosMesas());
             //180
@@ -90,9 +96,14 @@ namespace Restaurante
                 LabelDisponible.Location = new Point(5, 140);
                 LabelDisponible.TextAlign = ContentAlignment.MiddleCenter;
                 LabelDisponible.Width = 150;
-                LabelDisponible.ForeColor = Color.Green;
                 LabelDisponible.Font = new Font("Arial", 8, FontStyle.Bold);
-                LabelDisponible.Text = "DISPONIBLE";
+
+                //VALIDAMOS SI LA MESA ESTA DISPONIBLE
+                string validar = CRUDComanda.DisponibilidadMesa(_IDTurno, status.Procesando,item.IDMesas);
+                //FIN DE LA VALIDACION
+                LabelDisponible.ForeColor = validar =="DISPONIBLE" ? Color.Green : Color.Red;
+                LabelDisponible.Text = validar;
+
                 //se crea el boton de seleccionar
                 Button btnSeleccionar = new Button();
                 btnSeleccionar.Name = "btn" + item.IDMesas;
