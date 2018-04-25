@@ -1,0 +1,913 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IDCliente" />
+          </Key>
+          <Property Name="IDCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="250" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="250" />
+          <Property Name="Tipo_Facturacion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pais" Type="nvarchar" MaxLength="100" />
+          <Property Name="CodPostal" Type="nvarchar" MaxLength="100" />
+          <Property Name="FolioFiscal" Type="nvarchar" MaxLength="100" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Curp" Type="nvarchar" MaxLength="100" />
+          <Property Name="Giro" Type="nvarchar" MaxLength="100" />
+          <Property Name="Poblacion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contacto" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono4" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono5" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Comanda">
+          <Key>
+            <PropertyRef Name="IDComanda" />
+          </Key>
+          <Property Name="IDComanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDMesas" Type="int" />
+          <Property Name="TotalPrecio" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="IDMesoneros" Type="int" />
+          <Property Name="IDTurno" Type="int" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="IDCuenta" />
+          </Key>
+          <Property Name="IDCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDMesas" Type="int" />
+          <Property Name="IDMesoneros" Type="int" />
+          <Property Name="Reserva" Type="nvarchar" MaxLength="100" />
+          <Property Name="Apertura" Type="datetime" />
+          <Property Name="Cierre" Type="datetime" />
+          <Property Name="Orden" Type="int" />
+          <Property Name="Folio" Type="int" />
+          <Property Name="SubTotal" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Descuento" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Impuesto" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Propina" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDComanda" Type="int" />
+          <Property Name="Comisionista" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDCliente" Type="int" />
+          <Property Name="Imprimir" Type="bit" />
+          <Property Name="Cargo" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Monedero" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="IDTurno" Type="int" />
+          <Property Name="FormaPago" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Grupos">
+          <Key>
+            <PropertyRef Name="IDGrupo" />
+          </Key>
+          <Property Name="IDGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Insumos">
+          <Key>
+            <PropertyRef Name="IDInsumos" />
+          </Key>
+          <Property Name="IDInsumos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDGrupos" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UnidadMedida" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UltimoCosto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostoPromedio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostoImpuesto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Inventariable" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaestroRolUsuario">
+          <Key>
+            <PropertyRef Name="IDMaestroRolUsuario" />
+          </Key>
+          <Property Name="IDMaestroRolUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUsuario" Type="int" />
+          <Property Name="IDRol" Type="int" />
+        </EntityType>
+        <EntityType Name="MasterCierreCuenta">
+          <Key>
+            <PropertyRef Name="IDMasterCierreCuenta" />
+          </Key>
+          <Property Name="IDMasterCierreCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCuenta" Type="int" Nullable="false" />
+          <Property Name="IDCierre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterComanda">
+          <Key>
+            <PropertyRef Name="IDMasterComanda" />
+          </Key>
+          <Property Name="IDMasterComanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDComanda" Type="int" />
+          <Property Name="IDMenu" Type="int" />
+          <Property Name="Precio" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MasterGrupoSubGrupo">
+          <Key>
+            <PropertyRef Name="IDGrupo" />
+            <PropertyRef Name="IDSubGrupos" />
+          </Key>
+          <Property Name="IDGrupo" Type="int" Nullable="false" />
+          <Property Name="IDSubGrupos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterInsumos">
+          <Key>
+            <PropertyRef Name="IDMasterInsumos" />
+          </Key>
+          <Property Name="IDMasterInsumos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDInsumos" Type="int" />
+          <Property Name="IDMenu" Type="int" />
+          <Property Name="Cantidad" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="IDMenu" />
+          </Key>
+          <Property Name="IDMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDGrupo" Type="int" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" />
+          <Property Name="precio" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Mesas">
+          <Key>
+            <PropertyRef Name="IDMesas" />
+          </Key>
+          <Property Name="IDMesas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroMesa" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CantidadPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesoneros">
+          <Key>
+            <PropertyRef Name="IDMesoneros" />
+          </Key>
+          <Property Name="IDMesoneros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Promociones">
+          <Key>
+            <PropertyRef Name="IDPromociones" />
+          </Key>
+          <Property Name="IDPromociones" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="tipopromocion" Type="varchar" MaxLength="100" />
+          <Property Name="lunesinicio" Type="varchar" MaxLength="50" />
+          <Property Name="lunesfin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicalunes" Type="bit" />
+          <Property Name="lunesdiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="martesinicio" Type="varchar" MaxLength="50" />
+          <Property Name="martesfin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicamartes" Type="bit" />
+          <Property Name="martesdiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="miercolesinicio" Type="varchar" MaxLength="50" />
+          <Property Name="miercolesfin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicamiercoles" Type="bit" />
+          <Property Name="miercolesdiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="juevesinicio" Type="varchar" MaxLength="50" />
+          <Property Name="juevesfin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicajueves" Type="bit" />
+          <Property Name="juevesdiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="viernesinicio" Type="varchar" MaxLength="50" />
+          <Property Name="viernesfin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicaviernes" Type="bit" />
+          <Property Name="viernesdiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="sabadoinicio" Type="varchar" MaxLength="50" />
+          <Property Name="sabadofin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicasabado" Type="bit" />
+          <Property Name="domingoinicio" Type="varchar" MaxLength="50" />
+          <Property Name="sabadodiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="domingofin" Type="varchar" MaxLength="50" />
+          <Property Name="aplicadomingo" Type="bit" />
+          <Property Name="domingodiasalida" Type="varchar" MaxLength="100" />
+          <Property Name="visualizar" Type="bit" />
+          <Property Name="Relacionuno" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="Relaciondos" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="forzarporproducto" Type="bit" />
+          <Property Name="IDMenu" Type="int" />
+          <Property Name="Descuento" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="IDTipoDescuento" Type="int" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IDRol" />
+          </Key>
+          <Property Name="IDRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ServicioDomicilio">
+          <Key>
+            <PropertyRef Name="IDDomilicilio" />
+          </Key>
+          <Property Name="IDDomilicilio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCliente" Type="int" Nullable="false" />
+          <Property Name="Calle" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NumExterior" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NumInterior" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Cruzamientos" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Cruzamientos2" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Colonia" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Zona" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Referencia" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Delegación" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pais" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CP" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SubGrupos">
+          <Key>
+            <PropertyRef Name="IDSubGrupo" />
+          </Key>
+          <Property Name="IDSubGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDescuento">
+          <Key>
+            <PropertyRef Name="IDTipoDescuento" />
+          </Key>
+          <Property Name="IDTipoDescuento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descuento" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Visible" Type="bit" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="IDTurno" />
+          </Key>
+          <Property Name="IDTurno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Apertura" Type="datetime" />
+          <Property Name="Cerrar" Type="datetime" />
+          <Property Name="StatusTurno" Type="nvarchar" MaxLength="25" />
+          <Property Name="FondoInicial" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="FondoFinal" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="UnidadMedida">
+          <Key>
+            <PropertyRef Name="IDUnidad" />
+          </Key>
+          <Property Name="IDUnidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="BDRestauranteModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comanda" EntityType="Self.Comanda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insumos" EntityType="Self.Insumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaestroRolUsuario" EntityType="Self.MaestroRolUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterCierreCuenta" EntityType="Self.MasterCierreCuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterComanda" EntityType="Self.MasterComanda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterInsumos" EntityType="Self.MasterInsumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesas" EntityType="Self.Mesas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesoneros" EntityType="Self.Mesoneros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promociones" EntityType="Self.Promociones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicioDomicilio" EntityType="Self.ServicioDomicilio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubGrupos" EntityType="Self.SubGrupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDescuento" EntityType="Self.TipoDescuento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterGrupoSubGrupo" EntityType="Self.MasterGrupoSubGrupo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MasterGrupoSubGrupo].[IDGrupo] AS [IDGrupo], 
+    [MasterGrupoSubGrupo].[IDSubGrupos] AS [IDSubGrupos]
+    FROM [dbo].[MasterGrupoSubGrupo] AS [MasterGrupoSubGrupo]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDRestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IDCliente" />
+          </Key>
+          <Property Name="IDCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo_Facturacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pais" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CodPostal" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FolioFiscal" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="rfc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Curp" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Giro" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Poblacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono5" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Comanda">
+          <Key>
+            <PropertyRef Name="IDComanda" />
+          </Key>
+          <Property Name="IDComanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDMesas" Type="Int32" />
+          <Property Name="TotalPrecio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="IDMesoneros" Type="Int32" />
+          <Property Name="IDTurno" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="IDCuenta" />
+          </Key>
+          <Property Name="IDCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDMesas" Type="Int32" />
+          <Property Name="IDMesoneros" Type="Int32" />
+          <Property Name="Reserva" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Apertura" Type="DateTime" Precision="3" />
+          <Property Name="Cierre" Type="DateTime" Precision="3" />
+          <Property Name="Orden" Type="Int32" />
+          <Property Name="Folio" Type="Int32" />
+          <Property Name="SubTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Propina" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDComanda" Type="Int32" />
+          <Property Name="Comisionista" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDCliente" Type="Int32" />
+          <Property Name="Imprimir" Type="Boolean" />
+          <Property Name="Cargo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Monedero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IDTurno" Type="Int32" />
+          <Property Name="FormaPago" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Grupos">
+          <Key>
+            <PropertyRef Name="IDGrupo" />
+          </Key>
+          <Property Name="IDGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Insumos">
+          <Key>
+            <PropertyRef Name="IDInsumos" />
+          </Key>
+          <Property Name="IDInsumos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGrupos" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnidadMedida" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UltimoCosto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostoPromedio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostoImpuesto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Inventariable" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaestroRolUsuario">
+          <Key>
+            <PropertyRef Name="IDMaestroRolUsuario" />
+          </Key>
+          <Property Name="IDMaestroRolUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUsuario" Type="Int32" />
+          <Property Name="IDRol" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MasterCierreCuenta">
+          <Key>
+            <PropertyRef Name="IDMasterCierreCuenta" />
+          </Key>
+          <Property Name="IDMasterCierreCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCuenta" Type="Int32" Nullable="false" />
+          <Property Name="IDCierre" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterComanda">
+          <Key>
+            <PropertyRef Name="IDMasterComanda" />
+          </Key>
+          <Property Name="IDMasterComanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDComanda" Type="Int32" />
+          <Property Name="IDMenu" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MasterInsumos">
+          <Key>
+            <PropertyRef Name="IDMasterInsumos" />
+          </Key>
+          <Property Name="IDMasterInsumos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDInsumos" Type="Int32" />
+          <Property Name="IDMenu" Type="Int32" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="IDMenu" />
+          </Key>
+          <Property Name="IDMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGrupo" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Mesas">
+          <Key>
+            <PropertyRef Name="IDMesas" />
+          </Key>
+          <Property Name="IDMesas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroMesa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CantidadPersona" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesoneros">
+          <Key>
+            <PropertyRef Name="IDMesoneros" />
+          </Key>
+          <Property Name="IDMesoneros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Promociones">
+          <Key>
+            <PropertyRef Name="IDPromociones" />
+          </Key>
+          <Property Name="IDPromociones" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipopromocion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lunesinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lunesfin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicalunes" Type="Boolean" />
+          <Property Name="lunesdiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="martesinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="martesfin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicamartes" Type="Boolean" />
+          <Property Name="martesdiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="miercolesinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="miercolesfin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicamiercoles" Type="Boolean" />
+          <Property Name="miercolesdiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="juevesinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="juevesfin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicajueves" Type="Boolean" />
+          <Property Name="juevesdiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="viernesinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="viernesfin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicaviernes" Type="Boolean" />
+          <Property Name="viernesdiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sabadoinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sabadofin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicasabado" Type="Boolean" />
+          <Property Name="domingoinicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sabadodiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="domingofin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aplicadomingo" Type="Boolean" />
+          <Property Name="domingodiasalida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="visualizar" Type="Boolean" />
+          <Property Name="Relacionuno" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Relaciondos" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="forzarporproducto" Type="Boolean" />
+          <Property Name="IDMenu" Type="Int32" />
+          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IDTipoDescuento" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IDRol" />
+          </Key>
+          <Property Name="IDRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ServicioDomicilio">
+          <Key>
+            <PropertyRef Name="IDDomilicilio" />
+          </Key>
+          <Property Name="IDDomilicilio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCliente" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumExterior" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumInterior" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cruzamientos" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cruzamientos2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Colonia" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Zona" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Referencia" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Delegación" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SubGrupos">
+          <Key>
+            <PropertyRef Name="IDSubGrupo" />
+          </Key>
+          <Property Name="IDSubGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDescuento">
+          <Key>
+            <PropertyRef Name="IDTipoDescuento" />
+          </Key>
+          <Property Name="IDTipoDescuento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Visible" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="IDTurno" />
+          </Key>
+          <Property Name="IDTurno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Apertura" Type="DateTime" Precision="3" />
+          <Property Name="Cerrar" Type="DateTime" Precision="3" />
+          <Property Name="StatusTurno" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FondoInicial" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FondoFinal" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="UnidadMedida">
+          <Key>
+            <PropertyRef Name="IDUnidad" />
+          </Key>
+          <Property Name="IDUnidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MasterGrupoSubGrupo">
+          <Key>
+            <PropertyRef Name="IDGrupo" />
+            <PropertyRef Name="IDSubGrupos" />
+          </Key>
+          <Property Name="IDGrupo" Type="Int32" Nullable="false" />
+          <Property Name="IDSubGrupos" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BDRestauranteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Comanda" EntityType="Self.Comanda" />
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
+          <EntitySet Name="Grupos" EntityType="Self.Grupos" />
+          <EntitySet Name="Insumos" EntityType="Self.Insumos" />
+          <EntitySet Name="MaestroRolUsuario" EntityType="Self.MaestroRolUsuario" />
+          <EntitySet Name="MasterCierreCuenta" EntityType="Self.MasterCierreCuenta" />
+          <EntitySet Name="MasterComanda" EntityType="Self.MasterComanda" />
+          <EntitySet Name="MasterInsumos" EntityType="Self.MasterInsumos" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Mesas" EntityType="Self.Mesas" />
+          <EntitySet Name="Mesoneros" EntityType="Self.Mesoneros" />
+          <EntitySet Name="Promociones" EntityType="Self.Promociones" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="ServicioDomicilio" EntityType="Self.ServicioDomicilio" />
+          <EntitySet Name="SubGrupos" EntityType="Self.SubGrupos" />
+          <EntitySet Name="TipoDescuento" EntityType="Self.TipoDescuento" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" />
+          <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="MasterGrupoSubGrupo" EntityType="Self.MasterGrupoSubGrupo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDRestauranteModelStoreContainer" CdmEntityContainer="BDRestauranteEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Tipo_Facturacion" ColumnName="Tipo_Facturacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+                <ScalarProperty Name="FolioFiscal" ColumnName="FolioFiscal" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Giro" ColumnName="Giro" />
+                <ScalarProperty Name="Poblacion" ColumnName="Poblacion" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono3" ColumnName="Telefono3" />
+                <ScalarProperty Name="Telefono4" ColumnName="Telefono4" />
+                <ScalarProperty Name="Telefono5" ColumnName="Telefono5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comanda">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Comanda">
+              <MappingFragment StoreEntitySet="Comanda">
+                <ScalarProperty Name="IDComanda" ColumnName="IDComanda" />
+                <ScalarProperty Name="IDMesas" ColumnName="IDMesas" />
+                <ScalarProperty Name="TotalPrecio" ColumnName="TotalPrecio" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDMesoneros" ColumnName="IDMesoneros" />
+                <ScalarProperty Name="IDTurno" ColumnName="IDTurno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuenta">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Cuenta">
+              <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="IDCuenta" ColumnName="IDCuenta" />
+                <ScalarProperty Name="IDMesas" ColumnName="IDMesas" />
+                <ScalarProperty Name="IDMesoneros" ColumnName="IDMesoneros" />
+                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
+                <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+                <ScalarProperty Name="Cierre" ColumnName="Cierre" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Propina" ColumnName="Propina" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IDComanda" ColumnName="IDComanda" />
+                <ScalarProperty Name="Comisionista" ColumnName="Comisionista" />
+                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="Imprimir" ColumnName="Imprimir" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Monedero" ColumnName="Monedero" />
+                <ScalarProperty Name="IDTurno" ColumnName="IDTurno" />
+                <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupos">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Grupos">
+              <MappingFragment StoreEntitySet="Grupos">
+                <ScalarProperty Name="IDGrupo" ColumnName="IDGrupo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insumos">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Insumos">
+              <MappingFragment StoreEntitySet="Insumos">
+                <ScalarProperty Name="IDInsumos" ColumnName="IDInsumos" />
+                <ScalarProperty Name="IDGrupos" ColumnName="IDGrupos" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
+                <ScalarProperty Name="UltimoCosto" ColumnName="UltimoCosto" />
+                <ScalarProperty Name="CostoPromedio" ColumnName="CostoPromedio" />
+                <ScalarProperty Name="CostoImpuesto" ColumnName="CostoImpuesto" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Inventariable" ColumnName="Inventariable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaestroRolUsuario">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MaestroRolUsuario">
+              <MappingFragment StoreEntitySet="MaestroRolUsuario">
+                <ScalarProperty Name="IDMaestroRolUsuario" ColumnName="IDMaestroRolUsuario" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDRol" ColumnName="IDRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterCierreCuenta">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MasterCierreCuenta">
+              <MappingFragment StoreEntitySet="MasterCierreCuenta">
+                <ScalarProperty Name="IDMasterCierreCuenta" ColumnName="IDMasterCierreCuenta" />
+                <ScalarProperty Name="IDCuenta" ColumnName="IDCuenta" />
+                <ScalarProperty Name="IDCierre" ColumnName="IDCierre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterComanda">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MasterComanda">
+              <MappingFragment StoreEntitySet="MasterComanda">
+                <ScalarProperty Name="IDMasterComanda" ColumnName="IDMasterComanda" />
+                <ScalarProperty Name="IDComanda" ColumnName="IDComanda" />
+                <ScalarProperty Name="IDMenu" ColumnName="IDMenu" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterInsumos">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MasterInsumos">
+              <MappingFragment StoreEntitySet="MasterInsumos">
+                <ScalarProperty Name="IDMasterInsumos" ColumnName="IDMasterInsumos" />
+                <ScalarProperty Name="IDInsumos" ColumnName="IDInsumos" />
+                <ScalarProperty Name="IDMenu" ColumnName="IDMenu" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="IDMenu" ColumnName="IDMenu" />
+                <ScalarProperty Name="IDGrupo" ColumnName="IDGrupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesas">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Mesas">
+              <MappingFragment StoreEntitySet="Mesas">
+                <ScalarProperty Name="IDMesas" ColumnName="IDMesas" />
+                <ScalarProperty Name="NumeroMesa" ColumnName="NumeroMesa" />
+                <ScalarProperty Name="CantidadPersona" ColumnName="CantidadPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesoneros">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Mesoneros">
+              <MappingFragment StoreEntitySet="Mesoneros">
+                <ScalarProperty Name="IDMesoneros" ColumnName="IDMesoneros" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promociones">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Promociones">
+              <MappingFragment StoreEntitySet="Promociones">
+                <ScalarProperty Name="IDPromociones" ColumnName="IDPromociones" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="tipopromocion" ColumnName="tipopromocion" />
+                <ScalarProperty Name="lunesinicio" ColumnName="lunesinicio" />
+                <ScalarProperty Name="lunesfin" ColumnName="lunesfin" />
+                <ScalarProperty Name="aplicalunes" ColumnName="aplicalunes" />
+                <ScalarProperty Name="lunesdiasalida" ColumnName="lunesdiasalida" />
+                <ScalarProperty Name="martesinicio" ColumnName="martesinicio" />
+                <ScalarProperty Name="martesfin" ColumnName="martesfin" />
+                <ScalarProperty Name="aplicamartes" ColumnName="aplicamartes" />
+                <ScalarProperty Name="martesdiasalida" ColumnName="martesdiasalida" />
+                <ScalarProperty Name="miercolesinicio" ColumnName="miercolesinicio" />
+                <ScalarProperty Name="miercolesfin" ColumnName="miercolesfin" />
+                <ScalarProperty Name="aplicamiercoles" ColumnName="aplicamiercoles" />
+                <ScalarProperty Name="miercolesdiasalida" ColumnName="miercolesdiasalida" />
+                <ScalarProperty Name="juevesinicio" ColumnName="juevesinicio" />
+                <ScalarProperty Name="juevesfin" ColumnName="juevesfin" />
+                <ScalarProperty Name="aplicajueves" ColumnName="aplicajueves" />
+                <ScalarProperty Name="juevesdiasalida" ColumnName="juevesdiasalida" />
+                <ScalarProperty Name="viernesinicio" ColumnName="viernesinicio" />
+                <ScalarProperty Name="viernesfin" ColumnName="viernesfin" />
+                <ScalarProperty Name="aplicaviernes" ColumnName="aplicaviernes" />
+                <ScalarProperty Name="viernesdiasalida" ColumnName="viernesdiasalida" />
+                <ScalarProperty Name="sabadoinicio" ColumnName="sabadoinicio" />
+                <ScalarProperty Name="sabadofin" ColumnName="sabadofin" />
+                <ScalarProperty Name="aplicasabado" ColumnName="aplicasabado" />
+                <ScalarProperty Name="domingoinicio" ColumnName="domingoinicio" />
+                <ScalarProperty Name="sabadodiasalida" ColumnName="sabadodiasalida" />
+                <ScalarProperty Name="domingofin" ColumnName="domingofin" />
+                <ScalarProperty Name="aplicadomingo" ColumnName="aplicadomingo" />
+                <ScalarProperty Name="domingodiasalida" ColumnName="domingodiasalida" />
+                <ScalarProperty Name="visualizar" ColumnName="visualizar" />
+                <ScalarProperty Name="Relacionuno" ColumnName="Relacionuno" />
+                <ScalarProperty Name="Relaciondos" ColumnName="Relaciondos" />
+                <ScalarProperty Name="forzarporproducto" ColumnName="forzarporproducto" />
+                <ScalarProperty Name="IDMenu" ColumnName="IDMenu" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="IDTipoDescuento" ColumnName="IDTipoDescuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="IDRol" ColumnName="IDRol" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicioDomicilio">
+            <EntityTypeMapping TypeName="BDRestauranteModel.ServicioDomicilio">
+              <MappingFragment StoreEntitySet="ServicioDomicilio">
+                <ScalarProperty Name="IDDomilicilio" ColumnName="IDDomilicilio" />
+                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="NumExterior" ColumnName="NumExterior" />
+                <ScalarProperty Name="NumInterior" ColumnName="NumInterior" />
+                <ScalarProperty Name="Cruzamientos" ColumnName="Cruzamientos" />
+                <ScalarProperty Name="Cruzamientos2" ColumnName="Cruzamientos2" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Delegación" ColumnName="Delegación" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubGrupos">
+            <EntityTypeMapping TypeName="BDRestauranteModel.SubGrupos">
+              <MappingFragment StoreEntitySet="SubGrupos">
+                <ScalarProperty Name="IDSubGrupo" ColumnName="IDSubGrupo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDescuento">
+            <EntityTypeMapping TypeName="BDRestauranteModel.TipoDescuento">
+              <MappingFragment StoreEntitySet="TipoDescuento">
+                <ScalarProperty Name="IDTipoDescuento" ColumnName="IDTipoDescuento" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turno">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Turno">
+              <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="IDTurno" ColumnName="IDTurno" />
+                <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+                <ScalarProperty Name="Cerrar" ColumnName="Cerrar" />
+                <ScalarProperty Name="StatusTurno" ColumnName="StatusTurno" />
+                <ScalarProperty Name="FondoInicial" ColumnName="FondoInicial" />
+                <ScalarProperty Name="FondoFinal" ColumnName="FondoFinal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadMedida">
+            <EntityTypeMapping TypeName="BDRestauranteModel.UnidadMedida">
+              <MappingFragment StoreEntitySet="UnidadMedida">
+                <ScalarProperty Name="IDUnidad" ColumnName="IDUnidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterGrupoSubGrupo">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MasterGrupoSubGrupo">
+              <MappingFragment StoreEntitySet="MasterGrupoSubGrupo">
+                <ScalarProperty Name="IDGrupo" ColumnName="IDGrupo" />
+                <ScalarProperty Name="IDSubGrupos" ColumnName="IDSubGrupos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

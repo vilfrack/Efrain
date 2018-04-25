@@ -247,6 +247,12 @@
     <Compile Include="PruebaForm.Designer.cs">
       <DependentUpon>PruebaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RolForm.Designer.cs">
+      <DependentUpon>RolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServicioDomicilio.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
@@ -334,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PruebaForm.resx">
       <DependentUpon>PruebaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RolForm.resx">
+      <DependentUpon>RolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubGrupoForm.resx">
       <DependentUpon>SubGrupoForm.cs</DependentUpon>

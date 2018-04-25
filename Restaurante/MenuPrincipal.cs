@@ -174,5 +174,11 @@ namespace Restaurante
             MesonerosForm mesoneros = new MesonerosForm();
             mesoneros.ShowDialog();
         }
+
+        private void rolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RolForm rol = new RolForm();
+            rol.ShowDialog();
+        }
     }
 }
