@@ -280,6 +280,12 @@
     <Compile Include="UnidadMedidaForm.Designer.cs">
       <DependentUpon>UnidadMedidaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsuarioForm.Designer.cs">
+      <DependentUpon>UsuarioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilidades\FormaPago.cs" />
     <Compile Include="Utilidades\Status.cs" />
     <Compile Include="Utilidades\Utilidades.cs" />
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UnidadMedidaForm.resx">
       <DependentUpon>UnidadMedidaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsuarioForm.resx">
+      <DependentUpon>UsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="EF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
