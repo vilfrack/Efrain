@@ -87,6 +87,7 @@
             this.btnAtras.TabIndex = 52;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // btnEliminarUsuario
             // 
@@ -146,6 +147,7 @@
             this.GridViewUsuario.Name = "GridViewUsuario";
             this.GridViewUsuario.Size = new System.Drawing.Size(618, 176);
             this.GridViewUsuario.TabIndex = 46;
+            this.GridViewUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewUsuario_CellClick);
             // 
             // label3
             // 

@@ -28,6 +28,7 @@ namespace Restaurante
             utilidades.ConfiguracionGridview(GridViewRol);
             utilidades.ConfiguracionGridview(GridViewUsuario);
             BindGridRoles();
+            BindGridUsuarios();
         }
         private void BindGridRoles()
         {
@@ -37,9 +38,9 @@ namespace Restaurante
         {
             GridViewRol.DataSource = EF.Rol.ToList();
         }
-        private void BindGridRolesUsuarios()
+        private void BindGridUsuarios()
         {
-            GridViewUsuario.DataSource = EF.Rol.ToList();
+            GridViewUsuario.DataSource = EF.Usuario.ToList();
         }
 
         private void btnCrearUsuario_Click(object sender, EventArgs e)
@@ -50,7 +51,12 @@ namespace Restaurante
             Usuario.Password = txtPassword.Text;
             EF.Usuario.Add(Usuario);
             EF.SaveChanges();
-            BindGridRolesUsuarios();
+            //SE OBTIENE EL ID DEL USUARIO CREADO
+            int IDUsuario = Usuario.IDUsuario;
+            //SE GUARDAN LOS ROLES DE ESE USUARIO
+            InsertarRoles(IDUsuario);
+
+            BindGridUsuarios();
             MessageBox.Show("Usuario agregado");
         }
 
@@ -68,7 +74,7 @@ namespace Restaurante
                     Usuario.Password = txtPassword.Text;
                     //usuario.IDUsuario = Convert.ToInt32(txtIDUsuario.Text);
                     EF.SaveChanges();
-                    BindGridRolesUsuarios();
+                    BindGridUsuarios();
                     MessageBox.Show("Regitro modificado");
                 }
             }
@@ -86,10 +92,75 @@ namespace Restaurante
                     {
                         EF.Usuario.Remove(usuario);
                         EF.SaveChanges();
-                        BindGridRolesUsuarios();
+                        BindGridUsuarios();
                         MessageBox.Show("Regitro eliminado");
                     }
 
+                }
+            }
+        }
+
+        private void InsertarRoles(int IDUsuario) {
+            //https://stackoverflow.com/questions/1237829/datagridview-checkbox-column-value-and-functionality
+
+            List<DataGridViewRow> rows_with_checked_column = new List<DataGridViewRow>();
+
+            foreach (DataGridViewRow row in GridViewRol.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["check"].Value) == true)
+                {
+                    MaestroRolUsuario MaestroRolUsuario = new MaestroRolUsuario();
+                    //rows_with_checked_column.Add(row);
+
+                    MaestroRolUsuario.IDRol =Convert.ToInt32(row.Cells["IDRol"].Value);
+                    MaestroRolUsuario.IDUsuario = IDUsuario;
+                    EF.MaestroRolUsuario.Add(MaestroRolUsuario);
+                    EF.SaveChanges();
+                }
+            }
+        }
+        private void CheckRoles(int IDUsuario) {
+
+            //MaestroRolUsuario MaestroRolUsuario = new MaestroRolUsuario();
+            List<MaestroRolUsuario> list = new List<MaestroRolUsuario>();
+            list = EF.MaestroRolUsuario.Where(w => w.IDUsuario == IDUsuario).ToList(); ;
+
+            foreach (DataGridViewRow row in GridViewRol.Rows)
+            {
+                foreach (var item in list)
+                {
+                    if (item.IDRol == Convert.ToInt32(row.Cells["IDRol"].Value))
+                    {
+                        row.Cells["check"].Value = true;
+                    }
+                }
+            }
+        }
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GridViewUsuario_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewUsuario.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (GridViewUsuario.Rows[e.RowIndex].Cells[0].Selected)
+                {
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < GridViewUsuario.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            GridViewUsuario.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+                    txtIDUsuario.Text = GridViewUsuario.Rows[e.RowIndex].Cells["IDUsuario"].Value.ToString();
+                    txtUsuario.Text = GridViewUsuario.Rows[e.RowIndex].Cells["Login"].Value.ToString();
+                    txtNombre.Text = GridViewUsuario.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
+                    txtApellido.Text = GridViewUsuario.Rows[e.RowIndex].Cells["Apellido"].Value.ToString();
+                    txtPassword.Text = GridViewUsuario.Rows[e.RowIndex].Cells["Password"].Value.ToString();
+                    CheckRoles(Convert.ToInt32(txtIDUsuario.Text));
                 }
             }
         }

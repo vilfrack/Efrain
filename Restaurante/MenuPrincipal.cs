@@ -180,5 +180,11 @@ namespace Restaurante
             RolForm rol = new RolForm();
             rol.ShowDialog();
         }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsuarioForm usuario = new UsuarioForm();
+            usuario.ShowDialog();
+        }
     }
 }
