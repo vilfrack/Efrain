@@ -46,6 +46,7 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.GridViewRol = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewRol)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -81,7 +82,7 @@
             // 
             // btnAtras
             // 
-            this.btnAtras.Location = new System.Drawing.Point(280, 225);
+            this.btnAtras.Location = new System.Drawing.Point(370, 224);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(84, 51);
             this.btnAtras.TabIndex = 52;
@@ -220,11 +221,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Roles";
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(280, 225);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(84, 51);
+            this.btnCancelar.TabIndex = 66;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // UsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 469);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtApellido);
@@ -243,6 +255,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.GridViewUsuario);
             this.Name = "UsuarioForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UsuarioForm";
             this.Load += new System.EventHandler(this.UsuarioForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridViewUsuario)).EndInit();
@@ -273,5 +286,6 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.DataGridView GridViewRol;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
