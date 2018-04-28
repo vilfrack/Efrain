@@ -23,6 +23,7 @@ namespace Restaurante
         private CRUDCliente CRUD = new CRUDCliente();
         private CRUDEnvioDomicilio CRUDDomicilio = new CRUDEnvioDomicilio();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
+
         public ClienteForm()
         {
 

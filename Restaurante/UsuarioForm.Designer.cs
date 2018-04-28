@@ -85,7 +85,7 @@
             this.btnAtras.Location = new System.Drawing.Point(370, 224);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(84, 51);
-            this.btnAtras.TabIndex = 52;
+            this.btnAtras.TabIndex = 9;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
@@ -96,7 +96,7 @@
             this.btnEliminarUsuario.Location = new System.Drawing.Point(190, 225);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
             this.btnEliminarUsuario.Size = new System.Drawing.Size(84, 51);
-            this.btnEliminarUsuario.TabIndex = 51;
+            this.btnEliminarUsuario.TabIndex = 7;
             this.btnEliminarUsuario.Text = "Eliminar";
             this.btnEliminarUsuario.UseVisualStyleBackColor = true;
             this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
@@ -106,7 +106,7 @@
             this.btnCrearUsuario.Location = new System.Drawing.Point(10, 224);
             this.btnCrearUsuario.Name = "btnCrearUsuario";
             this.btnCrearUsuario.Size = new System.Drawing.Size(84, 51);
-            this.btnCrearUsuario.TabIndex = 50;
+            this.btnCrearUsuario.TabIndex = 5;
             this.btnCrearUsuario.Text = "Crear";
             this.btnCrearUsuario.UseVisualStyleBackColor = true;
             this.btnCrearUsuario.Click += new System.EventHandler(this.btnCrearUsuario_Click);
@@ -117,7 +117,7 @@
             this.btnEditarUsuario.Location = new System.Drawing.Point(100, 224);
             this.btnEditarUsuario.Name = "btnEditarUsuario";
             this.btnEditarUsuario.Size = new System.Drawing.Size(84, 51);
-            this.btnEditarUsuario.TabIndex = 49;
+            this.btnEditarUsuario.TabIndex = 6;
             this.btnEditarUsuario.Text = "Editar";
             this.btnEditarUsuario.UseVisualStyleBackColor = true;
             this.btnEditarUsuario.Click += new System.EventHandler(this.btnEditarUsuario_Click);
@@ -137,7 +137,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(91, 42);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(182, 20);
-            this.txtUsuario.TabIndex = 47;
+            this.txtUsuario.TabIndex = 0;
             // 
             // GridViewUsuario
             // 
@@ -165,7 +165,7 @@
             this.txtPassword.Location = new System.Drawing.Point(90, 68);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(182, 20);
-            this.txtPassword.TabIndex = 56;
+            this.txtPassword.TabIndex = 2;
             // 
             // label4
             // 
@@ -182,7 +182,7 @@
             this.txtNombre.Location = new System.Drawing.Point(91, 94);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(182, 20);
-            this.txtNombre.TabIndex = 58;
+            this.txtNombre.TabIndex = 3;
             // 
             // label5
             // 
@@ -199,7 +199,7 @@
             this.txtApellido.Location = new System.Drawing.Point(91, 120);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(182, 20);
-            this.txtApellido.TabIndex = 60;
+            this.txtApellido.TabIndex = 4;
             // 
             // GridViewRol
             // 
@@ -226,7 +226,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(280, 225);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(84, 51);
-            this.btnCancelar.TabIndex = 66;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);

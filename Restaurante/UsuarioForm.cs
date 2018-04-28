@@ -50,13 +50,18 @@ namespace Restaurante
                 MessageBox.Show("Todos los campos sin obligatorios");
                 return;
             }
+            bool roles = false;
             foreach (DataGridViewRow row in GridViewRol.Rows)
             {
-                if (Convert.ToBoolean(row.Cells["check"].Value) == false)
+                if (Convert.ToBoolean(row.Cells["check"].Value) == true)
                 {
-                    MessageBox.Show("Debe seleccionar un rol");
-                    return;
+                    roles = true;
                 }
+            }
+            if (!roles)
+            {
+                MessageBox.Show("Debe seleccionar un rol");
+                return;
             }
             Usuario.Login = txtUsuario.Text;
             Usuario.Nombre = txtNombre.Text;

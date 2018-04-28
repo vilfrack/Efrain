@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Restaurante.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,9 @@ namespace Restaurante
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
             utilidades.ConfiguracionFormulario(this);
+
+            //string s = DatosLogin.Usuario;
+            //string p = DatosLogin.Password;
         }
 
         private void btnMenuPedido_Click(object sender, EventArgs e)
@@ -185,6 +189,12 @@ namespace Restaurante
         {
             UsuarioForm usuario = new UsuarioForm();
             usuario.ShowDialog();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            LoginForm login = new LoginForm();
+            login.ShowDialog();
         }
     }
 }
