@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BDRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BDRestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="IDCliente" />
@@ -88,6 +88,14 @@
           <Property Name="IVA" Type="numeric" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Inventariable" Type="nvarchar" MaxLength="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="MaestroModuloRol">
+          <Key>
+            <PropertyRef Name="IDModulosRol" />
+          </Key>
+          <Property Name="IDModulosRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDRol" Type="int" />
+          <Property Name="IDModulo" Type="int" />
+        </EntityType>
         <EntityType Name="MaestroRolUsuario">
           <Key>
             <PropertyRef Name="IDMaestroRolUsuario" />
@@ -156,6 +164,13 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <Property Name="IDMesoneros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
           <Property Name="Apellido" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="IDModulo" />
+          </Key>
+          <Property Name="IDModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modulo" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Promociones">
           <Key>
@@ -279,6 +294,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Insumos" EntityType="Self.Insumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaestroModuloRol" EntityType="Self.MaestroModuloRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaestroRolUsuario" EntityType="Self.MaestroRolUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterCierreCuenta" EntityType="Self.MasterCierreCuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterComanda" EntityType="Self.MasterComanda" Schema="dbo" store:Type="Tables" />
@@ -286,6 +302,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mesas" EntityType="Self.Mesas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mesoneros" EntityType="Self.Mesoneros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promociones" EntityType="Self.Promociones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServicioDomicilio" EntityType="Self.ServicioDomicilio" Schema="dbo" store:Type="Tables" />
@@ -301,8 +318,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
     FROM [dbo].[MasterGrupoSubGrupo] AS [MasterGrupoSubGrupo]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BDRestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -594,7 +610,24 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="MasterGrupoSubGrupo" EntityType="Self.MasterGrupoSubGrupo" />
+          <EntitySet Name="Modulo" EntityType="BDRestauranteModel.Modulo" />
+          <EntitySet Name="MaestroModuloRol" EntityType="BDRestauranteModel.MaestroModuloRol" />
         </EntityContainer>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="IDModulo" />
+          </Key>
+          <Property Name="IDModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modulo1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MaestroModuloRol">
+          <Key>
+            <PropertyRef Name="IDModulosRol" />
+          </Key>
+          <Property Name="IDModulosRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDRol" Type="Int32" />
+          <Property Name="IDModulo" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -884,6 +917,23 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
               <MappingFragment StoreEntitySet="MasterGrupoSubGrupo">
                 <ScalarProperty Name="IDGrupo" ColumnName="IDGrupo" />
                 <ScalarProperty Name="IDSubGrupos" ColumnName="IDSubGrupos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modulo">
+            <EntityTypeMapping TypeName="BDRestauranteModel.Modulo">
+              <MappingFragment StoreEntitySet="Modulo">
+                <ScalarProperty Name="Modulo1" ColumnName="Modulo" />
+                <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaestroModuloRol">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MaestroModuloRol">
+              <MappingFragment StoreEntitySet="MaestroModuloRol">
+                <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
+                <ScalarProperty Name="IDRol" ColumnName="IDRol" />
+                <ScalarProperty Name="IDModulosRol" ColumnName="IDModulosRol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

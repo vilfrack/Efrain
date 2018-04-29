@@ -26,6 +26,8 @@
         <EntityTypeShape EntityType="BDRestauranteModel.UnidadMedida" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BDRestauranteModel.Usuario" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BDRestauranteModel.MasterGrupoSubGrupo" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDRestauranteModel.Modulo" Width="1.5" PointX="9.375" PointY="12.75" />
+        <EntityTypeShape EntityType="BDRestauranteModel.MaestroModuloRol" Width="1.5" PointX="11.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

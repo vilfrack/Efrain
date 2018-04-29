@@ -230,6 +230,12 @@
     <Compile Include="PagarCuentaForm.Designer.cs">
       <DependentUpon>PagarCuentaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PermisoRolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PermisoRolForm.Designer.cs">
+      <DependentUpon>PermisoRolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="PromocionesForm.cs">
       <SubType>Form</SubType>
@@ -294,6 +300,7 @@
     </Compile>
     <Compile Include="Utilidades\FormaPago.cs" />
     <Compile Include="Utilidades\Login.cs" />
+    <Compile Include="Utilidades\Permisos.cs" />
     <Compile Include="Utilidades\Status.cs" />
     <Compile Include="Utilidades\Utilidades.cs" />
     <EmbeddedResource Include="AbrirTurnoForm.resx">
@@ -337,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PagarCuentaForm.resx">
       <DependentUpon>PagarCuentaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermisoRolForm.resx">
+      <DependentUpon>PermisoRolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PromocionesForm.resx">
       <DependentUpon>PromocionesForm.cs</DependentUpon>

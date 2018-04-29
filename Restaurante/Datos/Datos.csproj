@@ -98,6 +98,9 @@
     <Compile Include="EF\Insumos.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MaestroModuloRol.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MaestroRolUsuario.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
@@ -120,6 +123,9 @@
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Mesoneros.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Modulo.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Promociones.cs">
@@ -174,7 +180,6 @@
     <Content Include="EF\EF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EF.edmx</DependentUpon>
-      <LastGenOutput>EF.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
