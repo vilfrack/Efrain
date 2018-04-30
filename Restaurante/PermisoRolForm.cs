@@ -32,18 +32,23 @@ namespace Restaurante
 
         }
         private void BindGridPermisoRol() {
+            int IDRol = Convert.ToInt32(comboRoles.SelectedValue);
             var query = (from mRol in EF.MaestroModuloRol
                            join rol in EF.Rol on mRol.IDRol equals rol.IDRol
                            join modulo in EF.Modulo on mRol.IDModulo equals modulo.IDModulo
+                           where rol.IDRol == IDRol
                            select new {
                                IDMaestro =  mRol.IDModulosRol,
                                IDModulo = modulo.IDModulo,
                                IDRol = rol.IDRol,
                                Rol = rol.Descripcion,
-                               Modu = modulo.Modulo1
+                               Modulo = modulo.Modulo1
                            }).ToList();
 
             GridViewPermisoRol.DataSource = query.ToList();
+            this.GridViewPermisoRol.Columns["IDMaestro"].Visible = false;
+            this.GridViewPermisoRol.Columns["IDModulo"].Visible = false;
+            this.GridViewPermisoRol.Columns["IDRol"].Visible = false;
         }
         private void BindGridModulos() {
             GridViewModulos.DataSource = EF.Modulo.ToList();
@@ -58,10 +63,18 @@ namespace Restaurante
         {
             int IDRol = Convert.ToInt32(comboRoles.SelectedValue.ToString());
             var s = listModulo.Distinct().ToList();
-            foreach (var item in listModulo.ToList().Distinct())
+            foreach (var item in listModulo.ToList())
             {
+                MaestroModuloRol moduloRol = new MaestroModuloRol();
+                moduloRol.IDModulo = item.IDModulo;
+                moduloRol.IDRol = IDRol;
 
+                EF.MaestroModuloRol.Add(moduloRol);
+                EF.SaveChanges();
             }
+            BindGridPermisoRol();
+            MessageBox.Show("Permiso agregado");
+
         }
 
         private void GridViewModulos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -69,6 +82,8 @@ namespace Restaurante
             foreach (DataGridViewRow row in GridViewModulos.Rows)
             {
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells["check"];
+                var s = chk.FalseValue;
+                var vc = chk.TrueValue;
                 if (chk.Selected == true)
                 {
 
@@ -82,44 +97,26 @@ namespace Restaurante
                     int IDModulo = Convert.ToInt32(GridViewModulos.Rows[e.RowIndex].Cells["IDModulo"].Value);
                     if (listModulo.Where(w=>w.IDModulo== IDModulo).Count()>1)
                     {
-                        var itemToRemove = listModulo.FirstOrDefault(r => r.IDModulo == IDModulo);
-                        listModulo.Remove(itemToRemove);
+                        var itemToRemove = listModulo.Where(r => r.IDModulo == IDModulo).ToList();
+                        foreach (var removeItem in itemToRemove)
+                        {
+                            listModulo.Remove(removeItem);
+                        }
                     }
 
                 }
             }
-            //if (GridViewModulos.Rows.Count > 0 && e.RowIndex != -1)
-            //{
-            //    if (GridViewModulos.Rows[e.RowIndex].Cells[0].Selected)
-            //    {
-            //        int row_index = e.RowIndex;
-            //        for (int i = 0; i < GridViewModulos.Rows.Count; i++)
-            //        {
-            //            string check = GridViewModulos.Rows[i].Cells["check"].Value.ToString();
 
-            //            DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[1];
-            //            if (chk.Value == chk.TrueValue)
-            //            {
-            //                chk.Value = chk.FalseValue;
-            //            }
-            //            else
-            //            {
-            //                chk.Value = chk.TrueValue;
-            //            }
-            //            //if (check == true)
-            //            //{
-            //            //    listModulo.Add(new Modulo
-            //            //    {
-            //            //        IDModulo = Convert.ToInt32(GridViewModulos.Rows[e.RowIndex].Cells["IDModulo"].Value),
-            //            //        Modulo1 = GridViewModulos.Rows[e.RowIndex].Cells["Modulo1"].Value.ToString()
-            //            //    });
-            //            //}
+        }
 
-            //            //GridViewCuenta.Rows[e.RowIndex].Cells["IDComanda"].Value.ToString();
-            //        }
-
-            //    }
-            //}
+        private void comboRoles_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string validar = comboRoles.SelectedValue.ToString();
+            if (validar == "Datos.EF.Rol")
+            {
+                return;
+            }
+            BindGridPermisoRol();
         }
     }
 }

@@ -111,6 +111,7 @@
             this.comboRoles.Name = "comboRoles";
             this.comboRoles.Size = new System.Drawing.Size(189, 21);
             this.comboRoles.TabIndex = 53;
+            this.comboRoles.SelectedValueChanged += new System.EventHandler(this.comboRoles_SelectedValueChanged);
             // 
             // GridViewModulos
             // 

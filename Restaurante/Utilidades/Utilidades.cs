@@ -61,8 +61,8 @@ namespace Restaurante.Utilidades
             checkBoxColumn.HeaderText = "Seleccionar";
             checkBoxColumn.Width = 90;
 
-            checkBoxColumn.TrueValue = true;
-            checkBoxColumn.FalseValue = false;
+            checkBoxColumn.TrueValue = 't';
+            checkBoxColumn.FalseValue = 'f';
 
             checkBoxColumn.Name = "check";
             GridView.Columns.Insert(0, checkBoxColumn);
