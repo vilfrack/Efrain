@@ -17,7 +17,7 @@ namespace Restaurante
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new LoginForm());
-            Application.Run(new PermisoRolForm());
+            Application.Run(new LoginForm());
         }
     }
 }

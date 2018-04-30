@@ -35,7 +35,7 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnCuenta = new System.Windows.Forms.Button();
             this.btnCerrarTurno = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAbrirTurno = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mesasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,8 +52,7 @@
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.permisosPorRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,15 +127,15 @@
             this.btnCerrarTurno.UseVisualStyleBackColor = true;
             this.btnCerrarTurno.Click += new System.EventHandler(this.btnCerrarTurno_Click);
             // 
-            // button2
+            // btnAbrirTurno
             // 
-            this.button2.Location = new System.Drawing.Point(526, 37);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 64);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Abrir Turno";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnAbrirTurno.Location = new System.Drawing.Point(526, 37);
+            this.btnAbrirTurno.Name = "btnAbrirTurno";
+            this.btnAbrirTurno.Size = new System.Drawing.Size(98, 64);
+            this.btnAbrirTurno.TabIndex = 10;
+            this.btnAbrirTurno.Text = "Abrir Turno";
+            this.btnAbrirTurno.UseVisualStyleBackColor = true;
+            this.btnAbrirTurno.Click += new System.EventHandler(this.btnAbrirTurno_Click);
             // 
             // menuStrip1
             // 
@@ -242,7 +241,8 @@
             // 
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rolToolStripMenuItem,
-            this.usuarioToolStripMenuItem});
+            this.usuarioToolStripMenuItem,
+            this.permisosPorRolToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
@@ -261,24 +261,12 @@
             this.usuarioToolStripMenuItem.Text = "Usuario";
             this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
-            // button1
+            // permisosPorRolToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(12, 609);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 64);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(358, 249);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "label1";
+            this.permisosPorRolToolStripMenuItem.Name = "permisosPorRolToolStripMenuItem";
+            this.permisosPorRolToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.permisosPorRolToolStripMenuItem.Text = "Permisos por rol";
+            this.permisosPorRolToolStripMenuItem.Click += new System.EventHandler(this.permisosPorRolToolStripMenuItem_Click);
             // 
             // MenuPrincipal
             // 
@@ -286,10 +274,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1165, 685);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCerrarTurno);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAbrirTurno);
             this.Controls.Add(this.btnCuenta);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComanda);
@@ -320,7 +306,7 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnCuenta;
         private System.Windows.Forms.Button btnCerrarTurno;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAbrirTurno;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem catalogosToolStripMenuItem;
@@ -337,8 +323,7 @@
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem permisosPorRolToolStripMenuItem;
     }
 }
 

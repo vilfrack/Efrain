@@ -17,6 +17,7 @@ namespace Restaurante.Utilidades
 
     class Login
     {
+        BDRestauranteEntities EF = new BDRestauranteEntities();
         //decalre properties
         public string Username { get; set; }
         public string Userpassword { get; set; }
@@ -29,6 +30,8 @@ namespace Restaurante.Utilidades
             this.Userpassword = pass;
             DatosLogin.Usuario = user;
             DatosLogin.Password = pass;
+        }
+        public Login() {
         }
         //validate string
         private bool StringValidator(string input)
@@ -72,6 +75,14 @@ namespace Restaurante.Utilidades
                 DatosLogin.IDUsuario = EF.Usuario.Where(w => w.Login == user && w.Password == pass).Select(s=>s.IDUsuario).SingleOrDefault();
             }
             return login;
+        }
+
+        public List<MaestroRolUsuario> ObtenerIDRol(int IDUsuario) {
+
+            var getRol = EF.MaestroRolUsuario.Where(w => w.IDUsuario == IDUsuario).ToList();
+            List<MaestroRolUsuario> List = new List<MaestroRolUsuario>();
+            List.AddRange(getRol);
+            return List;
         }
     }
 }

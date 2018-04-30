@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Datos.EF;
 using Restaurante.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,8 @@ namespace Restaurante
         Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         CRUDTurno CRUDTurno = new CRUDTurno();
         private Utilidades.Status status = new Utilidades.Status();
-
+        Utilidades.Permisos permisos = new Utilidades.Permisos();
+        Login login = new Login();
         private void BtnCliente_Click(object sender, EventArgs e)
         {
             ClienteForm ClienteForm = new ClienteForm();
@@ -30,10 +32,106 @@ namespace Restaurante
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            utilidades.ConfiguracionFormulario(this);
 
-            //string s = DatosLogin.Usuario;
-            //string p = DatosLogin.Password;
+
+            #region OBTENER PERMISOS POR ROLES
+
+            List<MaestroRolUsuario> list = new List<MaestroRolUsuario>();
+            list.AddRange(login.ObtenerIDRol(DatosLogin.IDUsuario));
+            foreach (var itemPermisos in list)
+            {
+                bool bAbrirTurnoForm = permisos.permisoFormulario(permisos.AbrirTurnoForm,itemPermisos.IDRol);
+                bool bCerrarCajaForm = permisos.permisoFormulario(permisos.CerrarCajaForm, itemPermisos.IDRol);
+                bool bClienteForm = permisos.permisoFormulario(permisos.ClienteForm, itemPermisos.IDRol);
+                bool bComandaForm = permisos.permisoFormulario(permisos.ComandaForm, itemPermisos.IDRol);
+                bool bCuentaForm = permisos.permisoFormulario(permisos.CuentaForm, itemPermisos.IDRol);
+                bool bGruposForm = permisos.permisoFormulario(permisos.GruposForm, itemPermisos.IDRol);
+                bool bInsumosForm = permisos.permisoFormulario(permisos.InsumosForm, itemPermisos.IDRol);
+                bool bMenuPedido = permisos.permisoFormulario(permisos.MenuPedido, itemPermisos.IDRol);
+                bool bMesasForm = permisos.permisoFormulario(permisos.MesasForm, itemPermisos.IDRol);
+                bool bMesonerosForm = permisos.permisoFormulario(permisos.MesonerosForm, itemPermisos.IDRol);
+                bool bPagarCuentaForm = permisos.permisoFormulario(permisos.PagarCuentaForm, itemPermisos.IDRol);
+                bool bPromocionesForm = permisos.permisoFormulario(permisos.PromocionesForm, itemPermisos.IDRol);
+                bool bPropinas = permisos.permisoFormulario(permisos.Propinas, itemPermisos.IDRol);
+                bool bRolForm = permisos.permisoFormulario(permisos.RolForm, itemPermisos.IDRol);
+                bool bSubGrupoForm = permisos.permisoFormulario(permisos.SubGrupoForm, itemPermisos.IDRol);
+                bool bTipoDescuentoForm = permisos.permisoFormulario(permisos.TipoDescuentoForm, itemPermisos.IDRol);
+                bool bUnidadMedidaForm = permisos.permisoFormulario(permisos.UnidadMedidaForm, itemPermisos.IDRol);
+                bool bUsuarioForm = permisos.permisoFormulario(permisos.UsuarioForm, itemPermisos.IDRol);
+
+                if (!bAbrirTurnoForm)
+                {
+                    btnAbrirTurno.Enabled = false;
+                }
+                if (!bCerrarCajaForm)
+                {
+                    btnCerrarTurno.Enabled = false;
+                }
+                if (!bClienteForm)
+                {
+                    BtnCliente.Enabled = false;
+                }
+                if (!bComandaForm)
+                {
+                    btnComanda.Enabled = false;
+                }
+                if (!bCuentaForm)
+                {
+                    btnCuenta.Enabled = false;
+                }
+                if (!bGruposForm)
+                {
+                    gruposToolStripMenuItem.Enabled = false;
+                }
+                if (!bInsumosForm)
+                {
+                    btnInsumos.Enabled = false;
+                }
+                if (!bMenuPedido)
+                {
+                    btnMenuPedido.Enabled = false;
+                }
+                if (!bMesasForm)
+                {
+                    mesasToolStripMenuItem.Enabled = false;
+                }
+                if (!bMesonerosForm)
+                {
+                    meserosToolStripMenuItem.Enabled = false;
+                }
+                if (!bPromocionesForm)
+                {
+                    promocionesToolStripMenuItem.Enabled = false;
+                }
+
+                if (!bRolForm)
+                {
+                    rolToolStripMenuItem.Enabled = false;
+                }
+                if (!bSubGrupoForm)
+                {
+                    subGruposToolStripMenuItem.Enabled = false;
+                }
+                if (!bTipoDescuentoForm)
+                {
+                    tipoDeDescuentoToolStripMenuItem.Enabled = false;
+                }
+                if (!bUnidadMedidaForm)
+                {
+                    unidadDeMedidaToolStripMenuItem.Enabled = false;
+                }
+                if (!bUsuarioForm)
+                {
+                    usuarioToolStripMenuItem.Enabled = false;
+                }
+
+            }
+            #endregion
+
+
+            utilidades.ConfiguracionFormulario(this);
+            bool validarPermiso = permisos.permisoFormulario(permisos.AbrirTurnoForm, 1);
+
         }
 
         private void btnMenuPedido_Click(object sender, EventArgs e)
@@ -98,11 +196,6 @@ namespace Restaurante
             cuenta.ShowDialog();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            AbrirTurnoForm AbrirTurnoForm = new AbrirTurnoForm();
-            AbrirTurnoForm.ShowDialog();
-        }
 
         private void btnCerrarTurno_Click(object sender, EventArgs e)
         {
@@ -195,6 +288,18 @@ namespace Restaurante
         {
             LoginForm login = new LoginForm();
             login.ShowDialog();
+        }
+
+        private void btnAbrirTurno_Click(object sender, EventArgs e)
+        {
+            AbrirTurnoForm AbrirTurnoForm = new AbrirTurnoForm();
+            AbrirTurnoForm.ShowDialog();
+        }
+
+        private void permisosPorRolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PermisoRolForm permisosRol = new PermisoRolForm();
+            permisosRol.ShowDialog();
         }
     }
 }

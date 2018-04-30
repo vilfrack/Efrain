@@ -16,6 +16,7 @@ namespace Restaurante
         BDRestauranteEntities EF = new BDRestauranteEntities();
         private Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         private List<Modulo> listModulo = new List<Modulo>();
+
         public PermisoRolForm()
         {
             InitializeComponent();
@@ -29,8 +30,13 @@ namespace Restaurante
             LoadCombo();
             BindGridPermisoRol();
             BindGridModulos();
-
+            invisible();
+            /*PRUEBA PERMISOS*/
+            //Utilidades.Permisos permisos = new Utilidades.Permisos();
+            //bool s = permisos.permisoFormulario(permisos.AbrirTurnoForm,1);
+            /*****************/
         }
+
         private void BindGridPermisoRol() {
             int IDRol = Convert.ToInt32(comboRoles.SelectedValue);
             var query = (from mRol in EF.MaestroModuloRol
@@ -42,7 +48,7 @@ namespace Restaurante
                                IDModulo = modulo.IDModulo,
                                IDRol = rol.IDRol,
                                Rol = rol.Descripcion,
-                               Modulo = modulo.Modulo1
+                               Modulo1 = modulo.Modulo1
                            }).ToList();
 
             GridViewPermisoRol.DataSource = query.ToList();
@@ -50,9 +56,11 @@ namespace Restaurante
             this.GridViewPermisoRol.Columns["IDModulo"].Visible = false;
             this.GridViewPermisoRol.Columns["IDRol"].Visible = false;
         }
+
         private void BindGridModulos() {
             GridViewModulos.DataSource = EF.Modulo.ToList();
         }
+
         private void LoadCombo() {
             comboRoles.DataSource = EF.Rol.ToList();
             comboRoles.ValueMember = "IDRol";
@@ -66,11 +74,15 @@ namespace Restaurante
             foreach (var item in listModulo.ToList())
             {
                 MaestroModuloRol moduloRol = new MaestroModuloRol();
-                moduloRol.IDModulo = item.IDModulo;
-                moduloRol.IDRol = IDRol;
+                bool varModuloRol = EF.MaestroModuloRol.Where(w => w.IDModulo == item.IDModulo && w.IDRol == IDRol).Any();
+                if (varModuloRol != true)
+                {
+                    moduloRol.IDModulo = item.IDModulo;
+                    moduloRol.IDRol = IDRol;
+                    EF.MaestroModuloRol.Add(moduloRol);
+                    EF.SaveChanges();
+                }
 
-                EF.MaestroModuloRol.Add(moduloRol);
-                EF.SaveChanges();
             }
             BindGridPermisoRol();
             MessageBox.Show("Permiso agregado");
@@ -109,6 +121,25 @@ namespace Restaurante
 
         }
 
+        private void invisible() {
+            lblID.Visible = false;
+            lblRol.Visible = false;
+            lblModulo.Visible = false;
+            txtID.Visible = false;
+            txtRol.Visible = false;
+            txtModulo.Visible = false;
+        }
+
+        private void visible()
+        {
+            lblID.Visible = true;
+            lblRol.Visible = true;
+            lblModulo.Visible = true;
+            txtID.Visible = true;
+            txtRol.Visible = true;
+            txtModulo.Visible = true;
+        }
+
         private void comboRoles_SelectedValueChanged(object sender, EventArgs e)
         {
             string validar = comboRoles.SelectedValue.ToString();
@@ -117,6 +148,61 @@ namespace Restaurante
                 return;
             }
             BindGridPermisoRol();
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text != "")
+            {
+                int IDMaestro = Convert.ToInt32(txtID.Text);
+                var maestro = EF.MaestroModuloRol.Find(IDMaestro);
+                if (maestro != null)
+                {
+                    EF.MaestroModuloRol.Remove(maestro);
+                    EF.SaveChanges();
+                    BindGridPermisoRol();
+                    txtID.Text = "";
+                    txtRol.Text = "";
+                    txtModulo.Text = "";
+                    invisible();
+                    MessageBox.Show("Permiso eliminado");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un permiso");
+            }
+
+        }
+
+        private void GridViewPermisoRol_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewPermisoRol.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                if (GridViewPermisoRol.Rows[e.RowIndex].Cells[0].Selected)
+                {
+                    int row_index = e.RowIndex;
+                    for (int i = 0; i < GridViewPermisoRol.Rows.Count; i++)
+                    {
+                        if (row_index != i)
+                        {
+                            GridViewPermisoRol.Rows[i].Cells["check"].Value = false;
+                        }
+                    }
+
+                    visible();
+                    txtID.Text = GridViewPermisoRol.Rows[e.RowIndex].Cells["IDMaestro"].Value.ToString();
+                    txtModulo.Text = GridViewPermisoRol.Rows[e.RowIndex].Cells["Modulo1"].Value.ToString();
+                    txtRol.Text = GridViewPermisoRol.Rows[e.RowIndex].Cells["Rol"].Value.ToString();
+                    btnEliminar.Enabled = true;
+                }
+            }
+
         }
     }
 }
