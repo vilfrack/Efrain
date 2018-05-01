@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -36,45 +35,37 @@
             this.txtIDMesonero = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
-            this.BtnNuevo = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.griViewMesoneros = new System.Windows.Forms.DataGridView();
-            this.panel3.SuspendLayout();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.GridViewUsuario = new System.Windows.Forms.DataGridView();
+            this.txtUsuarioID = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.griViewMesoneros)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewUsuario)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.groupBox1);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(303, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(695, 327);
-            this.panel3.TabIndex = 12;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtUsuarioID);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtIDMesonero);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtNombre);
-            this.groupBox1.Location = new System.Drawing.Point(6, 100);
+            this.groupBox1.Location = new System.Drawing.Point(311, 112);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(626, 215);
+            this.groupBox1.Size = new System.Drawing.Size(622, 215);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Grupo";
@@ -128,24 +119,13 @@
             this.txtNombre.Size = new System.Drawing.Size(393, 20);
             this.txtNombre.TabIndex = 6;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.groupBox4);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(695, 87);
-            this.panel4.TabIndex = 0;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnCancelar);
             this.groupBox4.Controls.Add(this.BtnGuardar);
             this.groupBox4.Controls.Add(this.btnAtras);
-            this.groupBox4.Controls.Add(this.BtnNuevo);
-            this.groupBox4.Controls.Add(this.btnEditar);
             this.groupBox4.Controls.Add(this.btnEliminar);
-            this.groupBox4.Location = new System.Drawing.Point(8, 4);
+            this.groupBox4.Location = new System.Drawing.Point(309, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(624, 79);
             this.groupBox4.TabIndex = 5;
@@ -154,7 +134,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(333, 16);
+            this.btnCancelar.Location = new System.Drawing.Point(182, 16);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 44);
             this.btnCancelar.TabIndex = 6;
@@ -164,7 +144,7 @@
             // 
             // BtnGuardar
             // 
-            this.BtnGuardar.Location = new System.Drawing.Point(90, 16);
+            this.BtnGuardar.Location = new System.Drawing.Point(20, 16);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(75, 44);
             this.BtnGuardar.TabIndex = 5;
@@ -182,29 +162,9 @@
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
-            // BtnNuevo
-            // 
-            this.BtnNuevo.Location = new System.Drawing.Point(9, 16);
-            this.BtnNuevo.Name = "BtnNuevo";
-            this.BtnNuevo.Size = new System.Drawing.Size(75, 44);
-            this.BtnNuevo.TabIndex = 0;
-            this.BtnNuevo.Text = "Nuevo";
-            this.BtnNuevo.UseVisualStyleBackColor = true;
-            this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(171, 16);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 44);
-            this.btnEditar.TabIndex = 1;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(252, 16);
+            this.btnEliminar.Location = new System.Drawing.Point(101, 16);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 44);
             this.btnEliminar.TabIndex = 2;
@@ -231,31 +191,61 @@
             this.griViewMesoneros.TabIndex = 0;
             this.griViewMesoneros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.griViewMesoneros_CellClick);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.GridViewUsuario);
+            this.groupBox2.Location = new System.Drawing.Point(951, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(278, 315);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Usuarios";
+            // 
+            // GridViewUsuario
+            // 
+            this.GridViewUsuario.AllowUserToAddRows = false;
+            this.GridViewUsuario.AllowUserToDeleteRows = false;
+            this.GridViewUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewUsuario.Location = new System.Drawing.Point(11, 19);
+            this.GridViewUsuario.Name = "GridViewUsuario";
+            this.GridViewUsuario.Size = new System.Drawing.Size(261, 282);
+            this.GridViewUsuario.TabIndex = 1;
+            this.GridViewUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewUsuario_CellClick);
+            // 
+            // txtUsuarioID
+            // 
+            this.txtUsuarioID.Enabled = false;
+            this.txtUsuarioID.Location = new System.Drawing.Point(145, 105);
+            this.txtUsuarioID.Name = "txtUsuarioID";
+            this.txtUsuarioID.Size = new System.Drawing.Size(393, 20);
+            this.txtUsuarioID.TabIndex = 9;
+            this.txtUsuarioID.Visible = false;
+            // 
             // MesonerosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 340);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(1251, 340);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
             this.Name = "MesonerosForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MesonerosForm";
             this.Load += new System.EventHandler(this.MesonerosForm_Load);
-            this.panel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.griViewMesoneros)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewUsuario)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtApellido;
@@ -263,15 +253,15 @@
         private System.Windows.Forms.TextBox txtIDMesonero;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button btnAtras;
-        private System.Windows.Forms.Button BtnNuevo;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView griViewMesoneros;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView GridViewUsuario;
+        private System.Windows.Forms.TextBox txtUsuarioID;
     }
 }

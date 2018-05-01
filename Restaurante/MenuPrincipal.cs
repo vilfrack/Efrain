@@ -36,96 +36,96 @@ namespace Restaurante
 
             #region OBTENER PERMISOS POR ROLES
 
-            List<MaestroRolUsuario> list = new List<MaestroRolUsuario>();
-            list.AddRange(login.ObtenerIDRol(DatosLogin.IDUsuario));
-            foreach (var itemPermisos in list)
-            {
-                bool bAbrirTurnoForm = permisos.permisoFormulario(permisos.AbrirTurnoForm,itemPermisos.IDRol);
-                bool bCerrarCajaForm = permisos.permisoFormulario(permisos.CerrarCajaForm, itemPermisos.IDRol);
-                bool bClienteForm = permisos.permisoFormulario(permisos.ClienteForm, itemPermisos.IDRol);
-                bool bComandaForm = permisos.permisoFormulario(permisos.ComandaForm, itemPermisos.IDRol);
-                bool bCuentaForm = permisos.permisoFormulario(permisos.CuentaForm, itemPermisos.IDRol);
-                bool bGruposForm = permisos.permisoFormulario(permisos.GruposForm, itemPermisos.IDRol);
-                bool bInsumosForm = permisos.permisoFormulario(permisos.InsumosForm, itemPermisos.IDRol);
-                bool bMenuPedido = permisos.permisoFormulario(permisos.MenuPedido, itemPermisos.IDRol);
-                bool bMesasForm = permisos.permisoFormulario(permisos.MesasForm, itemPermisos.IDRol);
-                bool bMesonerosForm = permisos.permisoFormulario(permisos.MesonerosForm, itemPermisos.IDRol);
-                bool bPagarCuentaForm = permisos.permisoFormulario(permisos.PagarCuentaForm, itemPermisos.IDRol);
-                bool bPromocionesForm = permisos.permisoFormulario(permisos.PromocionesForm, itemPermisos.IDRol);
-                bool bPropinas = permisos.permisoFormulario(permisos.Propinas, itemPermisos.IDRol);
-                bool bRolForm = permisos.permisoFormulario(permisos.RolForm, itemPermisos.IDRol);
-                bool bSubGrupoForm = permisos.permisoFormulario(permisos.SubGrupoForm, itemPermisos.IDRol);
-                bool bTipoDescuentoForm = permisos.permisoFormulario(permisos.TipoDescuentoForm, itemPermisos.IDRol);
-                bool bUnidadMedidaForm = permisos.permisoFormulario(permisos.UnidadMedidaForm, itemPermisos.IDRol);
-                bool bUsuarioForm = permisos.permisoFormulario(permisos.UsuarioForm, itemPermisos.IDRol);
+            //List<MaestroRolUsuario> list = new List<MaestroRolUsuario>();
+            //list.AddRange(login.ObtenerIDRol(DatosLogin.IDUsuario));
+            //foreach (var itemPermisos in list)
+            //{
+            //    bool bAbrirTurnoForm = permisos.permisoFormulario(permisos.AbrirTurnoForm,itemPermisos.IDRol);
+            //    bool bCerrarCajaForm = permisos.permisoFormulario(permisos.CerrarCajaForm, itemPermisos.IDRol);
+            //    bool bClienteForm = permisos.permisoFormulario(permisos.ClienteForm, itemPermisos.IDRol);
+            //    bool bComandaForm = permisos.permisoFormulario(permisos.ComandaForm, itemPermisos.IDRol);
+            //    bool bCuentaForm = permisos.permisoFormulario(permisos.CuentaForm, itemPermisos.IDRol);
+            //    bool bGruposForm = permisos.permisoFormulario(permisos.GruposForm, itemPermisos.IDRol);
+            //    bool bInsumosForm = permisos.permisoFormulario(permisos.InsumosForm, itemPermisos.IDRol);
+            //    bool bMenuPedido = permisos.permisoFormulario(permisos.MenuPedido, itemPermisos.IDRol);
+            //    bool bMesasForm = permisos.permisoFormulario(permisos.MesasForm, itemPermisos.IDRol);
+            //    bool bMesonerosForm = permisos.permisoFormulario(permisos.MesonerosForm, itemPermisos.IDRol);
+            //    bool bPagarCuentaForm = permisos.permisoFormulario(permisos.PagarCuentaForm, itemPermisos.IDRol);
+            //    bool bPromocionesForm = permisos.permisoFormulario(permisos.PromocionesForm, itemPermisos.IDRol);
+            //    bool bPropinas = permisos.permisoFormulario(permisos.Propinas, itemPermisos.IDRol);
+            //    bool bRolForm = permisos.permisoFormulario(permisos.RolForm, itemPermisos.IDRol);
+            //    bool bSubGrupoForm = permisos.permisoFormulario(permisos.SubGrupoForm, itemPermisos.IDRol);
+            //    bool bTipoDescuentoForm = permisos.permisoFormulario(permisos.TipoDescuentoForm, itemPermisos.IDRol);
+            //    bool bUnidadMedidaForm = permisos.permisoFormulario(permisos.UnidadMedidaForm, itemPermisos.IDRol);
+            //    bool bUsuarioForm = permisos.permisoFormulario(permisos.UsuarioForm, itemPermisos.IDRol);
 
-                if (!bAbrirTurnoForm)
-                {
-                    btnAbrirTurno.Enabled = false;
-                }
-                if (!bCerrarCajaForm)
-                {
-                    btnCerrarTurno.Enabled = false;
-                }
-                if (!bClienteForm)
-                {
-                    BtnCliente.Enabled = false;
-                }
-                if (!bComandaForm)
-                {
-                    btnComanda.Enabled = false;
-                }
-                if (!bCuentaForm)
-                {
-                    btnCuenta.Enabled = false;
-                }
-                if (!bGruposForm)
-                {
-                    gruposToolStripMenuItem.Enabled = false;
-                }
-                if (!bInsumosForm)
-                {
-                    btnInsumos.Enabled = false;
-                }
-                if (!bMenuPedido)
-                {
-                    btnMenuPedido.Enabled = false;
-                }
-                if (!bMesasForm)
-                {
-                    mesasToolStripMenuItem.Enabled = false;
-                }
-                if (!bMesonerosForm)
-                {
-                    meserosToolStripMenuItem.Enabled = false;
-                }
-                if (!bPromocionesForm)
-                {
-                    promocionesToolStripMenuItem.Enabled = false;
-                }
+            //    if (!bAbrirTurnoForm)
+            //    {
+            //        btnAbrirTurno.Enabled = false;
+            //    }
+            //    if (!bCerrarCajaForm)
+            //    {
+            //        btnCerrarTurno.Enabled = false;
+            //    }
+            //    if (!bClienteForm)
+            //    {
+            //        BtnCliente.Enabled = false;
+            //    }
+            //    if (!bComandaForm)
+            //    {
+            //        btnComanda.Enabled = false;
+            //    }
+            //    if (!bCuentaForm)
+            //    {
+            //        btnCuenta.Enabled = false;
+            //    }
+            //    if (!bGruposForm)
+            //    {
+            //        gruposToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bInsumosForm)
+            //    {
+            //        btnInsumos.Enabled = false;
+            //    }
+            //    if (!bMenuPedido)
+            //    {
+            //        btnMenuPedido.Enabled = false;
+            //    }
+            //    if (!bMesasForm)
+            //    {
+            //        mesasToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bMesonerosForm)
+            //    {
+            //        meserosToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bPromocionesForm)
+            //    {
+            //        promocionesToolStripMenuItem.Enabled = false;
+            //    }
 
-                if (!bRolForm)
-                {
-                    rolToolStripMenuItem.Enabled = false;
-                }
-                if (!bSubGrupoForm)
-                {
-                    subGruposToolStripMenuItem.Enabled = false;
-                }
-                if (!bTipoDescuentoForm)
-                {
-                    tipoDeDescuentoToolStripMenuItem.Enabled = false;
-                }
-                if (!bUnidadMedidaForm)
-                {
-                    unidadDeMedidaToolStripMenuItem.Enabled = false;
-                }
-                if (!bUsuarioForm)
-                {
-                    usuarioToolStripMenuItem.Enabled = false;
-                }
+            //    if (!bRolForm)
+            //    {
+            //        rolToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bSubGrupoForm)
+            //    {
+            //        subGruposToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bTipoDescuentoForm)
+            //    {
+            //        tipoDeDescuentoToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bUnidadMedidaForm)
+            //    {
+            //        unidadDeMedidaToolStripMenuItem.Enabled = false;
+            //    }
+            //    if (!bUsuarioForm)
+            //    {
+            //        usuarioToolStripMenuItem.Enabled = false;
+            //    }
 
-            }
+            //}
             #endregion
 
 
