@@ -32,13 +32,27 @@ namespace Restaurante.Utilidades
         public string UnidadMedidaForm = "UnidadMedidaForm";
         public string UsuarioForm = "UsuarioForm";
 
-        public bool permisoFormulario(string formulario, int? IDRol) {
+        public bool permisoFormulario(string formulario, int? IDRol, int IDUsuario) {
+            bool tienePermisoRol = false;
+            bool tienePermisoUsuario = false;
             bool tienePermiso = false;
-            tienePermiso = (from master in EF.MaestroModuloRol
+
+            tienePermisoRol = (from master in EF.MaestroModuloRol
                             join rol in EF.Rol on master.IDRol equals rol.IDRol
                             join modulo in EF.Modulo on master.IDModulo equals modulo.IDModulo
                             where modulo.Modulo1 == formulario && rol.IDRol == IDRol
                             select master).Any();
+
+            tienePermisoUsuario= (from master in EF.MaestroModuloUsuario
+                                  join usuario in EF.Usuario on master.IDUsuario equals usuario.IDUsuario
+                                  join modulo in EF.Modulo on master.IDModulo equals modulo.IDModulo
+                                  where modulo.Modulo1 == formulario && usuario.IDUsuario == IDUsuario
+                                  select master).Any();
+
+            if (tienePermisoRol || tienePermisoUsuario )
+            {
+                tienePermiso = true;
+            }
             return tienePermiso;
         }
     }
