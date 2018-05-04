@@ -96,6 +96,14 @@
           <Property Name="IDRol" Type="int" />
           <Property Name="IDModulo" Type="int" />
         </EntityType>
+        <EntityType Name="MaestroModuloUsuario">
+          <Key>
+            <PropertyRef Name="IDModulosUsuario" />
+          </Key>
+          <Property Name="IDModulosUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUsuario" Type="int" />
+          <Property Name="IDModulo" Type="int" />
+        </EntityType>
         <EntityType Name="MaestroRolUsuario">
           <Key>
             <PropertyRef Name="IDMaestroRolUsuario" />
@@ -164,6 +172,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <Property Name="IDMesoneros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
           <Property Name="Apellido" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDUsuario" Type="int" />
         </EntityType>
         <EntityType Name="Modulo">
           <Key>
@@ -295,6 +304,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Insumos" EntityType="Self.Insumos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaestroModuloRol" EntityType="Self.MaestroModuloRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaestroModuloUsuario" EntityType="Self.MaestroModuloUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaestroRolUsuario" EntityType="Self.MaestroRolUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterCierreCuenta" EntityType="Self.MasterCierreCuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterComanda" EntityType="Self.MasterComanda" Schema="dbo" store:Type="Tables" />
@@ -463,6 +473,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <Property Name="IDMesoneros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDUsuario" Type="Int32" />
         </EntityType>
         <EntityType Name="Promociones">
           <Key>
@@ -612,6 +623,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <EntitySet Name="MasterGrupoSubGrupo" EntityType="Self.MasterGrupoSubGrupo" />
           <EntitySet Name="Modulo" EntityType="BDRestauranteModel.Modulo" />
           <EntitySet Name="MaestroModuloRol" EntityType="BDRestauranteModel.MaestroModuloRol" />
+          <EntitySet Name="MaestroModuloUsuario" EntityType="BDRestauranteModel.MaestroModuloUsuario" />
         </EntityContainer>
         <EntityType Name="Modulo">
           <Key>
@@ -626,6 +638,14 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           </Key>
           <Property Name="IDModulosRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDRol" Type="Int32" />
+          <Property Name="IDModulo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MaestroModuloUsuario">
+          <Key>
+            <PropertyRef Name="IDModulosUsuario" />
+          </Key>
+          <Property Name="IDModulosUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUsuario" Type="Int32" />
           <Property Name="IDModulo" Type="Int32" />
         </EntityType>
       </Schema>
@@ -782,6 +802,7 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
           <EntitySetMapping Name="Mesoneros">
             <EntityTypeMapping TypeName="BDRestauranteModel.Mesoneros">
               <MappingFragment StoreEntitySet="Mesoneros">
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
                 <ScalarProperty Name="IDMesoneros" ColumnName="IDMesoneros" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
@@ -934,6 +955,15 @@ warning 6002: The table/view 'BDRestaurante.dbo.MasterGrupoSubGrupo' does not ha
                 <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
                 <ScalarProperty Name="IDRol" ColumnName="IDRol" />
                 <ScalarProperty Name="IDModulosRol" ColumnName="IDModulosRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaestroModuloUsuario">
+            <EntityTypeMapping TypeName="BDRestauranteModel.MaestroModuloUsuario">
+              <MappingFragment StoreEntitySet="MaestroModuloUsuario">
+                <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDModulosUsuario" ColumnName="IDModulosUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

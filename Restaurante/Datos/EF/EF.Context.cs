@@ -48,5 +48,6 @@ namespace Datos.EF
         public virtual DbSet<MasterGrupoSubGrupo> MasterGrupoSubGrupo { get; set; }
         public virtual DbSet<Modulo> Modulo { get; set; }
         public virtual DbSet<MaestroModuloRol> MaestroModuloRol { get; set; }
+        public virtual DbSet<MaestroModuloUsuario> MaestroModuloUsuario { get; set; }
     }
 }

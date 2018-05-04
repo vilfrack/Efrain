@@ -198,12 +198,12 @@ namespace Restaurante
                 Insumos.IDInsumos = Convert.ToInt32(txtIDInsumo.Text);
                 Insumos.IDGrupos = Convert.ToInt32(comboIDGrupo.SelectedValue.ToString());
                 Insumos.Descripcion = txtDescripcionInsumo.Text;
-                Insumos.UnidadMedida = comboUnidadMedida.SelectedText;
+                Insumos.UnidadMedida = comboUnidadMedida.Text;
                 Insumos.UltimoCosto = Convert.ToDouble(txtUltimoCosto.Text);
                 Insumos.CostoPromedio = Convert.ToDouble(txtCostoPromedio.Text);
                 Insumos.CostoImpuesto = Convert.ToDouble(txtCostoImpuesto.Text);
                 Insumos.IVA = Convert.ToDouble(txtIva.Text);
-                Insumos.Inventariable = comboInventariable.SelectedText;
+                Insumos.Inventariable = comboInventariable.Text;
 
                 int validar = CRUDInsumos.ModificarInsumo(Insumos);
                 if (validar != 0)

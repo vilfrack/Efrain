@@ -12,11 +12,10 @@ namespace Datos.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Mesoneros
+    public partial class MaestroModuloUsuario
     {
-        public int IDMesoneros { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public int IDModulosUsuario { get; set; }
         public Nullable<int> IDUsuario { get; set; }
+        public Nullable<int> IDModulo { get; set; }
     }
 }

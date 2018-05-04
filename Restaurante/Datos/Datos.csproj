@@ -92,6 +92,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EF\EF1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Grupos.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
@@ -99,6 +104,9 @@
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MaestroModuloRol.cs">
+      <DependentUpon>EF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MaestroModuloUsuario.cs">
       <DependentUpon>EF.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MaestroRolUsuario.cs">
@@ -180,6 +188,7 @@
     <Content Include="EF\EF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EF.edmx</DependentUpon>
+      <LastGenOutput>EF1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
